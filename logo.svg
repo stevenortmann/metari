@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 180" font-family="Inter, ui-sans-serif, sans-serif">
+  <rect width="560" height="180" rx="20" fill="#0a0b0e"/>
+  <rect x="0.75" y="0.75" width="558.5" height="178.5" rx="19.25" fill="none" stroke="#ffffff" stroke-opacity="0.10"/>
+  <g transform="translate(60,52)">
+    <path d="M0 76 L15 20 L34 52 L53 20 L68 76" fill="none" stroke="#eef0f3" stroke-width="5.4" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="15" cy="20" r="4.6" fill="#eef0f3"/>
+    <circle cx="53" cy="20" r="4.6" fill="#eef0f3"/>
+    <circle cx="34" cy="52" r="6.4" fill="#6ee7d0"/>
+  </g>
+  <text x="172" y="86" fill="#eef0f3" font-size="46" font-weight="600" letter-spacing="6">METARI</text>
+  <text x="174" y="118" fill="#8b9099" font-size="16.5" font-weight="400" letter-spacing="1.5">The Infrastructure Layer for <tspan fill="#6ee7d0">Physical AI</tspan></text>
+</svg>

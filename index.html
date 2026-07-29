@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Metari — The Infrastructure Layer for Physical AI</title>
+<meta name="description" content="Metari is the data infrastructure for Physical AI. A network of expert operators, instrumented environments, and evaluation that robotics, humanoid, and foundation-model teams use to generate real-world training data at scale. AWS for physical intelligence." />
+<meta property="og:title" content="Metari — The Infrastructure Layer for Physical AI" />
+<meta property="og:description" content="The data infrastructure for Physical AI. Real-world intelligence, generated continuously." />
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0OCA0OCI+PHJlY3Qgd2lkdGg9IjQ4IiBoZWlnaHQ9IjQ4IiByeD0iMTEiIGZpbGw9IiMwNzEzMGQiLz48ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSg0LDQpIHNjYWxlKDAuNCkiPjxwYXRoIGQ9Ik0gNTAuMCAzLjAgTCA1NC41OSAzOC45MSBMIDgzLjIzIDE2Ljc3IEwgNjEuMDkgNDUuNDEgTCA5Ny4wIDUwLjAgTCA2MS4wOSA1NC41OSBMIDgzLjIzIDgzLjIzIEwgNTQuNTkgNjEuMDkgTCA1MC4wIDk3LjAgTCA0NS40MSA2MS4wOSBMIDE2Ljc3IDgzLjIzIEwgMzguOTEgNTQuNTkgTCAzLjAgNTAuMCBMIDM4LjkxIDQ1LjQxIEwgMTYuNzcgMTYuNzcgTCA0NS40MSAzOC45MSBaIiBmaWxsPSIjMmVmZWE5Ii8+PGNpcmNsZSBjeD0iNTAiIGN5PSI1MCIgcj0iOC41IiBmaWxsPSIjZWFmZmY4Ii8+PC9nPjwvc3ZnPg==" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg: #060709; --bg-2: #0a0b0e; --panel: #0e0f13; --panel-2: #121319;
+    --line: rgba(255,255,255,0.09); --line-soft: rgba(255,255,255,0.055);
+    --text: #eef0f3; --text-dim: #9ba0ab; --text-faint: #63666f;
+    --accent: #2efea9; --accent-2: #7aa2ff; --accent-glow: rgba(46,254,169,0.5);
+    --maxw: 1220px; --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
+  body { background: var(--bg); color: var(--text); font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; line-height: 1.5; overflow-x: hidden; letter-spacing: -0.011em; }
+  ::selection { background: var(--accent); color: #04120e; }
+  a { color: inherit; text-decoration: none; }
+  .wrap { width: 100%; max-width: var(--maxw); margin: 0 auto; padding: 0 34px; }
+  .mono { font-family: 'JetBrains Mono', monospace; font-weight: 400; letter-spacing: 0; }
+  .grain { position: fixed; inset: 0; z-index: 1; pointer-events: none; opacity: 0.03; mix-blend-mode: overlay; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+  .vignette { position: fixed; inset: 0; z-index: 1; pointer-events: none; background: radial-gradient(125% 85% at 50% -12%, transparent 42%, rgba(0,0,0,0.6) 100%); }
+
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 50; transition: background 0.4s var(--ease), border-color 0.4s var(--ease); border-bottom: 1px solid transparent; }
+  nav.scrolled { background: rgba(6,7,9,0.72); backdrop-filter: blur(20px) saturate(140%); -webkit-backdrop-filter: blur(20px) saturate(140%); border-bottom: 1px solid var(--line-soft); }
+  nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 74px; }
+  .brand { display: flex; align-items: center; gap: 11px; font-weight: 600; font-size: 18px; letter-spacing: 0.16em; }
+  .brand .mark svg { display: block; }
+  .nav-links { display: flex; align-items: center; gap: 32px; }
+  .nav-links a.link { font-size: 14px; color: var(--text-dim); transition: color 0.25s; }
+  .nav-links a.link:hover { color: var(--text); }
+  .btn { display: inline-flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 500; padding: 10px 18px; border-radius: 9px; border: 1px solid var(--line); color: var(--text); transition: all 0.25s var(--ease); white-space: nowrap; }
+  .btn:hover { border-color: rgba(255,255,255,0.3); background: rgba(255,255,255,0.03); transform: translateY(-1px); }
+  .btn-primary { background: var(--text); color: #050507; border-color: var(--text); }
+  .btn-primary:hover { background: #fff; box-shadow: 0 10px 34px rgba(255,255,255,0.14); }
+  .btn-lg { padding: 14px 26px; font-size: 15px; border-radius: 11px; }
+
+  .hero { position: relative; min-height: 100vh; display: flex; align-items: center; overflow: hidden; }
+  #hero-canvas { position: absolute; inset: 0; z-index: 0; }
+  .hero-glow { position: absolute; z-index: 0; top: 26%; left: 50%; transform: translate(-50%,-50%); width: 1050px; height: 1050px; border-radius: 50%; background: radial-gradient(circle, rgba(46,254,169,0.11) 0%, rgba(122,162,255,0.055) 34%, transparent 64%); filter: blur(24px); pointer-events: none; }
+  .hero .wrap { position: relative; z-index: 3; padding-top: 104px; padding-bottom: 60px; }
+  .eyebrow { display: inline-flex; align-items: center; gap: 11px; font-size: 12.5px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 30px; padding: 7px 15px 7px 12px; border: 1px solid var(--line-soft); border-radius: 40px; background: rgba(255,255,255,0.02); }
+  .eyebrow .pulse { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 12px var(--accent-glow); animation: pulse 2.6s infinite; }
+  @keyframes pulse { 0%,100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.35; transform: scale(0.7); } }
+  h1.hero-title { font-size: clamp(42px, 6.6vw, 88px); line-height: 1.01; font-weight: 600; letter-spacing: -0.037em; max-width: 15.5ch; }
+  h1.hero-title .fade { color: var(--text-faint); } h1.hero-title .accent { color: var(--accent); }
+  .hero-sub { margin-top: 30px; max-width: 62ch; font-size: clamp(16px, 1.55vw, 20px); color: var(--text-dim); font-weight: 400; line-height: 1.58; }
+  .hero-tag { margin-top: 20px; font-family: 'JetBrains Mono', monospace; font-size: 13px; color: var(--text-faint); letter-spacing: 0.02em; }
+  .hero-tag b { color: var(--accent); font-weight: 500; }
+  .hero-cta { margin-top: 40px; display: flex; gap: 14px; flex-wrap: wrap; }
+
+  .posbar { position: relative; z-index: 3; border-top: 1px solid var(--line-soft); background: rgba(8,9,12,0.5); }
+  .posbar .grid { display: grid; grid-template-columns: repeat(4, 1fr); }
+  .posbar .cell { padding: 30px 30px; border-left: 1px solid var(--line-soft); }
+  .posbar .cell:first-child { border-left: none; }
+  .posbar .q { font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); }
+  .posbar .a { margin-top: 12px; font-size: 15px; color: var(--text-dim); line-height: 1.5; }
+
+  .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.9s var(--ease), transform 0.9s var(--ease); }
+  .reveal.in { opacity: 1; transform: none; }
+  .reveal.d1 { transition-delay: 0.08s; } .reveal.d2 { transition-delay: 0.16s; } .reveal.d3 { transition-delay: 0.24s; } .reveal.d4 { transition-delay: 0.32s; }
+
+  section.block { position: relative; padding: 140px 0; border-top: 1px solid var(--line-soft); }
+  .sec-label { display: flex; align-items: center; gap: 14px; margin-bottom: 32px; font-size: 12.5px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-faint); }
+  .sec-label .num { color: var(--accent); }
+  .sec-label .rule { flex: 1; height: 1px; background: var(--line-soft); max-width: 120px; }
+  h2.big { font-size: clamp(33px, 4.5vw, 62px); line-height: 1.05; font-weight: 600; letter-spacing: -0.032em; max-width: 20ch; }
+  h2.big .dim { color: var(--text-faint); } h2.big .accent { color: var(--accent); }
+  .lead { margin-top: 26px; max-width: 64ch; font-size: clamp(16px,1.5vw,19px); color: var(--text-dim); line-height: 1.62; }
+  .statement { text-align: center; }
+  .statement h2 { margin: 0 auto; } .statement .lead { margin-left: auto; margin-right: auto; }
+
+  .prob-grid { margin-top: 62px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line-soft); border: 1px solid var(--line-soft); border-radius: 16px; overflow: hidden; }
+  .prob-cell { background: var(--bg); padding: 34px 30px; min-height: 178px; transition: background 0.4s var(--ease); position: relative; }
+  .prob-cell:hover { background: var(--panel); }
+  .prob-cell .idx { font-size: 12px; color: var(--text-faint); }
+  .prob-cell h3 { margin-top: 34px; font-size: 20px; font-weight: 600; letter-spacing: -0.02em; }
+  .prob-cell p { margin-top: 10px; font-size: 14.5px; color: var(--text-dim); line-height: 1.5; }
+  .prob-cell .bar { position: absolute; left: 0; top: 0; bottom: 0; width: 2px; background: var(--accent); opacity: 0; transition: opacity 0.4s; }
+  .prob-cell:hover .bar { opacity: 1; }
+
+  .megastate { text-align: center; padding: 150px 0; border-top: 1px solid var(--line-soft); position: relative; overflow: hidden; }
+  .megastate .mg { position: absolute; inset: 0; background: radial-gradient(60% 60% at 50% 50%, rgba(46,254,169,0.07), transparent 70%); pointer-events: none; }
+  .megastate h2 { position: relative; z-index: 2; font-size: clamp(38px, 6vw, 82px); line-height: 1.02; font-weight: 600; letter-spacing: -0.038em; max-width: 16ch; margin: 0 auto; }
+  .megastate h2 .accent { color: var(--accent); }
+  .megastate p { position: relative; z-index: 2; margin: 28px auto 0; max-width: 56ch; font-size: 18px; color: var(--text-dim); line-height: 1.6; }
+
+  .split { margin-top: 60px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .split .col { padding: 34px; border: 1px solid var(--line-soft); border-radius: 18px; background: var(--bg-2); }
+  .split .col.hl { background: linear-gradient(155deg, rgba(46,254,169,0.08), rgba(122,162,255,0.03)); border-color: rgba(46,254,169,0.26); }
+  .split .col .tag { font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-faint); }
+  .split .col.hl .tag { color: var(--accent); }
+  .split .col h3 { margin-top: 16px; font-size: 23px; font-weight: 600; letter-spacing: -0.022em; }
+  .split .col ul { margin-top: 18px; list-style: none; display: flex; flex-direction: column; gap: 12px; }
+  .split .col li { font-size: 15px; color: var(--text-dim); line-height: 1.5; padding-left: 26px; position: relative; }
+  .split .col li::before { content: ""; position: absolute; left: 4px; top: 8px; width: 6px; height: 6px; border-radius: 50%; background: var(--text-faint); }
+  .split .col.hl li::before { background: var(--accent); box-shadow: 0 0 10px var(--accent-glow); }
+
+  .provides { margin-top: 60px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line-soft); border: 1px solid var(--line-soft); border-radius: 16px; overflow: hidden; }
+  .prov { background: var(--bg); padding: 30px 28px; min-height: 150px; transition: background 0.4s var(--ease); position: relative; }
+  .prov:hover { background: var(--panel-2); }
+  .prov .pi { width: 26px; height: 26px; color: var(--accent); opacity: 0.9; }
+  .prov h3 { margin-top: 18px; font-size: 17.5px; font-weight: 600; letter-spacing: -0.018em; }
+  .prov p { margin-top: 8px; font-size: 13.5px; color: var(--text-dim); line-height: 1.48; }
+</style>
+</head>
+<body>
+<div class="grain"></div>
+<div class="vignette"></div>
+<svg class="mt-defs" width="0" height="0" aria-hidden="true"><defs><radialGradient id="mtGlow" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#f2fff9"/><stop offset="16%" stop-color="#3affb2"/><stop offset="46%" stop-color="#2efea9" stop-opacity="0.72"/><stop offset="100%" stop-color="#2efea9" stop-opacity="0"/></radialGradient></defs></svg>
+<style>
+  /* HOW IT WORKS */
+  .how { margin-top: 60px; }
+  .how-flow { display: flex; align-items: flex-start; gap: 0; position: relative; }
+  .how-step { flex: 1; text-align: center; position: relative; cursor: pointer; padding-top: 30px; }
+  .how-step .line { position: absolute; top: 6px; left: 50%; width: 100%; height: 2px; background: var(--line-soft); }
+  .how-step:last-child .line { display: none; }
+  .how-step .line i { display: block; height: 100%; width: 0; background: var(--accent); transition: width 0.6s var(--ease); box-shadow: 0 0 8px var(--accent-glow); }
+  .how-step.done .line i { width: 100%; }
+  .how-step .dot { position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 13px; height: 13px; border-radius: 50%; background: var(--bg); border: 2px solid var(--line); transition: all 0.4s var(--ease); }
+  .how-step.active .dot { border-color: var(--accent); background: var(--accent); box-shadow: 0 0 16px var(--accent-glow); }
+  .how-step.done .dot { border-color: var(--accent); }
+  .how-step .st { font-size: 12px; color: var(--text-faint); transition: color 0.3s; padding: 0 6px; line-height: 1.35; }
+  .how-step.active .st { color: var(--text); }
+  .how-detail { margin-top: 46px; border: 1px solid var(--line-soft); border-radius: 18px; background: linear-gradient(160deg, rgba(16,17,22,0.7), rgba(9,10,13,0.4)); padding: 40px 44px; min-height: 150px; display: grid; grid-template-columns: 80px 1fr; gap: 30px; align-items: center; }
+  .how-detail .bignum { font-size: 54px; font-weight: 600; letter-spacing: -0.04em; color: var(--text-faint); font-family: 'JetBrains Mono', monospace; }
+  .how-detail h3 { font-size: 26px; font-weight: 600; letter-spacing: -0.025em; }
+  .how-detail p { margin-top: 10px; font-size: 15.5px; color: var(--text-dim); line-height: 1.55; max-width: 62ch; }
+  .how-detail .accent { color: var(--accent); }
+
+  /* SANDBOX */
+  .sandbox-inner { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 64px; align-items: center; }
+  .sandbox-visual { position: relative; aspect-ratio: 1 / 0.92; border: 1px solid var(--line-soft); border-radius: 20px; overflow: hidden; background: radial-gradient(120% 100% at 50% 0%, rgba(122,162,255,0.06), transparent 55%), var(--bg-2); }
+  #sandbox-canvas { width: 100%; height: 100%; display: block; }
+  .sb-hud { position: absolute; left: 18px; top: 16px; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--text-dim); letter-spacing: 0.04em; }
+  .sb-hud .rec { color: var(--accent); }
+  .sb-badges { position: absolute; right: 16px; bottom: 14px; display: flex; gap: 8px; font-family: 'JetBrains Mono', monospace; font-size: 10.5px; color: var(--text-faint); }
+  .sb-badges span { border: 1px solid var(--line-soft); border-radius: 6px; padding: 4px 8px; background: rgba(6,7,9,0.5); }
+  .env-list { margin-top: 30px; display: flex; flex-wrap: wrap; gap: 9px; }
+  .env-chip { font-size: 13px; padding: 8px 14px; border: 1px solid var(--line); border-radius: 8px; color: var(--text-dim); transition: all 0.3s; cursor: pointer; }
+  .env-chip.active { border-color: var(--accent); color: var(--accent); box-shadow: 0 0 20px rgba(46,254,169,0.12); }
+  .req-list { margin-top: 28px; }
+  .req { display: flex; align-items: center; gap: 14px; padding: 14px 0; border-top: 1px solid var(--line-soft); font-size: 15px; }
+  .req:last-child { border-bottom: 1px solid var(--line-soft); }
+  .req .arrow { color: var(--accent); font-family: 'JetBrains Mono', monospace; }
+  .req .cmd { color: var(--text); font-family: 'JetBrains Mono', monospace; font-size: 13.5px; }
+
+  /* SIGNATURE: world is the dataset */
+  .signature { position: relative; height: 100vh; min-height: 680px; overflow: hidden; border-top: 1px solid var(--line-soft); display: flex; align-items: center; justify-content: center; }
+  #world-canvas { position: absolute; inset: 0; z-index: 2; }
+  #world-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; }
+  .world-scrim { position: absolute; inset: 0; z-index: 1; background: radial-gradient(65% 65% at 50% 45%, rgba(6,7,9,0.5), rgba(6,7,9,0.86)); }
+  .sig-content { position: relative; z-index: 3; text-align: center; padding: 0 24px; pointer-events: none; }
+  .sig-content .eyebrow { pointer-events: auto; }
+  .sig-content h2 { font-size: clamp(40px, 7vw, 96px); font-weight: 600; letter-spacing: -0.04em; line-height: 1.0; }
+  .sig-content h2 .accent { color: var(--accent); }
+  .sig-content p { margin: 26px auto 0; max-width: 52ch; font-size: clamp(16px,1.5vw,19px); color: var(--text-dim); line-height: 1.6; }
+  .sig-env { margin-top: 30px; font-family: 'JetBrains Mono', monospace; font-size: 13px; letter-spacing: 0.16em; color: var(--accent); text-transform: uppercase; }
+
+  /* NETWORK */
+  .network-inner { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 56px; align-items: center; margin-top: 56px; }
+  .net-visual { position: relative; aspect-ratio: 1 / 0.72; border: 1px solid var(--line-soft); border-radius: 20px; overflow: hidden; background: radial-gradient(90% 90% at 50% 40%, rgba(122,162,255,0.05), transparent 60%), var(--bg-2); }
+  #net-canvas { width: 100%; height: 100%; display: block; }
+  .net-cap { position: absolute; left: 18px; bottom: 14px; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--text-faint); }
+  .net-cities { list-style: none; }
+  .net-city { display: flex; align-items: center; gap: 14px; padding: 16px 0; border-top: 1px solid var(--line-soft); opacity: 0.35; transform: translateX(10px); transition: opacity 0.6s var(--ease), transform 0.6s var(--ease); }
+  .net-city:last-child { border-bottom: 1px solid var(--line-soft); }
+  .net-city.on { opacity: 1; transform: none; }
+  .net-city .cdot { width: 9px; height: 9px; border-radius: 50%; background: var(--text-faint); flex-shrink: 0; transition: all 0.5s; }
+  .net-city.on .cdot { background: var(--accent-2); box-shadow: 0 0 12px rgba(122,162,255,0.6); }
+  .net-city.live .cdot { background: var(--accent); box-shadow: 0 0 12px var(--accent-glow); }
+  .net-city .cn { font-size: 15.5px; font-weight: 500; }
+  .net-city .cr { font-size: 13px; color: var(--text-dim); }
+  .net-city .cs { margin-left: auto; font-family: 'JetBrains Mono', monospace; font-size: 10.5px; letter-spacing: 0.1em; color: var(--text-faint); border: 1px solid var(--line-soft); border-radius: 5px; padding: 3px 8px; }
+  .net-city.live .cs { color: var(--accent); border-color: rgba(46,254,169,0.4); }
+
+  /* WHY NOW */
+  .whynow { margin-top: 56px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .wn { padding: 30px 32px; border: 1px solid var(--line-soft); border-radius: 16px; background: var(--bg-2); display: flex; gap: 20px; align-items: flex-start; }
+  .wn .n { font-family: 'JetBrains Mono', monospace; font-size: 13px; color: var(--accent); padding-top: 3px; }
+  .wn h3 { font-size: 18.5px; font-weight: 600; letter-spacing: -0.02em; }
+  .wn p { margin-top: 8px; font-size: 14.5px; color: var(--text-dim); line-height: 1.55; }
+
+  .why-grid { margin-top: 56px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+  .why-card { padding: 32px; border: 1px solid var(--line-soft); border-radius: 16px; background: var(--bg-2); transition: border-color 0.4s, transform 0.4s var(--ease); }
+  .why-card:hover { border-color: var(--line); transform: translateY(-2px); }
+  .why-card.hl { background: linear-gradient(150deg, rgba(46,254,169,0.07), rgba(122,162,255,0.03)); border-color: rgba(46,254,169,0.25); }
+  .why-card .k { font-size: 12.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); }
+  .why-card h3 { margin-top: 16px; font-size: 22px; font-weight: 600; letter-spacing: -0.02em; }
+  .why-card p { margin-top: 12px; font-size: 15px; color: var(--text-dim); line-height: 1.6; }
+
+  .plat-grid { margin-top: 56px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--line-soft); border: 1px solid var(--line-soft); border-radius: 16px; overflow: hidden; }
+  .plat { background: var(--bg); padding: 28px 24px; transition: background 0.4s; min-height: 168px; }
+  .plat:hover { background: var(--panel); }
+  .plat .pn { font-family: 'JetBrains Mono', monospace; font-size: 11.5px; color: var(--text-faint); }
+  .plat h3 { margin-top: 20px; font-size: 17px; font-weight: 600; letter-spacing: -0.018em; }
+  .plat h3 .tm { font-size: 10px; color: var(--accent); vertical-align: super; }
+  .plat p { margin-top: 9px; font-size: 13.5px; color: var(--text-dim); line-height: 1.48; }
+
+  /* FOUNDER */
+  .founder-inner { margin-top: 56px; }
+  .founder-body { max-width: 900px; }
+  .f-portrait { aspect-ratio: 1 / 1.12; border: 1px solid var(--line-soft); border-radius: 20px; background: linear-gradient(165deg, rgba(16,17,22,0.9), rgba(9,10,13,0.5)); position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+  .f-portrait .mono-lg { font-family: 'JetBrains Mono', monospace; font-size: 96px; font-weight: 500; color: var(--text-faint); letter-spacing: -0.02em; }
+  .f-portrait .fgrid { position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px); background-size: 34px 34px; }
+  .f-portrait .fglow { position: absolute; width: 300px; height: 300px; border-radius: 50%; background: radial-gradient(circle, rgba(46,254,169,0.12), transparent 65%); bottom: -60px; right: -60px; }
+  .f-quote { font-size: clamp(24px, 2.6vw, 34px); font-weight: 500; letter-spacing: -0.025em; line-height: 1.28; }
+  .f-quote .accent { color: var(--accent); }
+  .f-bio { margin-top: 26px; font-size: 15.5px; color: var(--text-dim); line-height: 1.62; max-width: 60ch; }
+  .f-bio + .f-bio { margin-top: 16px; }
+  .f-name { margin-top: 28px; display: flex; align-items: center; gap: 14px; }
+  .f-name .nm { font-weight: 600; font-size: 16px; }
+  .f-name .rl { font-size: 14px; color: var(--text-faint); }
+
+  .cust-grid { margin-top: 56px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--line-soft); border: 1px solid var(--line-soft); border-radius: 16px; overflow: hidden; }
+  .cust { background: var(--bg); padding: 30px 18px; display: flex; align-items: center; justify-content: center; text-align: center; min-height: 96px; font-size: 16px; font-weight: 500; color: var(--text-dim); transition: color 0.35s, background 0.35s; }
+  .cust:hover { color: var(--text); background: var(--panel); }
+  .cust-note { margin-top: 22px; text-align: center; font-size: 13px; color: var(--text-faint); }
+
+  .closing { text-align: center; padding: 160px 0 170px; position: relative; overflow: hidden; border-top: 1px solid var(--line-soft); }
+  .closing .cglow { position: absolute; inset: 0; z-index: 0; background: radial-gradient(60% 62% at 50% 58%, rgba(46,254,169,0.11), transparent 70%); pointer-events: none; }
+  .closing h2 { position: relative; z-index: 2; font-size: clamp(36px, 5.4vw, 74px); line-height: 1.03; font-weight: 600; letter-spacing: -0.036em; max-width: 18ch; margin: 0 auto; }
+  .closing h2 .accent { color: var(--accent); }
+  .closing .lead { margin: 26px auto 0; }
+  .closing .hero-cta { justify-content: center; margin-top: 44px; position: relative; z-index: 2; }
+
+  footer { border-top: 1px solid var(--line-soft); padding: 62px 0 52px; }
+  footer .wrap { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 40px; }
+  footer .brand { font-size: 16px; }
+  footer .fnote { font-size: 13px; color: var(--text-faint); max-width: 34ch; margin-top: 16px; line-height: 1.6; }
+  footer .fcols { display: flex; gap: 68px; flex-wrap: wrap; }
+  footer .fcol h4 { font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-faint); margin-bottom: 16px; }
+  footer .fcol a { display: block; font-size: 14px; color: var(--text-dim); margin-bottom: 11px; transition: color 0.25s; }
+  footer .fcol a:hover { color: var(--text); }
+  .fbottom { margin-top: 54px; padding-top: 26px; border-top: 1px solid var(--line-soft); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 14px; font-size: 12.5px; color: var(--text-faint); }
+
+  @media (max-width: 960px) {
+    .wrap { padding: 0 22px; }
+    .nav-links .link { display: none; }
+    section.block { padding: 92px 0; }
+    .posbar .grid { grid-template-columns: 1fr 1fr; }
+    .posbar .cell:nth-child(3) { border-left: none; }
+    .prob-grid, .provides { grid-template-columns: 1fr; }
+    .split, .whynow, .why-grid { grid-template-columns: 1fr; }
+    .plat-grid, .cust-grid { grid-template-columns: 1fr 1fr; }
+    .how-flow { flex-direction: column; align-items: flex-start; gap: 16px; }
+    .how-step { text-align: left; padding-top: 0; padding-left: 26px; width: 100%; }
+    .how-step .line { display: none; }
+    .how-step .dot { top: 4px; left: 4px; transform: none; }
+    .how-step .st { padding: 0; }
+    .how-detail { grid-template-columns: 1fr; gap: 12px; }
+    .how-detail .bignum { font-size: 40px; }
+    .sandbox-inner, .network-inner, .founder-inner { grid-template-columns: 1fr; gap: 40px; }
+    .sandbox-visual, .net-visual { max-width: 520px; margin: 0 auto; width: 100%; }
+    .f-portrait { max-width: 340px; }
+  }
+  @media (max-width: 560px) {
+    .hero-cta { flex-direction: column; align-items: stretch; }
+    .btn { justify-content: center; }
+    .posbar .grid { grid-template-columns: 1fr; }
+    .posbar .cell { border-left: none; }
+    .plat-grid, .cust-grid { grid-template-columns: 1fr; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { opacity: 1 !important; transform: none !important; }
+    * { scroll-behavior: auto; }
+  }
+  /* INSIDE METARI */
+  .inside-stage { position: relative; max-width: 1340px; margin: 56px auto 0; height: min(80vh, 780px); border: 1px solid var(--line-soft); border-radius: 22px; overflow: hidden; background: radial-gradient(80% 70% at 50% 8%, rgba(122,162,255,0.06), transparent 60%), var(--bg-2); }
+  #inside-canvas { width: 100%; height: 100%; display: block; }
+  .inside-hud { position: absolute; left: 20px; top: 18px; font-size: 11px; color: var(--text-dim); letter-spacing: 0.05em; }
+  .inside-hud .rec { color: var(--accent); }
+  .capture-stack { margin-top: 40px; display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
+  .capture-stack span { font-family: 'JetBrains Mono', monospace; font-size: 11.5px; color: var(--text-faint); border: 1px solid var(--line-soft); border-radius: 6px; padding: 6px 11px; transition: color 0.3s, border-color 0.3s; }
+  .capture-stack span:hover { color: var(--accent); border-color: rgba(46,254,169,0.4); }
+  .prov { overflow: hidden; }
+  .prov::after { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 1px; background: linear-gradient(90deg, transparent, var(--accent), transparent); opacity: 0; transition: opacity 0.3s; }
+  .prov:hover::after { opacity: 0.7; animation: provScan 1.4s var(--ease); }
+  @keyframes provScan { 0% { transform: translateY(0); } 100% { transform: translateY(150px); } }
+  @media (max-width: 960px) { .inside-stage { height: 60vh; border-radius: 16px; } }
+  .showcase { margin-top: 40px; }
+  .showcase-stage { position: relative; max-width: 1340px; margin: 0 auto; height: min(74vh, 720px); border: 1px solid var(--line-soft); border-radius: 22px; overflow: hidden; background: linear-gradient(160deg, #0c0e12, #08090c); }
+  .show-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 1.1s var(--ease); }
+  .show-img.on { opacity: 1; }
+  .showcase-stage::after { content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none; background: linear-gradient(180deg, rgba(6,7,9,0.10), rgba(6,7,9,0.5)); }
+  .show-fallback { position: absolute; inset: 0; z-index: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; color: var(--text-faint); font-size: 13px; line-height: 1.8; padding: 24px; }
+  .show-fallback code { color: var(--accent); }
+  .show-overlay { position: absolute; inset: 0; z-index: 2; width: 100%; height: 100%; pointer-events: none; }
+  .show-hud { position: absolute; left: 20px; top: 18px; z-index: 3; font-size: 11px; color: var(--text-dim); letter-spacing: 0.05em; }
+  .show-hud .rec { color: var(--accent); }
+  .show-badges { position: absolute; right: 18px; bottom: 16px; z-index: 3; display: flex; gap: 8px; font-size: 10.5px; color: var(--text-faint); }
+  .show-badges span { border: 1px solid var(--line-soft); border-radius: 6px; padding: 4px 8px; background: rgba(6,7,9,0.5); }
+  #envList { justify-content: center; margin-top: 30px; }
+  .req-list { margin: 26px auto 0; max-width: 640px; }
+  @media (max-width: 960px) { .showcase-stage { height: 56vh; border-radius: 16px; } }
+  .show-vid { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 1.1s var(--ease); }
+  .show-vid.on { opacity: 1; }
+  #hero-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; }
+  .hero-scrim { position: absolute; inset: 0; z-index: 1; background: linear-gradient(90deg, rgba(6,7,9,0.97) 0%, rgba(6,7,9,0.88) 45%, rgba(6,7,9,0.55) 100%), linear-gradient(0deg, rgba(6,7,9,0.95) 0%, rgba(6,7,9,0.20) 60%); }
+  .mt-defs { position: absolute; width: 0; height: 0; overflow: hidden; }
+  .mt-mark { display: inline-flex; width: 22px; height: 22px; align-items: center; justify-content: center; filter: drop-shadow(0 0 5px rgba(46,254,169,0.7)); animation: mtBreathe 2.8s ease-in-out infinite; }
+  .mt-mark .mt-svg { width: 100%; height: 100%; display: block; }
+  .hero-emblem { width: 66px; height: 66px; margin-bottom: 24px; filter: drop-shadow(0 0 16px rgba(46,254,169,0.55)); animation: mtBreathe 2.8s ease-in-out infinite; }
+  .hero-emblem .mt-svg { width: 100%; height: 100%; display: block; }
+  @keyframes mtBreathe { 0%,100% { transform: scale(0.9); opacity: 0.82; } 50% { transform: scale(1.07); opacity: 1; } }
+  @media (prefers-reduced-motion: reduce) { .mt-mark, .hero-emblem { animation: none; } }
+  .mt-spin { transform-box: fill-box; transform-origin: center; animation: mtSpin 20s linear infinite; }
+  .mt-core { transform-box: fill-box; transform-origin: center; animation: mtCorePulse 2.6s ease-in-out infinite; }
+  .mt-ring { transform-box: fill-box; transform-origin: center; animation: mtPing 2.6s ease-out infinite; }
+  .mt-ring2 { animation-delay: 1.3s; }
+  @keyframes mtSpin { to { transform: rotate(360deg); } }
+  @keyframes mtPing { 0% { transform: scale(0.5); opacity: 0.9; } 65% { opacity: 0; } 100% { transform: scale(2.8); opacity: 0; } }
+  @keyframes mtCorePulse { 0%,100% { transform: scale(0.82); } 50% { transform: scale(1.12); } }
+  @media (prefers-reduced-motion: reduce) { .mt-spin, .mt-ring, .mt-core { animation: none; } }
+  .access-form { max-width: 560px; margin: 42px auto 0; text-align: left; display: flex; flex-direction: column; gap: 14px; }
+  .af-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .access-form input, .access-form select, .access-form textarea { width: 100%; background: rgba(255,255,255,0.03); border: 1px solid var(--line); border-radius: 10px; padding: 13px 15px; color: var(--text); font-family: inherit; font-size: 15px; transition: border-color 0.25s, background 0.25s; }
+  .access-form input::placeholder, .access-form textarea::placeholder { color: var(--text-faint); }
+  .access-form select { color: var(--text-dim); }
+  .access-form input:focus, .access-form select:focus, .access-form textarea:focus { outline: none; border-color: var(--accent); background: rgba(255,255,255,0.05); }
+  .access-form textarea { resize: vertical; min-height: 76px; }
+  .access-form button { margin-top: 6px; justify-content: center; cursor: pointer; }
+  .af-hp { position: absolute; left: -9999px; opacity: 0; }
+  .af-status { font-size: 14px; color: var(--text-dim); min-height: 20px; text-align: center; }
+  .af-status.ok { color: var(--accent); }
+  .af-alt { text-align: center; margin-top: 20px; font-size: 14px; color: var(--text-faint); }
+  .af-alt a { color: var(--text-dim); border-bottom: 1px solid var(--line); }
+  .af-alt a:hover { color: var(--text); }
+  @media (max-width: 560px) { .af-row { grid-template-columns: 1fr; } }
+</style>
+<nav id="nav">
+  <div class="wrap">
+    <a href="#top" class="brand">
+      <span class="mt-mark"><svg viewBox="0 0 100 100" class="mt-svg" aria-hidden="true"><g class="mt-spin"><path d="M 50.0 3.0 L 54.59 38.91 L 83.23 16.77 L 61.09 45.41 L 97.0 50.0 L 61.09 54.59 L 83.23 83.23 L 54.59 61.09 L 50.0 97.0 L 45.41 61.09 L 16.77 83.23 L 38.91 54.59 L 3.0 50.0 L 38.91 45.41 L 16.77 16.77 L 45.41 38.91 Z" fill="url(#mtGlow)"/></g><circle class="mt-ring" cx="50" cy="50" r="9" fill="none" stroke="#2efea9" stroke-width="2.4"/><circle class="mt-ring mt-ring2" cx="50" cy="50" r="9" fill="none" stroke="#2efea9" stroke-width="2"/><circle class="mt-core" cx="50" cy="50" r="7" fill="#f2fff9"/></svg></span>
+      METARI
+    </a>
+    <div class="nav-links">
+      <a href="#provides" class="link">Platform</a>
+      <a href="#how" class="link">How it works</a>
+      <a href="#why-now" class="link">Why now</a>
+      <a href="#founder" class="link">Founder</a>
+      <a href="#access" class="btn btn-primary">Request access</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <video id="hero-video" autoplay muted loop playsinline preload="auto" poster="assets/robot.jpg"><source src="assets/robot.mp4" type="video/mp4"></video>
+  <div class="hero-scrim"></div>
+  <div class="hero-glow"></div>
+  <div class="wrap">
+    <div class="hero-emblem reveal in"><svg viewBox="0 0 100 100" class="mt-svg" aria-hidden="true"><g class="mt-spin"><path d="M 50.0 3.0 L 54.59 38.91 L 83.23 16.77 L 61.09 45.41 L 97.0 50.0 L 61.09 54.59 L 83.23 83.23 L 54.59 61.09 L 50.0 97.0 L 45.41 61.09 L 16.77 83.23 L 38.91 54.59 L 3.0 50.0 L 38.91 45.41 L 16.77 16.77 L 45.41 38.91 Z" fill="url(#mtGlow)"/></g><circle class="mt-ring" cx="50" cy="50" r="9" fill="none" stroke="#2efea9" stroke-width="2.4"/><circle class="mt-ring mt-ring2" cx="50" cy="50" r="9" fill="none" stroke="#2efea9" stroke-width="2"/><circle class="mt-core" cx="50" cy="50" r="7" fill="#f2fff9"/></svg></div>
+    <div class="eyebrow reveal in"><span class="pulse"></span>The Infrastructure Layer for Physical AI</div>
+    <h1 class="hero-title reveal in d1">
+      The internet taught AI <span class="fade">what we know.</span><br />
+      Metari teaches it <span class="accent">how we work.</span>
+    </h1>
+    <p class="hero-sub reveal in d2">
+      Metari is the data infrastructure for Physical AI — the network of expert operators, instrumented
+      environments, and evaluation that robotics companies, humanoid makers, and foundation-model labs use to
+      generate real-world training data at scale.
+    </p>
+    <div class="hero-tag reveal in d3"><b>AWS for physical intelligence.</b> &nbsp;·&nbsp; <b>Scale AI for the physical world.</b></div>
+    <div class="hero-cta reveal in d3">
+      <a href="#access" class="btn btn-primary btn-lg">Request access →</a>
+      <a href="#how" class="btn btn-lg">See how it works</a>
+    </div>
+  </div>
+</header>
+
+<section class="posbar">
+  <div class="wrap">
+    <div class="grid">
+      <div class="cell reveal"><div class="q">What we do</div><div class="a">Infrastructure that turns real-world work into training data and evaluation for Physical AI.</div></div>
+      <div class="cell reveal d1"><div class="q">Who it's for</div><div class="a">Robotics, humanoid, and foundation-model teams building machines that act in the world.</div></div>
+      <div class="cell reveal d2"><div class="q">Why not in-house</div><div class="a">Expert operators and instrumented environments no single lab can staff or replicate.</div></div>
+      <div class="cell reveal d3"><div class="q">The category</div><div class="a">A new layer — operational intelligence, generated continuously and on demand.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 01 GAP -->
+<section class="block" id="thesis">
+  <div class="wrap statement">
+    <div class="sec-label reveal" style="justify-content:center;"><span class="num mono">01</span><span>The gap</span></div>
+    <h2 class="big reveal d1" style="max-width:26ch;">
+      Two decades of the internet made machines fluent in <span class="dim">information.</span>
+      None of it taught them to make a bed, turn a hospital room, or pick an order <span class="accent">to standard.</span>
+    </h2>
+    <p class="lead reveal d2">
+      Physical AI has no internet to learn from. The knowledge that runs the physical economy — how expert work is
+      performed, judged, and recovered when it goes wrong — was never written down, never structured, never made
+      machine-readable. It lives inside the people who do the work. Metari is the infrastructure that gets it out,
+      at scale, continuously.
+    </p>
+  </div>
+</section>
+
+<!-- 02 PROBLEM -->
+<section class="block" id="problem">
+  <div class="wrap">
+    <div class="sec-label reveal"><span class="num mono">02</span><span>The data that isn't on the internet</span><span class="rule"></span></div>
+    <h2 class="big reveal d1">Labs can scrape the web. <span class="dim">They can't scrape expertise.</span></h2>
+    <p class="lead reveal d2">Today's physical-AI datasets are missing exactly the things that make an expert an expert. That's what Metari produces — as infrastructure, not a one-off project.</p>
+    <div class="prob-grid reveal d2">
+      <div class="prob-cell"><span class="bar"></span><div class="idx mono">01</div><h3>Expert judgment</h3><p>The thousand micro-decisions a professional makes without thinking — and can explain when asked.</p></div>
+      <div class="prob-cell"><span class="bar"></span><div class="idx mono">02</div><h3>Domain context</h3><p>Why a step exists, what it depends on, and what happens if it's skipped.</p></div>
+      <div class="prob-cell"><span class="bar"></span><div class="idx mono">03</div><h3>Edge cases</h3><p>The rare, messy, off-script situations that break brittle policies in the real world.</p></div>
+      <div class="prob-cell"><span class="bar"></span><div class="idx mono">04</div><h3>Quality standards</h3><p>What "done right" means — the difference between finished and finished to a five-star bar.</p></div>
+      <div class="prob-cell"><span class="bar"></span><div class="idx mono">05</div><h3>Timing & sequence</h3><p>Order, pace, and rhythm of real work — the structure raw video can't capture.</p></div>
+      <div class="prob-cell"><span class="bar"></span><div class="idx mono">06</div><h3>Safety reasoning</h3><p>Where the risk lives, and the judgment that keeps people and property safe.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- MEGA STATEMENT -->
+<section class="megastate">
+  <div class="mg"></div>
+  <div class="wrap">
+    <h2 class="reveal">We don't collect data. <span class="accent">We manufacture intelligence.</span></h2>
+    <p class="reveal d1">Not a labeling vendor. Not a warehouse. An infrastructure layer that produces the exact real-world intelligence Physical AI needs — engineered to specification, generated continuously.</p>
+  </div>
+</section>
+
+<!-- 03 EXPERTS VS CROWDS -->
+<section class="block" id="category">
+  <div class="wrap">
+    <div class="sec-label reveal"><span class="num mono">03</span><span>Expert Operational Intelligence</span><span class="rule"></span></div>
+    <h2 class="big reveal d1">Experts doing the work — <span class="dim">not crowds behind a screen.</span></h2>
+    <p class="lead reveal d2">The model Scale, Mercor, and Micro1 proved for digital data can't reach physical work — a knowledge worker behind a screen has never made the bed. Metari is built the other way around: real experts, real tasks, real instrumented environments.</p>
+    <div class="split">
+      <div class="col reveal d1">
+        <div class="tag">The generic model</div>
+        <h3>Crowds behind a screen</h3>
+        <ul>
+          <li>Generalist knowledge workers, remote.</li>
+          <li>Annotate and label existing data.</li>
+          <li>No physical performance, no environment.</li>
+          <li>Can't define an expert quality standard.</li>
+        </ul>
+      </div>
+      <div class="col hl reveal d2">
+        <div class="tag">The Metari model</div>
+        <h3>Experts doing the work</h3>
+        <ul>
+          <li>Vetted domain professionals — housekeepers, chefs, nurses, warehouse leads.</li>
+          <li>Physically perform real tasks, captured in full fidelity.</li>
+          <li>Instrumented environments: multi-camera, motion, sensors.</li>
+          <li>Every step graded against the standard the industry actually uses.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT METARI PROVIDES -->
+<section class="block" id="provides">
+  <div class="wrap">
+    <div class="sec-label reveal"><span class="num mono">04</span><span>What Metari provides</span><span class="rule"></span></div>
+    <h2 class="big reveal d1">One platform. <span class="dim">The full supply of real-world intelligence.</span></h2>
+    <p class="lead reveal d2">Concrete products you can request, license, and deploy today — priced and packaged, not a vague promise.</p>
+    <div class="provides reveal d2">
+      <div class="prov"><svg class="pi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="9" cy="8" r="3"/><path d="M3.5 19c0-3 2.5-5 5.5-5s5.5 2 5.5 5"/></svg><h3>Expert Human Demonstrations</h3><p>Domain professionals performing real tasks, step by step.</p></div>
+      <div class="prov"><svg class="pi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="6" width="18" height="12" rx="2"/><circle cx="12" cy="12" r="3"/></svg><h3>Multimodal Datasets</h3><p>Vision, depth, audio, and motion — synchronized and aligned.</p></div>
+      <div class="prov"><svg class="pi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 7h16M4 12h16M4 17h10"/></svg><h3>Robot Training Data</h3><p>Structured datasets ready for imitation and policy learning.</p></div>
+      <div class="prov"><svg class="pi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 10l3 3 7-7"/><path d="M4 17h16"/></svg><h3>Human Feedback (RLHF)</h3><p>Expert preference and correction signals for alignment.</p></div>
+      <div class="prov"><svg class="pi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 9h6v6H9z"/></svg><h3>Dataset Licensing</h3><p>Curated corpora licensed to labs and robotics teams.</p></div>
+      <div class="prov"><svg class="pi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3a9 9 0 100 18 9 9 0 000-18z"/><path d="M12 7v5l3 2"/></svg><h3>Continuous Data Collection</h3><p>An always-on pipeline, not a one-time capture.</p></div>
+      <div class="prov"><svg class="pi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 12l5 5L20 6"/></svg><h3>Operational Evaluations</h3><p>Grade robots and policies against real-world standards.</p></div>
+      <div class="prov"><svg class="pi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 20V8M12 20V4M19 20v-8"/></svg><h3>Benchmark Datasets</h3><p>Standardized, expert-defined suites to measure capability.</p></div>
+      <div class="prov"><svg class="pi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="7" cy="7" r="3"/><circle cx="17" cy="17" r="3"/><path d="M10 7h4a3 3 0 013 3v4"/></svg><h3>Synthetic + Real Data Fusion</h3><p>Real captures that ground and validate simulation.</p></div>
+      <div class="prov"><svg class="pi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="8" height="16" rx="1"/><rect x="13" y="4" width="8" height="16" rx="1"/><path d="M11 12h2"/></svg><h3>Digital Twin Capture</h3><p>High-fidelity scans of spaces and objects for sim-ready twins.</p></div>
+      <div class="prov"><svg class="pi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3v4M12 17v4M5 12H3M21 12h-2M6 6l1.5 1.5M18 6l-1.5 1.5"/><circle cx="12" cy="12" r="3"/></svg><h3>Edge Case Generation</h3><p>Rare, off-script scenarios produced on demand to harden policies.</p></div>
+      <div class="prov"><svg class="pi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 6h16M4 12h16M4 18h10"/><path d="M17 16l2 2 3-3"/></svg><h3>Ground-Truth Annotation</h3><p>Objects, actions, and skeletons labeled to machine-readable truth.</p></div>
+    </div>
+  </div>
+</section>
+<!-- HOW IT WORKS -->
+<section class="block" id="how">
+  <div class="wrap">
+    <div class="sec-label reveal"><span class="num mono">05</span><span>How it works</span><span class="rule"></span></div>
+    <h2 class="big reveal d1">Don't build data collection. <span class="dim">Connect to Metari.</span></h2>
+    <p class="lead reveal d2">Instead of standing up a data-collection operation internally, teams connect to Metari. Request the intelligence you need; our network produces, annotates, grades, and ships it — continuously, as your models evolve.</p>
+    <div class="how reveal d2">
+      <div class="how-flow" id="howFlow">
+        <div class="how-step" data-i="0" data-title="AI company requests data" data-desc="A robotics, humanoid, or foundation-model team specifies the task, environment, and quality bar they need — say, hotel-room turnover to a five-star standard."><span class="line"><i></i></span><span class="dot"></span><div class="st">Requests data</div></div>
+        <div class="how-step" data-i="1" data-title="Metari assigns expert operators" data-desc="We match the request to vetted domain professionals from the Metari network — the people who actually do the work to that standard."><span class="line"><i></i></span><span class="dot"></span><div class="st">Assign experts</div></div>
+        <div class="how-step" data-i="2" data-title="Controlled environments" data-desc="Operators perform the task inside instrumented replica environments — a hotel floor, hospital room, kitchen, or warehouse aisle — staged for capture."><span class="line"><i></i></span><span class="dot"></span><div class="st">Controlled environments</div></div>
+        <div class="how-step" data-i="3" data-title="Multi-camera capture" data-desc="Synchronized RGB, depth, motion, and sensor streams record every step in full fidelity — the raw signal of how expert work is really performed."><span class="line"><i></i></span><span class="dot"></span><div class="st">Multi-camera capture</div></div>
+        <div class="how-step" data-i="4" data-title="Annotation" data-desc="Every frame is labeled — objects, actions, skeletons, and intent — turning raw capture into machine-readable ground truth."><span class="line"><i></i></span><span class="dot"></span><div class="st">Annotation</div></div>
+        <div class="how-step" data-i="5" data-title="Quality assurance" data-desc="Experts grade each demonstration against the industry standard, attaching reasoning and quality scores — the layer generic crowds can't provide."><span class="line"><i></i></span><span class="dot"></span><div class="st">Quality assurance</div></div>
+        <div class="how-step" data-i="6" data-title="Structured datasets" data-desc="Everything is assembled into structured, machine-readable datasets and benchmarks, connected in the Operational Knowledge Graph."><span class="line"><i></i></span><span class="dot"></span><div class="st">Structured datasets</div></div>
+        <div class="how-step" data-i="7" data-title="Model improvement" data-desc="The team trains and evaluates on Metari data — and comes back for more as their models evolve. The loop compounds into infrastructure."><span class="line"><i></i></span><span class="dot"></span><div class="st">Model improvement</div></div>
+      </div>
+      <div class="how-detail" id="howDetail">
+        <div class="bignum mono">01</div>
+        <div><h3 id="howTitle">AI company requests data</h3><p id="howDesc">A robotics, humanoid, or foundation-model team specifies the task, environment, and quality bar they need — say, hotel-room turnover to a five-star standard.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INSIDE METARI -->
+<section class="block" id="inside">
+  <div class="wrap">
+    <div class="sec-label reveal"><span class="num mono">06</span><span>Inside Metari</span><span class="rule"></span></div>
+    <h2 class="big reveal d1">Every environment, <span class="accent">instrumented.</span> <span class="dim">Every interaction, captured.</span></h2>
+    <p class="lead reveal d2">Metari stages real environments and wires them for capture — cameras, depth, motion, and sensors recording expert work in full fidelity, then turning it into structured intelligence robots can learn from.</p>
+  </div>
+  <div class="showcase reveal d2">
+    <div class="showcase-stage" id="showStage">
+      <video class="show-vid on" autoplay muted loop playsinline preload="auto" poster="assets/env-cam.jpg"><source src="assets/env-cam.mp4" type="video/mp4"></video>
+      <video class="show-vid" muted loop playsinline preload="none" poster="assets/env-warehouse.jpg"><source src="assets/env-warehouse.mp4" type="video/mp4"></video>
+      <video class="show-vid" muted loop playsinline preload="none" poster="assets/robot.jpg"><source src="assets/robot.mp4" type="video/mp4"></video>
+      <canvas class="show-overlay" id="showOverlay"></canvas>
+      <div class="show-hud mono"><span class="rec">&#9679; LIVE CAPTURE</span> &nbsp;<span id="showEnv">INSTRUMENTED CAPTURE</span></div>
+      <div class="show-badges mono"><span>RGB</span><span>DEPTH</span><span>LiDAR</span><span>MOTION</span></div>
+    </div>
+  </div>
+  <div class="wrap">
+    <div class="env-list reveal d2" id="envList">
+      <span class="env-chip active" data-i="0">Instrumented Capture</span>
+      <span class="env-chip" data-i="1">Warehouse Lab</span>
+      <span class="env-chip" data-i="2">Physical AI</span>
+    </div>
+    <div class="req-list reveal d3">
+      <div class="req"><span class="arrow mono">$</span><span class="cmd">generate 10,000 expert demonstrations</span></div>
+      <div class="req"><span class="arrow mono">$</span><span class="cmd">produce rare edge cases on demand</span></div>
+      <div class="req"><span class="arrow mono">$</span><span class="cmd">train + benchmark a verticalized robot</span></div>
+      <div class="req"><span class="arrow mono">$</span><span class="cmd">evaluate policy vs expert standard</span></div>
+    </div>
+    <div class="capture-stack reveal">
+      <span>RGB</span><span>Depth</span><span>Thermal</span><span>LiDAR</span><span>Motion capture</span><span>Eye tracking</span><span>Audio arrays</span><span>Environmental sensors</span><span>Wearables</span><span>Robotics</span><span>Edge servers</span><span>Ground-truth annotation</span><span>Quality assurance</span>
+    </div>
+  </div>
+</section>
+
+<!-- SIGNATURE: THE WORLD IS THE DATASET -->
+<section class="signature" id="world">
+  <video id="world-video" muted loop playsinline preload="none" poster="assets/env-warehouse.jpg"><source src="assets/env-warehouse.mp4" type="video/mp4"></video>
+  <div class="world-scrim"></div>
+  <canvas id="world-canvas"></canvas>
+  <div class="sig-content">
+    <div class="eyebrow reveal in"><span class="pulse"></span>Real-world intelligence</div>
+    <h2 class="reveal in d1">The world is <span class="accent">the dataset.</span></h2>
+    <p class="reveal in d2">Every real-world interaction is a training signal — a door opened, a towel folded, an item scanned, a guest greeted. Metari captures them and turns the physical world into one connected intelligence network.</p>
+    <div class="sig-env mono reveal in d3" id="sigEnv">HOTEL ROOM</div>
+  </div>
+</section>
+<!-- WHY NOW -->
+<section class="block" id="why-now">
+  <div class="wrap">
+    <div class="sec-label reveal"><span class="num mono">07</span><span>Why now</span><span class="rule"></span></div>
+    <h2 class="big reveal d1">The moment Physical AI <span class="dim">runs out of internet.</span></h2>
+    <p class="lead reveal d2">Goldman Sachs just raised its humanoid market forecast 6x to $38B by 2035 — and named real-world manipulation as the unproven bottleneck. The data to solve it doesn't exist yet.</p>
+    <div class="whynow">
+      <div class="wn reveal d1"><div class="n mono">01</div><div><h3>Humanoids are entering the workforce</h3><p>Commercial pilots are live now — and every one needs to prove it can do real jobs.</p></div></div>
+      <div class="wn reveal d1"><div class="n mono">02</div><div><h3>Physical AI is accelerating</h3><p>Robotic foundation models are advancing fast; data is now the constraint, not architecture.</p></div></div>
+      <div class="wn reveal d2"><div class="n mono">03</div><div><h3>Simulation alone isn't enough</h3><p>The sim-to-real gap breaks in the messy real world. Models need grounded, expert demonstrations.</p></div></div>
+      <div class="wn reveal d2"><div class="n mono">04</div><div><h3>Every robotics company needs demonstrations</h3><p>Expert real-world data is the shared bottleneck across the entire industry.</p></div></div>
+      <div class="wn reveal d3"><div class="n mono">05</div><div><h3>Nobody has built the supply</h3><p>No one has built the infrastructure to generate expert real-world data continuously. Metari is.</p></div></div>
+      <div class="wn reveal d3"><div class="n mono">06</div><div><h3>First mover sets the standard</h3><p>The company that builds this layer first defines the benchmarks the industry measures against.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY METARI -->
+<section class="block" id="why">
+  <div class="wrap">
+    <div class="sec-label reveal"><span class="num mono">08</span><span>Why Metari</span><span class="rule"></span></div>
+    <h2 class="big reveal d1">Others sell volume. <span class="dim">Metari sells expertise density.</span></h2>
+    <p class="lead reveal d2">Raw demonstration volume is heading toward commodity. The durable value is expert judgment — what good looks like, and whether a machine got there. Expert data is the wedge; evaluation is the moat; the network is the compounding asset.</p>
+    <div class="why-grid">
+      <div class="why-card hl reveal d1"><div class="k">The wedge</div><h3>Expert demonstration data</h3><p>Domain experts performing real work, captured in full fidelity and graded to standard — the market that exists and is paying today.</p></div>
+      <div class="why-card reveal d1"><div class="k">The moat</div><h3>Evaluation & standards</h3><p>The expert judgment that grades a robot against a real-world bar — a product a generalist crowd can't offer and a lab can't credibly self-certify.</p></div>
+      <div class="why-card reveal d2"><div class="k">Founder–market fit</div><h3>Two decades running the work</h3><p>Built by an operator who wrote the SOPs, ran the floors, and trained thousands — someone who knows exactly how expert physical work is performed and judged.</p></div>
+      <div class="why-card reveal d2"><div class="k">The flywheel</div><h3>A distributed capture network</h3><p>Instrumented environments no crowd model can replicate, turning every engagement into standardized, compounding intelligence — infrastructure, not services.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- PLATFORM -->
+<section class="block" id="platform">
+  <div class="wrap">
+    <div class="sec-label reveal"><span class="num mono">09</span><span>The platform</span><span class="rule"></span></div>
+    <h2 class="big reveal d1">The operating system for real-world data.</h2>
+    <div class="plat-grid reveal d2">
+      <div class="plat"><div class="pn">P.01</div><h3>Expert Network<span class="tm">™</span></h3><p>A vetted network of domain professionals across industries.</p></div>
+      <div class="plat"><div class="pn">P.02</div><h3>Data Engine<span class="tm">™</span></h3><p>Turns expert work into structured, expert-graded demonstration data.</p></div>
+      <div class="plat"><div class="pn">P.03</div><h3>Sandbox<span class="tm">™</span></h3><p>Instrumented replica environments for capture, training, and benchmarking.</p></div>
+      <div class="plat"><div class="pn">P.04</div><h3>Evaluation Platform<span class="tm">™</span></h3><p>Human-graded evaluation of robots and policies against expert standards.</p></div>
+      <div class="plat"><div class="pn">P.05</div><h3>Workflow Engine<span class="tm">™</span></h3><p>Structures expert work into machine-readable operational workflows.</p></div>
+      <div class="plat"><div class="pn">P.06</div><h3>Marketplace<span class="tm">™</span></h3><p>Organizations request operational intelligence; Metari fulfills it end to end.</p></div>
+      <div class="plat"><div class="pn">P.07</div><h3>Enterprise APIs<span class="tm">™</span></h3><p>Programmatic access to demonstrations, evaluations, and structured knowledge.</p></div>
+      <div class="plat"><div class="pn">P.08</div><h3>Knowledge Graph<span class="tm">™</span></h3><p>The connected representation of how real-world work is performed.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- FOUNDER -->
+<section class="block" id="founder">
+  <div class="wrap">
+    <div class="sec-label reveal"><span class="num mono">10</span><span>Founder</span><span class="rule"></span></div>
+    <div class="founder-inner">
+      <div class="founder-body">
+        <p class="f-quote reveal d1">Twenty years running the floor revealed what the internet never captured: <span class="accent">how people actually work.</span> Those workflows are the foundation for Physical AI.</p>
+        <p class="f-bio reveal d2">Steven Ortmann spent two decades operating hotels, luxury resorts, casinos, and restaurants — building the SOPs, quality-assurance programs, and training systems that define how expert physical work gets done, and training thousands of people to that standard.</p>
+        <p class="f-bio reveal d2">Most AI founders understand models. Almost none understand how expert physical work is actually performed, judged, and recovered when it goes wrong. That is exactly the knowledge Physical AI is missing — and exactly what Metari is built to supply.</p>
+        <p class="f-bio reveal d3">Hospitality is the beachhead, because it's where that expertise runs deepest. The infrastructure being built on top of it is for the entire physical economy.</p>
+        <div class="f-name reveal d3"><span class="nm">Steven Ortmann</span><span class="rl">Founder &amp; CEO, Metari</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- BUILT FOR -->
+<section class="block" id="customers">
+  <div class="wrap">
+    <div class="sec-label reveal" style="justify-content:center;"><span class="num mono">11</span><span>Who builds on Metari</span></div>
+    <h2 class="big reveal d1" style="max-width:28ch;margin:0 auto;text-align:center;">The teams building the physical future.</h2>
+    <div class="cust-grid reveal d2">
+      <div class="cust">OpenAI</div><div class="cust">Google DeepMind</div><div class="cust">NVIDIA</div><div class="cust">Figure</div>
+      <div class="cust">Physical Intelligence</div><div class="cust">Tesla Optimus</div><div class="cust">Apptronik</div><div class="cust">Agility Robotics</div>
+      <div class="cust">Sanctuary AI</div><div class="cust">Amazon Robotics</div><div class="cust">Toyota Research</div><div class="cust">Boston Dynamics</div>
+    </div>
+    <p class="cust-note">Representative of the humanoid, robotics, and foundation-model teams Metari is built to serve.</p>
+  </div>
+</section>
+
+<!-- VISION -->
+<section class="megastate" id="vision">
+  <div class="mg"></div>
+  <div class="wrap">
+    <h2 class="reveal">Today, cloud infrastructure powers software.<br />Tomorrow, <span class="accent">physical-AI infrastructure will power robots.</span><br />Metari is building that infrastructure.</h2>
+  </div>
+</section>
+
+<!-- CLOSING -->
+<section class="closing" id="access">
+  <div class="cglow"></div>
+  <div class="wrap">
+    <h2 class="reveal">If you're building Physical AI, <br />you're building on <span class="accent">Metari.</span></h2>
+    <p class="lead reveal d1">The infrastructure layer for real-world intelligence — the data and evaluation robots need to learn how work gets done.</p>
+    <form class="access-form reveal d2" id="accessForm">
+      <div class="af-row">
+        <input name="name" placeholder="Name" autocomplete="name" required />
+        <input name="email" type="email" placeholder="Work email" autocomplete="email" required />
+      </div>
+      <div class="af-row">
+        <input name="company" placeholder="Company" autocomplete="organization" />
+        <select name="interest" required>
+          <option value="" disabled selected>I'm a…</option>
+          <option>Robotics / humanoid company</option>
+          <option>Foundation-model lab</option>
+          <option>Enterprise AI team</option>
+          <option>Investor</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <textarea name="message" placeholder="What are you building? (optional)" rows="3"></textarea>
+      <input type="hidden" name="access_key" value="a5793d2b-ff4c-42df-8576-fc5e67908f6b" />
+      <input type="hidden" name="subject" value="New Metari access request" />
+      <input type="checkbox" name="botcheck" class="af-hp" tabindex="-1" autocomplete="off" />
+      <button type="submit" class="btn btn-primary btn-lg">Request access →</button>
+      <div class="af-status" id="afStatus" role="status" aria-live="polite"></div>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <div class="brand"><span class="mt-mark"><svg viewBox="0 0 100 100" class="mt-svg" aria-hidden="true"><g class="mt-spin"><path d="M 50.0 3.0 L 54.59 38.91 L 83.23 16.77 L 61.09 45.41 L 97.0 50.0 L 61.09 54.59 L 83.23 83.23 L 54.59 61.09 L 50.0 97.0 L 45.41 61.09 L 16.77 83.23 L 38.91 54.59 L 3.0 50.0 L 38.91 45.41 L 16.77 16.77 L 45.41 38.91 Z" fill="url(#mtGlow)"/></g><circle class="mt-ring" cx="50" cy="50" r="9" fill="none" stroke="#2efea9" stroke-width="2.4"/><circle class="mt-ring mt-ring2" cx="50" cy="50" r="9" fill="none" stroke="#2efea9" stroke-width="2"/><circle class="mt-core" cx="50" cy="50" r="7" fill="#f2fff9"/></svg></span>METARI</div>
+      <p class="fnote">The infrastructure layer for Physical AI — teaching machines how real-world work is performed.</p>
+    </div>
+    <div class="fcols">
+      <div class="fcol">
+        <h4>Platform</h4>
+        <a href="#provides">What we provide</a>
+        <a href="#how">How it works</a>
+        <a href="#inside">Inside Metari</a>
+      </div>
+      <div class="fcol">
+        <h4>Company</h4>
+        <a href="#thesis">Thesis</a>
+        <a href="#why">Why Metari</a>
+        <a href="#founder">Founder</a>
+        <a href="#access">Investors</a>
+        <a href="#access">Request access</a>
+      </div>
+    </div>
+  </div>
+  <div class="wrap">
+    <div class="fbottom">
+      <span>© 2026 Metari. The Infrastructure Layer for Physical AI.</span>
+      <span class="mono">AWS for physical intelligence.</span>
+    </div>
+  </div>
+</footer>
+<script>
+(function () {
+  'use strict';
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  var nav = document.getElementById('nav');
+  function onScroll(){ if (window.scrollY > 24) nav.classList.add('scrolled'); else nav.classList.remove('scrolled'); }
+  onScroll(); window.addEventListener('scroll', onScroll, { passive: true });
+
+  var revEls = [].slice.call(document.querySelectorAll('.reveal:not(.in)'));
+  if ('IntersectionObserver' in window && !reduce) {
+    var io = new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } }); }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+    revEls.forEach(function(el){ io.observe(el); });
+  } else { revEls.forEach(function(el){ el.classList.add('in'); }); }
+
+  // Perf-gated RAF: only animates while the element is on screen
+  function visLoop(el, drawFn){
+    if(reduce){ drawFn(performance.now()); return; }
+    var id=null, running=false;
+    function frame(t){ drawFn(t); id=requestAnimationFrame(frame); }
+    if(!('IntersectionObserver' in window)){ id=requestAnimationFrame(frame); return; }
+    var ob=new IntersectionObserver(function(es){ es.forEach(function(e){
+      if(e.isIntersecting && !running){ running=true; id=requestAnimationFrame(frame); }
+      else if(!e.isIntersecting && running){ running=false; cancelAnimationFrame(id); }
+    }); }, { threshold: 0.02 });
+    ob.observe(el);
+  }
+
+  var _hv=document.getElementById('hero-video'); if(_hv){ var _hp=_hv.play&&_hv.play(); if(_hp&&_hp.catch) _hp.catch(function(){}); }
+
+  /* ---------- HERO network ---------- */
+  (function(){
+    var canvas=document.getElementById('hero-canvas'); if(!canvas) return;
+    var ctx=canvas.getContext('2d'); var W,H,DPR,nodes=[],packets=[],mouse={x:-9999,y:-9999},NC;
+    function size(){ DPR=Math.min(window.devicePixelRatio||1,2); W=window.innerWidth; H=Math.max(window.innerHeight,640); canvas.width=W*DPR; canvas.height=H*DPR; ctx.setTransform(DPR,0,0,DPR,0,0); NC=W<700?32:(W<1100?52:74); build(); }
+    function build(){ nodes=[]; for(var i=0;i<NC;i++){ nodes.push({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-0.5)*0.22,vy:(Math.random()-0.5)*0.22,r:Math.random()*1.5+0.8,p:Math.random()*Math.PI*2}); } }
+    function spawn(){ if(nodes.length<2) return; var a=(Math.random()*nodes.length)|0,b=(Math.random()*nodes.length)|0; if(a===b) return; packets.push({a:a,b:b,t:0,s:0.006+Math.random()*0.01}); }
+    var LD,LD2;
+    function draw(){ ctx.clearRect(0,0,W,H); LD=W<700?125:160; LD2=LD*LD;
+      for(var i=0;i<nodes.length;i++){ var n=nodes[i]; n.x+=n.vx; n.y+=n.vy; n.p+=0.02; if(n.x<0||n.x>W)n.vx*=-1; if(n.y<0||n.y>H)n.vy*=-1; var mdx=mouse.x-n.x,mdy=mouse.y-n.y,md2=mdx*mdx+mdy*mdy; if(md2<24000){ n.x+=mdx*0.0016; n.y+=mdy*0.0016; } }
+      for(var a=0;a<nodes.length;a++){ for(var b=a+1;b<nodes.length;b++){ var dx=nodes[a].x-nodes[b].x,dy=nodes[a].y-nodes[b].y,d2=dx*dx+dy*dy; if(d2<LD2){ var al=(1-d2/LD2)*0.5; ctx.strokeStyle='rgba(150,200,220,'+(al*0.5)+')'; ctx.lineWidth=1; ctx.beginPath(); ctx.moveTo(nodes[a].x,nodes[a].y); ctx.lineTo(nodes[b].x,nodes[b].y); ctx.stroke(); } } }
+      for(var k=0;k<nodes.length;k++){ var nn=nodes[k],g=(Math.sin(nn.p)*0.5+0.5); ctx.beginPath(); ctx.arc(nn.x,nn.y,nn.r+g*0.6,0,Math.PI*2); ctx.fillStyle='rgba(200,225,235,'+(0.32+g*0.34)+')'; ctx.fill(); }
+      for(var p=packets.length-1;p>=0;p--){ var pk=packets[p]; pk.t+=pk.s; if(pk.t>=1){ packets.splice(p,1); continue; } var na=nodes[pk.a],nb=nodes[pk.b]; if(!na||!nb){ packets.splice(p,1); continue; } var px=na.x+(nb.x-na.x)*pk.t,py=na.y+(nb.y-na.y)*pk.t,f=Math.sin(pk.t*Math.PI); ctx.beginPath(); ctx.arc(px,py,2.2,0,Math.PI*2); ctx.fillStyle='rgba(46,254,169,'+f+')'; ctx.fill(); ctx.beginPath(); ctx.arc(px,py,6,0,Math.PI*2); ctx.fillStyle='rgba(46,254,169,'+(f*0.15)+')'; ctx.fill(); }
+      if(Math.random()<0.04 && packets.length<14) spawn();
+    }
+    size();
+    if(!reduce){ window.addEventListener('mousemove',function(e){ mouse.x=e.clientX; mouse.y=e.clientY; },{passive:true}); window.addEventListener('mouseout',function(){ mouse.x=-9999; mouse.y=-9999; }); var rt; window.addEventListener('resize',function(){ clearTimeout(rt); rt=setTimeout(size,200); }); }
+    visLoop(canvas, draw);
+  })();
+
+  /* ---------- HOW IT WORKS stepper ---------- */
+  (function(){
+    var steps=[].slice.call(document.querySelectorAll('#howFlow .how-step')); if(!steps.length) return;
+    var titleEl=document.getElementById('howTitle'), descEl=document.getElementById('howDesc'), numEl=document.querySelector('#howDetail .bignum');
+    var cur=0, timer=null;
+    function setActive(i){
+      cur=i;
+      steps.forEach(function(s,si){ s.classList.toggle('active', si===i); s.classList.toggle('done', si<i); });
+      titleEl.textContent=steps[i].getAttribute('data-title');
+      descEl.textContent=steps[i].getAttribute('data-desc');
+      numEl.textContent=('0'+(i+1)).slice(-2);
+    }
+    function advance(){ setActive((cur+1)%steps.length); }
+    steps.forEach(function(s,i){ s.addEventListener('click',function(){ setActive(i); restart(); }); });
+    function restart(){ if(timer){ clearInterval(timer); } if(!reduce){ timer=setInterval(advance, 2600); } }
+    setActive(0);
+    if('IntersectionObserver' in window && !reduce){
+      var ob=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ restart(); } else if(timer){ clearInterval(timer); timer=null; } }); }, { threshold: 0.25 });
+      ob.observe(document.getElementById('how'));
+    }
+  })();
+
+  /* ---------- SIGNATURE: world is the dataset ---------- */
+  (function(){
+    var wc=document.getElementById('world-canvas'); if(!wc) return;
+    var wx=wc.getContext('2d'), W,H,DPR, T=0, parts=[];
+    var envs=['HOTEL ROOM','WAREHOUSE','RETAIL STORE','AIRPORT','HOSPITAL','RESTAURANT','OFFICE'];
+    var envEl=document.getElementById('sigEnv'), ei=0, lastEnv=0;
+    function size(){ DPR=Math.min(window.devicePixelRatio||1,2); var r=wc.getBoundingClientRect(); W=r.width; H=r.height; wc.width=W*DPR; wc.height=H*DPR; wx.setTransform(DPR,0,0,DPR,0,0); }
+    function cx(){ return W/2; } function cy(){ return H*0.70; }
+    function spawn(){ parts.push({ x:Math.random()*W, y:H+10, t:0, s:0.004+Math.random()*0.006, off:(Math.random()-0.5)*90 }); }
+    function globe(){
+      var gx=W/2, gy=H*0.5, R=Math.min(W,H)*0.34, rot=T*0.00016;
+      wx.strokeStyle='rgba(122,162,255,0.10)'; wx.lineWidth=1;
+      for(var la=-2;la<=2;la++){ var ry=R*Math.cos(la*0.5); var yy=gy+R*Math.sin(la*0.5); wx.beginPath(); wx.ellipse(gx,yy,ry,ry*0.28,0,0,Math.PI*2); wx.stroke(); }
+      for(var lo=0;lo<6;lo++){ var a=rot+lo*Math.PI/6; var rx=Math.abs(R*Math.cos(a)); wx.beginPath(); wx.ellipse(gx,gy,rx,R,0,0,Math.PI*2); wx.strokeStyle='rgba(122,162,255,'+(0.05+0.05*Math.abs(Math.sin(a)))+')'; wx.stroke(); }
+      // orbiting env nodes
+      for(var n=0;n<9;n++){ var aa=rot*3+n*(Math.PI*2/9); var px=gx+Math.cos(aa)*R, py=gy+Math.sin(aa)*R*0.9; var tw=(Math.sin(T*0.003+n)*0.5+0.5); wx.beginPath(); wx.arc(px,py,1.6+tw*1.2,0,Math.PI*2); wx.fillStyle='rgba(122,162,255,'+(0.3+tw*0.4)+')'; wx.fill(); }
+    }
+    function ring(energy){
+      var x=cx(), y=cy(), R=Math.min(W,H)*0.075;
+      wx.strokeStyle='rgba(46,254,169,'+(0.5+energy*0.4)+')'; wx.lineWidth=1.6;
+      wx.beginPath(); wx.arc(x,y,R,0,Math.PI*2); wx.stroke();
+      wx.beginPath(); wx.arc(x,y,3.2+energy*2,0,Math.PI*2); wx.fillStyle='rgba(46,254,169,'+(0.7+energy*0.3)+')'; wx.fill();
+      var sats=[[0,-1],[0,1],[-1,0],[1,0]];
+      for(var i=0;i<4;i++){ var sxp=x+sats[i][0]*R, syp=y+sats[i][1]*R; wx.beginPath(); wx.arc(sxp,syp,2.1,0,Math.PI*2); wx.fillStyle='rgba(46,254,169,0.85)'; wx.fill(); }
+      // glow
+      var g=wx.createRadialGradient(x,y,2,x,y,R*2.4); g.addColorStop(0,'rgba(46,254,169,'+(0.10+energy*0.10)+')'); g.addColorStop(1,'rgba(46,254,169,0)'); wx.fillStyle=g; wx.beginPath(); wx.arc(x,y,R*2.4,0,Math.PI*2); wx.fill();
+    }
+    var energy=0;
+    function draw(t){ T=t; wx.clearRect(0,0,W,H);
+      globe();
+      var tx=cx(), ty=cy();
+      for(var i=parts.length-1;i>=0;i--){ var p=parts[i]; p.t+=p.s; if(p.t>=1){ parts.splice(i,1); energy=Math.min(1,energy+0.03); continue; }
+        var e=p.t*p.t*(3-2*p.t); var px=p.x+(tx-p.x)*e+Math.sin(p.t*Math.PI)*p.off, py=p.y+(ty-p.y)*e; var f=Math.sin(p.t*Math.PI); wx.beginPath(); wx.arc(px,py,1.5,0,Math.PI*2); wx.fillStyle='rgba(46,254,169,'+(0.15+f*0.75)+')'; wx.fill(); }
+      energy*=0.965;
+      ring(energy);
+      // protect the headline text with a soft dark band
+      var pg=wx.createRadialGradient(W/2,H*0.42,10,W/2,H*0.42,Math.max(W,H)*0.42); pg.addColorStop(0,'rgba(6,7,9,0.55)'); pg.addColorStop(1,'rgba(6,7,9,0)'); wx.fillStyle=pg; wx.fillRect(0,0,W,H);
+      if(!reduce && Math.random()<0.4 && parts.length<70) spawn();
+      if(t-lastEnv>2300){ lastEnv=t; ei=(ei+1)%envs.length; if(envEl) envEl.textContent=envs[ei]; }
+    }
+    size(); if(!reduce){ var rt; window.addEventListener('resize',function(){ clearTimeout(rt); rt=setTimeout(size,200); }); }
+    if(reduce){ for(var k=0;k<40;k++) spawn(); }
+    visLoop(wc, draw);
+  })();
+
+  /* ---------- INSIDE METARI: real-environment showcase ---------- */
+  (function(){
+    var stage=document.getElementById('showStage'); if(!stage) return;
+    var vids=[].slice.call(stage.querySelectorAll('.show-vid'));
+    var chips=[].slice.call(document.querySelectorAll('#envList .env-chip'));
+    var envLabel=document.getElementById('showEnv');
+    var cur=0, timer=null;
+    function show(i){ cur=i; vids.forEach(function(v,ii){ var on=(ii===i); v.classList.toggle('on',on); if(on){ try{ v.currentTime=0; var pr=v.play(); if(pr&&pr.catch) pr.catch(function(){}); }catch(e){} } else { try{ v.pause(); }catch(e){} } }); chips.forEach(function(c,ci){ c.classList.toggle('active', ci===i); }); if(envLabel && chips[i]) envLabel.textContent=chips[i].textContent.toUpperCase(); }
+    chips.forEach(function(c,i){ c.addEventListener('click', function(){ show(i); restart(); }); });
+    function restart(){ if(timer){ clearInterval(timer); } if(!reduce && vids.length>1){ timer=setInterval(function(){ show((cur+1)%vids.length); }, 7600); } }
+    show(0); restart();
+    if('IntersectionObserver' in window){ var vo=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ try{ var pp=vids[cur].play(); if(pp&&pp.catch)pp.catch(function(){}); }catch(x){} restart(); } else { if(timer){ clearInterval(timer); timer=null; } vids.forEach(function(v){ try{v.pause();}catch(x){} }); } }); }, { threshold: 0.15 }); vo.observe(stage); }
+    var ov=document.getElementById('showOverlay'); if(!ov) return;
+    var g=ov.getContext('2d'); var W,H,DPR;
+    var sensors=[[0.24,0.62],[0.44,0.40],[0.62,0.70],[0.79,0.34]];
+    function size(){ DPR=Math.min(window.devicePixelRatio||1,2); var r=ov.getBoundingClientRect(); W=r.width; H=r.height; ov.width=W*DPR; ov.height=H*DPR; g.setTransform(DPR,0,0,DPR,0,0); }
+    function draw(t){
+      g.clearRect(0,0,W,H);
+      var sy=((t*0.00007)%1)*H;
+      var grd=g.createLinearGradient(0,sy-40,0,sy+40); grd.addColorStop(0,'rgba(46,254,169,0)'); grd.addColorStop(0.5,'rgba(46,254,169,0.10)'); grd.addColorStop(1,'rgba(46,254,169,0)');
+      g.fillStyle=grd; g.fillRect(0,sy-40,W,80);
+      g.strokeStyle='rgba(46,254,169,0.16)'; g.lineWidth=1; g.beginPath(); g.moveTo(0,sy); g.lineTo(W,sy); g.stroke();
+      for(var i=0;i<sensors.length;i++){ var x=sensors[i][0]*W,y=sensors[i][1]*H, pz=(Math.sin(t*0.0025+i*1.6)*0.5+0.5); g.beginPath(); g.arc(x,y,2.4,0,Math.PI*2); g.fillStyle='rgba(46,254,169,'+(0.5+pz*0.4)+')'; g.fill(); g.beginPath(); g.arc(x,y,5+pz*10,0,Math.PI*2); g.strokeStyle='rgba(46,254,169,'+(0.22*(1-pz))+')'; g.lineWidth=1; g.stroke(); }
+      g.strokeStyle='rgba(255,255,255,0.26)'; g.lineWidth=1.4; var m=22,L=30;
+      function br(x,y,dx,dy){ g.beginPath(); g.moveTo(x+dx*L,y); g.lineTo(x,y); g.lineTo(x,y+dy*L); g.stroke(); }
+      br(m,m,1,1); br(W-m,m,-1,1); br(m,H-m,1,-1); br(W-m,H-m,-1,-1);
+    }
+    size(); if(!reduce){ var rt2; window.addEventListener('resize', function(){ clearTimeout(rt2); rt2=setTimeout(size,180); }); }
+    visLoop(ov, draw);
+  })();
+
+
+  /* ---------- world-video play/pause ---------- */
+  (function(){ var wv=document.getElementById('world-video'); if(!wv) return; if('IntersectionObserver' in window){ var o=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ var pp=wv.play&&wv.play(); if(pp&&pp.catch)pp.catch(function(){}); } else { try{wv.pause();}catch(x){} } }); },{threshold:0.2}); o.observe(wv); } else { var p2=wv.play&&wv.play(); if(p2&&p2.catch)p2.catch(function(){}); } })();
+
+  /* ---------- access form (Web3Forms) ---------- */
+  (function(){
+    var f=document.getElementById('accessForm'); if(!f) return;
+    var st=document.getElementById('afStatus');
+    f.addEventListener('submit', function(e){
+      e.preventDefault();
+      var key=(f.querySelector('[name=access_key]')||{}).value||'';
+      if(!key || key.indexOf('YOUR_')===0){ st.className='af-status'; st.textContent='Form not configured yet — add your Web3Forms access key.'; return; }
+      st.className='af-status'; st.textContent='Sending…';
+      var data={}; new FormData(f).forEach(function(v,k){ data[k]=v; });
+      fetch('https://api.web3forms.com/submit', { method:'POST', headers:{'Content-Type':'application/json','Accept':'application/json'}, body: JSON.stringify(data) })
+        .then(function(r){ return r.json(); })
+        .then(function(j){ if(j && j.success){ f.reset(); st.className='af-status ok'; st.textContent='Thanks. We will be in touch shortly.'; } else { st.className='af-status'; st.textContent='Something went wrong. Please email us instead.'; } })
+        .catch(function(){ st.className='af-status'; st.textContent='Network error. Please email us instead.'; });
+    });
+  })();
+})();
+</script>
+</body>
+</html>
