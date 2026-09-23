@@ -3,19 +3,19 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Metari | Physical Intelligence Infrastructure</title>
-<meta name="description" content="Metari is building expert-led data collection and evaluation infrastructure for physical AI and humanoids, starting with hospitality." />
-<meta property="og:title" content="Metari | Physical Intelligence Infrastructure" />
-<meta property="og:description" content="Expert-led data collection and evaluation infrastructure for physical AI and humanoids, starting with hospitality." />
-<meta property="og:image" content="https://metari.io/assets/og-image.png" />
+<title>Metari &mdash; An API to the physical world.</title>
+<meta name="description" content="Metari builds and operates the environments where physical work happens, then holds them still so robot progress can be measured. Collect, train, deploy." />
+<meta property="og:title" content="An API to the physical world." />
+<meta property="og:description" content="Metari builds and operates the environments where physical work happens, then holds them still so robot progress can be measured. Collect, train, deploy." />
+<meta property="og:image" content="https://metari.io/assets/og-image.png?v=2" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
 <meta property="og:url" content="https://metari.io/" />
 <meta property="og:type" content="website" />
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Metari | Physical Intelligence Infrastructure" />
-<meta name="twitter:description" content="Expert-led data and evaluation infrastructure for physical AI, starting with hospitality." />
-<meta name="twitter:image" content="https://metari.io/assets/og-image.png" />
+<meta name="twitter:title" content="An API to the physical world." />
+<meta name="twitter:description" content="Metari builds and operates the environments where physical work happens, then holds them still so robot progress can be measured. Collect, train, deploy." />
+<meta name="twitter:image" content="https://metari.io/assets/og-image.png?v=2" />
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -175,6 +175,29 @@
   .loop .node{font-size:14.5px;font-weight:600}
   .loop .arw{color:var(--accent);font-family:'JetBrains Mono',monospace}
   .loop .ret{width:100%;margin-top:6px;font-size:12.5px;color:var(--faint);font-family:'JetBrains Mono',monospace}
+  .loopfig{margin:34px 0 0;padding:26px 28px;border:1px solid var(--line-soft);border-radius:16px;
+    background:linear-gradient(150deg,rgba(46,254,169,.06),transparent);overflow-x:auto}
+  .loopdia{width:100%;min-width:560px;height:auto;display:block}
+  .ld-ring{fill:none;stroke:var(--line);stroke-width:1.5;stroke-dasharray:3 6}
+  .ld-arc{fill:none;stroke:var(--accent);stroke-width:2;opacity:.75}
+  .ld-head{fill:var(--accent)}
+  .ld-box{fill:var(--panel);stroke:var(--accent);stroke-width:1.4;opacity:.95}
+  .ld-box-x{fill:var(--bg-2);stroke:var(--dim);stroke-width:1.4}
+  .ld-num{fill:var(--accent);font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.12em}
+  .ld-num-x{fill:var(--dim);font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.12em}
+  .ld-title{fill:var(--text);font-size:14px;font-weight:600}
+  .ld-edge{fill:var(--faint);font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.1em}
+  .ld-mid{fill:var(--text);font-size:14.5px;font-weight:600}
+  .ld-sub{fill:var(--accent);font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.14em}
+  .loop-steps{display:none}
+  @media(max-width:700px){
+    .loopfig{overflow-x:visible;padding:22px}
+    .loopdia{display:none}
+    .loop-steps{display:grid;gap:14px}
+    .loop-step{padding-left:14px;border-left:2px solid var(--accent)}
+    .loop-step .n{font-size:11px;letter-spacing:.12em;color:var(--accent);font-family:'JetBrains Mono',monospace;text-transform:uppercase}
+    .loop-step h4{margin:4px 0 0;font-size:15px;font-weight:600;color:var(--text)}
+  }
 
   /* ENGAGEMENT */
   .engage-grid{margin-top:56px;display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
@@ -268,6 +291,7 @@
   .pt-list li::before{content:"";position:absolute;left:2px;top:9px;width:7px;height:7px;border-radius:50%;background:var(--accent)}
   .pt-list li span{display:block;color:var(--dim);font-size:14px;margin-top:3px}
   .rev-grid{margin-top:56px;display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .rev-card.rev-wide{grid-column:1/-1}
   .rev-card{padding:30px;border:1px solid var(--line-soft);border-radius:16px;background:var(--bg-2)}
   .rev-card .ph{font-family:'JetBrains Mono',monospace;font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
   .rev-card.soon .ph{color:var(--faint)}
@@ -302,8 +326,8 @@
   <div class="hero-scrim"></div>
   <div class="wrap">
     <span class="eyebrow reveal in">Physical Intelligence Infrastructure</span>
-    <h1 class="hero-title reveal in d1">Where human expertise becomes <span class="accent">physical intelligence.</span></h1>
-    <p class="hero-sub reveal in d2">Metari is building the environments, expert network, and evaluation tools to help humanoids learn real work, starting with hospitality.</p>
+    <h1 class="hero-title reveal in d1">An API to the <span class="accent">physical world.</span></h1>
+    <p class="hero-sub reveal in d2">Robots cannot learn work they have never seen. Metari builds and operates the environments where that work happens, then holds them still so progress can be measured. Collect, train, deploy.</p>
     <div class="hero-cta reveal in d2">
       <a href="#contact" class="btn btn-primary btn-lg" data-inquiry="">Discuss a project</a>
       <button class="btn btn-lg" id="heroFilmBtn" type="button">Watch the campus film</button>
@@ -336,19 +360,28 @@
       <div class="mcol reveal d1">
         <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="9" cy="8" r="3.2"/><path d="M3.5 19c0-3 2.5-5 5.5-5s5.5 2 5.5 5"/><rect x="15" y="5" width="6" height="4" rx="1"/></svg>
         <div class="step mono">01 / Capture</div><h3>Capture expertise</h3>
-        <p>Experienced professionals demonstrate tasks in controlled environments. Cameras and sensors record the movement, while experts explain the decisions and quality standards.</p>
+        <p>Experienced professionals do the real job at working speed, in rooms built for capture. Worn rigs and fixed ceiling, wall and working-height cameras record it on one clock, while the operator explains the decision behind each move and the standard it has to meet.</p>
       </div>
       <div class="mcol reveal d2">
         <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 12l5 5L20 6"/><path d="M4 20h16"/></svg>
         <div class="step mono">02 / Evaluate</div><h3>Evaluate capability</h3>
-        <p>Test how a humanoid performs across different layouts, objects, and conditions, and record where it needs human assistance.</p>
+        <p>Run the policy on the same task, in the same room, against the same acceptance criteria as the human demonstration. Nothing between the two runs has moved, so a change in the score is a change in the model and not a change in the building.</p>
       </div>
       <div class="mcol reveal d3">
         <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 7h13l5 5-5 5H3z"/><path d="M3 12h13"/></svg>
         <div class="step mono">03 / Deploy</div><h3>Support deployment</h3>
-        <p>Our longer-term vision connects evaluation with customer pilots, local support, and feedback that informs the next training cycle.</p>
+        <p>The building that produced the data becomes the floor where operators watch the work before they buy, then one of the first properties the robot actually works in, with the team that trained it already on site.</p>
       </div>
     </div>
+  </div>
+</section>
+<!-- PROACTIVE CAPTURE -->
+<section class="block" id="proactive">
+  <div class="wrap">
+    <span class="eyebrow reveal">The shift</span>
+    <h2 class="big sec-head reveal d1">From reactive capture to proactive capture.</h2>
+    <p class="lead reveal d1">Every wearable programme running inside occupied buildings is reactive: it records whatever happened to occur that day. Occupancy sets the ceiling, guests are present, and a good day yields one or two usable room turns.</p>
+    <p class="lead reveal d2">A dedicated environment inverts that. The partner names the scenario and we produce it, on schedule, to volume. No guests, reset and re-run on a shift pattern, against a task list the partner writes. Clutter, lighting, linen, spills and operator are changed deliberately between runs. Spills, breakages and maintenance faults can be staged on purpose, which is the long tail a live-building programme will almost never catch on camera.</p>
   </div>
 </section>
 <!-- CAMPUS SELECTOR -->
@@ -492,13 +525,51 @@
       <div class="why-card reveal d2"><div class="k">Consistent standards</div><h3>Comparable observations</h3><p>Task definitions and evaluation methods that make observations comparable across runs.</p></div>
       <div class="why-card reveal d2"><div class="k">Operational feedback</div><h3>Learning from pilots</h3><p>Lessons from pilots that guide what to demonstrate, test, and improve next.</p></div>
     </div>
-    <div class="loop reveal d2" aria-label="Define the task, capture expertise, evaluate performance, learn from deployment, and return to task definition">
-      <span class="node">Define the task</span><span class="arw mono">&rarr;</span>
-      <span class="node">Capture expertise</span><span class="arw mono">&rarr;</span>
-      <span class="node">Evaluate performance</span><span class="arw mono">&rarr;</span>
-      <span class="node">Learn from deployment</span>
-      <span class="ret">&#8631; deployment learning informs the next task definition</span>
-    </div>
+    <figure class="loopfig reveal d2">
+      <svg class="loopdia" viewBox="0 0 900 566" role="img"
+           aria-label="A closed four-stage cycle: define the task with the partner, capture expertise, evaluate performance and learn from deployment, feeding back into the next task definition.">
+        <defs>
+          <marker id="mlArrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
+            <path class="ld-head" d="M 0 0 L 10 5 L 0 10 z"/>
+          </marker>
+        </defs>
+        <circle class="ld-ring" cx="450" cy="270" r="165"/>
+        <path class="ld-arc" marker-end="url(#mlArrow)" d="M 560.4 147.4 A 165 165 0 0 1 607.8 221.8"/>
+        <path class="ld-arc" marker-end="url(#mlArrow)" d="M 607.8 318.2 A 165 165 0 0 1 560.4 392.6"/>
+        <path class="ld-arc" marker-end="url(#mlArrow)" d="M 339.6 392.6 A 165 165 0 0 1 292.2 318.2"/>
+        <path class="ld-arc" marker-end="url(#mlArrow)" d="M 292.2 221.8 A 165 165 0 0 1 339.6 147.4"/>
+        <text class="ld-edge" x="616" y="111">TASK BRIEF</text>
+        <text class="ld-edge" x="616" y="433">HOURS + JUDGMENT</text>
+        <text class="ld-edge" x="284" y="433" text-anchor="end">SCORECARD</text>
+        <text class="ld-edge" x="284" y="111" text-anchor="end">WHAT BROKE</text>
+        <text class="ld-mid" x="450" y="256" text-anchor="middle">Same room.</text>
+        <text class="ld-mid" x="450" y="278" text-anchor="middle">Same rig.</text>
+        <text class="ld-sub" x="450" y="301" text-anchor="middle">EVERY PASS</text>
+        <rect class="ld-box-x" x="360" y="74" width="180" height="62" rx="4"/>
+        <text class="ld-num-x" x="450" y="99" text-anchor="middle">01 &#183; WITH PARTNER</text>
+        <text class="ld-title" x="450" y="121" text-anchor="middle">Define the task</text>
+        <rect class="ld-box" x="525" y="239" width="180" height="62" rx="4"/>
+        <text class="ld-num" x="615" y="264" text-anchor="middle">02 &#183; METARI</text>
+        <text class="ld-title" x="615" y="286" text-anchor="middle">Capture expertise</text>
+        <rect class="ld-box" x="360" y="404" width="180" height="62" rx="4"/>
+        <text class="ld-num" x="450" y="429" text-anchor="middle">03 &#183; METARI</text>
+        <text class="ld-title" x="450" y="451" text-anchor="middle">Evaluate performance</text>
+        <rect class="ld-box" x="195" y="239" width="180" height="62" rx="4"/>
+        <text class="ld-num" x="285" y="264" text-anchor="middle">04 &#183; METARI</text>
+        <text class="ld-title" x="285" y="286" text-anchor="middle">Learn from deployment</text>
+        <rect class="ld-box" x="318" y="518" width="14" height="14" rx="2"/>
+        <text class="ld-edge" x="342" y="530">METARI OPERATES</text>
+        <rect class="ld-box-x" x="492" y="518" width="14" height="14" rx="2"/>
+        <text class="ld-edge" x="516" y="530">SET WITH PARTNER</text>
+      </svg>
+      <div class="loop-steps" aria-hidden="true">
+        <div class="loop-step"><div class="n mono">01 &middot; With partner</div><h4>Define the task</h4></div>
+        <div class="loop-step"><div class="n mono">02 &middot; Metari</div><h4>Capture expertise</h4></div>
+        <div class="loop-step"><div class="n mono">03 &middot; Metari</div><h4>Evaluate performance</h4></div>
+        <div class="loop-step"><div class="n mono">04 &middot; Metari</div><h4>Learn from deployment</h4></div>
+      </div>
+    </figure>
+    <p class="lead reveal d3" style="margin-top:30px">Collection that stops at delivery is a one-off purchase. The same rooms, held still and run as an evaluation environment, are what turn a data sale into a standing programme. Every pass returns a targeted brief, not more of the same.</p>
     <p class="lead reveal d3" style="margin-top:30px">Our intended advantage is the combination: expert relationships, useful data collected with appropriate rights, repeatable evaluations, and experience that improves the next engagement.</p>
   </div>
 </section>
@@ -527,6 +598,7 @@
       <div class="rev-card reveal d1"><div class="ph">Partner</div><h3>Lease hotel blocks</h3><p>Work with operators to instrument and run blocks or floors of existing hotels as live capture and demonstration space.</p></div>
       <div class="rev-card reveal d2"><div class="ph">Convert</div><h3>Acquire &amp; convert</h3><p>Buy existing hotels and convert them into Physical Intelligence Campuses: experience, capture, and deployment under one roof.</p></div>
       <div class="rev-card reveal d3"><div class="ph">Capital</div><h3>REIT &amp; fund partners</h3><p>Partner with REITs and funds that own the land and buildings while Metari operates and converts them, and acquire select properties directly.</p></div>
+      <div class="rev-card rev-wide reveal d3"><div class="ph">Supply</div><h3>Rooms, not construction</h3><p>The properties within reach hold room inventory in the thousands, across multiple markets and property classes. Capacity is added by taking floors out of inventory and instrumenting them, not by constructing buildings. The camera rig and its calibration are the expensive part, and they never move.</p></div>
     </div>
     <p class="lead reveal d3" style="margin-top:30px">Each property becomes a compounding asset: an experience destination, a data-generation engine, and a deployment hub. <span style="color:var(--faint)">A concept for how the network could scale, not a description of existing operations.</span></p>
     <div class="figure reveal d2" style="margin-top:40px;aspect-ratio:16/9;position:relative"><img src="assets/campus/network-map.jpg" alt="Illustrative map of a future Metari campus network" loading="lazy" style="width:100%;height:100%;object-fit:cover"></div>
