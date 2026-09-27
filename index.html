@@ -321,6 +321,13 @@
   .cc-camera{position:relative;aspect-ratio:16/10;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:#142123}.cc-camera img{width:100%;height:100%;object-fit:cover}.cc-camera:after{content:"CONCEPT VIEW";position:absolute;top:10px;left:10px;padding:5px 7px;background:rgba(6,7,9,.7);font:10px 'JetBrains Mono',monospace;letter-spacing:.1em;color:#fff}
   .cc-detail dl{margin-top:19px}.cc-detail dl div{display:flex;justify-content:space-between;gap:12px;padding:11px 0;border-bottom:1px solid var(--line-soft);font-size:12px}.cc-detail dt{color:var(--dim)}.cc-detail dd{text-align:right;color:var(--text)}.cc-detail p{margin-top:18px;font-size:13px;line-height:1.5;color:var(--dim)}
   .cc-note{font:12px 'JetBrains Mono',monospace;color:var(--faint);margin-top:16px}
+  .cc-heatmap{position:relative;aspect-ratio:1205/794;overflow:hidden;border:1px solid #31504a;border-radius:12px;background:#10201c}
+  .cc-heatmap>img{width:100%;height:100%;display:block;object-fit:cover}.cc-heatmap:after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,transparent 68%,rgba(2,14,13,.28))}
+  .cc-hotspot{position:absolute;z-index:2;width:34px;height:34px;border-radius:50%;border:2px solid #e5fff5;background:rgba(46,254,169,.28);box-shadow:0 0 0 6px rgba(46,254,169,.14),0 0 22px #2efea9;cursor:pointer;transform:translate(-50%,-50%);opacity:.65;transition:all .3s}.cc-hotspot:hover,.cc-hotspot.active{opacity:1;box-shadow:0 0 0 9px rgba(46,254,169,.19),0 0 32px #2efea9}.cc-hotspot.active{animation:ccPulse 2.4s infinite}
+  .cc-hotspot[data-order="0"]{left:21%;top:23%}.cc-hotspot[data-order="1"]{left:48%;top:23%}.cc-hotspot[data-order="2"]{left:23%;top:74%}
+  .cc-progress{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin-top:18px}.cc-phase{padding:10px 7px;border-top:2px solid #31504a;color:var(--dim);font:11px 'JetBrains Mono',monospace;line-height:1.45}.cc-phase.active{border-color:var(--accent);color:#e5fff5;background:linear-gradient(rgba(46,254,169,.07),transparent)}.cc-phase.done{border-color:#8de5c4}
+  .cc-order-arrival{color:var(--accent);font:11px 'JetBrains Mono',monospace;letter-spacing:.08em;text-transform:uppercase;min-height:18px}
+  @media(max-width:700px){.cc-hotspot{width:25px;height:25px}.cc-progress{grid-template-columns:repeat(2,1fr)}}
   @media(max-width:1050px){.cc-body{grid-template-columns:220px minmax(0,1fr)}.cc-detail{grid-column:1/-1;border-left:0;border-top:1px solid var(--line)}.cc-detail-inner{display:grid;grid-template-columns:260px 1fr;gap:24px;align-items:start}.cc-detail dl{margin-top:0}}
   @media(max-width:700px){.cc-top{align-items:flex-start;flex-direction:column}.cc-body{display:block}.cc-orders,.cc-map,.cc-detail{padding:20px;border:0;border-bottom:1px solid var(--line)}.cc-orders{display:flex;gap:9px;overflow-x:auto}.cc-orders .cc-heading{min-width:100%;display:none}.cc-order{min-width:190px;margin:0}.cc-stage{grid-template-rows:repeat(2,90px);min-height:0}.cc-room{padding:8px;font-size:10px}.cc-room span{font-size:11px}.cc-detail-inner{display:block}.cc-detail dl{margin-top:18px}}
   @media(prefers-reduced-motion:reduce){.cc-room.active:after{animation:none}}
@@ -410,7 +417,7 @@
   <div class="wrap">
     <span class="eyebrow reveal">The operating layer</span>
     <h2 class="big reveal d1">An order becomes an environment.</h2>
-    <p class="lead reveal d1">Select a sample lab request to see how Metari maps the task to a controlled room, capture plan, and review workflow.</p>
+    <p class="lead reveal d1">Watch a sample lab request move from task brief to a configured room, camera plan, and expert review. Choose another order to explore its environment.</p>
     <div class="cc-shell reveal d2" aria-label="Interactive Command Center concept demo">
       <div class="cc-top"><div class="cc-brand"><i aria-hidden="true"></i> METARI / COMMAND CENTER</div><span class="cc-label">Interactive concept demo · West Campus</span></div>
       <div class="cc-body">
@@ -419,15 +426,20 @@
           <button class="cc-order" type="button" data-order="1" aria-pressed="false"><strong>Kitchen handoff variations</strong><small>Food service · 180 planned episodes</small></button>
           <button class="cc-order" type="button" data-order="2" aria-pressed="false"><strong>Outdoor object handling</strong><small>Grounds · 120 planned episodes</small></button>
         </div>
-        <div class="cc-map"><div class="cc-map-head"><div><span class="cc-label">Property intelligence / Level 02</span><h3>Configurable environments</h3></div><span class="cc-label" id="ccStatus">Plan selected</span></div>
-          <div class="cc-stage" aria-label="Illustrative campus room map">
-            <button type="button" class="cc-room active" data-room="0">02.01<span>Guest room</span></button><button type="button" class="cc-room" data-room="1">02.02<span>Kitchen</span></button><button type="button" class="cc-room" data-room="2">02.03<span>Outdoor bay</span></button><button type="button" class="cc-room" data-room="3">02.04<span>Corridor</span></button><button type="button" class="cc-room" data-room="4">02.05<span>Service area</span></button><button type="button" class="cc-room" data-room="5">02.06<span>Evaluation</span></button>
-          </div><p class="cc-foot"><b id="ccRoomName">Guest room 02.01</b> · <span id="ccSetup">Change linen, lighting, clutter, and approach route between runs.</span></p>
+        <div class="cc-map"><div class="cc-map-head"><div><span class="cc-label">Property intelligence / West Campus</span><h3>Environment activity heatmap</h3></div><span class="cc-label" id="ccStatus">Order received</span></div>
+          <div class="cc-heatmap" aria-label="Metari Property Intelligence concept heatmap with three selectable environments">
+            <img src="assets/property-heatmap.webp" alt="Metari Command Center property heatmap showing a concept campus and simulated environment activity" loading="lazy">
+            <button type="button" class="cc-hotspot active" data-order="0" aria-label="Select guest room order"></button>
+            <button type="button" class="cc-hotspot" data-order="1" aria-label="Select kitchen order"></button>
+            <button type="button" class="cc-hotspot" data-order="2" aria-label="Select outdoor order"></button>
+          </div>
+          <div class="cc-progress" aria-label="Illustrative order workflow"><span class="cc-phase active">01 / Order received</span><span class="cc-phase">02 / Room configured</span><span class="cc-phase">03 / Capture plan</span><span class="cc-phase">04 / Expert review</span></div>
+          <p class="cc-foot"><b id="ccRoomName">Guest room / GR</b> · <span id="ccSetup">Change linen, lighting, clutter, and approach route between runs.</span></p>
         </div>
-        <div class="cc-detail"><div class="cc-detail-inner"><div><span class="cc-label">Capture plan / Camera 01</span><h3 id="ccDetailTitle">Room-turn edge cases</h3><div class="cc-camera"><img id="ccImage" src="assets/campus/demo-housekeeping.jpg" alt="Concept rendering of housekeeping work in a guest room" loading="lazy"></div></div><div><dl><div><dt>Environment</dt><dd id="ccEnvironment">Guest room</dd></div><div><dt>Capture angles</dt><dd id="ccAngles">Ceiling · wall · wearable</dd></div><div><dt>Variation</dt><dd id="ccVariation">Linen, clutter, lighting</dd></div><div><dt>Next step</dt><dd id="ccNext">Expert demonstration</dd></div></dl><p id="ccDescription">The room is reset for each requested exception, then each run is captured and reviewed against the lab's task criteria.</p></div></div></div>
+        <div class="cc-detail"><div class="cc-detail-inner"><div><span class="cc-label">Capture plan / Concept view</span><h3 id="ccDetailTitle">Room-turn edge cases</h3><div class="cc-camera"><img id="ccImage" src="assets/campus/demo-housekeeping.jpg" alt="Concept rendering of housekeeping work in a guest room" loading="lazy"></div></div><div><dl><div><dt>Environment</dt><dd id="ccEnvironment">Guest room</dd></div><div><dt>Capture angles</dt><dd id="ccAngles">Ceiling · wall · wearable</dd></div><div><dt>Variation</dt><dd id="ccVariation">Linen, clutter, lighting</dd></div><div><dt>Next step</dt><dd id="ccNext">Expert demonstration</dd></div></dl><p id="ccDescription">The room is reset for each requested exception, then each run is captured and reviewed against the lab's task criteria.</p></div></div></div>
       </div>
     </div>
-    <p class="cc-note">Illustrative workflow and planned episodes. No live lab orders, camera feeds, or sensor data are shown.</p>
+    <p class="cc-note">Property Intelligence screenshot with simulated heatmap data. Orders, workflow, planned episodes, and camera views are illustrative; no live lab activity is shown.</p>
   </div>
 </section>
 <!-- CAMPUS SELECTOR -->
@@ -815,11 +827,14 @@
       {title:'Kitchen handoff variations',room:1,environment:'Kitchen',angles:'Counter · overhead · wearable',variation:'Objects, timing, route',next:'Capture plan review',setup:'Reposition objects and vary the handoff route and timing.',description:'An expert demonstrates each handoff while the setup changes deliberately between runs.',image:'assets/campus/demo-chef.jpg',alt:'Concept rendering of a kitchen demonstration'},
       {title:'Outdoor object handling',room:2,environment:'Outdoor bay',angles:'Fixed · mobile · wearable',variation:'Object placement, route',next:'Environment setup',setup:'Change object placement and approach paths in a controlled outdoor bay.',description:'Each variation creates a comparable example for capture and later evaluation.',image:'assets/campus/gardens.jpg',alt:'Concept rendering of outdoor work at the campus'}
     ];
-    var buttons=[].slice.call(document.querySelectorAll('.cc-order')),rooms=[].slice.call(document.querySelectorAll('.cc-room'));
+    var buttons=[].slice.call(document.querySelectorAll('.cc-order')),hotspots=[].slice.call(document.querySelectorAll('.cc-hotspot')),phases=[].slice.call(document.querySelectorAll('.cc-phase')),phase=0,timer=null;
     var ids={ccDetailTitle:'title',ccEnvironment:'environment',ccAngles:'angles',ccVariation:'variation',ccNext:'next',ccSetup:'setup',ccDescription:'description'};
-    function select(i){var item=orders[i];buttons.forEach(function(b,n){b.classList.toggle('active',n===i);b.setAttribute('aria-pressed',n===i?'true':'false')});rooms.forEach(function(b,n){b.classList.toggle('active',n===item.room);b.setAttribute('aria-pressed',n===item.room?'true':'false')});Object.keys(ids).forEach(function(id){document.getElementById(id).textContent=item[ids[id]]});document.getElementById('ccRoomName').textContent=rooms[item.room].textContent.trim().replace(/^(\d\d\.\d\d)/,'$1 · ');var image=document.getElementById('ccImage');image.src=item.image;image.alt=item.alt;}
-    buttons.forEach(function(b,i){b.addEventListener('click',function(){select(i)})});
-    rooms.forEach(function(b,i){b.addEventListener('click',function(){if(i<orders.length)select(i);else{rooms.forEach(function(r,n){r.classList.toggle('active',n===i)});document.getElementById('ccRoomName').textContent=b.textContent.trim().replace(/^(\d\d\.\d\d)/,'$1 · ');document.getElementById('ccSetup').textContent='Available for a task-specific capture or evaluation plan.';document.getElementById('ccStatus').textContent='Room selected';}})});
+    var roomNames=['Guest room / GR','Kitchen / KT','Gardens / GD'],status=['Order received','Room configured','Capture plan ready','Expert review'];
+    function setPhase(n){phase=n;phases.forEach(function(p,i){p.classList.toggle('active',i===n);p.classList.toggle('done',i<n)});document.getElementById('ccStatus').textContent=status[n];}
+    function select(i){var item=orders[i];buttons.forEach(function(b,n){b.classList.toggle('active',n===i);b.setAttribute('aria-pressed',n===i?'true':'false')});hotspots.forEach(function(b,n){b.classList.toggle('active',n===i)});Object.keys(ids).forEach(function(id){document.getElementById(id).textContent=item[ids[id]]});document.getElementById('ccRoomName').textContent=roomNames[i];var image=document.getElementById('ccImage');image.src=item.image;image.alt=item.alt;setPhase(0);}
+    buttons.forEach(function(b,i){b.addEventListener('click',function(){select(i);restart()})});hotspots.forEach(function(b,i){b.addEventListener('click',function(){select(i);restart()})});
+    function restart(){if(timer)clearInterval(timer);if(reduce)return;timer=setInterval(function(){setPhase((phase+1)%4)},2600)}
+    if('IntersectionObserver' in window){new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting)restart();else if(timer){clearInterval(timer);timer=null}})},{threshold:.15}).observe(document.getElementById('command-center'))}else restart();
   })();
 
   // data example tabs
