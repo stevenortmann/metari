@@ -304,6 +304,26 @@
   .vision-lead{font-size:clamp(24px,3.4vw,36px);line-height:1.28;letter-spacing:-.01em;color:var(--text);margin-top:14px;font-weight:600}
   .vision-body{font-size:17px;line-height:1.72;color:var(--dim);margin-top:22px}
   .concept-note{margin-top:22px;font-family:'JetBrains Mono',monospace;font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--faint)}
+  /* COMMAND CENTER PREVIEW */
+  .cc-shell{margin-top:48px;border:1px solid rgba(46,254,169,.25);border-radius:20px;overflow:hidden;background:#0b1012;box-shadow:0 32px 100px rgba(0,0,0,.28)}
+  .cc-top{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:18px 22px;border-bottom:1px solid var(--line);background:#10171a}
+  .cc-brand{display:flex;align-items:center;gap:12px;font-size:14px;font-weight:600;letter-spacing:.02em}.cc-brand i{width:12px;height:12px;border-radius:50%;background:var(--accent);box-shadow:0 0 18px var(--accent)}
+  .cc-label{font:11px 'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:.12em;color:var(--dim)}
+  .cc-body{display:grid;grid-template-columns:250px minmax(0,1fr) 300px;min-height:480px}
+  .cc-orders,.cc-detail{padding:22px;border-right:1px solid var(--line)}.cc-detail{border-right:0;border-left:1px solid var(--line)}
+  .cc-orders h3,.cc-map h3,.cc-detail h3{font-size:18px;margin:10px 0 20px;line-height:1.25}
+  .cc-order{width:100%;text-align:left;color:var(--text);background:#11191b;border:1px solid var(--line);border-radius:11px;padding:14px;margin:0 0 10px;cursor:pointer;font:inherit;transition:border-color .2s,background .2s}
+  .cc-order:hover,.cc-order.active{border-color:var(--accent);background:#10221c}.cc-order strong{display:block;font-size:14px;line-height:1.35}.cc-order small{display:block;color:var(--dim);font-size:12px;margin-top:6px}
+  .cc-map{padding:22px;min-width:0}.cc-map-head{display:flex;align-items:start;justify-content:space-between;gap:15px}.cc-stage{display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(2,minmax(115px,1fr));gap:9px;min-height:270px;margin-top:6px;padding:12px;border:1px solid #2c4140;border-radius:12px;background:linear-gradient(135deg,#142123,#0d1719)}
+  .cc-room{position:relative;text-align:left;border:1px solid #35504c;border-radius:8px;padding:13px;background:rgba(16,31,31,.8);color:#a9c1bb;font:12px 'JetBrains Mono',monospace;cursor:pointer;transition:all .25s}.cc-room:hover{border-color:#8edbc3}.cc-room.active{border-color:var(--accent);background:rgba(46,254,169,.11);color:#ecfff6;box-shadow:inset 0 0 0 1px rgba(46,254,169,.18),0 0 24px rgba(46,254,169,.1)}.cc-room.active:after{content:"";position:absolute;right:12px;bottom:12px;width:9px;height:9px;background:var(--accent);border-radius:50%;box-shadow:0 0 0 0 rgba(46,254,169,.45);animation:ccPulse 2.4s infinite}
+  @keyframes ccPulse{50%{box-shadow:0 0 0 12px rgba(46,254,169,0)}}
+  .cc-room span{display:block;margin-top:8px;font:600 14px Inter,sans-serif}.cc-foot{margin-top:15px;color:var(--dim);font-size:13px}.cc-foot b{color:var(--accent);font-weight:500}
+  .cc-camera{position:relative;aspect-ratio:16/10;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:#142123}.cc-camera img{width:100%;height:100%;object-fit:cover}.cc-camera:after{content:"CONCEPT VIEW";position:absolute;top:10px;left:10px;padding:5px 7px;background:rgba(6,7,9,.7);font:10px 'JetBrains Mono',monospace;letter-spacing:.1em;color:#fff}
+  .cc-detail dl{margin-top:19px}.cc-detail dl div{display:flex;justify-content:space-between;gap:12px;padding:11px 0;border-bottom:1px solid var(--line-soft);font-size:12px}.cc-detail dt{color:var(--dim)}.cc-detail dd{text-align:right;color:var(--text)}.cc-detail p{margin-top:18px;font-size:13px;line-height:1.5;color:var(--dim)}
+  .cc-note{font:12px 'JetBrains Mono',monospace;color:var(--faint);margin-top:16px}
+  @media(max-width:1050px){.cc-body{grid-template-columns:220px minmax(0,1fr)}.cc-detail{grid-column:1/-1;border-left:0;border-top:1px solid var(--line)}.cc-detail-inner{display:grid;grid-template-columns:260px 1fr;gap:24px;align-items:start}.cc-detail dl{margin-top:0}}
+  @media(max-width:700px){.cc-top{align-items:flex-start;flex-direction:column}.cc-body{display:block}.cc-orders,.cc-map,.cc-detail{padding:20px;border:0;border-bottom:1px solid var(--line)}.cc-orders{display:flex;gap:9px;overflow-x:auto}.cc-orders .cc-heading{min-width:100%;display:none}.cc-order{min-width:190px;margin:0}.cc-stage{grid-template-rows:repeat(2,90px);min-height:0}.cc-room{padding:8px;font-size:10px}.cc-room span{font-size:11px}.cc-detail-inner{display:block}.cc-detail dl{margin-top:18px}}
+  @media(prefers-reduced-motion:reduce){.cc-room.active:after{animation:none}}
 </style>
 <svg class="mt-defs" width="0" height="0" aria-hidden="true"><defs><radialGradient id="mtGlow" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#f2fff9"/><stop offset="16%" stop-color="#3affb2"/><stop offset="46%" stop-color="#2efea9" stop-opacity="0.72"/><stop offset="100%" stop-color="#2efea9" stop-opacity="0"/></radialGradient></defs></svg>
 <nav id="nav">
@@ -313,6 +333,7 @@
     <div class="nav-links" id="navLinks">
       <a href="#model" class="link">How it works</a>
       <a href="#campus" class="link">Campus</a>
+      <a href="#command-center" class="link">Command Center</a>
       <a href="#network-scale" class="link">Network</a>
       <a href="#why" class="link">Why Metari</a>
       <a href="#founder" class="link">Founder</a>
@@ -382,6 +403,31 @@
     <h2 class="big sec-head reveal d1">From reactive capture to proactive capture.</h2>
     <p class="lead reveal d1">Every wearable programme running inside occupied buildings is reactive: it records whatever happened to occur that day. Occupancy sets the ceiling, guests are present, and a good day yields one or two usable room turns.</p>
     <p class="lead reveal d2">A dedicated environment inverts that. The partner names the scenario and we produce it, on schedule, to volume. No guests, reset and re-run on a shift pattern, against a task list the partner writes. Clutter, lighting, linen, spills and operator are changed deliberately between runs. Spills, breakages and maintenance faults can be staged on purpose, which is the long tail a live-building programme will almost never catch on camera.</p>
+  </div>
+</section>
+<!-- COMMAND CENTER -->
+<section class="block" id="command-center">
+  <div class="wrap">
+    <span class="eyebrow reveal">The operating layer</span>
+    <h2 class="big reveal d1">An order becomes an environment.</h2>
+    <p class="lead reveal d1">Select a sample lab request to see how Metari maps the task to a controlled room, capture plan, and review workflow.</p>
+    <div class="cc-shell reveal d2" aria-label="Interactive Command Center concept demo">
+      <div class="cc-top"><div class="cc-brand"><i aria-hidden="true"></i> METARI / COMMAND CENTER</div><span class="cc-label">Interactive concept demo · West Campus</span></div>
+      <div class="cc-body">
+        <div class="cc-orders"><div class="cc-heading"><span class="cc-label">Data orders / 03</span><h3>Lab requests</h3></div>
+          <button class="cc-order active" type="button" data-order="0" aria-pressed="true"><strong>Room-turn edge cases</strong><small>Hospitality · 240 planned episodes</small></button>
+          <button class="cc-order" type="button" data-order="1" aria-pressed="false"><strong>Kitchen handoff variations</strong><small>Food service · 180 planned episodes</small></button>
+          <button class="cc-order" type="button" data-order="2" aria-pressed="false"><strong>Outdoor object handling</strong><small>Grounds · 120 planned episodes</small></button>
+        </div>
+        <div class="cc-map"><div class="cc-map-head"><div><span class="cc-label">Property intelligence / Level 02</span><h3>Configurable environments</h3></div><span class="cc-label" id="ccStatus">Plan selected</span></div>
+          <div class="cc-stage" aria-label="Illustrative campus room map">
+            <button type="button" class="cc-room active" data-room="0">02.01<span>Guest room</span></button><button type="button" class="cc-room" data-room="1">02.02<span>Kitchen</span></button><button type="button" class="cc-room" data-room="2">02.03<span>Outdoor bay</span></button><button type="button" class="cc-room" data-room="3">02.04<span>Corridor</span></button><button type="button" class="cc-room" data-room="4">02.05<span>Service area</span></button><button type="button" class="cc-room" data-room="5">02.06<span>Evaluation</span></button>
+          </div><p class="cc-foot"><b id="ccRoomName">Guest room 02.01</b> · <span id="ccSetup">Change linen, lighting, clutter, and approach route between runs.</span></p>
+        </div>
+        <div class="cc-detail"><div class="cc-detail-inner"><div><span class="cc-label">Capture plan / Camera 01</span><h3 id="ccDetailTitle">Room-turn edge cases</h3><div class="cc-camera"><img id="ccImage" src="assets/campus/demo-housekeeping.jpg" alt="Concept rendering of housekeeping work in a guest room" loading="lazy"></div></div><div><dl><div><dt>Environment</dt><dd id="ccEnvironment">Guest room</dd></div><div><dt>Capture angles</dt><dd id="ccAngles">Ceiling · wall · wearable</dd></div><div><dt>Variation</dt><dd id="ccVariation">Linen, clutter, lighting</dd></div><div><dt>Next step</dt><dd id="ccNext">Expert demonstration</dd></div></dl><p id="ccDescription">The room is reset for each requested exception, then each run is captured and reviewed against the lab's task criteria.</p></div></div></div>
+      </div>
+    </div>
+    <p class="cc-note">Illustrative workflow and planned episodes. No live lab orders, camera feeds, or sensor data are shown.</p>
   </div>
 </section>
 <!-- CAMPUS SELECTOR -->
@@ -760,6 +806,20 @@
     // swipe on mobile
     var media=document.getElementById('campusMedia'), sx=0;
     if(media){ media.addEventListener('touchstart',function(e){ sx=e.touches[0].clientX; },{passive:true}); media.addEventListener('touchend',function(e){ var dx=e.changedTouches[0].clientX-sx; if(Math.abs(dx)>40){ show((cur+(dx<0?1:picks.length-1))%picks.length); } },{passive:true}); }
+  })();
+
+  // Command Center concept: choosing an order updates its room and capture plan.
+  (function(){
+    var orders=[
+      {title:'Room-turn edge cases',room:0,environment:'Guest room',angles:'Ceiling · wall · wearable',variation:'Linen, clutter, lighting',next:'Expert demonstration',setup:'Change linen, lighting, clutter, and approach route between runs.',description:'The room is reset for each requested exception, then each run is captured and reviewed against the lab\'s task criteria.',image:'assets/campus/demo-housekeeping.jpg',alt:'Concept rendering of housekeeping work in a guest room'},
+      {title:'Kitchen handoff variations',room:1,environment:'Kitchen',angles:'Counter · overhead · wearable',variation:'Objects, timing, route',next:'Capture plan review',setup:'Reposition objects and vary the handoff route and timing.',description:'An expert demonstrates each handoff while the setup changes deliberately between runs.',image:'assets/campus/demo-chef.jpg',alt:'Concept rendering of a kitchen demonstration'},
+      {title:'Outdoor object handling',room:2,environment:'Outdoor bay',angles:'Fixed · mobile · wearable',variation:'Object placement, route',next:'Environment setup',setup:'Change object placement and approach paths in a controlled outdoor bay.',description:'Each variation creates a comparable example for capture and later evaluation.',image:'assets/campus/gardens.jpg',alt:'Concept rendering of outdoor work at the campus'}
+    ];
+    var buttons=[].slice.call(document.querySelectorAll('.cc-order')),rooms=[].slice.call(document.querySelectorAll('.cc-room'));
+    var ids={ccDetailTitle:'title',ccEnvironment:'environment',ccAngles:'angles',ccVariation:'variation',ccNext:'next',ccSetup:'setup',ccDescription:'description'};
+    function select(i){var item=orders[i];buttons.forEach(function(b,n){b.classList.toggle('active',n===i);b.setAttribute('aria-pressed',n===i?'true':'false')});rooms.forEach(function(b,n){b.classList.toggle('active',n===item.room);b.setAttribute('aria-pressed',n===item.room?'true':'false')});Object.keys(ids).forEach(function(id){document.getElementById(id).textContent=item[ids[id]]});document.getElementById('ccRoomName').textContent=rooms[item.room].textContent.trim().replace(/^(\d\d\.\d\d)/,'$1 · ');var image=document.getElementById('ccImage');image.src=item.image;image.alt=item.alt;}
+    buttons.forEach(function(b,i){b.addEventListener('click',function(){select(i)})});
+    rooms.forEach(function(b,i){b.addEventListener('click',function(){if(i<orders.length)select(i);else{rooms.forEach(function(r,n){r.classList.toggle('active',n===i)});document.getElementById('ccRoomName').textContent=b.textContent.trim().replace(/^(\d\d\.\d\d)/,'$1 · ');document.getElementById('ccSetup').textContent='Available for a task-specific capture or evaluation plan.';document.getElementById('ccStatus').textContent='Room selected';}})});
   })();
 
   // data example tabs
