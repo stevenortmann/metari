@@ -33,4 +33,4 @@ python3 -m http.server 8000   # then open /micro1/ and /micro1/command-center/
 ```
 
 ## Not access control
-Pages are `noindex` and disallowed in robots.txt. That is not protection. Use Vercel deployment protection or server-side auth if confidentiality is required.
+Pages sit behind a simple browser password (same mechanism as /1x, `js/gate.js`), are `noindex` and disallowed in robots.txt. None of that is real protection. Use Vercel deployment protection or server-side auth if confidentiality is required.

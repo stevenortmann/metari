@@ -10,6 +10,7 @@
 <meta name="referrer" content="no-referrer">
 <meta name="theme-color" content="#0B1216">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<script>try{document.documentElement.classList.add("gated");}catch(e){}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500&family=Source+Serif+4:opsz,wght@8..60,300;8..60,400;8..60,600&family=IBM+Plex+Mono:wght@400;500&display=swap">
@@ -48,7 +49,7 @@
       <img class="wm" src="/micro1/img/wordmark.png" alt="Metari, physical intelligence" width="152" height="19">
     </a>
     <span class="x-partner" aria-label="with micro1"><span class="x">&times;</span>micro1</span>
-    <span class="concept-chip mono" title="Unlisted concept page. Not access-controlled.">Unlisted concept</span>
+    <span class="concept-chip mono" title="Private concept page behind a simple browser password">Private concept</span>
     <div class="nav-links mono">
       <a href="#fit">The fit</a>
       <a href="#order">Run an order</a>
@@ -61,39 +62,69 @@
 </nav>
 
 <main id="top">
-<header class="hero">
-  <div class="hero-img">
-    <img src="/1x/img/human.jpg" alt="Concept rendering: a housekeeper wearing a head-mounted capture rig places folded towels on a bed in a guest room fitted with ceiling cameras" fetchpriority="high">
+<header class="hero2">
+  <div class="hero2-media" aria-hidden="true">
+    <img src="/1x/img/human.jpg" alt="" fetchpriority="high">
   </div>
-  <div class="hero-copy">
-    <div class="wrap wide">
-      <div class="eyebrow mono">Metari &times; micro1 / Partnership concept</div>
+  <div class="wrap wide hero2-grid">
+    <div class="hero2-copy">
+      <div class="eyebrow mono">Metari &times; micro1 &middot; Partnership concept</div>
       <h1>Your data requirements. <em>A physical world configured around them.</em></h1>
-      <p class="hero-sub">A proposed extension to micro1 Robotics, combining configurable environments, industry-led operations and repeatable physical collection around an agreed specification.</p>
+      <p class="hero-sub">A proposed extension to micro1 Robotics: real hospitality environments, industry-trained operators and repeatable physical collection, built around a specification your team writes.</p>
       <div class="actions">
-        <a class="btn primary" href="#order" id="hero-run">Run a data order</a>
-        <a class="btn" href="#fit">Explore the partnership</a>
+        <a class="btn primary" href="#order">Run a data order</a>
+        <a class="btn" href="#fit">See how we fit</a>
       </div>
       <p class="fine">Illustrative concept for discussion. No partnership or endorsement implied.</p>
     </div>
+    <aside class="spec-card" aria-label="Example order, simulated">
+      <div class="sc-top mono"><span>Example order</span><span class="sc-sim">Simulated</span></div>
+      <div class="sc-id">M1-DEMO-001</div>
+      <div class="sc-title">Hospitality service manipulation</div>
+      <dl class="sc-grid">
+        <div><dt class="mono">Accepted target</dt><dd>1,200</dd></div>
+        <div><dt class="mono">Defined variants</dt><dd>48</dd></div>
+        <div><dt class="mono">Views per episode</dt><dd>3</dd></div>
+        <div><dt class="mono">Task families</dt><dd>3</dd></div>
+      </dl>
+      <ul class="sc-tasks">
+        <li><i></i>Linen placement <span class="mono">Guest rooms</span></li>
+        <li><i></i>Laundry folding <span class="mono">Laundry</span></li>
+        <li><i></i>Cart replenishment <span class="mono">Service</span></li>
+      </ul>
+      <a class="sc-link mono" href="#order">Run it end to end &rarr;</a>
+    </aside>
   </div>
   <span class="hero-credit mono">Concept rendering</span>
 </header>
 
-<section id="fit" class="wrap wide">
+<div class="marquee" aria-hidden="true"><div class="mq-track mono">
+  <span>Guest rooms</span><span>Laundry &amp; linen</span><span>Service &amp; supply</span><span>Corridors</span><span>Bathrooms</span><span>Kitchens</span><span>Accessible living mock</span><span>Resets on instruction</span><span>Supervised operators</span><span>Per-attempt evidence</span>
+  <span>Guest rooms</span><span>Laundry &amp; linen</span><span>Service &amp; supply</span><span>Corridors</span><span>Bathrooms</span><span>Kitchens</span><span>Accessible living mock</span><span>Resets on instruction</span><span>Supervised operators</span><span>Per-attempt evidence</span>
+</div></div>
+
+<section class="wrap wide quote-band" aria-label="Where micro1 is heading">
+  <blockquote>
+    <p>&ldquo;High-quality human data fuelling robotics in home and <b>commercial settings</b>.&rdquo;</p>
+    <cite class="mono">micro1 Robotics<sup class="src"><a href="#src-S2">S2</a></sup></cite>
+  </blockquote>
+  <p class="qb-answer">Hotels are the commercial setting shaped most like a home: bedrooms, bathrooms, laundries and service corridors, run to written standards by people who do the work every day. Metari proposes to make those spaces <em>commissionable</em> for micro1.</p>
+</section>
+
+<section id="fit" class="wrap wide rule">
   <div class="sec-head">
     <span class="sec-num">The fit</span>
-    <h2>micro1 already collects in the physical world. Metari proposes specialised capacity around it.</h2>
+    <h2>micro1 already collects in the physical world. Metari adds specialised capacity around it.</h2>
   </div>
   <div class="fit">
     <div>
       <div class="ns mono"><i></i>Published by micro1</div>
       <h3>An AI data lab with a robotics practice</h3>
       <ul>
-        <li>Positions itself as an AI data lab, with <strong>Realm</strong> for training and evaluation environments, <strong>Cortex</strong> for enterprise-agent evaluation and <strong>Robotics</strong> for embodied-system data.<sup class="src"><a href="#src-S1">S1</a></sup></li>
-        <li>Robotics covers expert first- and third-person demonstrations, structuring, annotation, QC and evaluation, synchronized stereo, IMU and multicamera capture, and controlled deployment-lab work with robots.<sup class="src"><a href="#src-S2">S2</a></sup></li>
-        <li><strong>flow</strong> separates generation, data-quality checking and grading, with expert review and linked camera and 3D evidence.<sup class="src"><a href="#src-S3">S3</a></sup></li>
-        <li>Published research favours task-specific post-training data that matches deployment conditions,<sup class="src"><a href="#src-S4">S4</a></sup> and simulation plus bounded hardware experiments for hazardous tests.<sup class="src"><a href="#src-S5">S5</a></sup></li>
+        <li>Expert-demonstrated data for frontier robotics labs, with <strong>Realm</strong> and <strong>Cortex</strong> alongside for environments and evaluation.<sup class="src"><a href="#src-S1">S1</a></sup></li>
+        <li>First- and third-person demonstrations, synchronized stereo, IMU and multicamera capture, annotation, QC and evaluation.<sup class="src"><a href="#src-S2">S2</a></sup></li>
+        <li>A full-stack deployment lab for robot interaction data and end-to-end evaluation.<sup class="src"><a href="#src-S2">S2</a></sup></li>
+        <li>Research favouring task-specific data that matches deployment conditions,<sup class="src"><a href="#src-S4">S4</a></sup> and <strong>flow</strong> for review, grading and linked evidence.<sup class="src"><a href="#src-S3">S3</a></sup></li>
       </ul>
     </div>
     <div>
@@ -103,11 +134,36 @@
         <li><strong>Configurable environments</strong>: guest rooms, laundry, service and supply spaces, set up and reset to an agreed recipe.</li>
         <li><strong>Industry-led operators</strong>: supervised hospitality staff who do the task the way it is done on shift.</li>
         <li><strong>Auditable variation</strong>: layout, lighting and clutter changed deliberately and logged per attempt.</li>
-        <li><strong>Traceable evidence</strong>: operational QA, rework and a manifest handed over in an agreed format for micro1's own review and evaluation.</li>
+        <li><strong>Traceable evidence</strong>: operational QA, rework and a manifest in an agreed format for micro1's own review.</li>
       </ul>
     </div>
   </div>
-  <p class="fit-note">Not a proposal to replace micro1's labs, researchers, annotation systems or customer relationships. Any savings, speed or coverage benefit would be measured in a paid pilot, not claimed in advance.</p>
+  <p class="fit-note">Not a proposal to replace micro1's labs, researchers, annotation systems or customer relationships. Any speed, coverage or cost benefit would be measured in a paid pilot, not claimed in advance.</p>
+</section>
+
+<section class="wrap wide rule" aria-labelledby="adds-h">
+  <div class="sec-head">
+    <span class="sec-num">What Metari adds</span>
+    <h2 id="adds-h">Four things that are hard to buy by the hour.</h2>
+  </div>
+  <div class="tiles">
+    <article class="tile">
+      <img src="/micro1/img/evidence/linen-overview.jpg" alt="Concept rendering: guest room with a ceiling camera array and a housekeeper wearing a capture rig" loading="lazy">
+      <div class="tile-b"><span class="mono">01</span><h3>Rooms on demand</h3><p>Real guest rooms taken out of service and instrumented. No guests, no guest belongings, no waiting for the right moment to happen.</p></div>
+    </article>
+    <article class="tile">
+      <img src="/micro1/img/evidence/laundry-overview.jpg" alt="Concept rendering: laundry attendant folding towels at a steel table" loading="lazy">
+      <div class="tile-b"><span class="mono">02</span><h3>Operators who do the job</h3><p>Hospitality staff trained to property standards, on a shift pattern, supervised by people who have run these departments.</p></div>
+    </article>
+    <article class="tile">
+      <img src="/1x/img/swap_human.jpg" alt="Concept rendering: the same instrumented room, captured again with a different setup" loading="lazy">
+      <div class="tile-b"><span class="mono">03</span><h3>Variation by instruction</h3><p>Change the layout, the light, the clutter or the operator between runs, then repeat. Every change is logged against the attempt.</p></div>
+    </article>
+    <article class="tile">
+      <img src="/assets/campus/data-lab.jpg" alt="Concept rendering: a team reviewing multi-view captures and skeleton overlays at workstations" loading="lazy">
+      <div class="tile-b"><span class="mono">04</span><h3>Evidence you can audit</h3><p>Preflight checks, reason codes, recapture lineage and a per-batch manifest. Rejects are shown, not hidden.</p></div>
+    </article>
+  </div>
 </section>
 
 <section id="order" class="wrap wide rule" aria-labelledby="order-h">
@@ -273,6 +329,16 @@
     <div><div class="n mono">04</div><b>Reserved capacity</b><p>Only after quality, economics and demand are shown.</p></div>
     <div><div class="n mono">05</div><b>Additional sites</b><p>Justified by contracted demand, not anticipated.</p></div>
   </div>
+  <div class="timeline" aria-label="Proposed 6 to 8 week pilot">
+    <div class="tl-h mono">Proposed first pilot &middot; 6 to 8 weeks</div>
+    <div class="tl-bar">
+      <div style="--s:0;--e:2"><b>Discovery &amp; design</b><span>Weeks 1 to 2</span></div>
+      <div style="--s:1.5;--e:3"><b>Calibration &amp; sample</b><span>50 to 100 episodes, written feedback</span></div>
+      <div style="--s:3;--e:7"><b>Paid collection</b><span>Versioned recipes, daily QA, rework</span></div>
+      <div style="--s:7;--e:8"><b>Closeout</b><span>Reconcile, decide next step</span></div>
+    </div>
+    <div class="tl-scale mono" aria-hidden="true"><span>W1</span><span>W2</span><span>W3</span><span>W4</span><span>W5</span><span>W6</span><span>W7</span><span>W8</span></div>
+  </div>
   <div class="ask">
     <div class="ask-card accent">
       <div class="who mono">Start here</div>
@@ -321,7 +387,8 @@
   <div class="planner" id="planner"></div>
 </section>
 
-<section class="wrap wide rule closing" aria-labelledby="close-h">
+<section class="closing-band" aria-hidden="true"><img src="/assets/campus/aerial-campus.jpg" alt="" loading="lazy"><span class="mono">Concept rendering &middot; planned configuration, not an operating site</span></section>
+<section class="wrap wide closing" aria-labelledby="close-h">
   <div class="sec-head">
     <span class="sec-num">Next step</span>
     <h2 id="close-h">Bring one difficult physical-world requirement.</h2>
@@ -369,7 +436,7 @@
       </div>
       <div class="mono" style="color:var(--muted-2)">Partnership concept &middot; September 2026</div>
     </div>
-    <p class="note">Illustrative concept for discussion. No partnership, endorsement, integration, customer relationship, facility, capacity, pricing, throughput or model performance is represented. micro1 is referred to by name only; no micro1 logo or confidential information is used. Images are concept renderings; humanoid forms are illustrative and do not depict a specific product. This page is unlisted and marked noindex, which is not access control.</p>
+    <p class="note">Illustrative concept for discussion. No partnership, endorsement, integration, customer relationship, facility, capacity, pricing, throughput or model performance is represented. micro1 is referred to by name only; no micro1 logo or confidential information is used. Images are concept renderings; humanoid forms are illustrative and do not depict a specific product. This page sits behind a simple browser password and is marked noindex. That keeps casual visitors out; it is not security.</p>
   </div>
 </footer>
 
@@ -381,6 +448,7 @@
 <div class="toast" id="toast" hidden></div>
 
 <noscript><p style="padding:20px">The partnership description above is readable without JavaScript. The simulated order, 3D facility and planner need JavaScript.</p></noscript>
+<script src="/micro1/js/gate.js"></script>
 <script src="/micro1/js/model.js"></script>
 <script src="/micro1/js/views.js"></script>
 <script src="/micro1/js/planner.js"></script>
