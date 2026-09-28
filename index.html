@@ -130,7 +130,9 @@
   .film-modal video{width:100%;border-radius:14px;border:1px solid var(--line-soft);background:#000}
   .hero-film-poster{position:relative}
 </style>
-</head>
+<style>
+.envx-grid{margin-top:50px;display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.envx{padding:22px;border:1px solid var(--line-soft);border-radius:15px;background:var(--bg-2);min-height:190px;position:relative;overflow:hidden}.envx:after{content:"";position:absolute;inset:auto 0 0;height:2px;background:var(--accent);opacity:.45}.envx .ek{font:10px 'JetBrains Mono',monospace;letter-spacing:.13em;color:var(--accent);text-transform:uppercase}.envx h3{font-size:18px;margin-top:10px}.envx p{font-size:13px;color:var(--dim);margin-top:9px}.envx .es{font:10px 'JetBrains Mono',monospace;color:var(--faint);margin-top:14px}.care-grid{margin-top:46px;display:grid;grid-template-columns:1fr 1fr;gap:24px}.care-card{padding:28px;border:1px solid var(--line-soft);border-radius:16px;background:var(--bg-2)}.care-card h3{font-size:22px}.care-list{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}.care-list span{padding:7px 9px;border:1px solid var(--line-soft);border-radius:999px;font:10px 'JetBrains Mono',monospace;color:var(--dim)}.care-flow{margin-top:22px;padding:18px;border:1px solid rgba(46,254,169,.18);border-radius:12px;font:11px 'JetBrains Mono',monospace;color:var(--dim)}.care-flow b{color:var(--accent)}.readiness{margin-top:30px;display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.ready-m{padding:18px;border:1px solid var(--line-soft);border-radius:12px;background:var(--bg-2)}.ready-m b{font-size:24px}.ready-m span{display:block;color:var(--dim);font-size:12px;margin-top:4px}.sensor-strip{display:flex;flex-wrap:wrap;gap:8px;margin-top:24px}.sensor-strip span{padding:8px 10px;border:1px solid var(--line-soft);border-radius:999px;font:10px 'JetBrains Mono',monospace;color:var(--dim)}@media(max-width:960px){.envx-grid{grid-template-columns:1fr 1fr}.care-grid{grid-template-columns:1fr}.readiness{grid-template-columns:1fr 1fr}}@media(max-width:560px){.envx-grid,.readiness{grid-template-columns:1fr}}
+</style></head>
 <body>
 <style>
   /* DATA EXAMPLE */
@@ -469,7 +471,7 @@
   </div>
 </section>
 
-<!-- RENDERINGS CAROUSEL -->
+<section class="block" id="environments"><div class="wrap"><span class="eyebrow reveal">24/7 physical AI environments</span><h2 class="big sec-head reveal d1">A world built for robots to learn.</h2><p class="lead reveal d1">Metari campuses extend beyond hospitality into realistic, configurable environments designed for continuous data collection, training, evaluation, enterprise pilots, and deployment preparation. Mock environments can be reset and densely instrumented without disrupting occupied rooms or active care settings.</p><div class="envx-grid"><div class="envx reveal"><div class="ek">Environment</div><h3>Hotel room</h3><p>Bed making · linen · bathroom reset · cleaning</p><div class="es">Manipulation · quality</div></div><div class="envx reveal"><div class="ek">Environment</div><h3>Hotel lobby</h3><p>Guest assistance · luggage · deliveries · navigation</p><div class="es">Mobility · interaction</div></div><div class="envx reveal"><div class="ek">Environment</div><h3>Commercial kitchen</h3><p>Prep · storage · tool use · cleaning</p><div class="es">Tool use · safety</div></div><div class="envx reveal"><div class="ek">Environment</div><h3>Coffee shop</h3><p>Drink prep · cups · handoff · inventory</p><div class="es">Dexterity · service</div></div><div class="envx reveal"><div class="ek">Environment</div><h3>Laundry</h3><p>Sorting · folding · loading · carts</p><div class="es">Bimanual · logistics</div></div><div class="envx reveal"><div class="ek">Environment</div><h3>Stairs + hallways</h3><p>Carrying · balance · avoidance · multi-floor</p><div class="es">Mobility · navigation</div></div><div class="envx reveal"><div class="ek">Environment</div><h3>Pool + landscaping</h3><p>Towels · furniture · tools · debris · watering</p><div class="es">Outdoor · tools</div></div><div class="envx reveal"><div class="ek">Environment</div><h3>Hospital room</h3><p>Supply movement · room reset · environmental service</p><div class="es">Non-clinical support</div></div><div class="envx reveal"><div class="ek">Environment</div><h3>Senior living</h3><p>Retrieval · hospitality · navigation · interaction</p><div class="es">Human environments</div></div><div class="envx reveal"><div class="ek">Environment</div><h3>Maintenance workshop</h3><p>Tools · repairs · fasteners · inspection</p><div class="es">Precision · tool use</div></div><div class="envx reveal"><div class="ek">Environment</div><h3>Retail</h3><p>Stocking · shelving · inventory · assistance</p><div class="es">Manipulation · service</div></div><div class="envx reveal"><div class="ek">Environment</div><h3>Enterprise-specific</h3><p>Task-specific rooms configured around buyer requirements</p><div class="es">Custom evaluation</div></div></div></div></section><!-- RENDERINGS CAROUSEL -->
 <section class="block" id="renderings">
   <div class="wrap">
     <span class="eyebrow reveal">Concept</span>
@@ -494,7 +496,7 @@
   </div>
 </section>
 
-<!-- DEPLOYMENT LAYER -->
+<section class="block" id="personal-care"><div class="wrap"><span class="eyebrow reveal">Metari Personal Care Lab</span><h2 class="big sec-head reveal d1">High-dexterity training in human environments.</h2><p class="lead reveal d1">A controlled barbershop and personal-care environment for professional demonstration collection, dexterity research, precision tool-use evaluation, close-range human interaction, and future deployment readiness. Metari is not claiming robots are currently ready to cut people's hair.</p><div class="care-grid"><div class="care-card reveal d2"><h3>Professional environment</h3><p>Authentic barber stations, chairs, mirrors, work counters, mannequin heads, clippers, combs, scissors, brushes, spray bottles, towels, sanitation equipment, and instrumented work surfaces.</p><div class="care-list"><span>FINE MOTOR CONTROL</span><span>BIMANUAL MANIPULATION</span><span>TOOL SWITCHING</span><span>ERROR RECOVERY</span><span>HUMAN SAFETY</span></div></div><div class="care-card reveal d2"><h3>Dense capture</h3><p>Ceiling and side RGB cameras, RGB-D and depth, overhead hand tracking, wrist and hand tracking, tool tracking, optional wearable POV, and synchronized task events.</p><div class="care-flow"><b>EXPERT HUMAN</b> → CAPTURE → MODEL → ROBOT → METARI EVALUATION → DEPLOYMENT</div></div></div></div></section><!-- DEPLOYMENT LAYER -->
 <section class="block" id="deployment">
   <div class="wrap">
     <span class="eyebrow reveal">Beyond a showroom</span>
@@ -569,7 +571,7 @@
           </ul>
         </div>
       </div>
-    </div>
+    </div><div class="readiness reveal d3"><div class="ready-m"><b>91%</b><span>Task completion</span></div><div class="ready-m"><b>3</b><span>Human interventions</span></div><div class="ready-m"><b>88%</b><span>Recovery success</span></div><div class="ready-m"><b>0</b><span>Safety events</span></div></div><p class="concept-tag reveal d3" style="margin-top:18px">Metari Readiness · planned structured evaluation framework · not an industry certification</p>
   </div>
 </section>
 <!-- WHY METARI -->
@@ -627,7 +629,7 @@
         <div class="loop-step"><div class="n mono">04 &middot; Metari</div><h4>Learn from deployment</h4></div>
       </div>
     </figure>
-    <p class="lead reveal d3" style="margin-top:30px">Collection that stops at delivery is a one-off purchase. The same rooms, held still and run as an evaluation environment, are what turn a data sale into a standing programme. Every pass returns a targeted brief, not more of the same.</p>
+    <div class="sensor-strip reveal d3"><span>CEILING CAMERAS</span><span>WALL CAMERAS</span><span>RGB-D</span><span>DEPTH</span><span>WEARABLE POV</span><span>IMU</span><span>TOOL TRACKING</span><span>ROBOT TELEMETRY</span><span>EDGE COMPUTE</span><span>SYNC TIMESTAMPS</span></div><p class="lead reveal d3" style="margin-top:30px">Collection that stops at delivery is a one-off purchase. The same rooms, held still and run as an evaluation environment, are what turn a data sale into a standing programme. Every pass returns a targeted brief, not more of the same.</p>
     <p class="lead reveal d3" style="margin-top:30px">Our intended advantage is the combination: expert relationships, useful data collected with appropriate rights, repeatable evaluations, and experience that improves the next engagement.</p>
   </div>
 </section>
