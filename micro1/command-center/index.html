@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Metari Command Center | micro1 concept</title>
+<meta name="description" content="Simulated Metari Command Center workspace for a proposed micro1 partnership. Fictional order, operators and outcomes.">
+<meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
+<meta name="googlebot" content="noindex, nofollow">
+<meta name="referrer" content="no-referrer">
+<meta name="theme-color" content="#080D10">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500&family=Source+Serif+4:opsz,wght@8..60,300;8..60,400;8..60,600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="/micro1/css/partnership.css">
+<link rel="stylesheet" href="/micro1/css/workspace.css">
+</head>
+<body class="ws">
+<a class="skip" href="#ws-main">Skip to workspace</a>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <linearGradient id="mkRay" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3DE8B0" stop-opacity="0"/><stop offset=".45" stop-color="#3DE8B0" stop-opacity=".7"/><stop offset="1" stop-color="#9BFFDF" stop-opacity="1"/></linearGradient>
+    <radialGradient id="mkCore"><stop offset="0" stop-color="#FFFFFF"/><stop offset=".5" stop-color="#D6FFF0"/><stop offset="1" stop-color="#3DE8B0"/></radialGradient>
+    <filter id="mkGlow" x="-70%" y="-70%" width="240%" height="240%"><feGaussianBlur stdDeviation="2.6" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <symbol id="metari-mark" viewBox="-50 -50 100 100"><g filter="url(#mkGlow)"><g class="mk-rays"><rect transform="rotate(0)" x="-1.7" y="-47" width="3.4" height="34" rx="1.7" fill="url(#mkRay)"/><rect transform="rotate(45)" x="-1.7" y="-39" width="3.4" height="27" rx="1.7" fill="url(#mkRay)"/><rect transform="rotate(90)" x="-1.7" y="-47" width="3.4" height="34" rx="1.7" fill="url(#mkRay)"/><rect transform="rotate(135)" x="-1.7" y="-39" width="3.4" height="27" rx="1.7" fill="url(#mkRay)"/><rect transform="rotate(180)" x="-1.7" y="-47" width="3.4" height="34" rx="1.7" fill="url(#mkRay)"/><rect transform="rotate(225)" x="-1.7" y="-39" width="3.4" height="27" rx="1.7" fill="url(#mkRay)"/><rect transform="rotate(270)" x="-1.7" y="-47" width="3.4" height="34" rx="1.7" fill="url(#mkRay)"/><rect transform="rotate(315)" x="-1.7" y="-39" width="3.4" height="27" rx="1.7" fill="url(#mkRay)"/></g><g class="mk-pulse"><circle r="11" fill="none" stroke="#3DE8B0" stroke-width="3.2"/><circle r="6.4" fill="url(#mkCore)"/></g></g></symbol>
+  </defs>
+</svg>
+
+<header class="ws-top">
+  <a class="brand" id="back" href="/micro1/" aria-label="Back to the Metari and micro1 partnership concept">
+    <svg class="mark" role="img" aria-label="Metari"><use href="#metari-mark"/></svg>
+    <img class="wm" src="/micro1/img/wordmark.png" alt="Metari" width="128" height="16">
+  </a>
+  <span class="ws-title">Command Center <span class="x">&times;</span> micro1 concept</span>
+  <span class="sim-chip mono">Simulation &middot; not live</span>
+  <span class="ws-order">M1-DEMO-001</span>
+  <span class="phase-chip mono" id="phase" style="margin-left:0">Draft brief</span>
+  <span class="clock mono" id="clock">Day 1 07:00 (sim)</span>
+  <div class="ws-ctrls">
+    <label class="toggle"><input type="checkbox" id="guided" checked> Guided review</label>
+    <button class="btn sm primary" id="primary" type="button">Submit brief locally</button>
+    <button class="btn sm" id="pause" type="button" disabled>Pause</button>
+    <button class="btn sm" id="speed" type="button" aria-pressed="false">Fast</button>
+    <button class="btn sm" id="reset" type="button">Reset</button>
+    <button class="btn sm" id="replay" type="button">Replay</button>
+  </div>
+</header>
+
+<div class="ws-shell">
+  <nav class="ws-nav" aria-label="Workspace views">
+    <div role="tablist" aria-orientation="vertical" id="tabs"></div>
+    <div class="ns">
+      <span><i></i>Published fact (sourced)</span>
+      <span><i class="p"></i>Proposed capability</span>
+      <span><i class="s"></i>Simulation (fictional)</span>
+    </div>
+  </nav>
+  <main class="ws-main" id="ws-main" tabindex="-1">
+    <div class="status-line"><span class="mono">Status</span><span id="status" role="status" aria-live="polite">Loading the fictional order.</span></div>
+    <div id="view" role="tabpanel"></div>
+  </main>
+</div>
+<footer class="ws-foot">Browser simulation of a proposed partnership workflow. Fictional buyer, operators, quantities, scenes and outcomes. No micro1 system, robot, sensor, storage or delivery service is connected. Concept geometry and concept stills are not recordings, scans or site surveys. Unlisted page; noindex is not access control.</footer>
+
+<dialog class="ev-dialog" id="ev-dialog" aria-labelledby="ev-title">
+  <div class="dlg-h"><span class="mono" id="ev-title">Evidence</span><button class="btn sm" type="button" data-close>Close</button></div>
+  <div class="dlg-b" id="ev-body"></div>
+  <div class="dlg-f" id="ev-foot"></div>
+</dialog>
+
+<noscript><p style="padding:20px">The Command Center simulation needs JavaScript. The partnership concept at /micro1/ is readable without it.</p></noscript>
+<script src="/micro1/js/model.js"></script>
+<script src="/micro1/js/views.js"></script>
+<script src="/micro1/js/workspace.js"></script>
+</body>
+</html>

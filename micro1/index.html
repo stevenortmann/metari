@@ -1,61 +1,389 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Metari × micro1 | Partnership concept</title>
-<meta name="description" content="Explore a proposed physical infrastructure partnership through an interactive, simulated data order.">
-<meta name="robots" content="noindex,nofollow,noarchive"><link rel="icon" href="/assets/favicon.svg">
-<style>
-:root{color-scheme:dark;--bg:#060709;--panel:#101419;--line:#253039;--text:#eef0f3;--dim:#a0acb5;--green:#2efea9;--amber:#edbb70;--mono:ui-monospace,SFMono-Regular,Consolas,monospace}*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:90px}body{margin:0;background:var(--bg);color:var(--text);font:15px/1.6 Inter,Arial,sans-serif}a{color:inherit;text-decoration:none}button,select,input{font:inherit}button,a,select,input{touch-action:manipulation}button{cursor:pointer}button:disabled{cursor:default;opacity:.5}:focus-visible{outline:2px solid var(--green);outline-offset:5px}p,h1,h2,h3{margin:0}h1,h2,h3{line-height:1.1;letter-spacing:-.035em}h1{font-size:clamp(40px,5.8vw,78px);max-width:950px}h2{font-size:clamp(30px,3.2vw,46px)}h3{font-size:22px}.wrap{max-width:1440px;margin:auto;padding:0 40px}.mono,.eyebrow,.badge{font-family:var(--mono)}.eyebrow{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--green)}.dim{color:var(--dim)}.green{color:var(--green)}.small{font-size:12px}.badge{display:inline-flex;align-items:center;gap:8px;font-size:10px;letter-spacing:.08em;line-height:1.3;border:1px solid var(--line);border-radius:4px;padding:7px 10px}.dot{width:6px;height:6px;border-radius:50%;background:var(--green);box-shadow:0 0 10px #2efea966;display:inline-block}.btn{display:inline-flex;align-items:center;justify-content:center;gap:12px;padding:13px 19px;border-radius:7px;border:1px solid var(--line);background:#141b20;color:var(--text);font-size:13px;font-weight:600;transition:background .2s}.btn:hover{background:#25342e}.btn.primary{background:var(--green);border-color:var(--green);color:#04140d}.btn.primary:hover{background:#7affc5}.btn.compact{padding:7px 12px;font-size:11px}.btn[aria-pressed=true]{border-color:var(--green);color:var(--green)}.row{display:flex;align-items:center;gap:12px;flex-wrap:wrap}.split{display:flex;align-items:center;justify-content:space-between;gap:20px}header{position:sticky;top:0;z-index:50;background:#060709ee;backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}header .wrap{height:74px;display:flex;align-items:center;justify-content:space-between}.brand{display:flex;align-items:center;gap:20px}.brand img{width:132px;max-height:38px;object-fit:contain}.micro{font-size:23px;font-weight:600;letter-spacing:-1px}.slash{color:#52615d}nav{display:flex;gap:27px;color:var(--dim);font-size:12px}.hero{padding:76px 0 48px;position:relative;background:radial-gradient(ellipse at 90% 10%,#12362866,transparent 50%)}.hero .eyebrow{margin-bottom:26px}.hero p.lead{font-size:18px;color:var(--dim);max-width:780px;margin:25px 0}.hero .row{margin-top:25px}.disclaimer{margin-top:20px!important;font-size:11px;color:var(--dim)}.benefits{display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px;margin:35px 0 0;padding-top:24px;border-top:1px solid var(--line)}.benefits span{display:block;font:10px var(--mono);color:var(--dim);margin-top:6px;letter-spacing:.04em}.benefits b{font-size:14px;font-weight:500}.console{border:1px solid #354840;border-radius:12px;overflow:hidden;background:#0a0e12;box-shadow:0 20px 90px #0007}.console-top{padding:18px 22px;background:#11191b;border-bottom:1px solid var(--line)}.console-top b{font:12px var(--mono);letter-spacing:.05em}.console-grid{display:grid;grid-template-columns:260px minmax(0,1fr) 285px}.left,.right{padding:21px}.left{border-right:1px solid var(--line)}.right{border-left:1px solid var(--line)}.section-label{font:10px var(--mono);letter-spacing:.12em;color:var(--dim);text-transform:uppercase}.order-id{font:12px var(--mono);color:var(--green);margin:17px 0 10px}.left h3{font-size:21px}.field{display:block;margin-top:18px;color:var(--dim);font-size:11px}.field select{display:block;width:100%;margin-top:6px;padding:10px 8px;background:#131b20;border:1px solid var(--line);color:var(--text);border-radius:5px;font-size:12px}.scope{margin:20px 0;padding:14px;border:1px solid var(--line);border-radius:5px}.scope strong{font-size:30px;line-height:1.1}.scope span{display:block;color:var(--dim);font-size:10px}.requirements{padding:0;margin:0 0 23px;list-style:none;font-size:11px;color:var(--dim)}.requirements li{margin:7px 0;padding-left:12px;position:relative}.requirements li:before{content:'·';position:absolute;left:0;color:var(--green)}.left .btn{width:100%;margin-top:8px}.viewport{position:relative;min-width:0;min-height:526px;overflow:hidden;background:radial-gradient(ellipse at 50% 65%,#132a2399,transparent 62%),linear-gradient(#141e2055 1px,transparent 1px),linear-gradient(90deg,#141e2055 1px,transparent 1px);background-size:auto,34px 34px,34px 34px}.view-tools{position:absolute;top:16px;left:18px;right:18px;z-index:8;display:flex;justify-content:space-between;gap:7px;flex-wrap:wrap}.building-stage{position:absolute;inset:55px 0 84px;display:grid;place-items:center;perspective:1100px}.building{position:relative;width:360px;height:215px;transform-style:preserve-3d;transform:translateY(72px) scale(var(--zoom,1)) rotateX(56deg) rotateZ(var(--rotation,-27deg));transition:transform .6s}.floor{position:absolute;inset:0;transform:translateZ(var(--z));display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:1fr 1fr;gap:8px;padding:16px;background:linear-gradient(135deg,#203239ee,#101b21f5);border:1px solid #60736f;box-shadow:8px 11px 0 #060d12cc;transform-style:preserve-3d}.floor:after{content:attr(data-label);position:absolute;left:-1px;bottom:-26px;height:25px;width:100%;background:#152228;border:1px solid #42554f;color:#bccac5;font:10px var(--mono);letter-spacing:.1em;padding:6px 12px;transform-origin:top;transform:rotateX(-70deg)}.room{border:1px solid #536661;background:#20332c;position:relative;padding:5px;overflow:hidden;color:#91ada0;transition:background .5s,box-shadow .5s}.room.active{background:#255b43;border-color:#71e9b3;box-shadow:inset 0 0 20px #2efea929}.room.alert{background:#58432d;border-color:var(--amber)}.room svg{width:100%;height:100%;stroke:currentColor;fill:none;stroke-width:1.3}.room:after{content:'';position:absolute;right:6px;top:6px;width:4px;height:4px;border-radius:50%;background:#768c7f}.room.active:after{background:var(--green);box-shadow:0 0 8px var(--green)}body.running .room.active{animation:roomglow 2s infinite}.room span{position:absolute;bottom:3px;left:5px;font:7px var(--mono);color:#c3d3c9}.view-caption{position:absolute;bottom:17px;left:20px;right:20px;display:grid;gap:9px}.view-caption .row{gap:15px}.view-caption input{width:112px;accent-color:var(--green)}.view-caption label{font:10px var(--mono);color:var(--dim);display:flex;align-items:center;gap:9px}.view-caption p{font:10px var(--mono);color:var(--dim)}.property{display:none;position:absolute;inset:64px 18px 100px;object-fit:contain;width:calc(100% - 36px);height:calc(100% - 164px)}.viewport.heatmap .property{display:block}.viewport.heatmap .building-stage{display:none}.zone-bar{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line)}.zone-tab{padding:12px 7px;background:#0e1417;border:0;border-right:1px solid var(--line);border-bottom:1px solid var(--line);color:var(--dim);font:10px var(--mono)}.zone-tab.active{color:var(--green);background:#142b20}.zone-detail{padding:15px 20px;display:flex;justify-content:space-between;gap:15px;font-size:11px;color:var(--dim);min-height:64px}.zone-detail strong{display:block;color:var(--text);font-size:12px;font-weight:500}.trace{padding:0;list-style:none;margin:20px 0;display:grid;gap:14px}.trace li{font-size:11px;color:#687a81;display:flex;gap:10px;align-items:flex-start}.trace i{font:9px var(--mono);font-style:normal;flex-shrink:0;border:1px solid var(--line);width:20px;height:20px;display:grid;place-items:center}.trace li.done{color:#c5d4cf}.trace li.current{color:var(--green)}.trace li.current i{border-color:var(--green)}.trace li.done i{color:var(--green)}.event{padding:12px;border:1px solid #5c4831;background:#261e14;border-radius:5px;font-size:10px;color:#e9c896;min-height:63px}.metrics{display:grid;grid-template-columns:repeat(5,1fr);border-top:1px solid var(--line)}.metric{padding:18px 20px;border-right:1px solid var(--line)}.metric b{display:block;font:27px var(--mono);color:var(--text);font-variant-numeric:tabular-nums}.metric span{display:block;margin-top:4px;font:9px var(--mono);color:var(--dim);text-transform:uppercase;letter-spacing:.06em}.progress{height:3px;background:#1c2826}.progress div{height:100%;background:var(--green);width:0;transition:width .5s}.console-note{font-size:11px;padding:13px 22px;color:var(--dim);border-top:1px solid var(--line)}.section{padding:82px 0;border-bottom:1px solid var(--line)}.section .eyebrow{margin-bottom:17px}.section .lead{color:var(--dim);max-width:760px;font-size:16px;margin-top:20px}.loop{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:35px}.loop article{padding:21px 17px;border:1px solid var(--line);border-radius:7px;background:#0e1417;position:relative}.loop article:not(:last-child):after{content:'→';position:absolute;right:-12px;top:45%;z-index:2;color:var(--green)}.loop b{font-size:13px;font-weight:500;display:block}.loop span{font:9px var(--mono);display:block;color:var(--green);margin-bottom:18px}.loop p{font-size:11px;color:var(--dim);margin-top:9px}.return{margin-top:12px;border:1px dashed #2e634d;padding:12px 20px;color:var(--green);font:11px var(--mono);border-radius:6px;text-align:center}.cards{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:36px}.card{background:#0e1317;border:1px solid var(--line);border-radius:10px;padding:28px}.card h3{margin:15px 0}.card ul{padding-left:18px;margin:18px 0 0;color:var(--dim);font-size:13px}.card li{margin:9px 0}.card p{font-size:13px;color:var(--dim);margin-top:12px}.sources{margin-top:18px;font-size:11px;color:var(--dim)}.sources a{text-decoration:underline;text-underline-offset:4px}.planner{display:grid;grid-template-columns:1.1fr 1fr;gap:25px;margin-top:34px}.planner .card{margin:0}.planner .field:first-child{margin:0}.choice-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}.choice-row button{background:#17211e;border:1px solid var(--line);border-radius:5px;color:var(--dim);padding:9px 14px;font:11px var(--mono)}.choice-row button[aria-pressed=true]{color:var(--green);border-color:var(--green)}.plan-answer{margin:20px 0;border-top:1px solid var(--line);padding-top:20px}.plan-answer dt{color:var(--dim);font-size:11px}.plan-answer dd{margin:3px 0 15px;font-size:14px}.foot{padding:70px 0}.foot h2{max-width:760px}.foot p{max-width:700px;margin:20px 0;color:var(--dim)}.skip{position:fixed;top:-100px;left:15px;z-index:90;padding:12px;background:var(--green);color:#000}.skip:focus{top:10px}.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}@keyframes roomglow{50%{box-shadow:inset 0 0 28px #2efea960}}@media(min-width:1450px){.viewport{min-height:535px}.building{--zoom:1.08}}@media(max-width:1170px){.console-grid{grid-template-columns:230px minmax(0,1fr)}.right{grid-column:1/-1;border-left:0;border-top:1px solid var(--line)}.trace{grid-template-columns:repeat(4,1fr)}.event{min-height:0}.building{width:320px;height:200px}.loop{grid-template-columns:repeat(5,1fr)}}@media(max-width:760px){.wrap{padding:0 20px}header .wrap{height:65px}.brand{gap:12px}.brand img{width:105px}.micro{font-size:20px}nav{display:none}header .badge{font-size:8px;padding:6px}.hero{padding:45px 0 32px}h1{font-size:43px}.hero p.lead{font-size:16px}.benefits{gap:12px}.benefits b{font-size:11px}.benefits span{font-size:9px}.console-top{padding:14px}.console-top b{font-size:10px}.console-top .badge{font-size:8px}.console-grid{grid-template-columns:1fr}.left{border:0;border-bottom:1px solid var(--line)}.left-fields{display:grid;grid-template-columns:1fr 1fr;gap:12px}.scope{margin:15px 0}.scope strong{font-size:24px}.requirements{display:none}.left .btn{width:auto;margin-right:6px}.viewport{min-height:480px}.building{width:290px;height:185px;transform:translateY(72px) scale(calc(var(--zoom,1)*.76)) rotateX(56deg) rotateZ(var(--rotation,-27deg))}.floor{padding:11px;gap:6px}.right{grid-column:auto}.trace{grid-template-columns:1fr 1fr;gap:13px}.trace li{font-size:10px}.metrics{grid-template-columns:repeat(3,1fr)}.metric{padding:14px;border-bottom:1px solid var(--line)}.metric b{font-size:22px}.metric span{font-size:8px}.section{padding:55px 0}.loop{grid-template-columns:1fr}.loop article{padding:17px}.loop article:not(:last-child):after{content:'↓';right:24px;top:auto;bottom:-16px}.loop span{margin-bottom:7px}.cards,.planner{grid-template-columns:1fr}.card{padding:22px}.zone-detail{display:block}.zone-detail>span{display:block;margin-top:7px}.view-tools .btn{padding:6px 8px;font-size:10px}.view-caption label{font-size:9px}.view-caption input{width:80px}.view-caption p{font-size:9px}.return{line-height:1.8;font-size:10px}}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation:none!important;transition:none!important}}
-</style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Metari &times; micro1 | Partnership concept</title>
+<meta name="description" content="A proposed domain-specialist physical data and evaluation partnership between Metari and micro1, with a simulated data order you can run in the browser.">
+<meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
+<meta name="googlebot" content="noindex, nofollow">
+<meta name="referrer" content="no-referrer">
+<meta name="theme-color" content="#0B1216">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500&family=Source+Serif+4:opsz,wght@8..60,300;8..60,400;8..60,600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="/micro1/css/partnership.css">
 </head>
 <body>
-<a class="skip" href="#command">Skip to interactive concept</a>
-<header><div class="wrap"><a class="brand" href="#top" aria-label="Metari and micro1 concept"><img src="/assets/logo-nav.png" alt="Metari"><span class="slash">×</span><span class="micro">micro1</span></a><nav><a href="#command">Command Center</a><a href="#partnership">Partnership</a><a href="#pilot">Design a pilot</a></nav><span class="badge"><span class="dot"></span>PARTNERSHIP CONCEPT</span></div></header>
+<a class="skip" href="#order">Skip to the data order</a>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <linearGradient id="mkRay" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3DE8B0" stop-opacity="0"/><stop offset=".45" stop-color="#3DE8B0" stop-opacity=".7"/><stop offset="1" stop-color="#9BFFDF" stop-opacity="1"/></linearGradient>
+    <radialGradient id="mkCore"><stop offset="0" stop-color="#FFFFFF"/><stop offset=".5" stop-color="#D6FFF0"/><stop offset="1" stop-color="#3DE8B0"/></radialGradient>
+    <filter id="mkGlow" x="-70%" y="-70%" width="240%" height="240%"><feGaussianBlur stdDeviation="2.6" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <symbol id="metari-mark" viewBox="-50 -50 100 100">
+      <g filter="url(#mkGlow)">
+        <g class="mk-rays">
+          <rect transform="rotate(0)" x="-1.7" y="-47" width="3.4" height="34" rx="1.7" fill="url(#mkRay)"/>
+          <rect transform="rotate(45)" x="-1.7" y="-39" width="3.4" height="27" rx="1.7" fill="url(#mkRay)"/>
+          <rect transform="rotate(90)" x="-1.7" y="-47" width="3.4" height="34" rx="1.7" fill="url(#mkRay)"/>
+          <rect transform="rotate(135)" x="-1.7" y="-39" width="3.4" height="27" rx="1.7" fill="url(#mkRay)"/>
+          <rect transform="rotate(180)" x="-1.7" y="-47" width="3.4" height="34" rx="1.7" fill="url(#mkRay)"/>
+          <rect transform="rotate(225)" x="-1.7" y="-39" width="3.4" height="27" rx="1.7" fill="url(#mkRay)"/>
+          <rect transform="rotate(270)" x="-1.7" y="-47" width="3.4" height="34" rx="1.7" fill="url(#mkRay)"/>
+          <rect transform="rotate(315)" x="-1.7" y="-39" width="3.4" height="27" rx="1.7" fill="url(#mkRay)"/>
+        </g>
+        <g class="mk-pulse"><circle r="11" fill="none" stroke="#3DE8B0" stroke-width="3.2"/><circle r="6.4" fill="url(#mkCore)"/></g>
+      </g>
+    </symbol>
+  </defs>
+</svg>
+
+<nav class="nav" aria-label="Page">
+  <div class="nav-in">
+    <a class="brand" href="#top" aria-label="Metari, top of page">
+      <svg class="mark" role="img" aria-label="Metari"><use href="#metari-mark"/></svg>
+      <img class="wm" src="/micro1/img/wordmark.png" alt="Metari, physical intelligence" width="152" height="19">
+    </a>
+    <span class="x-partner" aria-label="with micro1"><span class="x">&times;</span>micro1</span>
+    <span class="concept-chip mono" title="Unlisted concept page. Not access-controlled.">Unlisted concept</span>
+    <div class="nav-links mono">
+      <a href="#fit">The fit</a>
+      <a href="#order">Run an order</a>
+      <a href="#scope">Physical scope</a>
+      <a href="#loops">Feedback loops</a>
+      <a href="#together">Working together</a>
+      <a href="#pilot">Design the pilot</a>
+    </div>
+  </div>
+</nav>
+
 <main id="top">
-<section class="hero"><div class="wrap"><div class="eyebrow">A proposed physical infrastructure partnership</div><h1>Your data requirements.<br><span class="green">A world configured around them.</span></h1><p class="lead">Explore how Metari could extend micro1’s robotics data workflows with configurable environments, expert operations and repeatable physical execution.</p><div class="row"><button class="btn primary" id="hero-run">Run a data order <span aria-hidden="true">↗</span></button><a class="btn" href="#partnership">Explore the partnership</a></div><p class="disclaimer">Prepared for discussion. No partnership or endorsement implied. All orders, activity and results below are simulated.</p><div class="benefits"><div><b>micro1 specifies & evaluates</b><span>PROPOSED WORKFLOW</span></div><div><b>Metari configures & operates</b><span>PROPOSED PHYSICAL CAPACITY</span></div><div><b>Evidence informs the next order</b><span>ILLUSTRATIVE FEEDBACK LOOP</span></div></div></div></section>
-<div class="wrap" id="command"><div class="console"><div class="console-top split"><b>METARI / PHYSICAL OPERATIONS</b><span class="badge"><span class="dot"></span>SIMULATION · NOT LIVE</span></div><div class="console-grid">
-<aside class="left"><p class="section-label">01 / Incoming requirement</p><p class="order-id">CONCEPT ORDER · M1-001</p><h3 id="order-title">Housekeeping manipulation</h3><div class="left-fields"><label class="field">Environment<select id="domain"><option value="hospitality">Hospitality</option><option value="healthcare">Healthcare mockup</option><option value="senior">Senior living mockup</option></select></label><label class="field">Capture profile<select id="modality"><option>POV + multicamera</option><option>Stereo + IMU</option><option>UMI feasibility pilot</option><option>Robot evaluation pilot</option></select></label></div><div class="scope"><strong>5,000</strong><span>accepted episodes · illustrative target</span></div><ul class="requirements"><li>Agreed task and reset protocol</li><li>Controlled object and lighting variation</li><li>Calibrated capture and evidence</li><li>Review against acceptance criteria</li></ul><button class="btn primary" id="run">Send to Metari →</button><button class="btn" id="pause" disabled>Pause</button><button class="btn" id="reset">Reset</button><p class="small dim" style="margin-top:15px;font-size:10px">No order is sent. This runs entirely in your browser.</p></aside>
-<div><div class="viewport" id="viewport"><div class="view-tools"><span class="badge">CONCEPT FACILITY / 3 LEVELS</span><div class="row" style="gap:5px"><button class="btn compact" id="facility-view" aria-pressed="true">Facility</button><button class="btn compact" id="heat-view" aria-pressed="false">Property map</button></div></div><div class="building-stage"><div class="building" id="building" aria-hidden="true"></div></div><img class="property" src="/assets/property-heatmap.webp" alt="Existing Metari Property Intelligence concept visualization"><div class="view-caption"><div class="row"><label>Rotate <input id="rotation" type="range" min="-55" max="35" value="-27" aria-label="Rotate concept facility"></label><label>Zoom <input id="zoom" type="range" min="70" max="120" value="100" aria-label="Zoom concept facility"></label></div><p>Green = allocated in demo · Amber = review / reset<br>Concept geometry, not a commissioned or operating site.</p></div></div><div class="zone-bar" id="zones" aria-label="Explore environment zones"></div><div class="zone-detail"><div><strong id="zone-title">Housekeeping</strong><span id="zone-task">Bed making, linen placement and room resets.</span></div><span id="zone-variables">Vary: linen state, layout and cart position.</span></div></div>
-<aside class="right"><p class="section-label">02 / Operational trace</p><p class="small dim" style="margin-top:7px;font-size:10px">Scripted events, not private AI reasoning.</p><ol class="trace" id="trace"></ol><div class="event" id="event">Waiting for a simulated requirement. No hardware or micro1 systems connected.</div></aside></div><div class="progress"><div id="progress"></div></div><div class="metrics"><div class="metric"><b id="captured">0</b><span>Episodes captured</span></div><div class="metric"><b id="accepted">0</b><span>Accepted in demo</span></div><div class="metric"><b id="review">0</b><span>Held for review</span></div><div class="metric"><b id="active">0</b><span>Allocated zones</span></div><div class="metric"><b id="variants">0</b><span>Scenario variants</span></div></div><div class="console-note" id="status" role="status" aria-live="polite">Ready to simulate. Numbers demonstrate the interface, not validated throughput, capacity or model performance.</div></div></div>
-<section class="section"><div class="wrap"><div class="eyebrow">A proposed operating loop</div><h2>One requirement. Physical execution.<br>A better-informed next order.</h2><div class="loop"><article><span>01 / DATA BUYER</span><b>Define a capability gap</b><p>An illustrative robotics team identifies the task and evidence needed.</p></article><article><span>02 / micro1</span><b>Specify the data</b><p>Agree the capture protocol, output schema and acceptance criteria.</p></article><article><span>03 / METARI</span><b>Configure & collect</b><p>Stage environments, assign experts, capture variations and reset.</p></article><article><span>04 / micro1</span><b>Review & evaluate</b><p>Structure the output and evaluate it within the agreed workflow.</p></article><article><span>05 / NEXT ORDER</span><b>Target what is missing</b><p>Translate evaluation findings into a new physical collection brief.</p></article></div><div class="return">↶ Feedback returns to the specification. Metari reconfigures the environment, not just the footage.</div></div></section>
-<section class="section" id="partnership"><div class="wrap"><div class="eyebrow">Complement, not duplicate</div><h2>Extend the physical capacity.<br>Respect the stack already built.</h2><p class="lead">micro1 already offers physical-world data collection and controlled robotics environments. The opportunity to validate is whether Metari could add useful domain depth, repeatable setups and reserved operating capacity.</p><div class="cards"><article class="card"><span class="section-label">Published micro1 offering</span><h3>Data, structure and evaluation.</h3><ul><li>Expert demonstrations captured from first- and third-person views.</li><li>Data labeling, tracking, annotation, quality control and evaluation.</li><li>Synchronized stereo video, IMU and multicamera capture.</li><li>A controlled deployment lab for robot interaction data and evaluation.</li></ul><p class="sources"><a href="https://www.micro1.ai/robotics" target="_blank" rel="noopener noreferrer">Source: micro1 Robotics ↗</a> · reviewed September 27, 2026.</p></article><article class="card"><span class="section-label green">Metari’s proposed contribution</span><h3>The environment and the operation.</h3><ul><li>Configurable hospitality and service settings, starting with a scoped pilot.</li><li>Industry-led task execution, scenario staging and repeatable resets.</li><li>Physical logistics, capture setup and agreed evidence packaging.</li><li>Reserved zones or future multi-site capacity when demand justifies it.</li></ul><p class="sources">Proposed capabilities, not current facility inventory. Protocols, staffing, equipment and commercial terms require joint validation.</p></article></div><p class="sources">Public product alignment does not establish current purchasing intent, budget, technical approval or a micro1 partnership. No integration with proprietary micro1 systems is represented.</p></div></section>
-<section class="section" id="pilot"><div class="wrap"><div class="eyebrow">Start with one real requirement</div><h2>Design the pilot before the facility.</h2><p class="lead">Use a short brief to agree the task, modality and review gates. This planner prepares a discussion scope, not a throughput or pricing quote.</p><div class="planner"><div class="card"><label class="field">Illustrative output scope</label><div class="choice-row" id="outputs"><button aria-pressed="true" data-output="1,000">1K episodes</button><button aria-pressed="false" data-output="5,000">5K episodes</button><button aria-pressed="false" data-output="25,000">25K episodes</button></div><label class="field">Proposed relationship<select id="relationship"><option>Pilot work order</option><option>Reserved capacity</option><option>Future network capacity</option></select></label><label class="field">First environment<select id="pilot-domain"><option>Hospitality</option><option>Healthcare mockup</option><option>Senior living mockup</option></select></label><button class="btn primary" id="download" style="margin-top:24px">Save discussion brief ↓</button><p class="small dim" style="margin-top:12px">Creates a local text file. No form submission or contact capture.</p></div><aside class="card"><span class="badge">DRAFT / NOT A COMMERCIAL OFFER</span><h3 id="plan-heading" style="margin-top:24px">Hospitality pilot</h3><dl class="plan-answer"><dt>Requested output</dt><dd id="plan-output">1,000 accepted episodes, subject to scoping</dd><dt>Relationship to explore</dt><dd id="plan-relationship">Pilot work order</dd><dt>micro1 would help define</dt><dd>Protocol, capture requirements, review criteria and delivery format.</dd><dt>Metari would scope</dt><dd>Environment, operators, instrumentation, resets and execution cost.</dd><dt>Before a commitment</dt><dd>Validate a sample, required rights and consent, safety boundaries, actual capacity and an agreed work order.</dd></dl></aside></div></div></section>
-<footer class="foot"><div class="wrap"><div class="eyebrow">The conversation to have</div><h2>Bring one difficult<br><span class="green">physical-world data requirement.</span></h2><p>Let’s test whether Metari can configure and operate the environment around it. Start with evidence, then discuss recurring capacity.</p><div class="row"><a class="btn primary" href="#pilot">Design a pilot ↑</a><button class="btn" id="replay">Replay simulation ↻</button></div><p class="small">Metari × micro1 · Partnership concept · September 2026<br>Illustrative facility, fictional buyer and simulated operations. No partnership implied.</p></div></footer>
-</main><noscript><p style="padding:20px">JavaScript is required for the interactive simulation. The partnership description remains readable.</p></noscript>
-<script>
-'use strict';
-const $=id=>document.getElementById(id);
-const zones=[
-{id:'house',name:'Housekeeping',task:'Bed making, linen placement and room resets.',variables:'Vary: linen state, layout and cart position.',shape:'bed'},
-{id:'laundry',name:'Laundry',task:'Textile sorting, folding and cart loading.',variables:'Vary: fabric, load state and bin placement.',shape:'washer'},
-{id:'kitchen',name:'Kitchen',task:'Dish handling and preparation station resets.',variables:'Vary: utensils, surfaces and object placement.',shape:'counter'},
-{id:'health',name:'Healthcare mockup',task:'Non-clinical supply restock and bedside setup.',variables:'Mock setting only. No patients or clinical tasks.',shape:'bed'},
-{id:'senior',name:'Senior living mockup',task:'Object retrieval and room setup demonstrations.',variables:'Mock setting only. No resident care or contact.',shape:'chair'},
-{id:'service',name:'Service & logistics',task:'Cart loading, object transfer and tool staging.',variables:'Vary: payload, shelf position and route.',shape:'shelf'}];
-const paths={bed:'<rect x="23" y="12" width="44" height="40" rx="3"/><path d="M23 27h44M45 12v15"/><rect x="8" y="15" width="9" height="12"/><rect x="73" y="15" width="9" height="12"/>',washer:'<rect x="14" y="12" width="26" height="39"/><circle cx="27" cy="34" r="9"/><rect x="49" y="12" width="26" height="39"/><circle cx="62" cy="34" r="9"/>',counter:'<path d="M10 12h70v12H23v29H10z"/><circle cx="61" cy="18" r="4"/><rect x="38" y="36" width="39" height="14"/>',chair:'<rect x="14" y="15" width="27" height="30" rx="5"/><path d="M14 24h27M21 15v30"/><circle cx="63" cy="31" r="14"/><rect x="73" y="13" width="8" height="9"/>',shelf:'<rect x="10" y="12" width="14" height="42"/><path d="M10 22h14M10 33h14M10 44h14"/><rect x="39" y="18" width="33" height="29"/><path d="M39 27h33M50 18v29M61 18v29"/>'};
-const floorZones=[[1,2,5,1,2,5],[0,0,0,0,5,0],[3,4,3,4,3,4]];
-floorZones.forEach((ids,f)=>{const floor=document.createElement('div');floor.className='floor';floor.style.setProperty('--z',`${f*91}px`);floor.dataset.label=['L01 · LAUNDRY / KITCHEN / SERVICE','L02 · HOSPITALITY / HOUSEKEEPING','L03 · HEALTHCARE / SENIOR MOCKUPS'][f];ids.forEach(i=>{const room=document.createElement('div');room.className='room';room.dataset.zone=zones[i].id;room.innerHTML=`<svg viewBox="0 0 90 65" aria-hidden="true">${paths[zones[i].shape]}</svg><span>${zones[i].name.toUpperCase()}</span>`;floor.append(room)});$('building').append(floor)});
-zones.forEach((z,i)=>{const b=document.createElement('button');b.className='zone-tab'+(!i?' active':'');b.textContent=z.name;b.setAttribute('aria-pressed',!i?'true':'false');b.addEventListener('click',()=>{document.querySelectorAll('.zone-tab').forEach(x=>{x.classList.toggle('active',x===b);x.setAttribute('aria-pressed',x===b?'true':'false')});$('zone-title').textContent=z.name;$('zone-task').textContent=z.task;$('zone-variables').textContent=z.variables});$('zones').append(b)});
-const stages=['Requirement received','Task protocol mapped','Environments allocated','Operator skills scoped','Capture profile checked','Safety and consent gate','Variations and resets planned','Collection sample captured','QC exception and rework','Evidence package prepared','Return for micro1 review'];
-stages.forEach((t,i)=>{const li=document.createElement('li');li.innerHTML=`<i>${String(i+1).padStart(2,'0')}</i><span>${t}</span>`;$('trace').append(li)});
-const configs={hospitality:{title:'Housekeeping manipulation',zones:['house','laundry','service']},healthcare:{title:'Supply restock in a mock room',zones:['health','service']},senior:{title:'Object retrieval in a mock room',zones:['senior','service']}};
-let step=-1,timer=null,paused=false,output='1,000';
-function format(v){return Math.round(v).toLocaleString('en-US')}
-function render(){const current=configs[$('domain').value];const allocated=step>=2?current.zones:[];document.querySelectorAll('.room').forEach(r=>{r.classList.toggle('active',allocated.includes(r.dataset.zone));r.classList.toggle('alert',step===8&&r.dataset.zone===allocated[0])});document.querySelectorAll('#trace li').forEach((el,i)=>{el.classList.toggle('done',i<step);el.classList.toggle('current',i===step);el.querySelector('i').textContent=i<step?'✓':String(i+1).padStart(2,'0')});const captures=step<7?0:step===7?1800:step===8?5500:5500;const accepted=step<7?0:step===7?1500:step===8?4200:5000;$('captured').textContent=format(captures);$('accepted').textContent=format(accepted);$('review').textContent=format(captures-accepted);$('active').textContent=allocated.length;$('variants').textContent=step>=6?'48':'0';$('progress').style.width=`${Math.max(0,(step+1)/stages.length*100)}%`;const events=['Requirement loaded from the demo brief.','Illustrative protocol selected. Buyer approval would be required.','Relevant zones only. No real facility reservation.','Domain operator skills mapped to the proposed task.','Capture profile: '+$('modality').value+'. Calibration would require validation.','Assumed demo gate. Real consent and safety approval are prerequisites.','48 illustrative variations configured. Not a real collection inventory.','Sample capture simulated. No recording is taking place.','Example exception: occluded hand/object interaction. Flag, reset and repeat.','5,000 accepted; 500 held for review. Synthetic results, not validated yield.','Demo package ready for discussion. Nothing uploaded to micro1.'];$('event').textContent=step<0?'Waiting for a simulated requirement. No hardware or micro1 systems connected.':events[step];$('status').textContent=step<0?'Ready to simulate. Numbers demonstrate the interface, not validated throughput, capacity or model performance.':step===10?'Simulation complete. 5,000 accepted episodes and 500 held for review. No real data or integrations.':`Simulated event ${step+1} of ${stages.length}: ${stages[step]}.`;}
-function stop(){clearInterval(timer);timer=null;document.body.classList.remove('running')}
-function tick(){if(step<10){step++;render()}else{stop();$('run').disabled=false;$('pause').disabled=true;$('domain').disabled=false;$('modality').disabled=false}}
-function begin(){stop();step=0;paused=false;$('pause').textContent='Pause';$('pause').disabled=false;$('run').disabled=true;$('domain').disabled=true;$('modality').disabled=true;document.body.classList.add('running');render();timer=setInterval(tick,1500)}
-function reset(){stop();step=-1;paused=false;$('pause').textContent='Pause';$('pause').disabled=true;$('run').disabled=false;$('domain').disabled=false;$('modality').disabled=false;render()}
-$('run').onclick=begin;$('reset').onclick=reset;$('pause').onclick=()=>{paused=!paused;$('pause').textContent=paused?'Resume':'Pause';if(paused)stop();else{document.body.classList.add('running');timer=setInterval(tick,1500)}};
-function startAndScroll(){begin();$('command').scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'})}
-$('hero-run').onclick=startAndScroll;$('replay').onclick=startAndScroll;
-$('domain').onchange=()=>{$('order-title').textContent=configs[$('domain').value].title;reset()};$('modality').onchange=reset;
-$('rotation').oninput=e=>$('building').style.setProperty('--rotation',e.target.value+'deg');$('zoom').oninput=e=>$('building').style.setProperty('--zoom',Number(e.target.value)/100);
-function setView(map){$('viewport').classList.toggle('heatmap',map);$('heat-view').setAttribute('aria-pressed',String(map));$('facility-view').setAttribute('aria-pressed',String(!map));$('rotation').disabled=map;$('zoom').disabled=map}
-$('heat-view').onclick=()=>setView(true);$('facility-view').onclick=()=>setView(false);
-function plan(){const domain=$('pilot-domain').value;$('plan-heading').textContent=domain+' scope';$('plan-output').textContent=output+' accepted episodes, subject to scoping';$('plan-relationship').textContent=$('relationship').value}
-document.querySelectorAll('[data-output]').forEach(b=>b.onclick=()=>{output=b.dataset.output;document.querySelectorAll('[data-output]').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));plan()});$('relationship').onchange=plan;$('pilot-domain').onchange=plan;
-$('download').onclick=()=>{const text=['METARI x micro1 | Discussion brief','PARTNERSHIP CONCEPT. No endorsement, partnership, capacity commitment or pricing implied.','','Environment: '+$('pilot-domain').value,'Relationship: '+$('relationship').value,'Illustrative output: '+output+' accepted episodes','micro1 would help define: protocol, capture requirements, output schema, acceptance criteria.','Metari would scope: environment, domain operators, instrumentation, scenario resets, logistics and cost.','','Must validate before commitment: current demand, sample acceptance, consent and data rights, safety, equipment, availability, costs, delivery terms and a signed work order.','No information has been submitted. This file was generated locally in the browser.','Public capability source: https://www.micro1.ai/robotics (reviewed 2026-09-27).'].join('\n');const a=document.createElement('a');const u=URL.createObjectURL(new Blob([text],{type:'text/plain;charset=utf-8'}));a.href=u;a.download='metari-micro1-discussion-brief.txt';a.click();setTimeout(()=>URL.revokeObjectURL(u),5000)};
-render();
-</script></body></html>
+<header class="hero">
+  <div class="hero-img">
+    <img src="/1x/img/human.jpg" alt="Concept rendering: a housekeeper wearing a head-mounted capture rig places folded towels on a bed in a guest room fitted with ceiling cameras" fetchpriority="high">
+  </div>
+  <div class="hero-copy">
+    <div class="wrap wide">
+      <div class="eyebrow mono">Metari &times; micro1 / Partnership concept</div>
+      <h1>Your data requirements. <em>A physical world configured around them.</em></h1>
+      <p class="hero-sub">A proposed extension to micro1 Robotics, combining configurable environments, industry-led operations and repeatable physical collection around an agreed specification.</p>
+      <div class="actions">
+        <a class="btn primary" href="#order" id="hero-run">Run a data order</a>
+        <a class="btn" href="#fit">Explore the partnership</a>
+      </div>
+      <p class="fine">Illustrative concept for discussion. No partnership or endorsement implied.</p>
+    </div>
+  </div>
+  <span class="hero-credit mono">Concept rendering</span>
+</header>
+
+<section id="fit" class="wrap wide">
+  <div class="sec-head">
+    <span class="sec-num">The fit</span>
+    <h2>micro1 already collects in the physical world. Metari proposes specialised capacity around it.</h2>
+  </div>
+  <div class="fit">
+    <div>
+      <div class="ns mono"><i></i>Published by micro1</div>
+      <h3>An AI data lab with a robotics practice</h3>
+      <ul>
+        <li>Positions itself as an AI data lab, with <strong>Realm</strong> for training and evaluation environments, <strong>Cortex</strong> for enterprise-agent evaluation and <strong>Robotics</strong> for embodied-system data.<sup class="src"><a href="#src-S1">S1</a></sup></li>
+        <li>Robotics covers expert first- and third-person demonstrations, structuring, annotation, QC and evaluation, synchronized stereo, IMU and multicamera capture, and controlled deployment-lab work with robots.<sup class="src"><a href="#src-S2">S2</a></sup></li>
+        <li><strong>flow</strong> separates generation, data-quality checking and grading, with expert review and linked camera and 3D evidence.<sup class="src"><a href="#src-S3">S3</a></sup></li>
+        <li>Published research favours task-specific post-training data that matches deployment conditions,<sup class="src"><a href="#src-S4">S4</a></sup> and simulation plus bounded hardware experiments for hazardous tests.<sup class="src"><a href="#src-S5">S5</a></sup></li>
+      </ul>
+    </div>
+    <div>
+      <div class="ns mono prop"><i></i>Proposed by Metari</div>
+      <h3>Domain execution you can commission</h3>
+      <ul>
+        <li><strong>Configurable environments</strong>: guest rooms, laundry, service and supply spaces, set up and reset to an agreed recipe.</li>
+        <li><strong>Industry-led operators</strong>: supervised hospitality staff who do the task the way it is done on shift.</li>
+        <li><strong>Auditable variation</strong>: layout, lighting and clutter changed deliberately and logged per attempt.</li>
+        <li><strong>Traceable evidence</strong>: operational QA, rework and a manifest handed over in an agreed format for micro1's own review and evaluation.</li>
+      </ul>
+    </div>
+  </div>
+  <p class="fit-note">Not a proposal to replace micro1's labs, researchers, annotation systems or customer relationships. Any savings, speed or coverage benefit would be measured in a paid pilot, not claimed in advance.</p>
+</section>
+
+<section id="order" class="wrap wide rule" aria-labelledby="order-h">
+  <div class="sec-head">
+    <span class="sec-num">Run a data order</span>
+    <h2 id="order-h">One fictional order, executed end to end.</h2>
+  </div>
+  <p class="lede">A fictional buyer's requirement arrives through micro1. Metari maps it to rooms, operators and a capture recipe, then collects, flags, resets and recaptures until every variant quota is met. Every number is read from a fixture of fictional episode records.</p>
+
+  <div class="console" id="console">
+    <div class="con-top">
+      <span class="ttl mono">Metari / Physical operations</span>
+      <span class="sim-chip mono">Simulation &middot; not live</span>
+      <span class="clock mono" id="clock" aria-label="Simulated clock">Day 1 07:00 (sim)</span>
+      <span class="phase-chip mono" id="phase">Draft brief</span>
+    </div>
+    <div class="con-grid">
+      <div class="col col-l" aria-label="Incoming requirement">
+        <div class="col-h mono"><span>01 / Incoming requirement</span></div>
+        <div class="oid">M1-DEMO-001</div>
+        <h4>Hospitality service manipulation</h4>
+        <p class="parties">Buyer <b>Demo Robotics Lab</b> (fictional) &middot; proposed orchestration partner <b>micro1</b> &middot; proposed physical executor <b>Metari</b></p>
+        <div class="chips" role="group" aria-label="Focus a task family" id="task-chips"></div>
+        <div class="scope">
+          <div><b>1,200</b><span>accepted episodes</span></div>
+          <div><b>48</b><span>variants &times; 25</span></div>
+        </div>
+        <label class="field">Capture profile
+          <select id="profile">
+            <option value="fixture">First-person RGB + 2 fixed RGB (fixture)</option>
+            <option value="depth">Add calibrated depth</option>
+            <option value="actions">Add robot joint actions</option>
+          </select>
+        </label>
+        <label class="field">Proposed site
+          <select id="location">
+            <option value="tba">To be agreed</option>
+            <option value="listed">A US state on micro1's published list</option>
+            <option value="ca">California</option>
+            <option value="az">Arizona</option>
+          </select>
+        </label>
+        <ul class="issues" id="issues" aria-live="polite"></ul>
+        <div class="field">Approvals</div>
+        <ul class="approvals" id="approvals"></ul>
+        <label class="toggle"><input type="checkbox" id="guided" checked> Guided review (pause at the first flagged sample)</label>
+        <div class="ctrls">
+          <button class="btn primary" id="primary" type="button">Submit brief locally</button>
+          <button class="btn sm" id="pause" type="button" disabled>Pause</button>
+          <button class="btn sm" id="reset" type="button">Reset</button>
+          <button class="btn sm" id="replay" type="button">Replay</button>
+          <button class="btn sm" id="speed" type="button" aria-pressed="false">Fast</button>
+        </div>
+        <p class="local-note">Runs only in this browser. No order, form or file is sent to micro1, Metari or anyone else.</p>
+      </div>
+
+      <div class="col col-m" aria-label="Physical environment">
+        <div class="scene-bar" id="scene-bar">
+          <div class="grp" role="group" aria-label="Floor">
+            <button class="btn sm" type="button" data-floor="all" aria-pressed="true">All</button>
+            <button class="btn sm" type="button" data-floor="2" aria-pressed="false">03 Living</button>
+            <button class="btn sm" type="button" data-floor="1" aria-pressed="false">02 Experience</button>
+            <button class="btn sm" type="button" data-floor="0" aria-pressed="false">01 Operations</button>
+          </div>
+          <span class="sep" aria-hidden="true"></span>
+          <button class="btn sm" type="button" id="explode" aria-pressed="true">Exploded</button>
+          <label class="sr" for="layer">Overlay</label>
+          <select id="layer" aria-label="Overlay">
+            <option value="coverage">Accepted coverage (sim)</option>
+            <option value="allocation">Allocation (sim)</option>
+            <option value="off">No overlay</option>
+          </select>
+          <button class="btn sm" type="button" id="cams" aria-pressed="false">Cameras</button>
+          <span class="sep" aria-hidden="true"></span>
+          <button class="icb" type="button" data-view="left" aria-label="Rotate left"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 12a8 8 0 1 0 2.3-5.7M4 4v5h5"/></svg></button>
+          <button class="icb" type="button" data-view="right" aria-label="Rotate right"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 12a8 8 0 1 1-2.3-5.7M20 4v5h-5"/></svg></button>
+          <button class="icb" type="button" data-view="in" aria-label="Zoom in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5M8 11h6M11 8v6"/></svg></button>
+          <button class="icb" type="button" data-view="out" aria-label="Zoom out"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5M8 11h6"/></svg></button>
+          <button class="icb" type="button" data-view="reset" aria-label="Reset view"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/></svg></button>
+          <button class="btn sm" type="button" id="plan2d" aria-pressed="false">2D plan</button>
+        </div>
+        <div id="scene" class="scene-host" data-lazy="1"></div>
+        <div class="legend" id="legend"></div>
+        <div class="room-chips" role="group" aria-label="Rooms used by this order" id="room-chips"></div>
+        <div class="dock" id="dock" aria-live="polite"></div>
+      </div>
+
+      <div class="col col-r" aria-label="Operational trace">
+        <div class="col-h mono"><span>02 / Operational trace</span></div>
+        <div class="tr-legend mono"><span><i style="background:var(--teal-dim)"></i>Rule-based</span><span><i style="background:var(--amber)"></i>Simulated</span></div>
+        <div id="gate"></div>
+        <ol class="trace" id="trace" aria-label="Most recent events first"></ol>
+      </div>
+    </div>
+    <div class="con-foot">
+      <div class="progress" aria-hidden="true"><i id="bar"></i></div>
+      <div id="metrics"></div>
+      <div class="status">
+        <p id="status" role="status" aria-live="polite">Ready. Submit the fictional brief to begin.</p>
+        <a class="btn sm" id="open-ws" href="/micro1/command-center/">Open the full workspace</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="scope" class="wrap wide rule" aria-labelledby="scope-h">
+  <div class="sec-head">
+    <span class="sec-num">Physical scope</span>
+    <h2 id="scope-h">Start with hospitality and service work. Expand only where there is demand.</h2>
+  </div>
+  <p class="lede">Choose an environment to see an example task, the evidence it would need and what gets reset between attempts. The matching room is selected in the order console above.</p>
+  <div class="scope-tabs" role="tablist" aria-label="Environments" id="scope-tabs"></div>
+  <div class="scope-grid" id="scope-panel" role="tabpanel"></div>
+</section>
+
+<section id="loops" class="wrap wide rule" aria-labelledby="loops-h">
+  <div class="sec-head">
+    <span class="sec-num">Feedback loops</span>
+    <h2 id="loops-h">A bad recording and a struggling robot are different problems.</h2>
+  </div>
+  <p class="lede">Both can create new work. They follow different loops, have different owners and prove different things.</p>
+  <div class="loops">
+    <div class="loopcard">
+      <div class="who mono">Loop A &middot; Capture defect</div>
+      <h3>The recording did not meet the specification.</h3>
+      <ol>
+        <li>Preflight QA flags an attempt, for example lost hand/object contact in the side view.</li>
+        <li>A reviewer inspects the evidence and requests a camera or scene correction.</li>
+        <li>The operator resets the room, checks the changed setup and captures a new attempt.</li>
+        <li>The rejected attempt is kept with its lineage. It is never counted toward quota.</li>
+      </ol>
+      <p class="out">Metari's problem to fix, inside the same order.</p>
+    </div>
+    <div class="loopcard gap">
+      <div class="who mono">Loop B &middot; Capability gap</div>
+      <h3>Valid evidence shows an agent struggling with the task.</h3>
+      <ol>
+        <li>The model owner evaluates on a separate holdout, not on collection scenes.</li>
+        <li>A finding names the conditions where the agent fails.</li>
+        <li>That finding becomes a proposed new brief with targeted variants.</li>
+        <li>micro1 and the model owner approve it before any collection starts.</li>
+      </ol>
+      <p class="out">A new order, owned by the people who evaluate the model.</p>
+    </div>
+  </div>
+  <div class="not-equal">
+    <div><b>Bad data is not proof of a bad robot.</b> A rejected recording says nothing about model capability.</div>
+    <div><b>A good recording is not proof of model improvement.</b> That needs its own agreed evaluation.</div>
+  </div>
+  <div class="eval-box" id="eval-box"></div>
+</section>
+
+<section id="together" class="wrap wide rule" aria-labelledby="together-h">
+  <div class="sec-head">
+    <span class="sec-num">Working together</span>
+    <h2 id="together-h">Earn each step with evidence.</h2>
+  </div>
+  <p class="lede">A proposed domain-specialist physical data and evaluation partnership. micro1 defines the technical requirement with its customer; Metari scopes and runs the physical response. Everything below is a negotiating proposal, not a description of an existing relationship.</p>
+  <div class="path" aria-label="Proposed progression">
+    <div><div class="n mono">01</div><b>Technical design sprint</b><p>One real requirement, the accepted unit and the location limits.</p></div>
+    <div><div class="n mono">02</div><b>Paid sample and pilot</b><p>Small footprint, written technical feedback before scaling.</p></div>
+    <div><div class="n mono">03</div><b>Repeat collection orders</b><p>Versioned recipes, daily QA, honest rejection rates.</p></div>
+    <div><div class="n mono">04</div><b>Reserved capacity</b><p>Only after quality, economics and demand are shown.</p></div>
+    <div><div class="n mono">05</div><b>Additional sites</b><p>Justified by contracted demand, not anticipated.</p></div>
+  </div>
+  <div class="ask">
+    <div class="ask-card accent">
+      <div class="who mono">Start here</div>
+      <h4>Paid pilot</h4>
+      <p>A 6 to 8 week program, subject to site access, staffing, equipment, consent and technical agreement.</p>
+      <ul><li>One environment, a few work families</li><li>A jointly agreed sample, perhaps 50 to 100 episodes</li><li>Reconciled costs, rejects and turnaround at closeout</li></ul>
+    </div>
+    <div class="ask-card">
+      <div class="who mono">After the pilot</div>
+      <h4>Reserved operating capacity</h4>
+      <p>Rooms, stations and operator coverage held for micro1 programs, with booking and cancellation rules agreed in advance.</p>
+      <ul><li>Pays for capacity actually withheld from others</li><li>Any exclusivity narrow and compensated</li><li>Metari stays an independent operator</li></ul>
+    </div>
+    <div class="ask-card">
+      <div class="who mono">Later</div>
+      <h4>Network expansion</h4>
+      <p>Further environments or sites where contracted demand supports them, adding variation the pilot shows is actually useful.</p>
+      <ul><li>No current network footprint is claimed</li><li>No property commitment ahead of contracted work</li></ul>
+    </div>
+  </div>
+
+  <div class="roles">
+    <h3>Proposed division of responsibilities</h3>
+    <table>
+      <thead><tr><th scope="col">Workstream</th><th scope="col">micro1 (proposed)</th><th scope="col">Metari (proposed)</th></tr></thead>
+      <tbody>
+        <tr><td>Buyer requirement</td><td data-l="micro1">Translate the buyer's research need into a technical brief</td><td data-l="Metari">Validate physical feasibility and missing operational context</td></tr>
+        <tr><td>Task and rubric</td><td data-l="micro1">Own technical acceptance criteria with the buyer</td><td data-l="Metari">Supply authentic task steps, constraints and domain quality criteria</td></tr>
+        <tr><td>Environment</td><td data-l="micro1">Approve required distribution and variation</td><td data-l="Metari">Source and configure rooms, objects, routes and resets</td></tr>
+        <tr><td>Workforce</td><td data-l="micro1">Approve competency criteria; optionally assist review</td><td data-l="Metari">On-site operators, supervision, training and shifts</td></tr>
+        <tr><td>Equipment</td><td data-l="micro1">Specify approved modalities; discuss buyer-owned or loaned kits</td><td data-l="Metari">Inventory, install, calibrate as agreed, maintain and secure</td></tr>
+        <tr><td>Quality</td><td data-l="micro1">Final dataset acceptance, annotation and evaluation as contracted</td><td data-l="Metari">Capture preflight, completeness checks, operational QA and rework</td></tr>
+        <tr><td>Data handling</td><td data-l="micro1">Define allowed downstream use and delivery requirements</td><td data-l="Metari">Consent, provenance, manifests, access limits and retention</td></tr>
+        <tr><td>Software and accounts</td><td data-l="micro1">Keeps its systems, workflows and introduced accounts</td><td data-l="Metari">Keeps its Command Center, methods and independent pipeline</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="pilot" class="wrap wide rule" aria-labelledby="pilot-h">
+  <div class="sec-head">
+    <span class="sec-num">Design the pilot</span>
+    <h2 id="pilot-h">Draft a discussion brief, not a checkout.</h2>
+  </div>
+  <p class="lede">Every field accepts "To be agreed". The output lists what is proposed, what is still unknown and which approvals are missing. It generates no price and asserts no available rooms or rigs.</p>
+  <div class="planner" id="planner"></div>
+</section>
+
+<section class="wrap wide rule closing" aria-labelledby="close-h">
+  <div class="sec-head">
+    <span class="sec-num">Next step</span>
+    <h2 id="close-h">Bring one difficult physical-world requirement.</h2>
+  </div>
+  <p class="lede">Define the task, evidence and acceptance criteria. Together we can scope the physical environment, operators and collection plan.</p>
+  <p class="lede">The meeting this should lead to is a technical and commercial scoping session with micro1's robotics lead, a collection-operations owner and a technical evaluator. Questions we would bring:</p>
+  <ul class="questions">
+    <li>Which requests are currently difficult to fulfil?</li>
+    <li>Is the bottleneck capture, action data, annotation or evaluation?</li>
+    <li>What location and privacy restrictions apply?</li>
+    <li>Who specifies and supplies the hardware?</li>
+    <li>What is the accepted unit and the acceptance window?</li>
+    <li>What would make a repeat order or a reserved zone worthwhile?</li>
+  </ul>
+  <div class="actions">
+    <a class="btn primary" href="#pilot">Design the pilot</a>
+    <a class="btn" href="#order">Run the order again</a>
+  </div>
+
+  <details class="sources" id="sources">
+    <summary>Sources and concept status</summary>
+    <ol>
+      <li id="src-S1"><b>S1</b><a href="https://www.micro1.ai/" rel="noopener noreferrer" target="_blank">micro1 home and product descriptions</a></li>
+      <li id="src-S2"><b>S2</b><a href="https://www.micro1.ai/robotics" rel="noopener noreferrer" target="_blank">micro1 Robotics</a></li>
+      <li id="src-S3"><b>S3</b><a href="https://www.micro1.ai/blog/introducing-flow" rel="noopener noreferrer" target="_blank">Introducing flow, September 22, 2026</a></li>
+      <li id="src-S4"><b>S4</b><a href="https://www.micro1.ai/research/robotics-is-entering-a-phase-of-rapid-diversification" rel="noopener noreferrer" target="_blank">Robotics is entering a phase of rapid diversification, July 23, 2026</a></li>
+      <li id="src-S5"><b>S5</b><a href="https://www.micro1.ai/research/ai-models-now-introduce-safety-risks-in-the-physical-world" rel="noopener noreferrer" target="_blank">AI Models Now Introduce Safety Risks in the Physical World, September 18, 2026</a></li>
+      <li id="src-S7"><b>S7</b><a href="https://jobs.micro1.ai/post/814abe36-2808-469e-b362-539acf2b544f" rel="noopener noreferrer" target="_blank">Video Capture Partner USA (Household activities)</a>, cited for the published state list used in the site check</li>
+    </ol>
+    <p class="note">Public sources reviewed September 27, 2026. They describe public positioning, not buying intent, budget or approval. The facility, orders, operators, quantities, camera views and outcomes on this page are simulated. Not verified: any open micro1 order for Metari, a hospitality budget, a need for leased capacity, approved states for a bespoke site, hardware availability, buying authority, delivery API access or willingness to reserve capacity. No micro1 system is integrated.</p>
+  </details>
+</section>
+</main>
+
+<footer>
+  <div class="wrap wide">
+    <div class="foot">
+      <div>
+        <div class="brand">
+          <svg class="mark" role="img" aria-label="Metari"><use href="#metari-mark"/></svg>
+          <img class="wm" src="/micro1/img/wordmark.png" alt="Metari, physical intelligence" width="210" height="26">
+        </div>
+        <div class="who">Steven Ortmann</div>
+        <div class="meta">Founder &amp; CEO &middot; metari.io &middot; steve@gratitudesolutions.ai</div>
+      </div>
+      <div class="mono" style="color:var(--muted-2)">Partnership concept &middot; September 2026</div>
+    </div>
+    <p class="note">Illustrative concept for discussion. No partnership, endorsement, integration, customer relationship, facility, capacity, pricing, throughput or model performance is represented. micro1 is referred to by name only; no micro1 logo or confidential information is used. Images are concept renderings; humanoid forms are illustrative and do not depict a specific product. This page is unlisted and marked noindex, which is not access control.</p>
+  </div>
+</footer>
+
+<dialog class="ev-dialog" id="ev-dialog" aria-labelledby="ev-title">
+  <div class="dlg-h"><span class="mono" id="ev-title">Evidence</span><button class="btn sm" type="button" data-close>Close</button></div>
+  <div class="dlg-b" id="ev-body"></div>
+  <div class="dlg-f" id="ev-foot"></div>
+</dialog>
+<div class="toast" id="toast" hidden></div>
+
+<noscript><p style="padding:20px">The partnership description above is readable without JavaScript. The simulated order, 3D facility and planner need JavaScript.</p></noscript>
+<script src="/micro1/js/model.js"></script>
+<script src="/micro1/js/views.js"></script>
+<script src="/micro1/js/planner.js"></script>
+<script src="/micro1/js/app.js"></script>
+</body>
+</html>

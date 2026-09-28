@@ -1,0 +1,586 @@
+{
+  "schema": "metari.proposed_demo.v1",
+  "notice": "Illustrative Metari fixture. Not a micro1 schema, customer order, integration, capacity commitment, or recording dataset.",
+  "order_id": "M1-DEMO-001",
+  "title": "Hospitality service manipulation",
+  "simulation": true,
+  "buyer": {
+    "name": "Demo Robotics Lab",
+    "fictional": true
+  },
+  "proposed_parties": {
+    "data_workflow_partner": "micro1",
+    "physical_executor": "Metari",
+    "relationship_status": "proposed_only"
+  },
+  "requested_output": {
+    "unit": "unique_accepted_episode",
+    "target": 1200,
+    "interpretation": "25 accepted episodes for each of 48 explicitly defined variants"
+  },
+  "capture_profile": {
+    "id": "CP-DEMO-POV-3RGB",
+    "views": [
+      "first_person_rgb",
+      "fixed_overview_rgb",
+      "fixed_side_rgb"
+    ],
+    "real_capture_exists": false,
+    "hardware_specification": "to_be_agreed",
+    "synchronization": "illustrative_only_no_sensor_streams_supplied",
+    "robot_actions_available": false,
+    "depth_available": false,
+    "imu_available": false
+  },
+  "approvals": {
+    "protocol": "unconfirmed",
+    "geographic_eligibility": "unconfirmed",
+    "site_access": "unconfirmed",
+    "operator_consent": "unconfirmed",
+    "safety_review": "unconfirmed",
+    "data_rights": "unconfirmed",
+    "commercial_scope": "unconfirmed",
+    "demo_override": "User may explicitly assume approvals only within the fictional guided simulation."
+  },
+  "task_families": [
+    {
+      "id": "TASK-LINEN",
+      "name": "Linen placement",
+      "zone": "ZONE-HOUSEKEEPING"
+    },
+    {
+      "id": "TASK-LAUNDRY",
+      "name": "Laundry folding",
+      "zone": "ZONE-LAUNDRY"
+    },
+    {
+      "id": "TASK-CART",
+      "name": "Service-cart replenishment",
+      "zone": "ZONE-SERVICE"
+    }
+  ],
+  "variants": [
+    {
+      "variant_id": "VAR-001",
+      "task_id": "TASK-LINEN",
+      "zone_id": "ZONE-HOUSEKEEPING",
+      "layout": "A",
+      "lighting": "standard",
+      "clutter": "clear",
+      "accepted_quota": 25,
+      "simulation": true
+    },
+    {
+      "variant_id": "VAR-002",
+      "task_id": "TASK-LINEN",
+      "zone_id": "ZONE-HOUSEKEEPING",
+      "layout": "A",
+      "lighting": "standard",
+      "clutter": "moderate",
+      "accepted_quota": 25,
+      "simulation": true
+    },
+    {
+      "variant_id": "VAR-003",
+      "task_id": "TASK-LINEN",
+      "zone_id": "ZONE-HOUSEKEEPING",
+      "layout": "A",
+      "lighting": "dim",
+      "clutter": "clear",
+      "accepted_quota": 25,
+      "simulation": true
+    },
+    {
+      "variant_id": "VAR-004",
+      "task_id": "TASK-LINEN",
+      "zone_id": "ZONE-HOUSEKEEPING",
+      "layout": "A",
+      "lighting": "dim",
+      "clutter": "moderate",
+      "accepted_quota": 25,
+      "simulation": true
+    },
+    {
+      "variant_id": "VAR-005",
+      "task_id": "TASK-LINEN",
+      "zone_id": "ZONE-HOUSEKEEPING",
+      "layout": "B",
+      "lighting": "standard",
+      "clutter": "clear",
+      "accepted_quota": 25,
+      "simulation": true
+    },
+    {
+      "variant_id": "VAR-006",
+      "task_id": "TASK-LINEN",
+      "zone_id": "ZONE-HOUSEKEEPING",
+      "layout": "B",
+      "lighting": "standard",
+      "clutter": "moderate",
+      "accepted_quota": 25,
+      "simulation": true
+    },
+    {
+      "variant_id": "VAR-007",
+      "task_id": "TASK-LINEN",
+      "zone_id": "ZONE-HOUSEKEEPING",
+      "layout": "B",
+      "lighting": "dim",
+      "clutter": "clear",
+      "accepted_quota": 25,
+      "simulation": true
+    },
+    {
+      "variant_id": "VAR-008",
+      "task_id": "TASK-LINEN",
+      "zone_id": "ZONE-HOUSEKEEPING",
+      "layout": "B",
+      "lighting": "dim",
+      "clutter": "moderate",
+      "accepted_quota": 25,
+      "simulation": true
+    },
+    {
+      "variant_id": "VAR-009",
+      "task_id": "TASK-LINEN",
+      "zone_id": "ZONE-HOUSEKEEPING",
+      "layout": "C",
+      "lighting": "standard",
+      "clutter": "clear",
+      "accepted_quota": 25,
+      "simulation": true
+    },
+    {
+      "variant_id": "VAR-010",
+      "task_id": "TASK-LINEN",
+      "zone_id": "ZONE-HOUSEKEEPING",
+      "layout": "C",
+      "lighting": "standard",
+      "clutter": "moderate",
+      "accepted_quota": 25,
+      "simulation": true
+    },
+    {
+      "variant_id": "VAR-011",
+      "task_id": "TASK-LINEN",
+      "zone_id": "ZONE-HOUSEKEEPING",
+      "layout": "C",
+      "lighting": "dim",
+      "clutter": "clear",
+      "accepted_quota": 25,
+      "simulation": true
+    },
+    {
+      "variant_id": "VAR-012",
+      "task_id": "TASK-LINEN",
+      "zone_id": "ZONE-HOUSEKEEPING",
+      "layout": "C",
+      "lighting": "dim",
+      "clutter": "moderate",
+      "accepted_quota": 25,
+      "simulation": true
+    },
+    {
+      "variant_id": "VAR-013",
+      "task_id": "TASK-LINEN",
+      "zone_id": "ZONE-HOUSEKEEPING",
+      "layout": "D",
+      "lighting": "standard",
+      "clutter": "clear",
+      "accepted_quota": 25,
+      "simulation": true
+    },
+    {
+      "variant_id": "VAR-014",
+      "task_id": "TASK-LINEN",
+      "zone_id": "ZONE-HOUSEKEEPING",
+      "layout": "D",
+      "lighting": "standard",
+      "clutter": "moderate",
+      "accepted_quota": 25,
+      "simulation": true
+    },
+    {
+      "variant_id": "VAR-015",
+      "task_id": "TASK-LINEN",
+      "zone_id": "ZONE-HOUSEKEEPING",
+      "layout": "D",
+      "lighting": "dim",
+      "clutter": "clear",
+      "accepted_quota": 25,
+      "simulation": true
+    },
+    {
+      "variant_id": "VAR-016",
+      "task_id": "TASK-LINEN",
+      "zone_id": "ZONE-HOUSEKEEPING",
+      "layout": "D",
+      "lighting": "dim",
+      "clutter": "moderate",
+      "accepted_quota": 25,
+      "simulation": true
+    },
+    {
+      "variant_id": "VAR-017",
+      "task_id": "TASK-LAUNDRY",
+      "zone_id": "ZONE-LAUNDRY",
+      "layout": "A",
+      "lighting": "standard",
+      "clutter": "clear",
+      "accepted_quota": 25,
+      "simulation": true
+    },
+    {
+      "variant_id": "VAR-018",
+      "task_id": "TASK-LAUNDRY",
+      "zone_id": "ZONE-LAUNDRY",
+      "layout": "A",
+      "lighting": "standard",
+      "clutter": "moderate",
+      "accepted_quota": 25,
+      "simulation": true
+    },
+    {
+      "variant_id": "VAR-019",
+      "task_id": "TASK-LAUNDRY",
+      "zone_id": "ZONE-LAUNDRY",
+      "layout": "A",
+      "lighting": "dim",
+      "clutter": "clear",
+      "accepted_quota": 25,
+      "simulation": true
+    },
+    {
+      "variant_id": "VAR-020",
+      "task_id": "TASK-LAUNDRY",
+      "zone_id": "ZONE-LAUNDRY",
+      "layout": "A",
+      "lighting": "dim",
+      "clutter": "moderate",
+      "accepted_quota": 25,
+      "simulation": true
+    },
+    {
+      "variant_id": "VAR-021",
+      "task_id": "TASK-LAUNDRY",
+      "zone_id": "ZONE-LAUNDRY",
+      "layout": "B",
+      "lighting": "standard",
+      "clutter": "clear",
+      "accepted_quota": 25,
+      "simulation": true
+    },
+    {
+      "variant_id": "VAR-022",
+      "task_id": "TASK-LAUNDRY",
+      "zone_id": "ZONE-LAUNDRY",
+      "layout": "B",
+      "lighting": "standard",
+      "clutter": "moderate",
+      "accepted_quota": 25,
+      "simulation": true
+    },
+    {
+      "variant_id": "VAR-023",
+      "task_id": "TASK-LAUNDRY",
+      "zone_id": "ZONE-LAUNDRY",
+      "layout": "B",
+      "lighting": "dim",
+      "clutter": "clear",
+      "accepted_quota": 25,
+      "simulation": true
+    },
+    {
+      "variant_id": "VAR-024",
+      "task_id": "TASK-LAUNDRY",
+      "zone_id": "ZONE-LAUNDRY",
+      "layout": "B",
+      "lighting": "dim",
+      "clutter": "moderate",
+      "accepted_quota": 25,
+      "simulation": true
+    },
+    {
+      "variant_id": "VAR-025",
+      "task_id": "TASK-LAUNDRY",
+      "zone_id": "ZONE-LAUNDRY",
+      "layout": "C",
+      "lighting": "standard",
+      "clutter": "clear",
+      "accepted_quota": 25,
+      "simulation": true
+    },
+    {
+      "variant_id": "VAR-026",
+      "task_id": "TASK-LAUNDRY",
+      "zone_id": "ZONE-LAUNDRY",
+      "layout": "C",
+      "lighting": "standard",
+      "clutter": "moderate",
+      "accepted_quota": 25,
+      "simulation": true
+    },
+    {
+      "variant_id": "VAR-027",
+      "task_id": "TASK-LAUNDRY",
+      "zone_id": "ZONE-LAUNDRY",
+      "layout": "C",
+      "lighting": "dim",
+      "clutter": "clear",
+      "accepted_quota": 25,
+      "simulation": true
+    },
+    {
+      "variant_id": "VAR-028",
+      "task_id": "TASK-LAUNDRY",
+      "zone_id": "ZONE-LAUNDRY",
+      "layout": "C",
+      "lighting": "dim",
+      "clutter": "moderate",
+      "accepted_quota": 25,
+      "simulation": true
+    },
+    {
+      "variant_id": "VAR-029",
+      "task_id": "TASK-LAUNDRY",
+      "zone_id": "ZONE-LAUNDRY",
+      "layout": "D",
+      "lighting": "standard",
+      "clutter": "clear",
+      "accepted_quota": 25,
+      "simulation": true
+    },
+    {
+      "variant_id": "VAR-030",
+      "task_id": "TASK-LAUNDRY",
+      "zone_id": "ZONE-LAUNDRY",
+      "layout": "D",
+      "lighting": "standard",
+      "clutter": "moderate",
+      "accepted_quota": 25,
+      "simulation": true
+    },
+    {
+      "variant_id": "VAR-031",
+      "task_id": "TASK-LAUNDRY",
+      "zone_id": "ZONE-LAUNDRY",
+      "layout": "D",
+      "lighting": "dim",
+      "clutter": "clear",
+      "accepted_quota": 25,
+      "simulation": true
+    },
+    {
+      "variant_id": "VAR-032",
+      "task_id": "TASK-LAUNDRY",
+      "zone_id": "ZONE-LAUNDRY",
+      "layout": "D",
+      "lighting": "dim",
+      "clutter": "moderate",
+      "accepted_quota": 25,
+      "simulation": true
+    },
+    {
+      "variant_id": "VAR-033",
+      "task_id": "TASK-CART",
+      "zone_id": "ZONE-SERVICE",
+      "layout": "A",
+      "lighting": "standard",
+      "clutter": "clear",
+      "accepted_quota": 25,
+      "simulation": true
+    },
+    {
+      "variant_id": "VAR-034",
+      "task_id": "TASK-CART",
+      "zone_id": "ZONE-SERVICE",
+      "layout": "A",
+      "lighting": "standard",
+      "clutter": "moderate",
+      "accepted_quota": 25,
+      "simulation": true
+    },
+    {
+      "variant_id": "VAR-035",
+      "task_id": "TASK-CART",
+      "zone_id": "ZONE-SERVICE",
+      "layout": "A",
+      "lighting": "dim",
+      "clutter": "clear",
+      "accepted_quota": 25,
+      "simulation": true
+    },
+    {
+      "variant_id": "VAR-036",
+      "task_id": "TASK-CART",
+      "zone_id": "ZONE-SERVICE",
+      "layout": "A",
+      "lighting": "dim",
+      "clutter": "moderate",
+      "accepted_quota": 25,
+      "simulation": true
+    },
+    {
+      "variant_id": "VAR-037",
+      "task_id": "TASK-CART",
+      "zone_id": "ZONE-SERVICE",
+      "layout": "B",
+      "lighting": "standard",
+      "clutter": "clear",
+      "accepted_quota": 25,
+      "simulation": true
+    },
+    {
+      "variant_id": "VAR-038",
+      "task_id": "TASK-CART",
+      "zone_id": "ZONE-SERVICE",
+      "layout": "B",
+      "lighting": "standard",
+      "clutter": "moderate",
+      "accepted_quota": 25,
+      "simulation": true
+    },
+    {
+      "variant_id": "VAR-039",
+      "task_id": "TASK-CART",
+      "zone_id": "ZONE-SERVICE",
+      "layout": "B",
+      "lighting": "dim",
+      "clutter": "clear",
+      "accepted_quota": 25,
+      "simulation": true
+    },
+    {
+      "variant_id": "VAR-040",
+      "task_id": "TASK-CART",
+      "zone_id": "ZONE-SERVICE",
+      "layout": "B",
+      "lighting": "dim",
+      "clutter": "moderate",
+      "accepted_quota": 25,
+      "simulation": true
+    },
+    {
+      "variant_id": "VAR-041",
+      "task_id": "TASK-CART",
+      "zone_id": "ZONE-SERVICE",
+      "layout": "C",
+      "lighting": "standard",
+      "clutter": "clear",
+      "accepted_quota": 25,
+      "simulation": true
+    },
+    {
+      "variant_id": "VAR-042",
+      "task_id": "TASK-CART",
+      "zone_id": "ZONE-SERVICE",
+      "layout": "C",
+      "lighting": "standard",
+      "clutter": "moderate",
+      "accepted_quota": 25,
+      "simulation": true
+    },
+    {
+      "variant_id": "VAR-043",
+      "task_id": "TASK-CART",
+      "zone_id": "ZONE-SERVICE",
+      "layout": "C",
+      "lighting": "dim",
+      "clutter": "clear",
+      "accepted_quota": 25,
+      "simulation": true
+    },
+    {
+      "variant_id": "VAR-044",
+      "task_id": "TASK-CART",
+      "zone_id": "ZONE-SERVICE",
+      "layout": "C",
+      "lighting": "dim",
+      "clutter": "moderate",
+      "accepted_quota": 25,
+      "simulation": true
+    },
+    {
+      "variant_id": "VAR-045",
+      "task_id": "TASK-CART",
+      "zone_id": "ZONE-SERVICE",
+      "layout": "D",
+      "lighting": "standard",
+      "clutter": "clear",
+      "accepted_quota": 25,
+      "simulation": true
+    },
+    {
+      "variant_id": "VAR-046",
+      "task_id": "TASK-CART",
+      "zone_id": "ZONE-SERVICE",
+      "layout": "D",
+      "lighting": "standard",
+      "clutter": "moderate",
+      "accepted_quota": 25,
+      "simulation": true
+    },
+    {
+      "variant_id": "VAR-047",
+      "task_id": "TASK-CART",
+      "zone_id": "ZONE-SERVICE",
+      "layout": "D",
+      "lighting": "dim",
+      "clutter": "clear",
+      "accepted_quota": 25,
+      "simulation": true
+    },
+    {
+      "variant_id": "VAR-048",
+      "task_id": "TASK-CART",
+      "zone_id": "ZONE-SERVICE",
+      "layout": "D",
+      "lighting": "dim",
+      "clutter": "moderate",
+      "accepted_quota": 25,
+      "simulation": true
+    }
+  ],
+  "expected_end_state": {
+    "captured": 1320,
+    "accepted": 1200,
+    "held_for_review": 72,
+    "rejected": 48,
+    "required_accepted_variants": 48,
+    "actual_submission": false,
+    "status": "ready_for_agreed_delivery_in_simulation"
+  },
+  "episode_fixture": "demo-episodes.json",
+  "episode_duration_seconds": null,
+  "state_machine": [
+    "DRAFT",
+    "NEEDS_CONFIRMATION",
+    "DEMO_APPROVED",
+    "CONFIGURED",
+    "CAPTURING",
+    "QA_REVIEW",
+    "READY_FOR_DELIVERY",
+    "DEMO_CLOSED"
+  ],
+  "deliverable_boundaries": {
+    "actual_recordings": false,
+    "actual_operators": false,
+    "actual_hardware_control": false,
+    "actual_dataset_upload": false,
+    "micro1_api_endpoint": null,
+    "model_improvement_measured": false
+  },
+  "storyboard": [
+    "Load brief locally",
+    "Confirm assumed demo approvals",
+    "Map compatible zones",
+    "Inspect capture profile",
+    "Simulate collection",
+    "Flag a capture issue",
+    "Request reset and recapture",
+    "Update evidence and variant coverage",
+    "Prepare simulated manifest",
+    "Display ready for agreed delivery",
+    "Offer separate fictional evaluation feedback scenario"
+  ]
+}

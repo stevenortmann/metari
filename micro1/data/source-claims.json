@@ -1,0 +1,37 @@
+{
+  "schema": "metari.source_claims.v1",
+  "reviewed": "2026-09-27",
+  "notice": "PUBLISHED namespace. Public company statements about micro1, recorded as the company describes itself. Not independently audited and not evidence of buying intent, budget, approval or partnership. Recheck before external publication.",
+  "sources": [
+    {"id": "S1", "title": "micro1 home and product descriptions", "url": "https://www.micro1.ai/"},
+    {"id": "S2", "title": "micro1 Robotics", "url": "https://www.micro1.ai/robotics"},
+    {"id": "S3", "title": "Introducing flow (September 22, 2026)", "url": "https://www.micro1.ai/blog/introducing-flow"},
+    {"id": "S4", "title": "Robotics is entering a phase of rapid diversification (July 23, 2026)", "url": "https://www.micro1.ai/research/robotics-is-entering-a-phase-of-rapid-diversification"},
+    {"id": "S5", "title": "AI Models Now Introduce Safety Risks in the Physical World (September 18, 2026)", "url": "https://www.micro1.ai/research/ai-models-now-introduce-safety-risks-in-the-physical-world"},
+    {"id": "S6", "title": "micro1 company LinkedIn page (Malibu robotics data lab repost)", "url": "https://www.linkedin.com/company/micro1"},
+    {"id": "S7", "title": "Video Capture Partner USA (Household activities)", "url": "https://jobs.micro1.ai/post/814abe36-2808-469e-b362-539acf2b544f"},
+    {"id": "S8", "title": "micro1 enterprise data partnerships", "url": "https://www.micro1.ai/data-partnerships"},
+    {"id": "S10", "title": "micro1 expert certification and matching", "url": "https://www.micro1.ai/experts"}
+  ],
+  "claims": [
+    {"source": "S1", "claim": "micro1 positions itself as an AI data lab, with Realm for training and evaluation environments, Cortex for enterprise-agent evaluation, and Robotics for embodied-system data."},
+    {"source": "S2", "claim": "micro1 Robotics covers expert first-person and third-person demonstrations; data structuring, annotation, quality control and evaluation; synchronized stereo, IMU and multicamera capture; and controlled deployment-lab work with robots."},
+    {"source": "S3", "claim": "flow distinguishes generation, data-quality checking and grading of model outputs, with expert review, correction and linked camera and 3D evidence. Used here as conceptual alignment only; no integration is claimed."},
+    {"source": "S4", "claim": "micro1's July robotics research emphasizes task-specific post-training data and matching deployment conditions."},
+    {"source": "S5", "claim": "micro1's September safety research favors simulation for hazardous tests and bounded hardware experiments."},
+    {"source": "S6", "claim": "A company repost announces a Malibu robotics data lab and hiring for hardware-focused work. Relative post timestamps should be rechecked."},
+    {"source": "S7", "claim": "A public Video Capture Partner USA listing seeks B2B vendors for smartphone POV and sensor collection with approved-output compensation, refers to LATAM-based vendor firms, and limits deployed contributors to 26 named US states. California and Arizona are not listed."},
+    {"source": "S8", "claim": "micro1's enterprise data-partnership program licenses operational knowledge and documentation and targets mature companies, including those with 30+ employees. It is distinct from commissioning new robotics demonstrations."},
+    {"source": "S10", "claim": "micro1 runs an expert certification and matching program. Remote evaluation expertise is a different staffing requirement from local, qualified on-site operators."}
+  ],
+  "unknown": [
+    "An open micro1 order for Metari",
+    "A hospitality-specific budget",
+    "A need for leased campus capacity",
+    "Approved US states for a bespoke site",
+    "An available hardware loan",
+    "Buying authority",
+    "Delivery API access",
+    "Willingness to reserve capacity"
+  ]
+}
