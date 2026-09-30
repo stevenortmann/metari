@@ -1,0 +1,62 @@
+[
+  {
+    "id": "op1",
+    "file": "portrait-op1-fallback.webp",
+    "source": "IMG_2552.jpeg",
+    "crop": [
+      376,
+      643,
+      504,
+      790
+    ],
+    "type": "supplied fictional concept scene crop"
+  },
+  {
+    "id": "op2",
+    "file": "portrait-op2-fallback.webp",
+    "source": "IMG_2541.jpeg",
+    "crop": [
+      1201,
+      318,
+      1340,
+      489
+    ],
+    "type": "supplied fictional concept scene crop"
+  },
+  {
+    "id": "op3",
+    "file": "portrait-op3-fallback.webp",
+    "source": "IMG_2544.jpeg",
+    "crop": [
+      430,
+      60,
+      584,
+      245
+    ],
+    "type": "supplied fictional concept scene crop"
+  },
+  {
+    "id": "op4",
+    "file": "portrait-op4-fallback.webp",
+    "source": "IMG_2541.jpeg",
+    "crop": [
+      598,
+      385,
+      681,
+      482
+    ],
+    "type": "supplied fictional concept scene crop"
+  },
+  {
+    "id": "op5",
+    "file": "portrait-op5-fallback.webp",
+    "source": "IMG_2541.jpeg",
+    "crop": [
+      387,
+      365,
+      483,
+      487
+    ],
+    "type": "supplied fictional concept scene crop"
+  }
+]

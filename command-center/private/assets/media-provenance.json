@@ -1,0 +1,46 @@
+[
+  {
+    "asset": "campus.mp4",
+    "source": "Metari_Film_v5_Final.mp4",
+    "start_seconds": 0.7,
+    "duration_seconds": 4.7,
+    "classification": "User-supplied concept film; not recorded robot telemetry"
+  },
+  {
+    "asset": "room.mp4",
+    "source": "Metari_Film_v5_Final.mp4",
+    "start_seconds": 5.0,
+    "duration_seconds": 3.1,
+    "classification": "User-supplied concept film; not recorded robot telemetry",
+    "review": "Re-cut in v5 to exclude adjacent unrelated scenes; representative frames visually inspected."
+  },
+  {
+    "asset": "towel.mp4",
+    "source": "Metari_Film_v5_Final.mp4",
+    "start_seconds": 18.3,
+    "duration_seconds": 3.8,
+    "classification": "User-supplied concept film; not recorded robot telemetry"
+  },
+  {
+    "asset": "evaluation.mp4",
+    "source": "Metari_Film_v5_Final.mp4",
+    "start_seconds": 30.2,
+    "duration_seconds": 3.4,
+    "classification": "User-supplied concept film; not recorded robot telemetry"
+  },
+  {
+    "asset": "cart.mp4",
+    "source": "Metari_Film_v5_Final.mp4",
+    "start_seconds": 54.8,
+    "duration_seconds": 2.9,
+    "classification": "User-supplied concept film; not recorded robot telemetry"
+  },
+  {
+    "asset": "kitchen.mp4",
+    "source": "Metari_Film_v5_Final.mp4",
+    "start_seconds": 8.7,
+    "duration_seconds": 2.6,
+    "classification": "User-supplied concept film; not recorded robot telemetry",
+    "review": "Re-cut in v5 to exclude adjacent unrelated scenes; representative frames visually inspected."
+  }
+]

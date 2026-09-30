@@ -1,0 +1,5 @@
+{
+  "version": 2,
+  "builds": [{"src":"api/workspace.js","use":"@vercel/node","config":{"includeFiles":["private/**"]}}],
+  "routes": [{"src":"/(.*)","dest":"/api/workspace"}]
+}
