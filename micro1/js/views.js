@@ -79,7 +79,7 @@
       (flagged ? '<span class="ev-flag" aria-hidden="true" style="' + FLAG[key] + '"><i>Hand/object contact not visible</i></span>' : '') +
       '<span class="ev-tag mono">Concept still · not a recording</span>' +
       '<span class="ev-id mono">' + esc(item.id) + ' · ' + esc(vk.toUpperCase()) + '</span></figure>';
-    h += '<p class="ev-cap small">' + (vk === 'pov' ? 'Illustrative crop standing in for a head-worn view. ' : '') + 'Overlays are drawn by the interface, not baked into any training file. Views are not claimed to be synchronized recordings of one event.</p>';
+    h += '<p class="ev-cap small">' + (vk === 'pov' ? 'Illustrative still standing in for a head-worn view. ' : '') + 'Overlays are drawn by the interface, not baked into any training file. Views are not claimed to be synchronized recordings of one event.</p>';
     h += '<dl class="kv ev-meta"><dt>Episode</dt><dd class="mono">' + esc(item.id) + (item.recaptureOf ? ' · recapture of ' + esc(item.recaptureOf) : '') + (item.recapturedBy && prog.byId[item.recapturedBy].idx < st.cursor ? ' · recaptured as ' + esc(item.recapturedBy) : item.disp === 'rejected' ? ' · recapture pending' : '') + '</dd>' +
       '<dt>Task / variant</dt><dd>' + esc(M.TASKS[item.task].name) + ' · ' + variantText(item.variant) + '</dd>' +
       '<dt>Station / operator</dt><dd>' + esc(item.station) + ' · ' + esc(item.operator) + ' (fictional) · shift ' + item.shift + ' · attempt ' + item.attempt + '</dd>' +

@@ -160,7 +160,7 @@
       <div class="tile-b"><span class="mono">03</span><h3>Variation by instruction</h3><p>Change the layout, the light, the clutter or the operator between runs, then repeat. Every change is logged against the attempt.</p></div>
     </article>
     <article class="tile">
-      <img src="/assets/campus/data-lab.jpg" alt="Concept rendering: a team reviewing multi-view captures and skeleton overlays at workstations" loading="lazy">
+      <img src="/micro1/img/qa-review.jpg" alt="Concept rendering: analysts reviewing a housekeeping task from three camera angles" loading="lazy">
       <div class="tile-b"><span class="mono">04</span><h3>Evidence you can audit</h3><p>Preflight checks, reason codes, recapture lineage and a per-batch manifest. Rejects are shown, not hidden.</p></div>
     </article>
   </div>
@@ -179,6 +179,7 @@
       <span class="sim-chip mono">Simulation &middot; not live</span>
       <span class="clock mono" id="clock" aria-label="Simulated clock">Day 1 07:00 (sim)</span>
       <span class="phase-chip mono" id="phase">Draft brief</span>
+      <button class="btn sm primary top-run" id="top-run" type="button">Run the order</button>
     </div>
     <div class="con-grid">
       <div class="col col-l" aria-label="Incoming requirement">
@@ -245,7 +246,7 @@
           <button class="icb" type="button" data-view="reset" aria-label="Reset view"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/></svg></button>
           <button class="btn sm" type="button" id="plan2d" aria-pressed="false">2D plan</button>
         </div>
-        <div id="scene" class="scene-host" data-lazy="1"></div>
+        <div class="scene-stage"><div id="scene" class="scene-host" data-lazy="1"></div><div id="scene-cta" class="scene-cta" hidden></div></div>
         <div class="legend" id="legend"></div>
         <div class="room-chips" role="group" aria-label="Rooms used by this order" id="room-chips"></div>
         <div class="dock" id="dock" aria-live="polite"></div>
@@ -387,7 +388,7 @@
   <div class="planner" id="planner"></div>
 </section>
 
-<section class="closing-band" aria-hidden="true"><img src="/assets/campus/aerial-campus.jpg" alt="" loading="lazy"><span class="mono">Concept rendering &middot; planned configuration, not an operating site</span></section>
+<section class="closing-band" aria-hidden="true"><img src="/micro1/img/campus-aerial.jpg" alt="" loading="lazy"><span class="mono">Concept rendering &middot; planned configuration, not an operating site</span></section>
 <section class="wrap wide closing" aria-labelledby="close-h">
   <div class="sec-head">
     <span class="sec-num">Next step</span>
@@ -436,7 +437,7 @@
       </div>
       <div class="mono" style="color:var(--muted-2)">Partnership concept &middot; September 2026</div>
     </div>
-    <p class="note">Illustrative concept for discussion. No partnership, endorsement, integration, customer relationship, facility, capacity, pricing, throughput or model performance is represented. micro1 is referred to by name only; no micro1 logo or confidential information is used. Images are concept renderings; humanoid forms are illustrative and do not depict a specific product. This page sits behind a simple browser password and is marked noindex. That keeps casual visitors out; it is not security.</p>
+    <p class="note">Illustrative concept for discussion. No partnership, endorsement, integration, customer relationship, facility, capacity, pricing, throughput or model performance is represented. micro1 is referred to by name only; no micro1 logo or confidential information is used. Images are concept renderings of people-only scenes; no robot hardware is depicted. This page sits behind a simple browser password and is marked noindex. That keeps casual visitors out; it is not security.</p>
   </div>
 </footer>
 

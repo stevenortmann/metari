@@ -2,7 +2,8 @@
 /* Metari Architecture Studio v10. Copyright 2026. Self-contained WebGL 2 renderer.
    Extracted from Metari_Command_Center_v10.html for the /micro1 concept. Local changes are
    limited to: room labels, a per-room "no overlay" value (negative heat), a configurable label
-   whitelist, an onUnavailable hook for the 2D fallback, a root-relative logo path, and a flat
+   whitelist, an onUnavailable hook for the 2D fallback, a root-relative logo path, and empty test plinths
+   instead of humanoid figures in the evaluation bay, a flat
    room-wide fill for the "coverage" overlay so its meaning (share of accepted quota) reads clearly.
    Metric scene graph; rigid floor assemblies; depth-buffered geometry; normal lighting;
    PCF shadow mapping; procedural material response; aligned GPU overlays; ray picking.
@@ -89,7 +90,7 @@ function roomContent(g,r){g.rid=r.index;let x=r.x,z=r.z;
  else if(r.id==='kitchen')kitchen(g,r);
  else if(r.id==='laundry')laundry(g,r);
  else if(r.id==='cafe'||r.id==='banquet'){for(let i=0;i<(r.w>10?4:2);i++)for(let j=0;j<2;j++)dining(g,x+2+i*(r.w>10?3.55:3.1),z+2.25+j*4,r.id==='banquet'?.97:.68,r.id==='banquet'?6:4);}
- else if(r.id==='showroom'){sofa(g,x+2.5,z+7,2.7);table(g,x+2.5,z+5.5,.63);for(let i=0;i<3;i++){g.cylinder(x+6.2+i*3.3,.13,z+4,.85,.14,'stone');robot(g,x+6.2+i*3.3,z+4,i===1?'graphite':'white',i,1.12);}planter(g,x+13.8,z+8.6,1.25);}
+ else if(r.id==='showroom'){sofa(g,x+2.5,z+7,2.7);table(g,x+2.5,z+5.5,.63);for(let i=0;i<3;i++){g.cylinder(x+6.2+i*3.3,.13,z+4,.85,.14,'stone');g.box(x+5.9+i*3.3,.27,z+3.7,.6,.9,.6,'metal');}planter(g,x+13.8,z+8.6,1.25);}
  else if(r.id==='lobby'){g.round(x+1.2,.1,z+.6,5.5,1.05,.83,.12,'stone');g.box(x+1.3,1.17,z+.58,5.3,.06,.88,'oak');sofa(g,x+1.7,z+4.2,2.3,PI/2);sofa(g,x+6.2,z+4.2,2.3,-PI/2);table(g,x+4,z+4.2,.66);planter(g,x+.7,z+.8);planter(g,x+7.3,z+.8);logo(g,x+2.1,1.7,z+.1,3.8,.92);}
  else if(r.id==='office'){for(let i=0;i<2;i++)for(let j=0;j<3;j++){g.box(x+.5+i*3.25,.68,z+.6+j*2.45,2.1,.12,.82,'oak');g.box(x+1+i*3.25,.87,z+.65+j*2.45,.65,.4,.055,'black');chair(g,x+1.55+i*3.25,z+1.75+j*2.45,PI);}}
  else if(r.id==='retail'){for(let i=0;i<3;i++)shelving(g,x+.3+i*2.2,z+.4,1.7,2.2,.6);g.box(x+1.4,.08,z+4.8,3.8,.92,1.35,'oak');for(let i=0;i<5;i++)g.cylinder(x+1.8+i*.64,1.04,z+5.3,.13,.38,'ivory',.12,10);}

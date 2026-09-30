@@ -12,10 +12,10 @@
   var SCOPE = [
     { id: 'guest', tab: 'Guest rooms', img: '/1x/img/swap_human.jpg', alt: 'Concept rendering: housekeeper in a head-mounted capture rig places towels on a bed in an instrumented guest room', cap: 'Guest-room suite', sub: 'Linen placement', tag: 'Pilot scope', task: 'TASK-LINEN' },
     { id: 'laundry', tab: 'Laundry & linen', img: '/micro1/img/evidence/laundry-overview.jpg', alt: 'Concept rendering: laundry attendant folding towels at a steel table in front of linen shelving', cap: 'Laundry & linen', sub: 'Sorting and folding', tag: 'Pilot scope', task: 'TASK-LAUNDRY' },
-    { id: 'boh', tab: 'Service & supply', img: '/micro1/img/evidence/cart-overview.jpg', alt: 'Concept rendering: staff member at a service cart outside a guest-room door in a hotel corridor', cap: 'Service & supply', sub: 'Cart and shelf replenishment', tag: 'Pilot scope', task: 'TASK-CART' },
-    { id: 'kitchen', tab: 'Kitchen', img: '/1x/img/kitchen.jpg', alt: 'Concept rendering: commercial kitchen with chefs at the pass and an illustrative humanoid form', cap: 'Commercial kitchen', sub: 'Later order', tag: 'Expansion example', exp: true,
+    { id: 'boh', tab: 'Service & supply', img: '/micro1/img/evidence/cart-overview.jpg', alt: 'Concept rendering: houseperson loading towels and amenities from labelled shelving onto a service cart', cap: 'Service & supply', sub: 'Cart and shelf replenishment', tag: 'Pilot scope', task: 'TASK-CART' },
+    { id: 'kitchen', tab: 'Kitchen', img: '/micro1/img/kitchen.jpg', alt: 'Concept rendering: two chefs plating at a hotel kitchen pass, one wearing a head-mounted camera, with ceiling cameras', cap: 'Commercial kitchen', sub: 'Later order', tag: 'Expansion example', exp: true,
       example: 'Plating and pass handoff, dish-station loading, cold-storage restock.', evidence: 'Tool and hand contact at working height, heat and sharp-tool zones marked; separate safety protocol before any capture.', reset: 'Station layout, ticket load, tool set, lighting.' },
-    { id: 'senior', tab: 'Accessible living (mock)', img: '/1x/img/senior.jpg', alt: 'Concept rendering: mock accessible-living suite with a staff member at a bed and an illustrative humanoid form', cap: 'Accessible living (mock)', sub: 'Non-clinical, no residents', tag: 'Expansion example', exp: true,
+    { id: 'senior', tab: 'Accessible living (mock)', img: '/micro1/img/accessible-living.jpg', alt: 'Concept rendering: staff member making a railed bed in a mock accessible-living suite with a walking frame and ceiling camera', cap: 'Accessible living (mock)', sub: 'Non-clinical, no residents', tag: 'Expansion example', exp: true,
       example: 'Bed-making with rails, mobility-aid placement, room tidy between occupants.', evidence: 'Same three-view profile. No residents, patients or care tasks; staff actors only under a capture agreement.', reset: 'Furniture layout, aids present, lighting, clutter.' }
   ];
 
@@ -58,6 +58,13 @@
     else if (st.phase === 'READY_FOR_DELIVERY') label = 'Close demo';
     else label = 'Replay';
     b.textContent = label; b.disabled = dis;
+    var tb = $('#top-run'); tb.textContent = st.phase === 'DRAFT' || st.phase === 'NEEDS_CONFIRMATION' ? 'Run the order' : label; tb.disabled = dis;
+    var cta = $('#scene-cta'), gateOpen = st.gate === 'flagged' || st.gate === 'inspected';
+    if ((st.phase === 'DRAFT' || st.phase === 'NEEDS_CONFIRMATION') && !M.blocked(st)) { cta.hidden = false; cta.innerHTML = '<button class="cta-play" type="button" data-act="autorun"><span class="tri" aria-hidden="true"></span><span><b>Run the simulated order</b><small>Fictional order M1-DEMO-001 &middot; runs in your browser</small></span></button>'; }
+    else if (gateOpen) { cta.hidden = false; cta.innerHTML = '<button class="cta-play warn" type="button" data-act="inspect"><span class="tri" aria-hidden="true"></span><span><b>Review the flagged sample</b><small>' + esc(prog.seq[prog.firstReject].id) + ' failed preflight' + (ui.gateLeft > 0 ? ' &middot; auto-continues in ' + ui.gateLeft + 's' : '') + '</small></span></button>'; }
+    else if (st.phase === 'CAPTURING' && !ctl.running) { cta.hidden = false; cta.innerHTML = '<button class="cta-play" type="button" data-act="autorun"><span class="tri" aria-hidden="true"></span><span><b>Resume collection</b><small>' + M.counts(prog, st).captured + ' of ' + prog.total + ' attempts captured</small></span></button>'; }
+    else { cta.hidden = true; cta.innerHTML = ''; }
+    armGate(gateOpen);
     var p = $('#pause'); p.disabled = !(st.phase === 'CAPTURING' || st.phase === 'QA_REVIEW' || st.phase === 'DEMO_APPROVED' || st.phase === 'CONFIGURED') || st.gate === 'flagged' || st.gate === 'inspected';
     p.textContent = ctl.running ? 'Pause' : 'Resume';
     if (!ctl.running && p.textContent === 'Resume' && st.phase !== 'CAPTURING' && st.phase !== 'QA_REVIEW') p.disabled = true;
@@ -67,7 +74,7 @@
     var g = $('#gate');
     if (st.gate === 'flagged' || st.gate === 'inspected') {
       var it = prog.seq[prog.firstReject];
-      g.innerHTML = '<div class="gate"><span class="mono">Human decision required</span><p><b>' + esc(it.id) + '</b> failed preflight: hand/object contact not visible in the fixed side view. This is a capture defect, not evidence about any robot.</p><div class="row"><button class="btn sm" type="button" data-act="inspect">Inspect evidence</button>' + (st.gate === 'inspected' ? '<button class="btn sm primary" type="button" data-act="reset-request">Request reset and recapture</button>' : '') + '</div></div>';
+      g.innerHTML = '<div class="gate"><span class="mono">Human decision required</span><p><b>' + esc(it.id) + '</b> failed preflight: hand/object contact not visible in the fixed side view. This is a capture defect, not evidence about any robot.' + (ui.gateLeft > 0 ? ' Auto-continues in ' + ui.gateLeft + 's.' : '') + '</p><div class="row"><button class="btn sm" type="button" data-act="inspect">Inspect evidence</button>' + (st.gate === 'inspected' ? '<button class="btn sm primary" type="button" data-act="reset-request">Request reset and recapture</button>' : '') + '</div></div>';
     } else g.innerHTML = '';
 
     // trace
@@ -116,19 +123,44 @@
   function doAct(a) {
     var r = M.act(prog, st, a); render(r.msg); return r.ok;
   }
+  // Keep the demo alive: if nobody acts on the review gate, a rule-based reviewer continues it.
+  var gateTimer = 0;
+  function armGate(open) {
+    if (!open || ui.gateHeld) { if (gateTimer && !open) { clearInterval(gateTimer); gateTimer = 0; ui.gateLeft = 0; } return; }
+    if (gateTimer) return;
+    ui.gateLeft = 12;
+    gateTimer = setInterval(function () {
+      if (document.hidden) return;
+      ui.gateLeft--;
+      if (ui.gateLeft <= 0) {
+        clearInterval(gateTimer); gateTimer = 0;
+        if (st.gate === 'flagged' || st.gate === 'inspected') { M.act(prog, st, 'request_reset'); ctl.play(true); render('No reviewer response, so the demo\'s rule-based reviewer requested a reset and recapture. Use Replay to try the review yourself.'); }
+      } else render();
+    }, 1000);
+  }
+  function holdGate() { ui.gateHeld = true; if (gateTimer) { clearInterval(gateTimer); gateTimer = 0; } ui.gateLeft = 0; }
+  function autoRun(auto) {
+    if (M.blocked(st)) { render('Blocked: change the capture profile to the fixture profile first.'); return; }
+    if (st.phase === 'DRAFT') M.act(prog, st, 'submit');
+    if (st.phase === 'NEEDS_CONFIRMATION') M.act(prog, st, 'assume');
+    if (st.phase === 'DEMO_CLOSED' || st.phase === 'READY_FOR_DELIVERY') return;
+    if (st.gate === 'flagged' || st.gate === 'inspected') return render();
+    ctl.play(true);
+    render(auto ? 'Demo started automatically. Approvals are assumed for this fictional order only; nothing leaves your browser.' : 'Running. Approvals are assumed for this fictional order only; nothing leaves your browser.');
+  }
   function primary() {
     switch (st.phase) {
       case 'DRAFT': doAct('submit'); break;
       case 'NEEDS_CONFIRMATION': if (doAct('assume')) ctl.play(true); break;
       case 'DEMO_APPROVED': case 'CONFIGURED': ctl.play(true); break;
-      case 'CAPTURING': if (st.gate === 'flagged' || st.gate === 'inspected') openEvidence(prog.seq[prog.firstReject], true); else ctl.play(true); break;
+      case 'CAPTURING': if (st.gate === 'flagged' || st.gate === 'inspected') { holdGate(); openEvidence(prog.seq[prog.firstReject], true); } else ctl.play(true); break;
       case 'QA_REVIEW': ctl.play(true); break;
       case 'READY_FOR_DELIVERY': doAct('close'); break;
       case 'DEMO_CLOSED': replay(); break;
     }
   }
   function replay() {
-    ctl.reset(); M.act(prog, st, 'submit');
+    ctl.reset(); ui.gateHeld = false; M.act(prog, st, 'submit');
     if (!M.blocked(st) && M.act(prog, st, 'assume').ok) { ctl.play(true); render('Replaying. The assumed demo approvals were re-applied for this fictional order.'); }
     else render('Replay stopped at confirmation: resolve the blocked prerequisite first.');
   }
@@ -199,8 +231,9 @@
   /* ------------------------------------------------------------ events */
   function bind() {
     $('#primary').addEventListener('click', primary);
+    $('#top-run').addEventListener('click', function () { if (st.phase === 'DRAFT' || st.phase === 'NEEDS_CONFIRMATION') autoRun(false); else primary(); });
     $('#pause').addEventListener('click', function () { if (ctl.running) ctl.pause(); else ctl.play(true); });
-    $('#reset').addEventListener('click', function () { closeDialog(); ctl.reset(); ui.selected = null; if (scene) scene.reset(); render(); });
+    $('#reset').addEventListener('click', function () { ui.gateHeld = false; closeDialog(); ctl.reset(); ui.selected = null; if (scene) scene.reset(); render(); });
     $('#replay').addEventListener('click', function () { closeDialog(); replay(); });
     $('#speed').addEventListener('click', function () { ctl.speed = ctl.speed > 1 ? 1 : 4; render(ctl.speed > 1 ? 'Fast mode: more attempts per tick. Counts still come from the fixture.' : 'Normal speed.'); });
     $('#guided').addEventListener('change', function (e) { st.guided = e.target.checked; render(st.guided ? 'Guided review on: the run pauses at the first flagged sample.' : 'Guided review off: reviewer decisions are rule-based in this demo.'); });
@@ -216,7 +249,8 @@
       if (t.dataset.view && t.closest('#scene-bar')) { if (!scene) return; var v = t.dataset.view; if (v === 'left') scene.rotate(-1); if (v === 'right') scene.rotate(1); if (v === 'in') scene.zoom(1); if (v === 'out') scene.zoom(-1); if (v === 'reset') { scene.reset(); ui.selected = null; $$('[data-floor]').forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.floor === 'all')); }); $('#explode').setAttribute('aria-pressed', 'true'); render(); } return; }
       if (t.dataset.scope) { renderScope(t.dataset.scope); selectRoom(t.dataset.scope, true); var nt = $('[data-scope="' + t.dataset.scope + '"]'); nt && nt.focus(); return; }
       var a = t.dataset.act;
-      if (a === 'inspect') return openEvidence(prog.seq[prog.firstReject], true);
+      if (a === 'autorun') return autoRun(false);
+      if (a === 'inspect') { holdGate(); return openEvidence(prog.seq[prog.firstReject], true); }
       if (a === 'reset-request') { M.act(prog, st, 'request_reset'); closeDialog(); render('Reset requested. The operator re-aims the side camera, resets the scene and captures a new attempt.'); ctl.play(true); return; }
       if (a === 'ff') return fastForward();
       if (a === 'import') return doAct('import_eval');
@@ -228,7 +262,7 @@
     $('#cams').addEventListener('click', function (e) { ui.cameras = !ui.cameras; e.currentTarget.setAttribute('aria-pressed', String(ui.cameras)); ui.lastSceneKey = ''; render(ui.cameras ? 'Showing planned camera mounts. Concept geometry, not calibrated optics.' : null); });
     $('#plan2d').addEventListener('click', function (e) { if (!scene) return; if (scene.fallback) return render('3D is not available on this device; the 2D plan is shown.'); var m = scene.toggle2d(); e.currentTarget.setAttribute('aria-pressed', String(m === '2d')); });
     $('#scope-tabs').addEventListener('keydown', function (e) { if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return; var tabs = $$('[data-scope]'), i = tabs.indexOf(document.activeElement); if (i < 0) return; var n = tabs[(i + (e.key === 'ArrowRight' ? 1 : tabs.length - 1)) % tabs.length]; n.click(); });
-    $('#ev-dialog').addEventListener('close', function () { render(); });
+    $('#ev-dialog').addEventListener('close', function () { if (st.gate === 'flagged' || st.gate === 'inspected') ui.gateHeld = false; render(); });
   }
 
   /* ------------------------------------------------------------ boot */
@@ -244,6 +278,14 @@
     if ('IntersectionObserver' in window) {
       var io = new IntersectionObserver(function (en) { if (en.some(function (x) { return x.isIntersecting; })) { io.disconnect(); mountScene(); } }, { rootMargin: '400px 0px' });
       io.observe(host);
+      // Start the demo by itself the first time the console is properly in view.
+      var started = false;
+      var io2 = new IntersectionObserver(function (en) {
+        if (started || !en.some(function (x) { return x.isIntersecting; })) return;
+        started = true; io2.disconnect();
+        if (!ctl.running && st.phase !== 'READY_FOR_DELIVERY' && st.phase !== 'DEMO_CLOSED') setTimeout(function () { autoRun(true); }, 700);
+      }, { threshold: 0.35 });
+      io2.observe($('#console'));
     } else mountScene();
     window.__metariDebug = { prog: prog, st: function () { return st; }, ctl: function () { return ctl; }, scene: function () { return scene; } };
   }).catch(function (e) {
