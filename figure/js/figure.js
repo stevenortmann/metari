@@ -218,16 +218,17 @@
   var INFO = {
     guest: { tracks: ['Train', 'Evaluate'], what: 'Bedrooms dressed to recipes, from city king to just checked out. The core of the program.', tasks: ['Making beds to a hotel standard', 'Folding and placing towels', 'Tidying a room after checkout', 'Restocking amenities'] },
     bathroom: { tracks: ['Train', 'Evaluate'], what: 'Real hotel bathrooms with different fixtures, glass and layouts.', tasks: ['Swapping used towels for fresh ones', 'Wiping vanities, mirrors and glass', 'Replacing amenities and emptying bins'] },
-    residential: { tracks: ['Evaluate'], what: 'A suite set up like a small apartment: living room, kitchenette and dining table.', tasks: ['Tidying a living room', 'Folding throws and arranging cushions', 'Clearing and wiping a table'] },
+    residential: { tracks: ['Train', 'Evaluate'], what: 'A suite set up like a small apartment: living room, kitchenette and dining table.', tasks: ['Tidying a living room', 'Folding throws and arranging cushions', 'Clearing and wiping a table'] },
     laundry: { tracks: ['Train'], what: 'A working hotel laundry with attendants folding to standard every shift.', tasks: ['Folding towels at volume', 'Sorting and stacking linen', 'Loading and unloading machines'] },
     boh: { tracks: ['Train'], what: 'Housekeeping carts, linen shelves and amenity stock.', tasks: ['Loading a housekeeping cart', 'Restocking shelves by label', 'Counting and bagging linen'] },
     corridor: { tracks: ['Evaluate'], what: 'Long guest corridors with doors, carts and turns.', tasks: ['Pushing a cart down a corridor', 'Opening and holding doors', 'Finding the right room'] },
     elevator: { tracks: ['Evaluate'], what: 'A service elevator set up for repeatable rides.', tasks: ['Calling and boarding an elevator', 'Riding with a cart between floors'] },
     kitchen: { tracks: ['Train', 'Later'], what: 'A commercial kitchen with chefs on a normal prep and plating rhythm.', tasks: ['Loading and unloading dish racks', 'Wiping down stations', 'Simple plating'] },
     cafe: { tracks: ['Train', 'Later'], what: 'A restaurant floor that can be reset between services.', tasks: ['Busing tables', 'Resetting place settings', 'Carrying trays'] },
+    senior: { tracks: ['Train', 'Evaluate'], what: 'Mock senior living suites with railed beds, grab bars and mobility aids. Staff only, no residents, no care claims.', tasks: ['Making a railed bed', 'Fetching and placing everyday items', 'Tidying a suite to a checklist'] },
     lobby: { tracks: ['Later'], what: 'Arrival and luggage areas for when Helix starts working around guests.', tasks: ['Carrying bags', 'Tidying seating areas'] }
   };
-  var ORDER = ['guest', 'bathroom', 'residential', 'laundry', 'boh', 'corridor', 'elevator', 'kitchen', 'cafe', 'lobby'];
+  var ORDER = ['guest', 'bathroom', 'residential', 'senior', 'laundry', 'boh', 'corridor', 'elevator', 'kitchen', 'cafe', 'lobby'];
   var scene = null, sel = 'guest', loading = false;
   function label(id) { var A = window.MetariArchitecture; var r = A && A.ROOMS && A.ROOMS.filter(function (x) { return x.id === id; })[0]; return r ? r.label : id; }
   function panel() {
@@ -266,7 +267,55 @@
     } else mountScene();
   }
 
-  function init() { initStudio(); initReveal(); initFloor(); }
+
+  /* ------------------------------------------------------------ 24 hour clock + order */
+  var SHIFTS = [
+    { id: 'day', from: 6, to: 14, name: 'Day shift', sub: 'Rooms, breakfast, morning routines', col: '#3DE8B0' },
+    { id: 'swing', from: 14, to: 22, name: 'Swing shift', sub: 'Dinner service, laundry, turns', col: '#E6DCCC' },
+    { id: 'night', from: 22, to: 30, name: 'Night shift', sub: 'Evaluations, resets, deep cleans', col: '#7FB6FF' }
+  ];
+  function pt(cx, cy, r, h) { var a = (h / 24) * 2 * Math.PI - Math.PI / 2; return [cx + r * Math.cos(a), cy + r * Math.sin(a)]; }
+  function arc(cx, cy, r, h1, h2) { var a = pt(cx, cy, r, h1), b = pt(cx, cy, r, h2), large = (h2 - h1) > 12 ? 1 : 0; return 'M' + a[0].toFixed(1) + ' ' + a[1].toFixed(1) + ' A' + r + ' ' + r + ' 0 ' + large + ' 1 ' + b[0].toFixed(1) + ' ' + b[1].toFixed(1); }
+  function shiftAt(h) { var x = h < 6 ? h + 24 : h; return SHIFTS.filter(function (s) { return x >= s.from && x < s.to; })[0]; }
+  function drawClock() {
+    var svg = $('#clock24'); if (!svg) return;
+    var now = new Date(), h = now.getHours() + now.getMinutes() / 60, cur = shiftAt(h), cx = 160, cy = 160, g = [];
+    g.push('<title id="c24-t">A 24 hour clock showing three shifts: day from 06:00, swing from 14:00 and night from 22:00</title>');
+    SHIFTS.forEach(function (s) { g.push('<path class="c24-seg' + (s === cur ? ' on' : '') + '" stroke="' + s.col + '" d="' + arc(cx, cy, 118, s.from + .08, s.to - .08) + '"/>'); });
+    for (var i = 0; i < 24; i++) { var a = pt(cx, cy, 134, i), b = pt(cx, cy, i % 6 === 0 ? 146 : 140, i); g.push('<line class="c24-tick" x1="' + a[0].toFixed(1) + '" y1="' + a[1].toFixed(1) + '" x2="' + b[0].toFixed(1) + '" y2="' + b[1].toFixed(1) + '"/>'); if (i % 6 === 0) { var t = pt(cx, cy, 98, i); g.push('<text class="c24-hr" x="' + t[0].toFixed(1) + '" y="' + (t[1] + 3).toFixed(1) + '" text-anchor="middle">' + String(i).padStart(2, '0') + '</text>'); } }
+    var hd = pt(cx, cy, 128, h);
+    g.push('<line class="c24-hand" x1="' + cx + '" y1="' + cy + '" x2="' + hd[0].toFixed(1) + '" y2="' + hd[1].toFixed(1) + '"/><circle class="c24-dot" cx="' + hd[0].toFixed(1) + '" cy="' + hd[1].toFixed(1) + '" r="5"/><circle cx="' + cx + '" cy="' + cy + '" r="4" fill="#3DE8B0"/>');
+    g.push('<text class="c24-lbl" x="' + cx + '" y="' + (cy + 30) + '" text-anchor="middle">' + esc(cur.name) + '</text><text class="c24-sub" x="' + cx + '" y="' + (cy + 46) + '" text-anchor="middle">' + esc(cur.sub) + '</text>');
+    svg.innerHTML = g.join('');
+    var cap = $('#c24-now'); if (cap) cap.innerHTML = 'Your time ' + String(now.getHours()).padStart(2, '0') + ':' + String(now.getMinutes()).padStart(2, '0') + ' &middot; <b>' + esc(cur.name) + '</b> would be on the floor';
+  }
+  var ENVS = {
+    'Hotel guest rooms': ['Making beds', 'Folding and placing towels', 'Tidying after checkout'],
+    'Hospital rooms (mock)': ['Changing a bed', 'Restocking a supply cart', 'Wiping down surfaces'],
+    'Restaurant kitchens': ['Loading dish racks', 'Wiping stations', 'Simple plating'],
+    'Dining rooms': ['Busing tables', 'Resetting place settings'],
+    'Bathrooms': ['Swapping towels', 'Wiping glass and vanities'],
+    'Senior living suites (mock)': ['Making a railed bed', 'Fetching everyday items'],
+    'Apartments': ['Folding laundry', 'Loading a dishwasher', 'Tidying a living room'],
+    'Laundry & linen': ['Folding towels at volume', 'Sorting linen']
+  };
+  function initOrder() {
+    var env = $('#o-env'), task = $('#o-task'), out = $('#o-out'); if (!env) return;
+    env.innerHTML = Object.keys(ENVS).map(function (k) { return '<option>' + esc(k) + '</option>'; }).join('');
+    function fill() { task.innerHTML = ENVS[env.value].map(function (t) { return '<option>' + esc(t) + '</option>'; }).join(''); }
+    env.addEventListener('change', fill); fill();
+    $('#o-go').addEventListener('click', function () {
+      var now = new Date(), h = now.getHours(), cur = shiftAt(h), idx = SHIFTS.indexOf(cur), next = SHIFTS[(idx + 1) % 3];
+      var held = $('#o-var').value.indexOf('Held out') === 0;
+      var lib = !held && ['Making beds', 'Folding and placing towels', 'Busing tables', 'Loading dish racks', 'Folding towels at volume', 'Folding laundry'].indexOf(task.value) >= 0;
+      out.innerHTML = 'Order logged: <b>' + esc(task.value) + '</b> in ' + esc(env.value) + '. ' +
+        (lib ? 'Proactive library already has this task, available now. ' : '') +
+        'New capture scheduled into the <b>' + esc(next.name.toLowerCase()) + '</b> (starts ' + String(next.from % 24).padStart(2, '0') + ':00). ' +
+        (held ? 'Rooms used will be held out from all training capture.' : 'Delivered to Figure as it is captured.');
+    });
+  }
+
+  function init() { initStudio(); initReveal(); initFloor(); drawClock(); setInterval(drawClock, 60000); initOrder(); }
   function start() {
     if (document.documentElement.classList.contains('gated')) window.addEventListener('metari:unlocked', init, { once: true });
     else init();
