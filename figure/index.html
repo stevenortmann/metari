@@ -256,18 +256,20 @@
 <section id="same" class="wrap wide rule" aria-labelledby="same-h">
   <div class="sec-head">
     <span class="sec-num">Same room, same frame</span>
-    <h2 id="same-h">The person who does the job, then the robot learning it.</h2>
+    <h2 id="same-h">The person who does the job, then the robot learning it. In every room.</h2>
   </div>
+  <p class="lede">Each environment is captured from the same calibrated cameras, so a professional's demonstration and a robot's attempt line up frame for frame. Pick a room and slide.</p>
+  <div class="rv-tabs" role="tablist" aria-label="Environment" id="rv-tabs"></div>
   <figure class="fg-reveal">
     <div class="reveal" id="reveal" style="--p:50%">
-      <img src="/micro1/img/guest-room-robot.jpg" alt="The same guest room and camera view with an illustrative robot placing folded towels" loading="lazy">
-      <div class="rv-top"><img src="/1x/img/swap_human.jpg" alt="Concept rendering: housekeeper in a head-mounted capture rig places towels on a bed in an instrumented guest room" loading="lazy"></div>
+      <img id="rv-robot" src="/micro1/img/guest-room-robot.jpg" alt="The same guest room and camera view with an illustrative robot placing folded towels">
+      <div class="rv-top"><img id="rv-human" src="/1x/img/swap_human.jpg" alt="Concept rendering: housekeeper in a head-mounted capture rig places towels on a bed in an instrumented guest room"></div>
       <div class="rv-line" aria-hidden="true"><span class="rv-grip"></span></div>
       <span class="rv-hint mono">Slide to compare</span>
-      <span class="rv-tag l mono">Housekeeper capture</span><span class="rv-tag r mono">Robot trial</span>
-      <input class="rv-range" id="rv-range" type="range" min="0" max="100" value="50" step="0.1" aria-label="Drag to compare the housekeeper demonstration with a robot attempting the same task in the same room">
+      <span class="rv-tag l mono" id="rv-tag-l">Housekeeper capture</span><span class="rv-tag r mono">Robot trial</span>
+      <input class="rv-range" id="rv-range" type="range" min="0" max="100" value="50" step="0.1" aria-label="Drag to compare the human demonstration with a robot attempting the same task in the same room">
     </div>
-    <figcaption><b>Towels on the bed &middot; one calibrated view</b> Concept rendering. The robot is illustrative and is not a Figure robot.</figcaption>
+    <figcaption><b id="rv-cap">Towels on the bed &middot; hotel guest room</b> Concept rendering. The robot is an illustrative Metari design and is not a Figure robot.</figcaption>
   </figure>
 </section>
 

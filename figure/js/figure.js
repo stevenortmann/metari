@@ -209,9 +209,32 @@
   }
 
   /* ------------------------------------------------------------ reveal */
+  var PAIRS = [
+    { id: 'guest', tab: 'Guest room', h: '/1x/img/swap_human.jpg', r: '/micro1/img/guest-room-robot.jpg', who: 'Housekeeper capture', cap: 'Towels on the bed &middot; hotel guest room', alt: 'housekeeper places folded towels on a bed in an instrumented guest room' },
+    { id: 'hospital', tab: 'Hospital room (mock)', h: '/figure/img/pair-hospital-human.jpg', r: '/figure/img/pair-hospital-robot.jpg', who: 'Nursing assistant capture', cap: 'Changing a bed &middot; mock hospital room, no patient', alt: 'nursing assistant pulls a fitted sheet over an empty hospital bed in a mock patient room' },
+    { id: 'kitchen', tab: 'Kitchen', h: '/figure/img/pair-kitchen-human.jpg', r: '/figure/img/pair-kitchen-robot.jpg', who: 'Kitchen porter capture', cap: 'Loading a dish rack &middot; restaurant kitchen', alt: 'kitchen porter loads plates into a dish rack at a commercial dish station' },
+    { id: 'dining', tab: 'Dining room', h: '/figure/img/pair-dining-human.jpg', r: '/figure/img/pair-dining-robot.jpg', who: 'Server capture', cap: 'Busing a table &middot; restaurant dining room', alt: 'server stacks used plates into a bus tub after service' },
+    { id: 'apartment', tab: 'Apartment', h: '/figure/img/pair-apartment-human.jpg', r: '/figure/img/pair-apartment-robot.jpg', who: 'Housekeeper capture', cap: 'Folding laundry &middot; apartment living room', alt: 'housekeeper folds towels from a laundry basket in an apartment living room' },
+    { id: 'bathroom', tab: 'Bathroom', h: '/figure/img/pair-bathroom-human.jpg', r: '/figure/img/pair-bathroom-robot.jpg', who: 'Housekeeper capture', cap: 'Wiping the shower glass &middot; hotel bathroom', alt: 'housekeeper wipes a glass shower door in a hotel bathroom' }
+  ];
   function initReveal() {
-    var r = $('#reveal'), input = $('#rv-range'); if (!r || !input) return;
+    var r = $('#reveal'), input = $('#rv-range'), tabs = $('#rv-tabs'); if (!r || !input) return;
     input.addEventListener('input', function () { r.style.setProperty('--p', input.value + '%'); r.classList.add('used'); });
+    if (!tabs) return;
+    tabs.innerHTML = PAIRS.map(function (p, i) { return '<button type="button" role="tab" data-pair="' + p.id + '" aria-selected="' + (i === 0) + '">' + esc(p.tab) + '</button>'; }).join('');
+    function show(id) {
+      var p = PAIRS.filter(function (x) { return x.id === id; })[0]; if (!p) return;
+      $$('#rv-tabs [data-pair]').forEach(function (b) { b.setAttribute('aria-selected', String(b.getAttribute('data-pair') === id)); });
+      r.classList.add('swap');
+      setTimeout(function () {
+        $('#rv-human').src = p.h; $('#rv-human').alt = 'Concept rendering: ' + p.alt;
+        $('#rv-robot').src = p.r; $('#rv-robot').alt = 'The same room and camera view with an illustrative robot doing the same task';
+        $('#rv-tag-l').textContent = p.who; $('#rv-cap').innerHTML = p.cap;
+        r.classList.remove('swap');
+      }, reduce ? 0 : 180);
+    }
+    tabs.addEventListener('click', function (e) { var b = e.target.closest('[data-pair]'); if (b) show(b.getAttribute('data-pair')); });
+    PAIRS.forEach(function (p) { [p.h, p.r].forEach(function (u) { var im = new Image(); im.src = u; }); });
   }
 
   /* ------------------------------------------------------------ building */

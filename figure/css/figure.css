@@ -185,3 +185,11 @@ section.rule{padding-block:clamp(56px,7vw,96px)}
 .env figcaption::before,.room-card figcaption::before{display:none}
 .env figcaption b,.room-card figcaption b{color:var(--text)}
 .env figcaption .mono,.room-card figcaption .mono{text-transform:uppercase;letter-spacing:.16em}
+.rv-tabs{display:flex;flex-wrap:wrap;gap:6px;margin-top:26px}
+.rv-tabs button{background:transparent;border:1px solid var(--line);color:var(--muted);font-family:var(--sans);font-size:.88rem;padding:8px 13px;border-radius:2px;cursor:pointer}
+.rv-tabs button:hover{color:var(--teal);border-color:var(--teal-dim)}
+.rv-tabs button[aria-selected="true"]{border-color:var(--teal);color:var(--teal);background:rgba(61,232,176,.08)}
+.fg-reveal{margin-top:14px}
+.reveal img{transition:opacity .18s}
+.reveal.swap img{opacity:0}
+@media(max-width:480px){.rv-tabs button{font-size:.78rem;padding:6px 9px}}
