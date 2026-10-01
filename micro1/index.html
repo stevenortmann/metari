@@ -52,9 +52,8 @@
     <span class="concept-chip mono" title="Private concept page behind a simple browser password">Private concept</span>
     <div class="nav-links mono">
       <a href="#fit">The fit</a>
+      <a href="#loop">How it runs</a>
       <a href="#order">Run an order</a>
-      <a href="#scope">Physical scope</a>
-      <a href="#loops">Feedback loops</a>
       <a href="#together">Working together</a>
       <a href="#pilot">Design the pilot</a>
     </div>
@@ -164,6 +163,52 @@
       <div class="tile-b"><span class="mono">04</span><h3>Evidence you can audit</h3><p>Preflight checks, reason codes, recapture lineage and a per-batch manifest. Rejects are shown, not hidden.</p></div>
     </article>
   </div>
+</section>
+
+<section id="loop" class="wrap wide rule" aria-labelledby="loop-h">
+  <div class="sec-head">
+    <span class="sec-num">How it runs</span>
+    <h2 id="loop-h">One loop. Each pass returns a sharper brief.</h2>
+  </div>
+  <p class="lede">The task is set with the partner. Metari captures the expertise, evaluates against the agreed scorecard, and learns from what broke, in the same room on the same rig, so every pass is comparable to the last.</p>
+  <figure class="loop2">
+    <svg class="loop2-svg" viewBox="0 0 900 566" role="img" aria-labelledby="loop2-t loop2-d">
+      <title id="loop2-t">The Metari loop</title>
+      <desc id="loop2-d">A closed four-stage loop. 01, set with the partner: define the task, which produces a task brief. 02, Metari: capture expertise, producing hours and judgment. 03, Metari: evaluate performance, producing a scorecard. 04, Metari: learn from deployment, which feeds what broke back into defining the task. Same room, same rig, every pass.</desc>
+      <defs>
+        <marker id="l2Arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#2AC48E"/></marker>
+        <radialGradient id="l2Dot"><stop offset="0" stop-color="#E9FFF7"/><stop offset=".45" stop-color="#3DE8B0"/><stop offset="1" stop-color="#3DE8B0" stop-opacity="0"/></radialGradient>
+        <radialGradient id="l2Bg" cx="50%" cy="48%" r="50%"><stop offset="0" stop-color="#3DE8B0" stop-opacity=".07"/><stop offset="1" stop-color="#3DE8B0" stop-opacity="0"/></radialGradient>
+      </defs>
+      <circle cx="450" cy="270" r="250" fill="url(#l2Bg)"/>
+      <circle class="l2-ring" cx="450" cy="270" r="165"/>
+      <path class="l2-arc" marker-end="url(#l2Arrow)" d="M 560.4 147.4 A 165 165 0 0 1 607.8 221.8"/>
+      <path class="l2-arc" marker-end="url(#l2Arrow)" d="M 607.8 318.2 A 165 165 0 0 1 560.4 392.6"/>
+      <path class="l2-arc" marker-end="url(#l2Arrow)" d="M 339.6 392.6 A 165 165 0 0 1 292.2 318.2"/>
+      <path class="l2-arc" marker-end="url(#l2Arrow)" d="M 292.2 221.8 A 165 165 0 0 1 339.6 147.4"/>
+      <text class="l2-edge" x="616" y="111">TASK BRIEF</text>
+      <text class="l2-edge" x="616" y="433">HOURS + JUDGMENT</text>
+      <text class="l2-edge" x="284" y="433" text-anchor="end">SCORECARD</text>
+      <text class="l2-edge" x="284" y="111" text-anchor="end">WHAT BROKE</text>
+      <text class="l2-mid" x="450" y="256" text-anchor="middle">Same room.</text>
+      <text class="l2-mid" x="450" y="280" text-anchor="middle">Same rig.</text>
+      <text class="l2-sub" x="450" y="304" text-anchor="middle">EVERY PASS</text>
+      <g class="l2-node partner n1"><rect x="355" y="74" width="190" height="62" rx="4"/><text class="l2-num" x="450" y="99" text-anchor="middle">01 &#183; WITH PARTNER</text><text class="l2-title" x="450" y="122" text-anchor="middle">Define the task</text></g>
+      <g class="l2-node n2"><rect x="520" y="239" width="200" height="62" rx="4"/><text class="l2-num" x="620" y="264" text-anchor="middle">02 &#183; METARI</text><text class="l2-title" x="620" y="287" text-anchor="middle">Capture expertise</text></g>
+      <g class="l2-node n3"><rect x="345" y="404" width="210" height="62" rx="4"/><text class="l2-num" x="450" y="429" text-anchor="middle">03 &#183; METARI</text><text class="l2-title" x="450" y="452" text-anchor="middle">Evaluate performance</text></g>
+      <g class="l2-node n4"><rect x="175" y="239" width="210" height="62" rx="4"/><text class="l2-num" x="280" y="264" text-anchor="middle">04 &#183; METARI</text><text class="l2-title" x="280" y="287" text-anchor="middle">Learn from deployment</text></g>
+      <circle class="l2-dot" r="11" fill="url(#l2Dot)"><animateMotion id="l2-motion" dur="12s" repeatCount="indefinite" path="M450,105 A165,165 0 1,1 449.99,105"/></circle>
+      <rect class="l2-key" x="300" y="520" width="14" height="14" rx="2"/><text class="l2-edge" x="324" y="532">METARI OPERATES</text>
+      <rect class="l2-key partner" x="500" y="520" width="14" height="14" rx="2"/><text class="l2-edge" x="524" y="532">SET WITH PARTNER</text>
+    </svg>
+    <figcaption><b>The Metari loop</b> Each pass returns a targeted brief, not more of the same</figcaption>
+  </figure>
+  <ol class="loop2-steps">
+    <li class="partner"><span class="mono">01 &middot; With partner</span><b>Define the task</b><small>Output: task brief</small></li>
+    <li><span class="mono">02 &middot; Metari</span><b>Capture expertise</b><small>Output: hours + judgment</small></li>
+    <li><span class="mono">03 &middot; Metari</span><b>Evaluate performance</b><small>Output: scorecard</small></li>
+    <li><span class="mono">04 &middot; Metari</span><b>Learn from deployment</b><small>Output: what broke, into the next brief</small></li>
+  </ol>
 </section>
 
 <section id="order" class="wrap wide rule" aria-labelledby="order-h">
@@ -454,5 +499,6 @@
 <script src="/micro1/js/views.js"></script>
 <script src="/micro1/js/planner.js"></script>
 <script src="/micro1/js/app.js"></script>
+<script>try{if(matchMedia("(prefers-reduced-motion: reduce)").matches){var m=document.getElementById("l2-motion");m&&m.remove();}}catch(e){}</script>
 </body>
 </html>

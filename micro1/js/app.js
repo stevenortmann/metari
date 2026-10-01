@@ -98,6 +98,22 @@
     if (msg) $('#status').textContent = msg;
     else if (!c.reconciles) $('#status').textContent = 'Reconciliation error.';
 
+    if (scene && scene.activity) {
+      var cur = M.current(prog, st), roomsAct = {};
+      if (alloc.length) ['guest', 'laundry', 'boh'].forEach(function (r) { var t = V.taskForRoom(r); roomsAct[r] = { text: c.byTask[t].accepted + '/' + c.byTask[t].target, active: ctl.running && st.phase === 'CAPTURING' && cur && cur.room === r }; });
+      var ev = null;
+      if (st.cursor > (ui.lastCursor || 0) && st.phase === 'CAPTURING') {
+        var pick = null;
+        for (var i = ui.lastCursor || 0; i < st.cursor; i++) { var it = prog.seq[i]; if (!pick || it.disp === 'rejected' || (it.disp === 'held_for_review' && pick.disp === 'accepted')) pick = it; }
+        var now = Date.now();
+        if (pick && (pick.disp !== 'accepted' || now - (ui.lastChip || 0) > 380)) {
+          ui.lastChip = now;
+          ev = { room: pick.room, cls: pick.disp === 'accepted' ? 'ok' : pick.disp === 'rejected' ? 'bad' : 'hold', text: pick.disp === 'accepted' ? (pick.recaptureOf ? '↻ recapture accepted' : '+1 accepted') : pick.disp === 'rejected' ? '✕ capture defect' : '◐ held for review' };
+        }
+      }
+      ui.lastCursor = st.cursor;
+      scene.activity(roomsAct, ev);
+    }
     var key = st.phase + '|' + c.accepted + '|' + ui.layer + '|' + ui.cameras;
     if (scene && key !== ui.lastSceneKey) { ui.lastSceneKey = key; scene.refresh(); }
     persist();

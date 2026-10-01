@@ -270,7 +270,10 @@
       n.innerHTML = fn();
       if (keep !== null && n.querySelector('.ep-list')) n.querySelector('.ep-list').scrollTop = keep;
     });
-    if (scene) scene.refresh();
+    if (scene) {
+      scene.refresh();
+      if (scene.activity && M.allocatedRooms(st).length) { var c = M.counts(prog, st), cur = M.current(prog, st), r = {}; ['guest', 'laundry', 'boh'].forEach(function (id) { var t = V.taskForRoom(id); r[id] = { text: c.byTask[t].accepted + '/' + c.byTask[t].target, active: ctl.running && st.phase === 'CAPTURING' && cur && cur.room === id }; }); scene.activity(r, null); }
+    }
   }
 
   function render(msg) { if (!prog) return; header(msg); update(false); persist(); }

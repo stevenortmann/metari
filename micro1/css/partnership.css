@@ -465,3 +465,51 @@ html:not(.gated) #pw-gate{display:none}
 .cta-play.warn .tri{background:var(--amber)}
 @keyframes ctaPulse{50%{box-shadow:0 20px 60px rgba(0,0,0,.5),0 0 0 12px rgba(61,232,176,.03)}}
 @media(max-width:560px){.top-run{margin-left:0}.cta-play{padding:10px 14px 10px 10px}.cta-play .tri{width:36px;height:36px}}
+
+/* ---------- live room activity (UI layer, simulated) ---------- */
+.v10-room-label .lp{margin-left:4px;color:var(--teal);font-weight:500;letter-spacing:.02em}
+.v10-room-label.is-alloc{border-color:rgba(61,232,176,.55);background:rgba(8,28,26,.88)}
+.v10-room-label.is-active{box-shadow:0 0 0 2px rgba(61,232,176,.25),0 0 18px rgba(61,232,176,.35)}
+.v10-room-label.is-active i{animation:roomPing 1s ease-out infinite}
+@keyframes roomPing{0%{box-shadow:0 0 0 0 rgba(61,232,176,.8)}100%{box-shadow:0 0 0 8px rgba(61,232,176,0)}}
+.v10-room-label .fly{position:absolute;left:50%;bottom:100%;margin-bottom:4px;transform:translateX(-50%);padding:2px 7px;font-size:9px;white-space:nowrap;pointer-events:none;border:1px solid;animation:flyUp 1.7s cubic-bezier(.2,.7,.3,1) forwards}
+.v10-room-label .fly.ok{color:#062018;background:var(--teal);border-color:var(--teal)}
+.v10-room-label .fly.bad{color:#2a0d08;background:var(--red);border-color:var(--red)}
+.v10-room-label .fly.hold{color:#1b1206;background:var(--amber);border-color:var(--amber)}
+@keyframes flyUp{0%{opacity:0;transform:translate(-50%,6px)}15%{opacity:1;transform:translate(-50%,0)}75%{opacity:1}100%{opacity:0;transform:translate(-50%,-26px)}}
+.plan-room.flash-ok rect{animation:flashOk .9s ease-out}
+.plan-room.flash-bad rect{animation:flashBad 1.4s ease-out}
+.plan-room.flash-hold rect{animation:flashHold 1.2s ease-out}
+@keyframes flashOk{0%{stroke:#9fffe0;stroke-width:.5}}
+@keyframes flashBad{0%{stroke:var(--red);stroke-width:.7}}
+@keyframes flashHold{0%{stroke:var(--amber);stroke-width:.6}}
+
+/* ---------- animated loop (How it runs) ---------- */
+.loop2{margin-top:30px;border:1px solid var(--line);background:linear-gradient(180deg,#0a1215,#070c0e);padding:18px 18px 14px}
+.loop2-svg{width:100%;height:auto;display:block;max-height:620px}
+.l2-ring{fill:none;stroke:#1E3A36;stroke-width:1.5;stroke-dasharray:3 7}
+.l2-arc{fill:none;stroke:#2AC48E;stroke-width:2.2}
+.l2-edge{fill:#6C838C;font-family:var(--mono);font-size:11px;letter-spacing:.16em}
+.l2-mid{fill:var(--text);font-family:var(--sans);font-size:19px;font-weight:400}
+.l2-sub{fill:var(--teal);font-family:var(--mono);font-size:11px;letter-spacing:.22em}
+.l2-node rect{fill:#121417;stroke:var(--teal);stroke-width:2}
+.l2-node.partner rect{stroke:#A9B4BA}
+.l2-num{fill:var(--teal);font-family:var(--mono);font-size:11.5px;letter-spacing:.16em}
+.l2-node.partner .l2-num{fill:#C9D2D6}
+.l2-title{fill:#fff;font-family:var(--sans);font-size:16.5px;font-weight:500}
+.l2-key{fill:none;stroke:var(--teal);stroke-width:2}
+.l2-key.partner{stroke:#A9B4BA}
+.l2-dot{filter:drop-shadow(0 0 8px rgba(61,232,176,.9))}
+.l2-node{animation:l2glow 12s linear infinite}
+.l2-node.n1{animation-delay:-.4s}.l2-node.n2{animation-delay:-9.4s}.l2-node.n3{animation-delay:-6.4s}.l2-node.n4{animation-delay:-3.4s}
+@keyframes l2glow{0%{filter:drop-shadow(0 0 14px rgba(61,232,176,.55))}12%{filter:none}100%{filter:none}}
+.loop2-steps{display:none;list-style:none;margin:20px 0 0;padding:0;gap:10px}
+.loop2-steps li{border:1px solid var(--teal-dim);background:var(--panel);padding:14px 16px;display:grid;gap:3px}
+.loop2-steps li.partner{border-color:#6f7b80}
+.loop2-steps .mono{color:var(--teal)}
+.loop2-steps li.partner .mono{color:var(--muted)}
+.loop2-steps b{font-family:var(--sans);font-weight:400;font-size:1.05rem}
+.loop2-steps small{color:var(--muted-2);font-size:.82rem}
+@media(max-width:700px){.loop2{display:none}.loop2-steps{display:grid}}
+.scene-2d[hidden],.scene-3d[hidden]{display:none!important}
+.scene-cta{inset:auto 0 44px 0;display:flex;justify-content:center}

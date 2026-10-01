@@ -108,6 +108,23 @@
       zoom: function (d) { if (renderer && renderer.getView) { var v = renderer.getView(); renderer.update({ zoom: Math.max(0.55, Math.min(4.5, v.zoom * (d > 0 ? 1.2 : 1 / 1.2))) }); } },
       reset: function () { selected = null; view.floor = 'all'; if (renderer && renderer.update) renderer.update(Object.assign({}, DEFAULT_VIEW, { panX: 0, panY: 0, selected: null, heat: heatOn() })); draw2d(); },
       toggle2d: function () { if (mode === '3d') { use2d(false); return '2d'; } use3d(); return '3d'; },
+      // Live activity: progress on room labels and short-lived event chips. Drawn in the UI layer only.
+      activity: function (rooms, ev) {
+        Object.keys(rooms || {}).forEach(function (id) {
+          var b = box3d.querySelector('[data-v10-room="' + id + '"]');
+          if (!b) return;
+          var p = b.querySelector('.lp'); if (!p) { p = document.createElement('b'); p.className = 'lp'; b.appendChild(p); }
+          p.textContent = rooms[id].text; b.classList.add('is-alloc'); b.classList.toggle('is-active', !!rooms[id].active);
+        });
+        if (!ev) return;
+        if (mode === '3d') {
+          var b = box3d.querySelector('[data-v10-room="' + ev.room + '"]');
+          if (b && !b.hidden) { var c = document.createElement('span'); c.className = 'fly ' + ev.cls; c.textContent = ev.text; c.setAttribute('aria-hidden', 'true'); b.appendChild(c); setTimeout(function () { c.remove(); }, 1700); }
+        } else {
+          var g = box2d.querySelector('[data-room="' + ev.room + '"]');
+          if (g) { g.classList.remove('flash-ok', 'flash-bad', 'flash-hold'); void g.getBoundingClientRect(); g.classList.add('flash-' + ev.cls); }
+        }
+      },
       destroy: function () { if (renderer && renderer.destroy) renderer.destroy(); renderer = null; },
       debug: function () { return box3d.__metariScene || null; }
     };
