@@ -513,3 +513,20 @@ html:not(.gated) #pw-gate{display:none}
 @media(max-width:700px){.loop2{display:none}.loop2-steps{display:grid}}
 .scene-2d[hidden],.scene-3d[hidden]{display:none!important}
 .scene-cta{inset:auto 0 44px 0;display:flex;justify-content:center}
+
+/* ---------- human vs humanoid reveal (same room, same frame) ---------- */
+.reveal{--p:50%;position:relative;width:100%;aspect-ratio:16/9;overflow:hidden;background:var(--panel);border:1px solid var(--line);touch-action:pan-y}
+.reveal img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border:0!important;aspect-ratio:auto!important}
+.rv-top{position:absolute;inset:0;clip-path:inset(0 calc(100% - var(--p)) 0 0)}
+.rv-line{position:absolute;top:0;bottom:0;left:var(--p);width:2px;background:var(--teal);transform:translateX(-1px);pointer-events:none;box-shadow:0 0 14px rgba(61,232,176,.45)}
+.rv-grip{position:absolute;top:50%;left:50%;width:44px;height:44px;margin:-22px 0 0 -22px;border:1px solid var(--teal);border-radius:50%;background:rgba(8,13,16,.72);backdrop-filter:blur(6px);display:grid;place-items:center}
+.rv-grip::before{content:"";width:13px;height:9px;background:linear-gradient(var(--teal),var(--teal)) left center/3px 9px no-repeat,linear-gradient(var(--teal),var(--teal)) right center/3px 9px no-repeat}
+.rv-range{position:absolute;inset:0;width:100%;height:100%;margin:0;padding:0;opacity:0;cursor:ew-resize;-webkit-appearance:none;appearance:none;background:transparent}
+.rv-range::-webkit-slider-thumb{-webkit-appearance:none;width:52px;height:100vh;cursor:ew-resize}
+.rv-range::-moz-range-thumb{width:52px;height:1000px;border:0;cursor:ew-resize}
+.rv-range:focus-visible{opacity:1;outline:2px solid var(--teal);outline-offset:-2px}
+.rv-tag{position:absolute;bottom:12px;background:rgba(8,13,16,.8);border:1px solid var(--line);color:var(--text);padding:5px 10px;backdrop-filter:blur(6px);pointer-events:none}
+.rv-tag.l{left:12px}.rv-tag.r{right:12px}
+.rv-hint{position:absolute;top:12px;left:50%;transform:translateX(-50%);background:rgba(8,13,16,.82);border:1px solid var(--teal-dim);color:var(--text);padding:7px 13px;pointer-events:none;white-space:nowrap;transition:opacity .5s}
+.reveal.used .rv-hint{opacity:0}
+@media(max-width:560px){.rv-tag,.rv-hint{font-size:.52rem;padding:4px 7px}}

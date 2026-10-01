@@ -10,7 +10,7 @@
 
   var APPROVALS = [['protocol', 'Protocol'], ['geographic_eligibility', 'Geographic eligibility'], ['site_access', 'Site access'], ['operator_consent', 'Operator consent'], ['safety_review', 'Safety review'], ['data_rights', 'Data rights'], ['commercial_scope', 'Commercial scope']];
   var SCOPE = [
-    { id: 'guest', tab: 'Guest rooms', img: '/1x/img/swap_human.jpg', alt: 'Concept rendering: housekeeper in a head-mounted capture rig places towels on a bed in an instrumented guest room', cap: 'Guest-room suite', sub: 'Linen placement', tag: 'Pilot scope', task: 'TASK-LINEN' },
+    { id: 'guest', tab: 'Guest rooms', img: '/1x/img/swap_human.jpg', robot: '/micro1/img/guest-room-robot.jpg', alt: 'Concept rendering: housekeeper in a head-mounted capture rig places towels on a bed in an instrumented guest room', cap: 'Guest-room suite', sub: 'Linen placement', tag: 'Pilot scope', task: 'TASK-LINEN' },
     { id: 'laundry', tab: 'Laundry & linen', img: '/micro1/img/evidence/laundry-overview.jpg', alt: 'Concept rendering: laundry attendant folding towels at a steel table in front of linen shelving', cap: 'Laundry & linen', sub: 'Sorting and folding', tag: 'Pilot scope', task: 'TASK-LAUNDRY' },
     { id: 'boh', tab: 'Service & supply', img: '/micro1/img/evidence/cart-overview.jpg', alt: 'Concept rendering: houseperson loading towels and amenities from labelled shelving onto a service cart', cap: 'Service & supply', sub: 'Cart and shelf replenishment', tag: 'Pilot scope', task: 'TASK-CART' },
     { id: 'kitchen', tab: 'Kitchen', img: '/micro1/img/kitchen.jpg', alt: 'Concept rendering: two chefs plating at a hotel kitchen pass, one wearing a head-mounted camera, with ceiling cameras', cap: 'Commercial kitchen', sub: 'Later order', tag: 'Expansion example', exp: true,
@@ -235,7 +235,10 @@
     var s = SCOPE.filter(function (x) { return x.id === id; })[0] || SCOPE[0];
     $('#scope-tabs').innerHTML = SCOPE.map(function (x) { return '<button class="chip" role="tab" type="button" data-scope="' + x.id + '" aria-selected="' + (x.id === s.id) + '" aria-pressed="' + (x.id === s.id) + '"' + (x.id === s.id ? '' : ' tabindex="-1"') + '>' + esc(x.tab) + '</button>'; }).join('');
     var T = s.task ? M.TASKS[s.task] : null;
-    $('#scope-panel').innerHTML = '<figure><img src="' + s.img + '" alt="' + esc(s.alt) + '" loading="lazy"><figcaption><b>' + esc(s.cap) + '</b> ' + esc(s.sub) + ' &middot; concept rendering</figcaption></figure>' +
+    var fig = s.robot
+      ? '<figure><div class="reveal" id="reveal" style="--p:' + (ui.revealP || 50) + '%"><img src="' + s.robot + '" alt="The same guest room and camera view with an illustrative humanoid robot placing the folded towels" loading="lazy"><div class="rv-top"><img src="' + s.img + '" alt="' + esc(s.alt) + '"></div><div class="rv-line" aria-hidden="true"><span class="rv-grip"></span></div><span class="rv-hint mono">Slide to compare</span><span class="rv-tag l mono">Human capture</span><span class="rv-tag r mono">Humanoid trial</span><input class="rv-range" id="rv-range" type="range" min="0" max="100" value="' + (ui.revealP || 50) + '" step="0.1" aria-label="Drag to compare the human demonstration with a humanoid attempting the same task in the same room"></div><figcaption><b>Towel placement &middot; same room, same frame</b> Human demonstration and humanoid trial, one calibrated view &middot; concept rendering, illustrative robot</figcaption></figure>'
+      : '<figure><img src="' + s.img + '" alt="' + esc(s.alt) + '" loading="lazy"><figcaption><b>' + esc(s.cap) + '</b> ' + esc(s.sub) + ' &middot; concept rendering</figcaption></figure>';
+    $('#scope-panel').innerHTML = fig +
       '<div class="scope-copy"><span class="tag mono' + (s.exp ? ' exp' : '') + '">' + esc(s.tag) + '</span><h3>' + esc(T ? T.name : s.cap) + '</h3>' +
       '<dl><dt>Example task</dt><dd>' + esc(T ? T.steps.join(', then ') + '.' : s.example) + '</dd>' +
       '<dt>Required evidence</dt><dd>' + esc(T ? T.evidence : s.evidence) + '</dd>' +
@@ -246,6 +249,7 @@
 
   /* ------------------------------------------------------------ events */
   function bind() {
+    document.addEventListener('input', function (e) { if (e.target.id !== 'rv-range') return; ui.revealP = +e.target.value; var r = $('#reveal'); r.style.setProperty('--p', ui.revealP + '%'); r.classList.add('used'); });
     $('#primary').addEventListener('click', primary);
     $('#top-run').addEventListener('click', function () { if (st.phase === 'DRAFT' || st.phase === 'NEEDS_CONFIRMATION') autoRun(false); else primary(); });
     $('#pause').addEventListener('click', function () { if (ctl.running) ctl.pause(); else ctl.play(true); });
