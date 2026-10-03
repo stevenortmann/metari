@@ -406,6 +406,12 @@
   .trace-note{margin-top:9px;font-size:11.5px;line-height:1.45;color:var(--faint)}
   .film-now{padding:7px 11px;border:1px solid var(--accent);border-radius:999px;background:rgba(5,8,10,.55);backdrop-filter:blur(8px);font:10.5px 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:#fff}
   .film-now:empty{visibility:hidden}
+  .founder-grid{margin-top:52px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:56px;align-items:center}
+  .founder-grid .founder-inner{margin-top:0;max-width:none}
+  .founder-fig{margin:0;position:relative;aspect-ratio:16/10;border-radius:18px;overflow:hidden;border:1px solid var(--line-soft);background:var(--bg-2)}
+  .founder-fig img{width:100%;height:100%;object-fit:cover;object-position:20% 50%}
+  .founder-fig .concept-tag{position:absolute;right:14px;bottom:14px;background:rgba(6,7,9,.62);backdrop-filter:blur(8px);color:#cfe0d8}
+  @media (max-width:960px){.founder-grid{grid-template-columns:1fr;gap:32px}.founder-fig{order:-1}}
   .shift-card .sfig{margin:-30px -30px 26px;aspect-ratio:16/9;overflow:hidden;border-radius:15px 15px 0 0;background:var(--bg-2)}
   .shift-card .sfig img{width:100%;height:100%;object-fit:cover}
   #network-scale .scale-fig{margin-top:44px;position:relative;aspect-ratio:2/1;border:1px solid var(--line-soft);border-radius:18px;overflow:hidden;background:var(--bg-2)}
@@ -1060,10 +1066,13 @@
   <div class="wrap">
     <span class="eyebrow reveal">Founder</span>
     <h2 class="big sec-head reveal d1">Built from experience running the work.</h2>
+    <div class="founder-grid">
     <div class="founder-inner">
       <p class="f-quote reveal d1">Helping humanoids learn how real work should be <span class="accent">performed and evaluated</span>, from someone who has spent a career defining and running it.</p>
       <p class="f-bio reveal d2">Steven Ortmann brings more than 20 years of hospitality operating experience, including leading teams, defining operating procedures, and managing service quality. Metari applies that perspective to a new challenge: helping humanoids learn how real work should be performed and evaluated.</p>
       <div class="f-name reveal d3"><span class="nm">Steven Ortmann</span><span class="rl">Founder, Metari</span></div>
+    </div>
+    <figure class="founder-fig reveal d2"><img width="1400" height="874" src="assets/story/founder-steven-ortmann.webp" alt="Steven Ortmann, founder of Metari, in a navy blazer in front of a concept rendering of a Metari campus at dusk." loading="lazy"><span class="concept-tag">Concept visualization</span></figure>
     </div>
   </div>
 </section>
