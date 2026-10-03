@@ -31,7 +31,7 @@
   body{background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;line-height:1.6;overflow-x:hidden;letter-spacing:-0.01em}
   ::selection{background:var(--accent);color:#04120e}
   a{color:inherit;text-decoration:none}
-  img{max-width:100%;display:block}
+  img{max-width:100%;height:auto;display:block}
   .wrap{width:100%;max-width:var(--maxw);margin:0 auto;padding:0 32px}
   .mono{font-family:'JetBrains Mono',monospace;letter-spacing:0}
   .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
@@ -303,6 +303,72 @@
   @media (max-width:960px){.split2{grid-template-columns:1fr}.rev-grid{grid-template-columns:1fr}}
   @media (max-width:700px){.car-slide{width:85vw}.car-btn{display:none}}
   .block-tight{padding:70px 0}
+  /* ===== STORY PASS ===== */
+  /* static brand mark */
+  .mt-mark,.mt-spin,.mt-core{animation:none!important}
+  .mt-ring{display:none}
+  .mt-mark{filter:drop-shadow(0 0 4px rgba(46,254,169,.45))}
+
+  /* hero: deck cover */
+  .hero.cover{min-height:100svh;align-items:center}
+  .hero.cover .hero-bg{overflow:hidden;background:#05080a}
+  .hero.cover .hero-bg img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:22% 50%;transform-origin:62% 55%}
+  @media (prefers-reduced-motion:no-preference){.hero.cover .hero-bg img{animation:heroPush 16s cubic-bezier(.2,.7,.2,1) both}}
+  @keyframes heroPush{from{transform:scale(1.07)}to{transform:scale(1)}}
+  .hero.cover .hero-scrim{background:linear-gradient(90deg,rgba(4,7,8,.92) 0%,rgba(4,7,8,.72) 30%,rgba(4,7,8,.18) 52%,rgba(4,7,8,0) 70%),linear-gradient(180deg,rgba(4,7,8,.55) 0%,rgba(4,7,8,0) 18%,rgba(4,7,8,0) 70%,rgba(4,7,8,.95) 100%)}
+  .hero.cover .wrap{padding-top:140px;padding-bottom:120px}
+  .hero.cover h1.hero-title{font-size:clamp(44px,6.2vw,92px);line-height:.98;letter-spacing:-.035em;max-width:11ch}
+  .hero.cover .hero-sub{max-width:44ch;color:#D6DEDA}
+  .hero.cover .hero-tag{top:auto;bottom:24px;right:28px}
+  .aud2{margin-top:56px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));max-width:820px;border-top:1px solid rgba(255,255,255,.14)}
+  .aud2 a{display:block;padding:18px 22px 4px 0;margin-right:22px;transition:color .25s}
+  .aud2 a+a{padding-left:22px;border-left:1px solid rgba(255,255,255,.1)}
+  .aud2 .k{display:block;font:10.5px 'JetBrains Mono',monospace;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+  .aud2 b{display:block;margin-top:8px;font-size:15px;font-weight:500;line-height:1.35;color:#E7EEEA}
+  .aud2 a:hover b{color:#fff}
+  .aud2 i{font-style:normal;color:var(--accent);margin-left:4px;transition:margin .25s}
+  .aud2 a:hover i{margin-left:9px}
+  @media (max-width:960px){
+    .hero.cover{align-items:flex-end}
+    .hero.cover .hero-bg{bottom:auto;height:86svh}
+    .hero.cover .hero-bg:after{content:"";position:absolute;left:0;right:0;bottom:0;height:30%;background:linear-gradient(180deg,rgba(5,8,10,0),#05080a)}
+    .hero.cover{background:#05080a}
+    .hero.cover .hero-bg img{object-position:50% 40%}
+    .hero.cover .hero-scrim{background:linear-gradient(180deg,rgba(4,7,8,.55) 0%,rgba(4,7,8,0) 22%,rgba(4,7,8,.35) 48%,rgba(4,7,8,.96) 76%)}
+    .hero.cover .wrap{padding-top:52vh;padding-bottom:64px}
+    .aud2{grid-template-columns:1fr;margin-top:36px}
+    .aud2 a,.aud2 a+a{padding:14px 0;margin:0;border-left:0;border-bottom:1px solid rgba(255,255,255,.08)}
+    .hero.cover .hero-tag{bottom:auto;top:88px;right:16px}
+  }
+
+  /* problem */
+  .prob{margin-top:56px;display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  .prob figure{margin:0}
+  .prob .ph{position:relative;aspect-ratio:16/10;border-radius:14px;overflow:hidden;background:var(--bg-2)}
+  .prob .ph img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--ease)}
+  .prob figure:hover .ph img{transform:scale(1.03)}
+  .prob figcaption{margin-top:18px}
+  .prob figcaption .n{display:block;font:12px 'JetBrains Mono',monospace;letter-spacing:.12em;color:var(--accent)}
+  .prob figcaption b{display:block;margin-top:6px;font-size:21px;font-weight:600;letter-spacing:-.015em}
+  .prob figcaption .d{display:block;margin-top:4px;font-size:15px;color:var(--dim)}
+  .prob-close{margin-top:52px;font-size:clamp(20px,2.2vw,28px);font-weight:600;letter-spacing:-.02em;line-height:1.3;max-width:34ch;color:#fff}
+  .prob-close em{font-style:normal;color:var(--accent)}
+  @media (max-width:960px){.prob{grid-template-columns:1fr;gap:30px}}
+
+  /* film */
+  .film-frame{position:relative;margin-top:48px;border-radius:20px;overflow:hidden;background:#05080a;aspect-ratio:16/9;box-shadow:0 50px 140px rgba(0,0,0,.55)}
+  .film-frame video,.film-frame>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+  .film-frame:after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(5,8,10,0) 55%,rgba(5,8,10,.82) 100%)}
+  .film-ov{position:absolute;left:28px;right:28px;bottom:24px;z-index:2;display:flex;justify-content:space-between;align-items:flex-end;gap:18px;flex-wrap:wrap}
+  .film-steps{display:flex;gap:8px;flex-wrap:wrap}
+  .film-steps span{padding:7px 11px;border:1px solid rgba(255,255,255,.18);border-radius:999px;background:rgba(5,8,10,.45);backdrop-filter:blur(8px);font:10.5px 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:#cfe0d8;transition:all .4s}
+  .film-steps span.on{border-color:var(--accent);color:#fff;background:rgba(46,254,169,.16)}
+  .film-ctl{display:flex;gap:10px;align-items:center}
+  .film-ctl .btn:not(.btn-primary){background:rgba(5,8,10,.55);backdrop-filter:blur(8px)}
+  .film-tag{position:absolute;left:20px;top:18px;z-index:2;background:rgba(5,8,10,.5)}
+  @media (max-width:700px){.film-frame{border-radius:14px}.film-ov{left:14px;right:14px;bottom:12px}.film-steps{display:none}.film-tag{left:12px;top:12px}#storyPause{display:none}.film-ctl .btn{padding:10px 16px;font-size:13.5px}}
+
+
   /* ===== HERO (film) ===== */
   .hero{min-height:100svh}
   .hero-bg video,.hero-bg img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
@@ -435,7 +501,7 @@
   /* ===== CONTACT (art) ===== */
   .contact.art{position:relative;overflow:hidden;padding:150px 0 140px;border-top:0}
   .contact.art .c-bg{position:absolute;inset:0;z-index:0}
-  .contact.art .c-bg img{width:100%;height:100%;object-fit:cover;object-position:22% 50%}
+  .contact.art .c-bg img{width:100%;height:100%;object-fit:cover;object-position:28% 50%}
   .contact.art .c-bg:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(4,8,9,.94) 0%,rgba(4,8,9,.86) 38%,rgba(4,8,9,.35) 66%,rgba(4,8,9,.15) 100%),linear-gradient(180deg,rgba(6,7,9,.7),rgba(6,7,9,0) 22%,rgba(6,7,9,0) 75%,rgba(6,7,9,.9))}
   .contact.art .contact-inner{position:relative;z-index:2;max-width:var(--maxw);text-align:left}
   .contact.art .c-col{max-width:560px}
@@ -559,6 +625,21 @@
   @media(max-width:1050px){.cc-body{grid-template-columns:220px minmax(0,1fr)}.cc-detail{grid-column:1/-1;border-left:0;border-top:1px solid var(--line)}.cc-detail-inner{display:grid;grid-template-columns:260px 1fr;gap:24px;align-items:start}.cc-detail dl{margin-top:0}}
   @media(max-width:700px){.cc-top{align-items:flex-start;flex-direction:column}.cc-body{display:block}.cc-orders,.cc-map,.cc-detail{padding:20px;border:0;border-bottom:1px solid var(--line)}.cc-orders{display:flex;gap:9px;overflow-x:auto}.cc-orders .cc-heading{min-width:100%;display:none}.cc-order{min-width:190px;margin:0}.cc-stage{grid-template-rows:repeat(2,90px);min-height:0}.cc-room{padding:8px;font-size:10px}.cc-room span{font-size:11px}.cc-detail-inner{display:block}.cc-detail dl{margin-top:18px}}
   @media(prefers-reduced-motion:reduce){.cc-room.active:after{animation:none}}
+  /* editorial: cards become ruled columns */
+  .cols3{gap:36px}
+  .cols3 .mcol{background:none;border:0;border-top:1px solid var(--line);border-radius:0;padding:28px 0 0}
+  .cols3 .mcol:hover{transform:none;border-color:var(--accent)}
+  .cols3 .mcol .step{font-size:12px;color:var(--accent)}
+  .cols3 .mcol h3{font-size:24px}
+  #status .status-grid{gap:0 32px}
+  #status .st{background:none;border:0;border-top:1px solid var(--line);border-radius:0;padding:24px 0 6px}
+  #status .st.live{border-top-color:rgba(46,254,169,.55)}
+  #revenue .rev-grid,#network-scale .rev-grid{gap:0 32px}
+  #revenue .rev-card,#network-scale .rev-card{background:none;border:0;border-top:1px solid var(--line);border-radius:0;padding:26px 0 18px}
+  #network-scale .rev-card.rev-wide{margin-top:12px}
+  #revenue .rev-card:first-child{border-top-color:rgba(46,254,169,.55)}
+  #network-scale .figure{border:0;border-radius:18px}
+  .shift-card{border-radius:14px}
 </style>
 <svg class="mt-defs" width="0" height="0" aria-hidden="true"><defs><radialGradient id="mtGlow" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#f2fff9"/><stop offset="16%" stop-color="#3affb2"/><stop offset="46%" stop-color="#2efea9" stop-opacity="0.72"/><stop offset="100%" stop-color="#2efea9" stop-opacity="0"/></radialGradient></defs></svg>
 <nav id="nav">
@@ -566,11 +647,11 @@
     <a href="#top" aria-label="Metari home"><span class="brand"><span class="mt-mark"><svg viewBox="0 0 100 100" class="mt-svg" aria-hidden="true"><g class="mt-spin"><path d="M 50.0 3.0 L 54.59 38.91 L 83.23 16.77 L 61.09 45.41 L 97.0 50.0 L 61.09 54.59 L 83.23 83.23 L 54.59 61.09 L 50.0 97.0 L 45.41 61.09 L 16.77 83.23 L 38.91 54.59 L 3.0 50.0 L 38.91 45.41 L 16.77 16.77 L 45.41 38.91 Z" fill="url(#mtGlow)"/></g><circle class="mt-ring" cx="50" cy="50" r="9" fill="none" stroke="#2efea9" stroke-width="2.4"/><circle class="mt-ring mt-ring2" cx="50" cy="50" r="9" fill="none" stroke="#2efea9" stroke-width="2"/><circle class="mt-core" cx="50" cy="50" r="7" fill="#f2fff9"/></svg></span><span class="brand-word">METARI</span></span></a>
     <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false">&#9776;</button>
     <div class="nav-links" id="navLinks">
-      <a href="#model" class="link">How it works</a>
+      <a href="#problem" class="link">Why now</a>
       <a href="#brain" class="link">Intelligence</a>
       <a href="#command-center" class="link">Command Center</a>
       <a href="#configurations" class="link">Environments</a>
-      <a href="#deliverable" class="link">What you receive</a>
+      <a href="#status" class="link">Company</a>
       <a href="#founder" class="link">Founder</a>
       <a href="https://metari-command-center.vercel.app" class="btn btn-ext" target="_blank" rel="noopener">Open workspace</a>
       <a href="#contact" class="btn btn-primary" data-inquiry="">Contact</a>
@@ -578,27 +659,40 @@
   </div>
 </nav>
 
-<header class="hero" id="top">
-  <div class="hero-bg"><video id="heroVideo" autoplay muted loop playsinline preload="auto" poster="assets/metari-hero-poster.webp" aria-hidden="true"><source src="assets/metari-hero-loop.mp4" type="video/mp4" /><source src="assets/metari-hero-loop.webm" type="video/webm" /></video></div>
+<header class="hero cover" id="top">
+  <div class="hero-bg"><picture><source media="(max-width:700px)" srcset="assets/story/hero-portrait.webp" width="900" height="1451"><img src="assets/story/hero-2560.webp" srcset="assets/story/hero-1280.webp 1280w, assets/story/hero-2560.webp 2560w" sizes="100vw" width="2560" height="1446" alt="Concept rendering of a Metari campus at night: a glowing layered intelligence stack in front of the Metari building, with a humanoid visible inside." fetchpriority="high" /></picture></div>
   <div class="hero-scrim"></div>
-  <span class="concept-tag hero-tag">Concept film &middot; campus not yet built</span>
-  <button class="hero-pause" id="heroPause" type="button" aria-label="Pause background film">&#10074;&#10074;</button>
+  <span class="concept-tag hero-tag">Concept visualization</span>
   <div class="wrap">
-    <span class="eyebrow reveal in">Physical Intelligence Infrastructure</span>
+    <span class="eyebrow reveal in">Physical intelligence infrastructure</span>
     <h1 class="hero-title reveal in d1">An API to the <span class="accent">physical world.</span></h1>
     <p class="hero-sub reveal in d2">Robots cannot learn work they have never seen. Metari builds and operates the environments where that work happens, then holds them still so progress can be measured. Collect, train, deploy.</p>
     <div class="hero-cta reveal in d2">
       <a href="https://metari-command-center.vercel.app" class="btn btn-primary btn-lg btn-ext" target="_blank" rel="noopener">Open the Command Center</a>
       <a href="#contact" class="btn btn-lg" data-inquiry="">Discuss a project</a>
-      <button class="btn btn-lg" id="heroFilmBtn" type="button">Watch the full film &middot; 2:02</button>
     </div>
-    <div class="aud reveal in d3">
-      <a href="#deliverable"><span class="k">Physical-AI &amp; data teams</span><b>Expert data and repeatable evaluation, made to order.</b><span class="go">What a lab receives &rarr;</span></a>
-      <a href="#deployment"><span class="k">Enterprise operators</span><b>Watch it work in your kind of room before you buy.</b><span class="go">Pilots and deployment &rarr;</span></a>
-      <a href="#revenue"><span class="k">Investors</span><b>Software today. Facilities on demand.</b><span class="go">The business model &rarr;</span></a>
+    <div class="aud2 reveal in d3">
+      <a href="#deliverable"><span class="k">Physical-AI &amp; data teams</span><b>Expert data and repeatable evaluation, made to order<i>&rarr;</i></b></a>
+      <a href="#deployment"><span class="k">Enterprise operators</span><b>See it work in your kind of room before you buy<i>&rarr;</i></b></a>
+      <a href="#revenue"><span class="k">Investors</span><b>Software today. Facilities on demand<i>&rarr;</i></b></a>
     </div>
   </div>
 </header>
+<!-- THE PROBLEM -->
+<section class="block" id="problem">
+  <div class="wrap">
+    <span class="eyebrow reveal">The problem</span>
+    <h2 class="big sec-head reveal d1">A great demo is not a deployable robot.</h2>
+    <p class="lead reveal d1">Real work changes from room to room, shift to shift and person to person. Models trained on tidy demos fail on the variation, the sequence and the judgment that real service work demands.</p>
+    <div class="prob">
+      <figure class="reveal d1"><div class="ph"><img src="assets/story/variation.webp" width="1280" height="720" alt="A humanoid working in a large banquet hall" loading="lazy"></div><figcaption><span class="n">01</span><b>Variation</b><span class="d">Layouts, objects and lighting change every day.</span></figcaption></figure>
+      <figure class="reveal d2"><div class="ph"><img src="assets/story/workflow.webp" width="1280" height="720" alt="An expert's hands tucking the corner of a bed sheet" loading="lazy"></div><figcaption><span class="n">02</span><b>Workflow</b><span class="d">Tasks take sequence, context and judgment.</span></figcaption></figure>
+      <figure class="reveal d3"><div class="ph"><img src="assets/story/evidence.webp" width="1280" height="720" alt="A humanoid tested at a bench while an engineer observes" loading="lazy"></div><figcaption><span class="n">03</span><b>Evidence</b><span class="d">Reliability has to be tested, not assumed.</span></figcaption></figure>
+    </div>
+    <p class="prob-close reveal d2">Robotics teams need controlled access to real work <em>before customers trust deployment.</em> That access is what Metari builds.</p>
+  </div>
+</section>
+
 <!-- MODEL -->
 <section class="block" id="model">
   <div class="wrap">
@@ -627,6 +721,7 @@
     </div>
   </div>
 </section>
+
 <!-- METARI BRAIN -->
 <section class="slide-sec cream" id="brain" aria-label="The Metari Brain">
   <div class="slide brain">
@@ -665,13 +760,13 @@
       <div class="tour-frame">
         <div class="tour-bar"><i></i><i></i><i></i><span class="url">metari / command center / <b id="tourCrumb">Overview</b></span><span class="sim">Simulated data</span></div>
         <div class="tour-screens" role="tabpanel" aria-live="polite">
-          <img class="on" src="assets/tour/01-overview.webp" alt="Metari Command Center, Overview screen. Simulated data." loading="eager" decoding="async">
-          <img src="assets/tour/02-orders.webp" alt="Metari Command Center, Data orders screen. Simulated data." loading="lazy" decoding="async">
-          <img src="assets/tour/03-heatmap.webp" alt="Metari Command Center, Property intelligence screen. Simulated data." loading="lazy" decoding="async">
-          <img src="assets/tour/04-humans.webp" alt="Metari Command Center, Human ops screen. Simulated data." loading="lazy" decoding="async">
-          <img src="assets/tour/05-datasets.webp" alt="Metari Command Center, Capture and QA screen. Simulated data." loading="lazy" decoding="async">
-          <img src="assets/tour/06-proactive.webp" alt="Metari Command Center, Proactive collection screen. Simulated data." loading="lazy" decoding="async">
-          <img src="assets/tour/07-showroom.webp" alt="Metari Command Center, Humanoid gallery screen. Simulated data." loading="lazy" decoding="async">
+          <img width="2400" height="1500" class="on" src="assets/tour/01-overview.webp" alt="Metari Command Center, Overview screen. Simulated data." loading="eager" decoding="async">
+          <img width="2400" height="1500" src="assets/tour/02-orders.webp" alt="Metari Command Center, Data orders screen. Simulated data." loading="lazy" decoding="async">
+          <img width="2400" height="1500" src="assets/tour/03-heatmap.webp" alt="Metari Command Center, Property intelligence screen. Simulated data." loading="lazy" decoding="async">
+          <img width="2400" height="1500" src="assets/tour/04-humans.webp" alt="Metari Command Center, Human ops screen. Simulated data." loading="lazy" decoding="async">
+          <img width="2400" height="1500" src="assets/tour/05-datasets.webp" alt="Metari Command Center, Capture and QA screen. Simulated data." loading="lazy" decoding="async">
+          <img width="2400" height="1500" src="assets/tour/06-proactive.webp" alt="Metari Command Center, Proactive collection screen. Simulated data." loading="lazy" decoding="async">
+          <img width="2400" height="1500" src="assets/tour/07-showroom.webp" alt="Metari Command Center, Humanoid gallery screen. Simulated data." loading="lazy" decoding="async">
         </div>
       </div>
       <div class="tour-cap">
@@ -682,51 +777,20 @@
     </div>
   </div>
 </section>
-<!-- STATUS -->
-<section class="block" id="status">
-  <div class="wrap">
-    <span class="eyebrow reveal">Where Metari is today</span>
-    <h2 class="big sec-head reveal d1">Software first. Facilities follow demand.</h2>
-    <p class="lead reveal d1">A plain account of what exists, what is in motion, and what is still a concept. Nothing on this page should be read as an operating facility or a signed program.</p>
-    <div class="status-grid">
-      <div class="st live reveal d1"><div class="sk"><i></i>Available now</div><h3>Command Center prototype</h3><p>The operating layer for orders, environment configuration, capture plans and evidence review. <a href="https://metari-command-center.vercel.app" target="_blank" rel="noopener">Open it</a> with investor access. Operating data is simulated.</p></div>
-      <div class="st live reveal d2"><div class="sk"><i></i>In motion</div><h3>Lab conversations</h3><p>Robotics and physical-AI teams in active discussions under NDA about scoped data and evaluation programs. Names are not published.</p></div>
-      <div class="st reveal d2"><div class="sk"><i></i>Planned</div><h3>Campus 01, hospitality</h3><p>The first capture and evaluation environment. Lease-first, instrumented in stages, capacity added against signed demand. No facility is operating yet.</p></div>
-      <div class="st reveal d3"><div class="sk"><i></i>In development</div><h3>Evaluation framework</h3><p>Metari Readiness: a structured scorecard for repeat runs in a held-still room. A report structure today, populated per program.</p></div>
-    </div>
-  </div>
-</section>
 
-<!-- CAMPUS SELECTOR -->
-<section class="block" id="campus">
+<!-- FILM -->
+<section class="block" id="film">
   <div class="wrap">
-    <span class="eyebrow reveal">Campus</span>
-    <h2 class="big sec-head reveal d1">A place to see, capture, and evaluate physical work.</h2>
-    <p class="lead reveal d1">Our campus concept brings public demonstrations, controlled task environments, and technical teams together in one setting.</p>
-    <div class="campus-stage reveal d2">
-      <div class="campus-media" id="campusMedia">
-        <img class="on" data-i="0" src="assets/campus/showroom.jpg" alt="Concept rendering of the public showroom with a humanoid on display and training visible through glass" loading="lazy" />
-        <img data-i="1" src="assets/campus/demo-chef.jpg" alt="Concept rendering of a chef demonstrating a plating technique beside a humanoid" loading="lazy" />
-        <img data-i="2" src="assets/campus/gardens.jpg" alt="Concept rendering of humanoids working in the campus gardens and grounds" loading="lazy" />
-        <img data-i="3" src="assets/campus/data-lab.jpg" alt="Concept rendering of the data and evaluation lab with motion-capture review on screens" loading="lazy" />
-        <span class="concept-tag">Concept visualization</span>
-        <div class="cscrim"></div>
-        <div class="clabel"><h3 id="campusTitle">Experience</h3><p id="campusDesc">Explore humanoids in an elegant public gallery, with supervised training activity visible through glass.</p></div>
+    <span class="eyebrow reveal">In motion</span>
+    <h2 class="big sec-head reveal d1">One building. Every step of the loop.</h2>
+    <p class="lead reveal d1">Experts demonstrate the work, the room captures it on one clock, the lab reviews it, and the same floor becomes the place a humanoid is evaluated and readied for a customer's property.</p>
+    <div class="film-frame reveal d2" id="filmFrame">
+      <video id="storyVideo" muted loop playsinline preload="none" poster="assets/story/film-poster.webp" aria-label="Concept film loop: expert demonstration, capture, data review, evaluation and supervised deployment"><source data-src="assets/story/metari-film-loop.mp4" type="video/mp4" /><source data-src="assets/story/metari-film-loop.webm" type="video/webm" /></video>
+      <span class="concept-tag film-tag">Concept film</span>
+      <div class="film-ov">
+        <div class="film-steps" id="filmSteps"><span data-t="0">Expertise</span><span data-t="4.2">Capture</span><span data-t="6.6">Data review</span><span data-t="8.6">Evaluation</span><span data-t="10.6">Variation</span><span data-t="12.6">Deployment</span></div>
+        <div class="film-ctl"><button class="btn" type="button" id="storyPause" aria-label="Pause film">Pause</button><button class="btn btn-primary" type="button" id="heroFilmBtn">Watch the full film &middot; 2:02</button></div>
       </div>
-      <div class="campus-picker" role="tablist" aria-label="Campus environments">
-        <button class="cpick active" role="tab" aria-selected="true" data-i="0" data-title="Experience" data-desc="Explore humanoids in an elegant public gallery, with supervised training activity visible through glass."><span class="k">Experience</span><span class="t">The public showroom</span></button>
-        <button class="cpick" role="tab" aria-selected="false" data-i="1" data-title="Demonstrate" data-desc="Capture the techniques, decisions, and corrections that experienced people bring to everyday work."><span class="k">Demonstrate</span><span class="t">Expert demonstrations</span></button>
-        <button class="cpick" role="tab" aria-selected="false" data-i="2" data-title="Expand" data-desc="Extend the same approach into gardens, groundskeeping, and maintenance."><span class="k">Expand</span><span class="t">Grounds and maintenance</span></button>
-        <button class="cpick" role="tab" aria-selected="false" data-i="3" data-title="Evaluate" data-desc="Review demonstrations, prepare structured datasets, and assess performance against defined task standards."><span class="k">Evaluate</span><span class="t">Data and evaluation</span></button>
-      </div>
-    </div>
-    <div class="figure reveal d2" style="margin-top:28px;aspect-ratio:21/9;cursor:pointer" id="filmStage" data-modal="filmModal" role="button" tabindex="0" aria-label="Play the Metari vision film">
-      <img src="assets/metari-vision-poster.jpg" alt="Concept rendering of guests arriving at a Metari campus" loading="lazy" />
-      <div style="position:absolute;inset:0;z-index:2;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;background:linear-gradient(180deg,rgba(6,7,9,.2),rgba(6,7,9,.5))">
-        <span style="width:78px;height:78px;border-radius:50%;background:rgba(46,254,169,.14);border:1.5px solid var(--accent);display:flex;align-items:center;justify-content:center;box-shadow:0 0 44px var(--accent-glow)"><span style="margin-left:6px;border-style:solid;border-width:12px 0 12px 20px;border-color:transparent transparent transparent var(--accent)"></span></span>
-        <span class="mono" style="font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--text)">Watch the vision film &middot; 2:02</span>
-      </div>
-      <span class="concept-tag" style="position:absolute;left:16px;top:16px;z-index:3;background:rgba(6,7,9,.5)">Concept visualization</span>
     </div>
   </div>
 </section>
@@ -744,17 +808,19 @@
   </div>
 </section>
 
-<section class="block" id="environments"><div class="wrap"><span class="eyebrow reveal">24/7 physical AI environments</span><h2 class="big sec-head reveal d1">A world built for robots to learn.</h2><p class="lead reveal d1">Twenty configurable environment types, each with its own task definitions, sensor plan and camera layout, managed from one library in the Command Center. Mock environments can be reset and densely instrumented without disrupting occupied rooms or active care settings.</p>
+<section class="block" id="environments"><div class="wrap"><span class="eyebrow reveal">The environment library</span><h2 class="big sec-head reveal d1">A world built for robots to learn.</h2><p class="lead reveal d1">Twenty configurable environment types, each with its own task definitions, sensor plan and camera layout, managed from one library in the Command Center. Mock environments can be reset and densely instrumented without disrupting occupied rooms or active care settings.</p>
     <div class="pframe reveal d2">
       <div class="pbar"><i></i><i></i><i></i><span>Command Center &middot; Environment library</span><b>Simulated data</b></div>
-      <div class="pimg fade"><img src="assets/command-center-environments.webp" alt="Metari Command Center environment library: a grid of configurable environments such as guest room, bathroom and commercial kitchen, each with task definitions, sensors and a camera layout. Simulated data." loading="lazy"></div>
+      <div class="pimg fade"><img width="1800" height="1191" src="assets/command-center-environments.webp" alt="Metari Command Center environment library: a grid of configurable environments such as guest room, bathroom and commercial kitchen, each with task definitions, sensors and a camera layout. Simulated data." loading="lazy"></div>
       <div class="pcap"><div><h3>Every room is a product.</h3><p>Open an environment, see its task definitions, sensors and variation coverage, then configure it for the next order.</p></div><div class="chips"><span>20 environment types</span><span>Task definitions</span><span>Camera layouts</span></div></div>
     </div>
     <div class="env-strip reveal d2">
       <span>Hotel room<small>bed making &middot; linen &middot; bathroom reset</small></span><span>Hotel lobby<small>luggage &middot; deliveries &middot; navigation</small></span><span>Commercial kitchen<small>prep &middot; tool use &middot; cleaning</small></span><span>Coffee shop<small>drink prep &middot; handoff</small></span><span>Laundry<small>sorting &middot; folding &middot; carts</small></span><span>Stairs + hallways<small>carrying &middot; multi-floor</small></span><span>Pool + landscaping<small>towels &middot; furniture &middot; tools</small></span><span>Hospital room<small>non-clinical support</small></span><span>Senior living<small>retrieval &middot; interaction</small></span><span>Maintenance workshop<small>tools &middot; inspection</small></span><span>Retail<small>stocking &middot; inventory</small></span><span class="more">Enterprise-specific rooms, configured around buyer requirements</span>
     </div>
     <div class="sec-cta reveal d3"><a href="https://metari-command-center.vercel.app" class="btn btn-ext" target="_blank" rel="noopener">Open the Environment library</a><span class="note">Private prototype &middot; sensors and counts are simulated</span></div>
-  </div></section><!-- DELIVERABLE -->
+  </div></section>
+
+<!-- DELIVERABLE -->
 <section class="block" id="deliverable">
   <div class="wrap">
     <span class="eyebrow reveal">What a lab receives</span>
@@ -762,16 +828,16 @@
     <p class="lead reveal d1">Every run is delivered as one package: synchronized views on a single clock, the task and environment it was captured against, the expert's decisions, and a review against the acceptance criteria the lab wrote. Rights are documented per episode.</p>
     <div class="pframe reveal d2">
       <div class="pbar"><i></i><i></i><i></i><span>Command Center &middot; Camera &amp; sensor layouts &middot; Guest room</span><b>Design estimate &middot; not surveyed</b></div>
-      <div class="pimg"><img src="assets/command-center-camera-layout.webp" alt="Metari Command Center camera and sensor layout for a guest room: a floor plan with six camera positions and their fields of view, task paths, coverage figures and a design preset panel. Simulated data." loading="lazy"></div>
+      <div class="pimg"><img width="1800" height="1365" src="assets/command-center-camera-layout.webp" alt="Metari Command Center camera and sensor layout for a guest room: a floor plan with six camera positions and their fields of view, task paths, coverage figures and a design preset panel. Simulated data." loading="lazy"></div>
     </div>
     <div class="sec-cta reveal d2" style="margin-top:18px"><span class="chips" style="display:flex;gap:8px;flex-wrap:wrap"><span style="padding:7px 10px;border:1px solid rgba(46,254,169,.3);border-radius:999px;font:10.5px 'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:#e5fff5">Ceiling &middot; wall &middot; wearable</span><span style="padding:7px 10px;border:1px solid rgba(46,254,169,.3);border-radius:999px;font:10.5px 'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:#e5fff5">Field of view per camera</span><span style="padding:7px 10px;border:1px solid rgba(46,254,169,.3);border-radius:999px;font:10.5px 'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:#e5fff5">Task paths</span><span style="padding:7px 10px;border:1px solid rgba(46,254,169,.3);border-radius:999px;font:10.5px 'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:#e5fff5">One clock</span></span><span class="note">The capture design behind every episode. Each camera is placed, aimed and checked against the task before a run.</span></div>
     <div class="spec" style="margin-top:40px">
       <div class="manifest reveal d2" aria-label="Illustrative episode manifest">
         <div class="mh"><span>Episode manifest &middot; <b>illustrative structure</b></span><span>EP-&#9135;&#9135;&#9135;&#9135;</span></div>
         <div class="mv">
-          <div class="cam"><img src="assets/campus/demo-housekeeping.jpg" alt="" loading="lazy"><span>CEILING</span></div>
-          <div class="cam"><img src="assets/campus/demo-housekeeping.jpg" alt="" loading="lazy" style="object-position:70% 40%"><span>WALL</span></div>
-          <div class="cam"><img src="assets/campus/demo-housekeeping.jpg" alt="" loading="lazy" style="object-position:30% 80%"><span>WEARABLE POV</span></div>
+          <div class="cam"><img width="1600" height="900" src="assets/campus/demo-housekeeping.jpg" alt="" loading="lazy"><span>CEILING</span></div>
+          <div class="cam"><img width="1600" height="900" src="assets/campus/demo-housekeeping.jpg" alt="" loading="lazy" style="object-position:70% 40%"><span>WALL</span></div>
+          <div class="cam"><img width="1600" height="900" src="assets/campus/demo-housekeeping.jpg" alt="" loading="lazy" style="object-position:30% 80%"><span>WEARABLE POV</span></div>
         </div>
         <dl>
           <div><dt>Task</dt><dd>Guest-room bed setup</dd></div>
@@ -791,6 +857,7 @@
         <li><span class="n">05</span><b>Rights and delivery</b><span>Consent and licence documented per episode. Delivered as per-episode bundles with a manifest, ready for model workflows.</span></li>
       </ul>
     </div>
+    <div class="sensor-strip reveal d3"><span>CEILING CAMERAS</span><span>WALL CAMERAS</span><span>RGB-D</span><span>DEPTH</span><span>WEARABLE POV</span><span>IMU</span><span>TOOL TRACKING</span><span>ROBOT TELEMETRY</span><span>EDGE COMPUTE</span><span>SYNC TIMESTAMPS</span></div>
     <p class="concept-note reveal d3">Illustrative structure. Field names and formats are set with each partner.</p>
   </div>
 </section>
@@ -805,12 +872,12 @@
     <div class="eval-grid">
       <div class="eval-card reveal d1">
         <div class="ehead">Demonstration environment</div>
-        <div class="fig"><img src="assets/campus/demo-housekeeping.jpg" alt="Concept rendering of the original demonstration environment" loading="lazy"></div>
+        <div class="fig"><img width="1600" height="900" src="assets/campus/demo-housekeeping.jpg" alt="Concept rendering of the original demonstration environment" loading="lazy"></div>
         <div class="ebody"><p>An expert demonstrates the task in a known layout, establishing the standard for a correct result.</p></div>
       </div>
       <div class="eval-card reveal d2">
         <div class="ehead">Changed environment</div>
-        <div class="fig"><img src="assets/campus/restaurant.jpg" alt="Concept rendering of a changed environment for evaluation" loading="lazy"></div>
+        <div class="fig"><img width="1600" height="900" src="assets/campus/restaurant.jpg" alt="Concept rendering of a changed environment for evaluation" loading="lazy"></div>
         <div class="ebody"><p>The shelf position and arrangement change, and the objects are presented differently.</p></div>
       </div>
       <div class="eval-card obs reveal d3">
@@ -823,9 +890,10 @@
           </ul>
         </div>
       </div>
-    </div><div class="readiness reveal d3"><div class="ready-m"><b class="ph mono">&#9135;&#9135; %</b><span>Task completion</span></div><div class="ready-m"><b class="ph mono">&#9135;&#9135;</b><span>Human interventions</span></div><div class="ready-m"><b class="ph mono">&#9135;&#9135; %</b><span>Recovery success</span></div><div class="ready-m"><b class="ph mono">&#9135;&#9135;</b><span>Safety events</span></div></div><p class="concept-tag reveal d3" style="margin-top:18px">Metari Readiness scorecard &middot; report structure, values populate per program &middot; not an industry certification</p>
+    </div>
   </div>
 </section>
+
 <!-- DEPLOYMENT + EXPERIENCE -->
 <section class="block" id="deployment">
   <div class="wrap">
@@ -833,18 +901,13 @@
     <h2 class="big sec-head reveal d1">The same building is where robots go to work.</h2>
     <p class="lead reveal d1">A Metari campus is not only where data is collected. It is where operators and the public see humanoids work in real settings, and where a robot is prepared, evaluated and readied before it enters a customer's property. Experience builds belief; belief drives adoption.</p>
     <div class="split2">
-      <div class="fig reveal d2"><img src="assets/campus/deployment.jpg" alt="Concept rendering of deployment and readiness bays at a Metari campus" loading="lazy"><span class="concept-tag">Concept visualization</span></div>
+      <div class="fig reveal d2"><img width="1600" height="900" src="assets/campus/deployment.jpg" alt="Concept rendering of deployment and readiness bays at a Metari campus" loading="lazy"><span class="concept-tag">Concept visualization</span></div>
       <ul class="pt-list reveal d2">
         <li>Experience site<span>A public showroom and guided demonstrations where enterprise buyers and the community see the work done, supervised, in rooms that look like theirs.</span></li>
         <li>Pilot floor<span>Supervised pilots run on the campus first, with the team that trained the model already on site, before anything moves into a live property.</span></li>
         <li>Readiness<span>Diagnostics, calibration and repeat evaluation in a held-still room, so a deployment decision rests on evidence rather than a demo.</span></li>
         <li>Deployment support<span>Hospitality operators and physical-AI teams meet on the same floor to plan real work, then carry the protocols into the first properties.</span></li>
       </ul>
-    </div>
-    <div class="status-grid" style="margin-top:28px;grid-template-columns:repeat(3,1fr)">
-      <div class="st reveal d1"><div class="sk"><i></i>Collect</div><h3>Expert data</h3><p>Order-driven capture of real work in configured rooms.</p></div>
-      <div class="st reveal d2"><div class="sk"><i></i>Evaluate</div><h3>Readiness evidence</h3><p>Repeat runs against the lab's acceptance criteria.</p></div>
-      <div class="st live reveal d3"><div class="sk"><i></i>Deploy</div><h3>Experience and pilots</h3><p>Showroom, supervised pilots and the first properties the robot works in.</p></div>
     </div>
   </div>
 </section>
@@ -872,19 +935,18 @@
   </div>
 </section>
 
-<!-- WHY METARI -->
-<section class="block" id="why">
+<!-- STATUS -->
+<section class="block" id="status">
   <div class="wrap">
-    <span class="eyebrow reveal">Why Metari</span>
-    <h2 class="big sec-head reveal d1">Built around the expertise behind the work.</h2>
-    <div class="why-grid">
-      <div class="why-card reveal d1"><div class="k">Expert access</div><h3>People who know the work</h3><p>Relationships with experienced operators and professionals who know how tasks should be performed.</p></div>
-      <div class="why-card reveal d1"><div class="k">Varied environments</div><h3>Rooms that change</h3><p>Configurable spaces that introduce new layouts, objects, conditions, and exceptions.</p></div>
-      <div class="why-card reveal d2"><div class="k">Consistent standards</div><h3>Comparable observations</h3><p>Task definitions and evaluation methods that make observations comparable across runs.</p></div>
-      <div class="why-card reveal d2"><div class="k">Operational feedback</div><h3>Learning from pilots</h3><p>Lessons from pilots that guide what to demonstrate, test, and improve next.</p></div>
+    <span class="eyebrow reveal">Where Metari is today</span>
+    <h2 class="big sec-head reveal d1">Software first. Facilities follow demand.</h2>
+    <p class="lead reveal d1">A plain account of what exists, what is in motion, and what is still a concept. Nothing on this page should be read as an operating facility or a signed program.</p>
+    <div class="status-grid">
+      <div class="st live reveal d1"><div class="sk"><i></i>Available now</div><h3>Command Center prototype</h3><p>The operating layer for orders, environment configuration, capture plans and evidence review. <a href="https://metari-command-center.vercel.app" target="_blank" rel="noopener">Open it</a> with investor access. Operating data is simulated.</p></div>
+      <div class="st live reveal d2"><div class="sk"><i></i>In motion</div><h3>Lab conversations</h3><p>Robotics and physical-AI teams in active discussions under NDA about scoped data and evaluation programs. Names are not published.</p></div>
+      <div class="st reveal d2"><div class="sk"><i></i>Planned</div><h3>Campus 01, hospitality</h3><p>The first capture and evaluation environment. Lease-first, instrumented in stages, capacity added against signed demand. No facility is operating yet.</p></div>
+      <div class="st reveal d3"><div class="sk"><i></i>In development</div><h3>Evaluation framework</h3><p>Metari Readiness: a structured scorecard for repeat runs in a held-still room. A report structure today, populated per program.</p></div>
     </div>
-    <div class="sensor-strip reveal d3"><span>CEILING CAMERAS</span><span>WALL CAMERAS</span><span>RGB-D</span><span>DEPTH</span><span>WEARABLE POV</span><span>IMU</span><span>TOOL TRACKING</span><span>ROBOT TELEMETRY</span><span>EDGE COMPUTE</span><span>SYNC TIMESTAMPS</span></div><p class="lead reveal d3" style="margin-top:30px">Collection that stops at delivery is a one-off purchase. The same rooms, held still and run as an evaluation environment, are what turn a data sale into a standing programme. Every pass returns a targeted brief, not more of the same.</p>
-    <p class="lead reveal d3" style="margin-top:30px">Our intended advantage is the combination: expert relationships, useful data collected with appropriate rights, repeatable evaluations, and experience that improves the next engagement.</p>
   </div>
 </section>
 
@@ -915,35 +977,6 @@
       <div class="rev-card rev-wide reveal d3"><div class="ph">Supply</div><h3>Rooms, not construction</h3><p>The properties within reach hold room inventory in the thousands, across multiple markets and property classes. Capacity is added by taking floors out of inventory and instrumenting them, not by constructing buildings. The camera rig and its calibration are the expensive part, and they never move.</p></div>
     </div>
     <p class="lead reveal d3" style="margin-top:30px">Each property becomes a compounding asset: an experience destination, a data-generation engine, and a deployment hub. <span style="color:var(--faint)">A concept for how the network could scale, not a description of existing operations.</span></p>
-    <div class="figure reveal d2" style="margin-top:40px;aspect-ratio:16/9;position:relative"><img src="assets/campus/network-map.jpg" alt="Illustrative map of a future Metari campus network" loading="lazy" style="width:100%;height:100%;object-fit:cover"></div>
-  </div>
-</section>
-
-<!-- ENGAGEMENT -->
-<section class="block" id="engage">
-  <div class="wrap">
-    <span class="eyebrow reveal">Engagement</span>
-    <h2 class="big sec-head reveal d1">Start with a specific task.</h2>
-    <div class="engage-grid">
-      <div class="engage-card reveal d1">
-        <div class="k">Humanoid &amp; physical-AI teams</div>
-        <h3>Data &amp; evaluation</h3>
-        <p>Discuss expert demonstrations, task variation, dataset requirements, and evaluation design.</p>
-        <a href="#contact" class="btn" data-inquiry="Data collection">Discuss a data or evaluation project</a>
-      </div>
-      <div class="engage-card reveal d2">
-        <div class="k">Hospitality operators</div>
-        <h3>Operating partnership</h3>
-        <p>Explore how your operating expertise and environments could contribute to future data collection and supervised pilots.</p>
-        <a href="#contact" class="btn" data-inquiry="Operating partnership">Explore an operating partnership</a>
-      </div>
-      <div class="engage-card reveal d3">
-        <div class="k">Investors &amp; strategic partners</div>
-        <h3>The infrastructure model</h3>
-        <p>Explore the Command Center prototype and the infrastructure model behind the campus network.</p>
-        <a href="#contact" class="btn" data-inquiry="Investment or strategic partnership">Connect with the founder</a>
-      </div>
-    </div>
   </div>
 </section>
 
@@ -959,9 +992,10 @@
     </div>
   </div>
 </section>
+
 <!-- CONTACT -->
 <section class="contact art" id="contact">
-  <div class="c-bg" aria-hidden="true"><img src="assets/slides/cover.webp" srcset="assets/slides/cover-1280.webp 1280w, assets/slides/cover.webp 2560w" sizes="100vw" alt="" loading="lazy"></div>
+  <div class="c-bg" aria-hidden="true"><img width="2560" height="1440" src="assets/story/closing-2560.webp" srcset="assets/story/closing-1280.webp 1280w, assets/story/closing-2560.webp 2560w" sizes="100vw" alt="" loading="lazy"></div>
   <span class="concept-tag c-tag">Concept visualization</span>
   <div class="wrap contact-inner"><div class="c-col">
     <span class="eyebrow reveal">Start a conversation</span>
@@ -1001,7 +1035,7 @@
       <p class="fnote">Expert-led data collection and evaluation infrastructure for physical AI, starting with hospitality.</p>
     </div>
     <div class="fcols">
-      <div class="fcol"><h4>Explore</h4><a href="#model">How it works</a><a href="#brain">The Metari Brain</a><a href="#command-center">Command Center</a><a href="#campus">Campus</a><a href="#configurations">Environments</a><a href="#deliverable">What you receive</a><a href="#deployment">Deployment</a><a href="#revenue">Business model</a><a href="#founder">Founder</a></div>
+      <div class="fcol"><h4>Explore</h4><a href="#problem">The problem</a><a href="#model">How it works</a><a href="#brain">The Metari Brain</a><a href="#command-center">Command Center</a><a href="#configurations">Environments</a><a href="#deliverable">What you receive</a><a href="#deployment">Deployment</a><a href="#status">Company</a><a href="#founder">Founder</a></div>
       <div class="fcol"><h4>Company</h4><a href="https://metari-command-center.vercel.app" target="_blank" rel="noopener">Open the Command Center</a><a href="#contact">Contact</a><a href="mailto:steve@metari.io">steve@metari.io</a></div>
     </div>
   </div>
@@ -1057,16 +1091,22 @@
     if(media){ media.addEventListener('touchstart',function(e){ sx=e.touches[0].clientX; },{passive:true}); media.addEventListener('touchend',function(e){ var dx=e.changedTouches[0].clientX-sx; if(Math.abs(dx)>40){ show((cur+(dx<0?1:picks.length-1))%picks.length); } },{passive:true}); }
   })();
 
-  // hero film: respect reduced motion, pause control, pause when off screen
+  // story film: load only when near, play only while visible, chapters follow the playhead
   (function(){
-    var v=document.getElementById('heroVideo'), btn=document.getElementById('heroPause'); if(!v) return;
-    var userPaused=false;
-    function setBtn(){ if(!btn) return; btn.innerHTML=v.paused?'&#9654;':'&#10074;&#10074;'; btn.setAttribute('aria-label',v.paused?'Play background film':'Pause background film'); }
-    function play(){ var p=v.play&&v.play(); if(p&&p.catch)p.catch(function(){}); }
-    if(reduce){ v.removeAttribute('autoplay'); v.pause(); userPaused=true; }
-    btn&&btn.addEventListener('click',function(){ if(v.paused){ userPaused=false; play(); } else { userPaused=true; v.pause(); } setBtn(); });
-    v.addEventListener('play',setBtn); v.addEventListener('pause',setBtn); setBtn();
-    if('IntersectionObserver' in window){ new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ if(!userPaused) play(); } else v.pause(); }); },{threshold:.05}).observe(v); }
+    var v=document.getElementById('storyVideo'), frame=document.getElementById('filmFrame'), btn=document.getElementById('storyPause'); if(!v||!frame) return;
+    var steps=[].slice.call(document.querySelectorAll('#filmSteps span')), loaded=false, userPaused=reduce;
+    function load(){ if(loaded) return; loaded=true; [].slice.call(v.querySelectorAll('source')).forEach(function(s){ s.src=s.getAttribute('data-src'); }); v.preload='auto'; v.load(); }
+    function play(){ load(); var p=v.play&&v.play(); if(p&&p.catch)p.catch(function(){}); }
+    function label(){ if(btn){ btn.textContent=v.paused?'Play':'Pause'; btn.setAttribute('aria-label',v.paused?'Play film':'Pause film'); } }
+    v.addEventListener('play',label); v.addEventListener('pause',label);
+    btn&&btn.addEventListener('click',function(){ if(v.paused){ userPaused=false; play(); } else { userPaused=true; v.pause(); } label(); });
+    v.addEventListener('timeupdate',function(){ var t=v.currentTime,k=0; steps.forEach(function(s,i){ if(t>=+s.getAttribute('data-t')) k=i; }); steps.forEach(function(s,i){ s.classList.toggle('on',i===k); }); });
+    steps.forEach(function(s){ s.style.cursor='pointer'; s.addEventListener('click',function(){ load(); v.currentTime=+s.getAttribute('data-t'); if(!userPaused) play(); }); });
+    if('IntersectionObserver' in window){
+      new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting) load(); }); },{rootMargin:'600px 0px'}).observe(frame);
+      new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ if(!userPaused) play(); } else v.pause(); }); },{threshold:.35}).observe(frame);
+    } else { load(); }
+    label();
   })();
 
   // deck slides: fade overlay text in when the slide enters view
