@@ -4,9 +4,9 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Metari &mdash; An API to the physical world.</title>
-<meta name="description" content="Metari builds and operates the environments where physical work happens, then holds them still so robot progress can be measured. Collect, train, deploy." />
+<meta name="description" content="Metari builds and operates the environments where physical work happens, then holds them still so humanoid progress can be measured. Collect, train, deploy." />
 <meta property="og:title" content="An API to the physical world." />
-<meta property="og:description" content="Metari builds and operates the environments where physical work happens, then holds them still so robot progress can be measured. Collect, train, deploy." />
+<meta property="og:description" content="Metari builds and operates the environments where physical work happens, then holds them still so humanoid progress can be measured. Collect, train, deploy." />
 <meta property="og:image" content="https://metari.io/assets/og-image.png?v=2" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
@@ -14,7 +14,7 @@
 <meta property="og:type" content="website" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="An API to the physical world." />
-<meta name="twitter:description" content="Metari builds and operates the environments where physical work happens, then holds them still so robot progress can be measured. Collect, train, deploy." />
+<meta name="twitter:description" content="Metari builds and operates the environments where physical work happens, then holds them still so humanoid progress can be measured. Collect, train, deploy." />
 <meta name="twitter:image" content="https://metari.io/assets/og-image.png?v=2" />
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -368,6 +368,81 @@
   .film-tag{position:absolute;left:20px;top:18px;z-index:2;background:rgba(5,8,10,.5)}
   @media (max-width:700px){.film-frame{border-radius:14px}.film-ov{left:14px;right:14px;bottom:12px}.film-steps{display:none}.film-tag{left:12px;top:12px}#storyPause{display:none}.film-ctl .btn{padding:10px 16px;font-size:13.5px}}
 
+  /* program trace: a scripted sequence that follows the film playhead */
+  .trace-stage{margin-top:48px;display:grid;grid-template-columns:minmax(320px,400px) minmax(0,1fr);border-radius:20px;overflow:hidden;background:#05080a;border:1px solid var(--line-soft);box-shadow:0 50px 140px rgba(0,0,0,.55)}
+  .trace-stage .film-frame{margin-top:0;border-radius:0;box-shadow:none;width:100%;min-width:0;min-height:100%}
+  .trace{display:flex;flex-direction:column;padding:22px 22px 18px;border-right:1px solid var(--line-soft);background:linear-gradient(180deg,#0c0f12,#07090b)}
+  .trace-head{display:flex;justify-content:space-between;align-items:center;gap:12px;padding-bottom:14px;border-bottom:1px solid var(--line-soft);font:10.5px 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:#cfe0d8}
+  .trace-head b{color:var(--accent);font-weight:500}
+  .trace-head>span:first-child{white-space:nowrap;letter-spacing:.1em}
+  .trace-head .tag{flex:none;color:var(--faint);letter-spacing:.12em;border:1px solid var(--line-soft);border-radius:20px;padding:3px 9px;font-size:9.5px}
+  .trace-body{position:relative;margin-top:12px;flex:1;display:flex}
+  .trace-steps{list-style:none;flex:1;display:flex;flex-direction:column;justify-content:space-between}
+  .trace-body:before{content:"";position:absolute;left:5px;top:var(--r0,16px);height:var(--r1,calc(100% - 60px));width:1px;background:rgba(255,255,255,.13)}
+  .trace-fill{position:absolute;left:5px;top:var(--r0,16px);width:1px;height:var(--h,0px);background:var(--accent);transition:height .6s var(--ease);pointer-events:none}
+  .trace-dot{position:absolute;left:1px;top:0;width:9px;height:9px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px rgba(46,254,169,.16),0 0 16px var(--accent-glow);transform:translateY(var(--y,0px));transition:transform .6s var(--ease),opacity .4s;opacity:0;z-index:2;pointer-events:none}
+  .trace.run .trace-dot{opacity:1}
+  .trace-steps button{display:grid;grid-template-columns:11px minmax(0,1fr) auto;column-gap:14px;align-items:start;width:100%;text-align:left;background:none;border:0;color:inherit;font:inherit;letter-spacing:inherit;padding:7px 0;cursor:pointer;transition:opacity .4s}
+  .trace-steps .tn{width:11px;height:11px;border-radius:50%;border:1px solid rgba(255,255,255,.3);background:#090c0e;margin-top:3px;position:relative;z-index:1;transition:background .4s,border-color .4s}
+  .trace-steps .tt{display:block;font:11px 'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:#cfe0d8;transition:color .4s}
+  .trace-steps .tt i{font-style:normal;color:var(--accent);margin-right:8px}
+  .trace-steps .td{display:block;margin-top:3px;font-size:13px;line-height:1.4;color:var(--dim);transition:color .4s}
+  .trace-steps .ts{font:9.5px 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:var(--faint);margin-top:2px;min-width:46px;text-align:right;visibility:hidden}
+  .trace.run .ts{visibility:visible}
+  .trace.run li:not(.on):not(.done) button{opacity:.48}
+  .trace.run li:not(.on) .td{display:none}
+  .trace.run li.done .tt{color:#9fb3aa}
+  .trace-steps button:hover{opacity:1!important}
+  .trace-steps button:hover .tt{color:#fff}
+  .trace-steps li.done .tn{background:var(--accent);border-color:var(--accent)}
+  .trace-steps li.on .tn{border-color:var(--accent)}
+  .trace-steps li.on .tt{color:#fff}
+  .trace-steps li.on .td{color:#D6DEDA}
+  .trace-steps li.on .ts{color:var(--accent)}
+  .trace-loop{margin-top:10px;padding-top:13px;border-top:1px solid var(--line-soft);display:flex;align-items:center;gap:10px;font:10.5px 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:var(--faint);transition:color .4s}
+  .trace-loop i{font-style:normal;font-size:15px;line-height:1;display:inline-block;transition:transform .9s var(--ease)}
+  .trace-loop.on{color:var(--accent)}
+  .trace-loop.on i{transform:rotate(360deg)}
+  .trace-note{margin-top:9px;font-size:11.5px;line-height:1.45;color:var(--faint)}
+  .film-now{padding:7px 11px;border:1px solid var(--accent);border-radius:999px;background:rgba(5,8,10,.55);backdrop-filter:blur(8px);font:10.5px 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:#fff}
+  .film-now:empty{visibility:hidden}
+  .cfg-grid{margin-top:52px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px 20px}
+  .cfg{margin:0}
+  .cfg .ph{aspect-ratio:4/3;border-radius:14px;overflow:hidden;background:var(--bg-2)}
+  .cfg .ph img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--ease)}
+  .cfg:hover .ph img{transform:scale(1.03)}
+  .cfg figcaption{margin-top:14px}
+  .cfg figcaption b{display:block;font-size:18px;font-weight:600;letter-spacing:-.015em}
+  .cfg figcaption span{display:block;margin-top:3px;font-size:14.5px;color:var(--dim)}
+  .cfg-note{margin-top:40px;font-size:14px;color:var(--faint);max-width:80ch;line-height:1.7}
+  .cfg-note .concept-tag{margin-right:10px;vertical-align:middle}
+  @media (max-width:960px){.cfg-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+  @media (max-width:560px){.cfg-grid{grid-template-columns:1fr;gap:26px}}
+  @media (prefers-reduced-motion:reduce){.cfg .ph img{transition:none}}
+  .founder-grid{margin-top:52px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:56px;align-items:center}
+  .founder-grid .founder-inner{margin-top:0;max-width:none}
+  .founder-fig{margin:0;position:relative;aspect-ratio:16/10;border-radius:18px;overflow:hidden;border:1px solid var(--line-soft);background:var(--bg-2)}
+  .founder-fig img{width:100%;height:100%;object-fit:cover;object-position:20% 50%}
+  .founder-fig .concept-tag{position:absolute;right:14px;bottom:14px;background:rgba(6,7,9,.62);backdrop-filter:blur(8px);color:#cfe0d8}
+  @media (max-width:960px){.founder-grid{grid-template-columns:1fr;gap:32px}.founder-fig{order:-1}}
+  .shift-card .sfig{margin:-30px -30px 26px;aspect-ratio:16/9;overflow:hidden;border-radius:15px 15px 0 0;background:var(--bg-2)}
+  .shift-card .sfig img{width:100%;height:100%;object-fit:cover}
+  #network-scale .scale-fig{margin-top:44px;position:relative;aspect-ratio:2/1;border:1px solid var(--line-soft);border-radius:18px;overflow:hidden;background:var(--bg-2)}
+  #network-scale .scale-fig img{width:100%;height:100%;object-fit:cover;object-position:50% 18%}
+  #network-scale .scale-fig .concept-tag{position:absolute;left:16px;top:16px;background:rgba(6,7,9,.6);backdrop-filter:blur(8px)}
+  @media (max-width:700px){#network-scale .scale-fig{aspect-ratio:16/10;margin-top:32px}}
+  .trace-stage .film-tag{left:auto;right:18px;background:rgba(5,8,10,.78);backdrop-filter:blur(8px);color:#cfe0d8}
+  .hero.cover .hero-proc{margin-top:22px;max-width:600px;font-size:12.5px;line-height:1.75;color:#B9C4BF}
+  @media (max-width:1040px){
+    .trace-stage{grid-template-columns:1fr}
+    .trace-stage .film-frame{order:-1;min-height:0}
+    .trace{border-right:0;border-top:1px solid var(--line-soft)}
+    .trace-steps{display:block}
+    .trace.run li.on .td{min-height:2.8em}
+  }
+  @media (max-width:700px){.trace-stage .film-tag{right:10px;left:auto}.trace-stage{border-radius:14px;margin-top:36px}.trace{padding:18px 16px 16px}.film-now{display:none}.trace-head{font-size:10px}.trace-head>span:first-child{white-space:normal}.hero.cover .hero-proc{font-size:11.5px}}
+  @media (prefers-reduced-motion:reduce){.trace-fill,.trace-dot,.trace-loop i{transition:none}}
+
 
   /* ===== HERO (film) ===== */
   .hero{min-height:100svh}
@@ -667,6 +742,7 @@
     <span class="eyebrow reveal in">Physical intelligence infrastructure</span>
     <h1 class="hero-title reveal in d1">An API to the <span class="accent">physical world.</span></h1>
     <p class="hero-sub reveal in d2">Robots cannot learn work they have never seen. Metari builds and operates the environments where that work happens, then holds them still so progress can be measured. Collect, train, deploy.</p>
+    <p class="hero-proc reveal in d2">Task order <b>&rarr;</b> instrumented environment <b>&rarr;</b> expert + humanoid interaction <b>&rarr;</b> structured data <b>&rarr;</b> evaluation <b>&rarr;</b> deployment <b>&rarr;</b> repeat</p>
     <div class="hero-cta reveal in d2">
       <a href="https://metari-command-center.vercel.app" class="btn btn-primary btn-lg btn-ext" target="_blank" rel="noopener">Open the Command Center</a>
       <a href="#contact" class="btn btn-lg" data-inquiry="">Discuss a project</a>
@@ -685,9 +761,9 @@
     <h2 class="big sec-head reveal d1">A great demo is not a deployable robot.</h2>
     <p class="lead reveal d1">Real work changes from room to room, shift to shift and person to person. Models trained on tidy demos fail on the variation, the sequence and the judgment that real service work demands.</p>
     <div class="prob">
-      <figure class="reveal d1"><div class="ph"><img src="assets/story/variation.webp" width="1280" height="720" alt="A humanoid working in a large banquet hall" loading="lazy"></div><figcaption><span class="n">01</span><b>Variation</b><span class="d">Layouts, objects and lighting change every day.</span></figcaption></figure>
-      <figure class="reveal d2"><div class="ph"><img src="assets/story/workflow.webp" width="1280" height="720" alt="An expert's hands tucking the corner of a bed sheet" loading="lazy"></div><figcaption><span class="n">02</span><b>Workflow</b><span class="d">Tasks take sequence, context and judgment.</span></figcaption></figure>
-      <figure class="reveal d3"><div class="ph"><img src="assets/story/evidence.webp" width="1280" height="720" alt="A humanoid tested at a bench while an engineer observes" loading="lazy"></div><figcaption><span class="n">03</span><b>Evidence</b><span class="d">Reliability has to be tested, not assumed.</span></figcaption></figure>
+      <figure class="reveal d1"><div class="ph"><img src="assets/story/problem-variation.webp" width="1280" height="716" alt="The same hotel guest room in two states: made up in morning light, and unmade at dusk with furniture moved and a tray on the floor. Concept image." loading="lazy"></div><figcaption><span class="n">01</span><b>Variation</b><span class="d">Layouts, objects and lighting change every day.</span></figcaption></figure>
+      <figure class="reveal d2"><div class="ph"><img src="assets/story/problem-workflow.webp" width="1280" height="716" alt="A guest room mid-turn: bed stripped, fresh linen waiting, housekeeping cart at the door, bathroom half done, a tray to clear, and a housekeeper carrying sheets. Concept image." loading="lazy"></div><figcaption><span class="n">02</span><b>Workflow</b><span class="d">Tasks take sequence, context and judgment.</span></figcaption></figure>
+      <figure class="reveal d3"><div class="ph"><img src="assets/story/problem-evidence.webp" width="1280" height="716" alt="A humanoid folding a towel at a test bench while an evaluator marks a checklist; one towel has slipped to the floor. Concept image." loading="lazy"></div><figcaption><span class="n">03</span><b>Evidence</b><span class="d">Reliability has to be tested, not assumed.</span></figcaption></figure>
     </div>
     <p class="prob-close reveal d2">Robotics teams need controlled access to real work <em>before customers trust deployment.</em> That access is what Metari builds.</p>
   </div>
@@ -712,12 +788,12 @@
       <div class="mcol reveal d3">
         <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 7h13l5 5-5 5H3z"/><path d="M3 12h13"/></svg>
         <div class="step mono">03 / Deploy</div><h3>Support deployment</h3>
-        <p>The building that produced the data becomes the floor where operators watch the work before they buy, then one of the first properties the robot actually works in, with the team that trained it already on site.</p>
+        <p>The building that produced the data becomes the floor where operators watch the work before they buy, then one of the first properties the humanoid actually works in, with the team that trained it already on site.</p>
       </div>
     </div>
     <div class="shift" id="proactive">
-      <div class="shift-card reveal d1"><div class="ph">Reactive capture</div><h3>Record whatever happened today.</h3><p>Every wearable programme running inside occupied buildings is reactive: it records whatever happened to occur that day. Occupancy sets the ceiling, guests are present, and a good day yields one or two usable room turns.</p></div>
-      <div class="shift-card on reveal d2"><div class="ph">Proactive capture</div><h3>Name the scenario. We produce it.</h3><p>A dedicated environment inverts that. The partner names the scenario and we produce it, on schedule, to volume. No guests, reset and re-run on a shift pattern, against a task list the partner writes. Clutter, lighting, linen, spills and operator are changed deliberately between runs. Spills, breakages and maintenance faults can be staged on purpose, which is the long tail a live-building programme will almost never catch on camera.</p></div>
+      <div class="shift-card reveal d1"><div class="sfig"><img width="1280" height="716" src="assets/story/capture-reactive.webp" alt="A housekeeper wearing a chest camera waits with her cart while guests with suitcases pass in a hotel corridor. Concept image." loading="lazy"></div><div class="ph">Reactive capture</div><h3>Record whatever happened today.</h3><p>Every wearable programme running inside occupied buildings is reactive: it records whatever happened to occur that day. Occupancy sets the ceiling, guests are present, and a good day yields one or two usable room turns.</p></div>
+      <div class="shift-card on reveal d2"><div class="sfig"><img width="1280" height="716" src="assets/story/capture-proactive.webp" alt="Two staff members stage a messy guest room for a capture run under ceiling cameras. Concept image." loading="lazy"></div><div class="ph">Proactive capture</div><h3>Name the scenario. We produce it.</h3><p>A dedicated environment inverts that. The partner names the scenario and we produce it, on schedule, to volume. No guests, reset and re-run on a shift pattern, against a task list the partner writes. Clutter, lighting, linen, spills and operator are changed deliberately between runs. Spills, breakages and maintenance faults can be staged on purpose, which is the long tail a live-building programme will almost never catch on camera.</p></div>
     </div>
   </div>
 </section>
@@ -730,8 +806,8 @@
     <p class="ov s-sub" style="--x:4.50%;--y:59.33%;--w:22.50%">From customer requirements to verified outputs.</p>
     <picture class="art"><source media="(max-width:1099px)" srcset="assets/slides/brain-stack.webp" width="900" height="1373"><img width="2560" height="1446" src="assets/slides/brain.webp" srcset="assets/slides/brain-1280.webp 1280w, assets/slides/brain.webp 2560w" sizes="100vw" alt="The Metari Brain: six stacked layers, from program design and environment configuration through capture, human operations and evaluation to deployment intelligence." loading="lazy"></picture>
     <ol class="s-list">
-      <li class="ov" style="--x:75.38%;--y:11.33%;--w:21.75%"><a href="#command-center" data-tour="1"><b>Demand &amp; program design</b><span>Briefs become lab orders with acceptance criteria.</span><em>Open in the Command Center &rarr;</em></a></li>
-      <li class="ov" style="--x:75.38%;--y:21.33%;--w:21.75%"><a href="#command-center" data-tour="2"><b>Environment configuration</b><span>Rooms, props, lighting and routes set to the task.</span><em>Open in the Command Center &rarr;</em></a></li>
+      <li class="ov" style="--x:75.38%;--y:11.33%;--w:21.75%"><a href="#command-center" data-tour="2"><b>Demand &amp; program design</b><span>Briefs become lab orders with acceptance criteria.</span><em>Open in the Command Center &rarr;</em></a></li>
+      <li class="ov" style="--x:75.38%;--y:21.33%;--w:21.75%"><a href="#command-center" data-tour="0"><b>Environment configuration</b><span>Rooms, props, lighting and routes set to the task.</span><em>Open in the Command Center &rarr;</em></a></li>
       <li class="ov" style="--x:75.38%;--y:31.73%;--w:21.75%"><a href="#deliverable"><b>Capture &amp; instrumentation</b><span>Cameras, sensors and edge compute, around the clock.</span><em>See the camera layout &rarr;</em></a></li>
       <li class="ov" style="--x:75.38%;--y:44.00%;--w:21.75%"><a href="#command-center" data-tour="3"><b>Human operations</b><span>Expert demonstrations, staffing, safety and QA.</span><em>Open in the Command Center &rarr;</em></a></li>
       <li class="ov" style="--x:75.38%;--y:54.67%;--w:21.75%"><a href="#command-center" data-tour="4"><b>Evidence &amp; evaluation</b><span>Outputs reviewed against acceptance criteria.</span><em>Open in the Command Center &rarr;</em></a></li>
@@ -747,22 +823,22 @@
     <span class="eyebrow reveal">The operating layer</span>
     <h2 class="big sec-head reveal d1">An order becomes an environment.</h2>
     <p class="lead reveal d1">The Command Center is the software that runs a Metari campus: lab orders in, configured rooms, camera plans and reviewed evidence out. It exists today as a working prototype. Take the tour, then open it yourself.</p>
-    <div class="tour reveal d2" id="tour" data-steps='[{"crumb": "Overview", "title": "One operating picture.", "desc": "Campus, capture metrics and the intelligence loop in a single view. Every module in the sidebar is one click away."}, {"crumb": "Data orders", "title": "A lab order arrives.", "desc": "Buyer briefs become traceable orders with an environment, an episode target and a priority."}, {"crumb": "Property intelligence", "title": "See where work is happening.", "desc": "A heatmap of the campus shows activity, coverage gaps and where data is still missing, room by room."}, {"crumb": "Human ops", "title": "Experts are dispatched.", "desc": "Brief the expert, configure the room, capture the variation. Every assignment is tracked from queue to completion."}, {"crumb": "Capture & QA", "title": "Nothing ships unchecked.", "desc": "Every batch carries lineage, QA decisions and a structured manifest before a lab ever sees it."}, {"crumb": "Proactive collection", "title": "Gaps become the next brief.", "desc": "Weak coverage is scored and turned into the next collection plan, approved by a person before it runs."}, {"crumb": "Humanoid gallery", "title": "See it before you buy it.", "desc": "An experience space where operators watch supervised work and scope an evidence-led pilot."}]'>
+    <div class="tour reveal d2" id="tour" data-steps='[{"crumb": "Property intelligence", "title": "See where work is happening.", "desc": "A heatmap of the campus shows activity, coverage gaps and where data is still missing, room by room."}, {"crumb": "Overview", "title": "One operating picture.", "desc": "Campus, capture metrics and the intelligence loop in a single view. Every module in the sidebar is one click away."}, {"crumb": "Data orders", "title": "A lab order arrives.", "desc": "Buyer briefs become traceable orders with an environment, an episode target and a priority."}, {"crumb": "Human ops", "title": "Experts are dispatched.", "desc": "Brief the expert, configure the room, capture the variation. Every assignment is tracked from queue to completion."}, {"crumb": "Capture & QA", "title": "Nothing ships unchecked.", "desc": "Every batch carries lineage, QA decisions and a structured manifest before a lab ever sees it."}, {"crumb": "Proactive collection", "title": "Gaps become the next brief.", "desc": "Weak coverage is scored and turned into the next collection plan, approved by a person before it runs."}, {"crumb": "Humanoid gallery", "title": "See it before you buy it.", "desc": "An experience space where operators watch supervised work and scope an evidence-led pilot."}]'>
       <div class="tour-tabs" role="tablist" aria-label="Command Center tour">
-        <button class="tour-tab on" role="tab" type="button" aria-selected="true" data-i="0"><span class="n">01</span><span class="t">Overview</span><i class="bar"><b></b></i></button>
-        <button class="tour-tab" role="tab" type="button" aria-selected="false" data-i="1"><span class="n">02</span><span class="t">Data orders</span><i class="bar"><b></b></i></button>
-        <button class="tour-tab" role="tab" type="button" aria-selected="false" data-i="2"><span class="n">03</span><span class="t">Property intelligence</span><i class="bar"><b></b></i></button>
+        <button class="tour-tab on" role="tab" type="button" aria-selected="true" data-i="0"><span class="n">01</span><span class="t">Property intelligence</span><i class="bar"><b></b></i></button>
+        <button class="tour-tab" role="tab" type="button" aria-selected="false" data-i="1"><span class="n">02</span><span class="t">Overview</span><i class="bar"><b></b></i></button>
+        <button class="tour-tab" role="tab" type="button" aria-selected="false" data-i="2"><span class="n">03</span><span class="t">Data orders</span><i class="bar"><b></b></i></button>
         <button class="tour-tab" role="tab" type="button" aria-selected="false" data-i="3"><span class="n">04</span><span class="t">Human ops</span><i class="bar"><b></b></i></button>
         <button class="tour-tab" role="tab" type="button" aria-selected="false" data-i="4"><span class="n">05</span><span class="t">Capture &amp; QA</span><i class="bar"><b></b></i></button>
         <button class="tour-tab" role="tab" type="button" aria-selected="false" data-i="5"><span class="n">06</span><span class="t">Proactive collection</span><i class="bar"><b></b></i></button>
         <button class="tour-tab" role="tab" type="button" aria-selected="false" data-i="6"><span class="n">07</span><span class="t">Humanoid gallery</span><i class="bar"><b></b></i></button>
       </div>
       <div class="tour-frame">
-        <div class="tour-bar"><i></i><i></i><i></i><span class="url">metari / command center / <b id="tourCrumb">Overview</b></span><span class="sim">Simulated data</span></div>
+        <div class="tour-bar"><i></i><i></i><i></i><span class="url">metari / command center / <b id="tourCrumb">Property intelligence</b></span><span class="sim">Simulated data</span></div>
         <div class="tour-screens" role="tabpanel" aria-live="polite">
-          <img width="2400" height="1500" class="on" src="assets/tour/01-overview.webp" alt="Metari Command Center, Overview screen. Simulated data." loading="eager" decoding="async">
+          <img width="2400" height="1500" class="on" src="assets/tour/03-heatmap.webp" alt="Metari Command Center, Property intelligence screen. Simulated data." loading="eager" decoding="async">
+          <img width="2400" height="1500" src="assets/tour/01-overview.webp" alt="Metari Command Center, Overview screen. Simulated data." loading="lazy" decoding="async">
           <img width="2400" height="1500" src="assets/tour/02-orders.webp" alt="Metari Command Center, Data orders screen. Simulated data." loading="lazy" decoding="async">
-          <img width="2400" height="1500" src="assets/tour/03-heatmap.webp" alt="Metari Command Center, Property intelligence screen. Simulated data." loading="lazy" decoding="async">
           <img width="2400" height="1500" src="assets/tour/04-humans.webp" alt="Metari Command Center, Human ops screen. Simulated data." loading="lazy" decoding="async">
           <img width="2400" height="1500" src="assets/tour/05-datasets.webp" alt="Metari Command Center, Capture and QA screen. Simulated data." loading="lazy" decoding="async">
           <img width="2400" height="1500" src="assets/tour/06-proactive.webp" alt="Metari Command Center, Proactive collection screen. Simulated data." loading="lazy" decoding="async">
@@ -770,7 +846,7 @@
         </div>
       </div>
       <div class="tour-cap">
-        <div><div class="k" id="tourCount">01 / 07</div><h3 id="tourTitle">One operating picture.</h3><p id="tourDesc">Campus, capture metrics and the intelligence loop in a single view. Every module in the sidebar is one click away.</p></div>
+        <div><div class="k" id="tourCount">01 / 07</div><h3 id="tourTitle">See where work is happening.</h3><p id="tourDesc">A heatmap of the campus shows activity, coverage gaps and where data is still missing, room by room.</p></div>
         <div class="acts"><a href="https://metari-command-center.vercel.app" class="btn btn-primary btn-ext" target="_blank" rel="noopener">Open the Command Center</a><a href="#contact" class="btn" data-inquiry="Command Center access">Request access</a></div>
       </div>
       <p class="tour-note">Screens from the private prototype &middot; operating data is simulated &middot; no live lab activity</p>
@@ -778,37 +854,59 @@
   </div>
 </section>
 
-<!-- FILM -->
+<!-- FILM + PROGRAM TRACE -->
 <section class="block" id="film">
   <div class="wrap">
     <span class="eyebrow reveal">In motion</span>
     <h2 class="big sec-head reveal d1">One building. Every step of the loop.</h2>
-    <p class="lead reveal d1">Experts demonstrate the work, the room captures it on one clock, the lab reviews it, and the same floor becomes the place a humanoid is evaluated and readied for a customer's property.</p>
-    <div class="film-frame reveal d2" id="filmFrame">
-      <video id="storyVideo" muted loop playsinline preload="none" poster="assets/story/film-poster.webp" aria-label="Concept film loop: expert demonstration, capture, data review, evaluation and supervised deployment"><source data-src="assets/story/metari-film-loop.mp4" type="video/mp4" /><source data-src="assets/story/metari-film-loop.webm" type="video/webm" /></video>
-      <span class="concept-tag film-tag">Concept film</span>
-      <div class="film-ov">
-        <div class="film-steps" id="filmSteps"><span data-t="0">Expertise</span><span data-t="4.2">Capture</span><span data-t="6.6">Data review</span><span data-t="8.6">Evaluation</span><span data-t="10.6">Variation</span><span data-t="12.6">Deployment</span></div>
-        <div class="film-ctl"><button class="btn" type="button" id="storyPause" aria-label="Pause film">Pause</button><button class="btn btn-primary" type="button" id="heroFilmBtn">Watch the full film &middot; 2:02</button></div>
+    <p class="lead reveal d1">Follow one program through the building. A lab's task order becomes a configured room, expert and humanoid work, structured data, evaluation and supervised deployment. What the deployment teaches comes back as the next order.</p>
+    <div class="trace-stage reveal d2">
+      <div class="trace" id="trace">
+        <div class="trace-head"><span>Real-world intelligence <b>//</b> trace</span><span class="tag">Illustrative</span></div>
+        <div class="trace-body" id="traceBody"><span class="trace-fill" aria-hidden="true"></span><span class="trace-dot" aria-hidden="true"></span>
+        <ol class="trace-steps" id="traceSteps" aria-label="Program trace, seven steps. Select a step to jump the film to it.">
+          <li><button type="button" data-t="0" data-n="01" data-label="Task order received"><span class="tn" aria-hidden="true"></span><span><span class="tt"><i>01</i>Task order received</span><span class="td">&ldquo;Room-turn edge cases&rdquo; &middot; Guest Room &middot; DO-1042</span></span><span class="ts" aria-hidden="true">Queued</span></button></li>
+          <li><button type="button" data-t="2.56" data-n="02" data-label="Environment configured"><span class="tn" aria-hidden="true"></span><span><span class="tt"><i>02</i>Environment configured</span><span class="td">Room staged to the order &middot; cameras &middot; sensors &middot; lighting</span></span><span class="ts" aria-hidden="true">Queued</span></button></li>
+          <li><button type="button" data-t="7.31" data-n="03" data-label="Real-world interaction"><span class="tn" aria-hidden="true"></span><span><span class="tt"><i>03</i>Real-world interaction</span><span class="td">Expert demonstration, then humanoid execution</span></span><span class="ts" aria-hidden="true">Queued</span></button></li>
+          <li><button type="button" data-t="11.56" data-n="04" data-label="Data structured"><span class="tn" aria-hidden="true"></span><span><span class="tt"><i>04</i>Data structured</span><span class="td">Multimodal video &middot; actions &middot; trajectories &middot; outcomes &middot; metadata</span></span><span class="ts" aria-hidden="true">Queued</span></button></li>
+          <li><button type="button" data-t="13.69" data-n="05" data-label="Evaluation"><span class="tn" aria-hidden="true"></span><span><span class="tt"><i>05</i>Evaluation</span><span class="td">Task completion &middot; safety &middot; failure modes &middot; repeatability</span></span><span class="ts" aria-hidden="true">Queued</span></button></li>
+          <li><button type="button" data-t="17.94" data-n="06" data-label="Deployment validation"><span class="tn" aria-hidden="true"></span><span><span class="tt"><i>06</i>Deployment validation</span><span class="td">Humanoid assessed in production-like conditions</span></span><span class="ts" aria-hidden="true">Queued</span></button></li>
+          <li><button type="button" data-t="20.06" data-n="07" data-label="Operating data returns"><span class="tn" aria-hidden="true"></span><span><span class="tt"><i>07</i>Operating data returns</span><span class="td">New edge cases and performance signals</span></span><span class="ts" aria-hidden="true">Queued</span></button></li>
+        </ol></div>
+        <div class="trace-loop" id="traceLoop"><i aria-hidden="true">&#8635;</i><span>System learns. Next task order.</span></div>
+        <p class="trace-note">A scripted sequence over a concept film. Not a feed from a live system.</p>
+      </div>
+      <div class="film-frame" id="filmFrame">
+        <video id="storyVideo" muted loop playsinline preload="none" poster="assets/story/film-poster.webp" aria-label="Concept film loop: an order in the Command Center, staff staging a messy guest room, camera setup, expert demonstration, data review, evaluation and supervised deployment"><source data-src="assets/story/metari-film-loop.mp4" type="video/mp4" /><source data-src="assets/story/metari-film-loop.webm" type="video/webm" /></video>
+        <span class="concept-tag film-tag" id="filmTag" data-film="Concept film" data-screen="Command Center &middot; simulated data">Concept film</span>
+        <div class="film-ov">
+          <span class="film-now" id="filmNow" aria-hidden="true"></span>
+          <div class="film-ctl"><button class="btn" type="button" id="storyPause" aria-label="Pause film">Pause</button><button class="btn btn-primary" type="button" id="heroFilmBtn">Watch the full film &middot; 2:02</button></div>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
 <!-- CONFIGURATIONS -->
-<section class="slide-sec dark" id="configurations" aria-label="One property, many configurations">
-  <div class="slide strip">
-    <span class="ov s-eyebrow" style="--x:4.50%;--y:14.67%">Reconfigurable environments</span>
-    <h2 class="ov s-title" style="--x:4.50%;--y:18.67%;--w:80%">One property. Many configurations.</h2>
-    <p class="ov s-sub" style="--x:4.50%;--y:27.33%;--w:70%">Set the environment around the task, not the other way around.</p>
-    <picture class="art"><img width="2560" height="1446" src="assets/slides/strip.webp" srcset="assets/slides/strip-1280.webp 1280w, assets/slides/strip.webp 2560w" sizes="100vw" alt="Six angled panels showing humanoids and people working in hospitality, a hospital mockup, senior living, a residence, a restaurant kitchen and an outdoor walkway." loading="lazy"></picture>
-    <div class="s-shade"></div>
-    <div class="chips-s"><span style="left:1.88%">Hospitality</span><span style="left:15.75%">Hospital mockups</span><span style="left:31.88%">Senior living</span><span style="left:47.25%">Residential</span><span style="left:62.25%">Restaurants</span><span style="left:78.38%">Outdoor workflows</span></div>
-    <p class="ov s-note" style="--x:4.50%;--y:84.67%;--w:90%">Illustrative settings for demonstrations, evaluation and supervised pilots. First wedge is hospitality; the network is designed for many service environments.</p>
+<section class="block" id="configurations">
+  <div class="wrap">
+    <span class="eyebrow reveal">Reconfigurable environments</span>
+    <h2 class="big sec-head reveal d1">One property. Many configurations.</h2>
+    <p class="lead reveal d1">Set the environment around the task, not the other way around. Hospitality is the first wedge; the same building is designed to be reset for other kinds of service work.</p>
+    <div class="cfg-grid">
+      <figure class="cfg reveal d1"><div class="ph"><img width="1000" height="750" src="assets/config/hospitality.webp" alt="A housekeeper makes a hotel bed under ceiling cameras while a humanoid stands in a marked zone. Concept image." loading="lazy"></div><figcaption><b>Hospitality</b><span>Guest rooms: bed making, linen, bathroom reset.</span></figcaption></figure>
+      <figure class="cfg reveal d2"><div class="ph"><img width="1000" height="750" src="assets/config/restaurant.webp" alt="A server and a humanoid lay a restaurant table while an evaluator takes notes. Concept image." loading="lazy"></div><figcaption><b>Restaurants</b><span>Table setting, service and clearing.</span></figcaption></figure>
+      <figure class="cfg reveal d3"><div class="ph"><img width="1000" height="750" src="assets/config/kitchen.webp" alt="A chef preps at a steel bench beside a humanoid in a marked test area, with an observer holding a tablet. Concept image." loading="lazy"></div><figcaption><b>Commercial kitchen</b><span>Prep, tool use and cleaning.</span></figcaption></figure>
+      <figure class="cfg reveal d1"><div class="ph"><img width="1000" height="750" src="assets/config/laundry.webp" alt="Laundry staff fold towels at steel tables surrounded by cameras on stands. Concept image." loading="lazy"></div><figcaption><b>Laundry</b><span>Sorting, folding and carts.</span></figcaption></figure>
+      <figure class="cfg reveal d2"><div class="ph"><img width="1000" height="750" src="assets/config/outdoor.webp" alt="A pool attendant rolls towels on a lounger while a humanoid stands on the path beside camera posts. Concept image." loading="lazy"></div><figcaption><b>Outdoor workflows</b><span>Pool, towels, furniture and grounds.</span></figcaption></figure>
+      <figure class="cfg reveal d3"><div class="ph"><img width="1000" height="750" src="assets/config/senior-living.webp" alt="Two staff members set up a humanoid in a mock living room under ceiling cameras. Concept image." loading="lazy"></div><figcaption><b>Senior living mock-up</b><span>Controlled mock rooms. No resident care.</span></figcaption></figure>
+    </div>
+    <p class="cfg-note reveal d2"><span class="concept-tag">Concept images</span> Illustrative settings for demonstrations, evaluation and supervised pilots. Humanoid designs differ on purpose: programs are meant to run on each lab's own hardware.</p>
   </div>
 </section>
 
-<section class="block" id="environments"><div class="wrap"><span class="eyebrow reveal">The environment library</span><h2 class="big sec-head reveal d1">A world built for robots to learn.</h2><p class="lead reveal d1">Twenty configurable environment types, each with its own task definitions, sensor plan and camera layout, managed from one library in the Command Center. Mock environments can be reset and densely instrumented without disrupting occupied rooms or active care settings.</p>
+<section class="block" id="environments"><div class="wrap"><span class="eyebrow reveal">The environment library</span><h2 class="big sec-head reveal d1">A world built for humanoids to learn.</h2><p class="lead reveal d1">Twenty configurable environment types, each with its own task definitions, sensor plan and camera layout, managed from one library in the Command Center. Mock environments can be reset and densely instrumented without disrupting occupied rooms or active care settings.</p>
     <div class="pframe reveal d2">
       <div class="pbar"><i></i><i></i><i></i><span>Command Center &middot; Environment library</span><b>Simulated data</b></div>
       <div class="pimg fade"><img width="1800" height="1191" src="assets/command-center-environments.webp" alt="Metari Command Center environment library: a grid of configurable environments such as guest room, bathroom and commercial kitchen, each with task definitions, sensors and a camera layout. Simulated data." loading="lazy"></div>
@@ -835,9 +933,9 @@
       <div class="manifest reveal d2" aria-label="Illustrative episode manifest">
         <div class="mh"><span>Episode manifest &middot; <b>illustrative structure</b></span><span>EP-&#9135;&#9135;&#9135;&#9135;</span></div>
         <div class="mv">
-          <div class="cam"><img width="1600" height="900" src="assets/campus/demo-housekeeping.jpg" alt="" loading="lazy"><span>CEILING</span></div>
-          <div class="cam"><img width="1600" height="900" src="assets/campus/demo-housekeeping.jpg" alt="" loading="lazy" style="object-position:70% 40%"><span>WALL</span></div>
-          <div class="cam"><img width="1600" height="900" src="assets/campus/demo-housekeeping.jpg" alt="" loading="lazy" style="object-position:30% 80%"><span>WEARABLE POV</span></div>
+          <div class="cam"><img width="960" height="538" src="assets/episode/view-ceiling.webp" alt="Overhead view from a ceiling camera: a housekeeper tucking the duvet at the corner of a guest-room bed. Concept image." loading="lazy"><span>CEILING</span></div>
+          <div class="cam"><img width="960" height="538" src="assets/episode/view-wall.webp" alt="The same moment from a wall camera high in the corner of the room. Concept image." loading="lazy"><span>WALL</span></div>
+          <div class="cam"><img width="960" height="538" src="assets/episode/view-pov.webp" alt="The same moment from the housekeeper's wearable camera: two hands pulling the duvet taut over the bed corner. Concept image." loading="lazy"><span>WEARABLE POV</span></div>
         </div>
         <dl>
           <div><dt>Task</dt><dd>Guest-room bed setup</dd></div>
@@ -857,7 +955,7 @@
         <li><span class="n">05</span><b>Rights and delivery</b><span>Consent and licence documented per episode. Delivered as per-episode bundles with a manifest, ready for model workflows.</span></li>
       </ul>
     </div>
-    <div class="sensor-strip reveal d3"><span>CEILING CAMERAS</span><span>WALL CAMERAS</span><span>RGB-D</span><span>DEPTH</span><span>WEARABLE POV</span><span>IMU</span><span>TOOL TRACKING</span><span>ROBOT TELEMETRY</span><span>EDGE COMPUTE</span><span>SYNC TIMESTAMPS</span></div>
+    <div class="sensor-strip reveal d3"><span>CEILING CAMERAS</span><span>WALL CAMERAS</span><span>RGB-D</span><span>DEPTH</span><span>WEARABLE POV</span><span>IMU</span><span>TOOL TRACKING</span><span>HUMANOID TELEMETRY</span><span>EDGE COMPUTE</span><span>SYNC TIMESTAMPS</span></div>
     <p class="concept-note reveal d3">Illustrative structure. Field names and formats are set with each partner.</p>
   </div>
 </section>
@@ -872,12 +970,12 @@
     <div class="eval-grid">
       <div class="eval-card reveal d1">
         <div class="ehead">Demonstration environment</div>
-        <div class="fig"><img width="1600" height="900" src="assets/campus/demo-housekeeping.jpg" alt="Concept rendering of the original demonstration environment" loading="lazy"></div>
+        <div class="fig"><img width="1280" height="716" src="assets/story/eval-demo.webp" alt="A housekeeping expert places a stack of folded white towels on a chest-height shelf. Concept image." loading="lazy"></div>
         <div class="ebody"><p>An expert demonstrates the task in a known layout, establishing the standard for a correct result.</p></div>
       </div>
       <div class="eval-card reveal d2">
         <div class="ehead">Changed environment</div>
-        <div class="fig"><img width="1600" height="900" src="assets/campus/restaurant.jpg" alt="Concept rendering of a changed environment for evaluation" loading="lazy"></div>
+        <div class="fig"><img width="1280" height="716" src="assets/story/eval-changed.webp" alt="A humanoid places rolled grey towels on a low shelf beside baskets while an evaluator with a tablet watches. Concept image." loading="lazy"></div>
         <div class="ebody"><p>The shelf position and arrangement change, and the objects are presented differently.</p></div>
       </div>
       <div class="eval-card obs reveal d3">
@@ -898,10 +996,10 @@
 <section class="block" id="deployment">
   <div class="wrap">
     <span class="eyebrow reveal">Deployment and experience</span>
-    <h2 class="big sec-head reveal d1">The same building is where robots go to work.</h2>
-    <p class="lead reveal d1">A Metari campus is not only where data is collected. It is where operators and the public see humanoids work in real settings, and where a robot is prepared, evaluated and readied before it enters a customer's property. Experience builds belief; belief drives adoption.</p>
+    <h2 class="big sec-head reveal d1">The same building is where humanoids go to work.</h2>
+    <p class="lead reveal d1">A Metari campus is not only where data is collected. It is where operators and the public see humanoids work in real settings, and where a humanoid is prepared, evaluated and readied before it enters a customer's property. Experience builds belief; belief drives adoption.</p>
     <div class="split2">
-      <div class="fig reveal d2"><img width="1600" height="900" src="assets/campus/deployment.jpg" alt="Concept rendering of deployment and readiness bays at a Metari campus" loading="lazy"><span class="concept-tag">Concept visualization</span></div>
+      <div class="fig reveal d2"><img width="1280" height="716" src="assets/story/deploy-pilot.webp" alt="Hotel executives watch a humanoid smooth a duvet in a guest-room mock-up while a technician supervises. Concept image." loading="lazy"><span class="concept-tag">Concept visualization</span></div>
       <ul class="pt-list reveal d2">
         <li>Experience site<span>A public showroom and guided demonstrations where enterprise buyers and the community see the work done, supervised, in rooms that look like theirs.</span></li>
         <li>Pilot floor<span>Supervised pilots run on the campus first, with the team that trained the model already on site, before anything moves into a live property.</span></li>
@@ -970,6 +1068,7 @@
     <span class="eyebrow reveal">How it scales</span>
     <h2 class="big sec-head reveal d1">A capital-efficient path to a national network.</h2>
     <p class="lead reveal d1">Hospitality gives us ready-made environments. The concept is to grow the campus network through real estate, not build every site from scratch.</p>
+    <div class="fig scale-fig reveal d2"><img width="1280" height="716" src="assets/story/scale-floor.webp" alt="Technicians fit small cameras to the ceiling of an ordinary hotel corridor; three room doors stand open with a camera on a tripod inside. Concept image." loading="lazy"><span class="concept-tag">Concept visualization</span></div>
     <div class="rev-grid">
       <div class="rev-card reveal d1"><div class="ph">Partner</div><h3>Lease hotel blocks</h3><p>Work with operators to instrument and run blocks or floors of existing hotels as live capture and demonstration space.</p></div>
       <div class="rev-card reveal d2"><div class="ph">Convert</div><h3>Acquire &amp; convert</h3><p>Buy existing hotels and convert them into Physical Intelligence Campuses: experience, capture, and deployment under one roof.</p></div>
@@ -985,10 +1084,13 @@
   <div class="wrap">
     <span class="eyebrow reveal">Founder</span>
     <h2 class="big sec-head reveal d1">Built from experience running the work.</h2>
+    <div class="founder-grid">
     <div class="founder-inner">
       <p class="f-quote reveal d1">Helping humanoids learn how real work should be <span class="accent">performed and evaluated</span>, from someone who has spent a career defining and running it.</p>
       <p class="f-bio reveal d2">Steven Ortmann brings more than 20 years of hospitality operating experience, including leading teams, defining operating procedures, and managing service quality. Metari applies that perspective to a new challenge: helping humanoids learn how real work should be performed and evaluated.</p>
       <div class="f-name reveal d3"><span class="nm">Steven Ortmann</span><span class="rl">Founder, Metari</span></div>
+    </div>
+    <figure class="founder-fig reveal d2"><img width="1400" height="874" src="assets/story/founder-steven-ortmann.webp" alt="Steven Ortmann, founder of Metari, in a navy blazer in front of a concept rendering of a Metari campus at dusk." loading="lazy"><span class="concept-tag">Concept visualization</span></figure>
     </div>
   </div>
 </section>
@@ -1094,14 +1196,24 @@
   // story film: load only when near, play only while visible, chapters follow the playhead
   (function(){
     var v=document.getElementById('storyVideo'), frame=document.getElementById('filmFrame'), btn=document.getElementById('storyPause'); if(!v||!frame) return;
-    var steps=[].slice.call(document.querySelectorAll('#filmSteps span')), loaded=false, userPaused=reduce;
+    var steps=[].slice.call(document.querySelectorAll('#traceSteps button')), loaded=false, userPaused=reduce;
+    var trace=document.getElementById('trace'), list=document.getElementById('traceBody'), loopRow=document.getElementById('traceLoop'), now=document.getElementById('filmNow'), tag=document.getElementById('filmTag'), cur=-1;
+    function mid(i){ var n=steps[i].querySelector('.tn'); return n.offsetTop+n.offsetHeight/2; }
+    function rail(){ if(!list||!steps.length) return; var a=mid(0), z=mid(steps.length-1); list.style.setProperty('--r0',a+'px'); list.style.setProperty('--r1',(z-a)+'px'); if(cur>=0){ list.style.setProperty('--y',(mid(cur)-4.5)+'px'); list.style.setProperty('--h',(mid(cur)-a)+'px'); } }
+    function setStep(k){ if(k===cur) return; cur=k; trace&&trace.classList.add('run');
+      steps.forEach(function(s,i){ var li=s.parentNode, st=s.querySelector('.ts'); li.classList.toggle('on',i===k); li.classList.toggle('done',i<k); if(i===k) s.setAttribute('aria-current','step'); else s.removeAttribute('aria-current'); if(st) st.textContent=i<k?'Done':(i===k?'Active':'Queued'); });
+      if(now) now.textContent=steps[k].getAttribute('data-n')+' / '+steps[k].getAttribute('data-label'); if(tag) tag.textContent=tag.getAttribute(k===0?'data-screen':'data-film'); rail(); }
+    rail(); window.addEventListener('resize',rail); window.addEventListener('load',rail); if(document.fonts&&document.fonts.ready) document.fonts.ready.then(rail);
     function load(){ if(loaded) return; loaded=true; [].slice.call(v.querySelectorAll('source')).forEach(function(s){ s.src=s.getAttribute('data-src'); }); v.preload='auto'; v.load(); }
     function play(){ load(); var p=v.play&&v.play(); if(p&&p.catch)p.catch(function(){}); }
     function label(){ if(btn){ btn.textContent=v.paused?'Play':'Pause'; btn.setAttribute('aria-label',v.paused?'Play film':'Pause film'); } }
     v.addEventListener('play',label); v.addEventListener('pause',label);
     btn&&btn.addEventListener('click',function(){ if(v.paused){ userPaused=false; play(); } else { userPaused=true; v.pause(); } label(); });
-    v.addEventListener('timeupdate',function(){ var t=v.currentTime,k=0; steps.forEach(function(s,i){ if(t>=+s.getAttribute('data-t')) k=i; }); steps.forEach(function(s,i){ s.classList.toggle('on',i===k); }); });
-    steps.forEach(function(s){ s.style.cursor='pointer'; s.addEventListener('click',function(){ load(); v.currentTime=+s.getAttribute('data-t'); if(!userPaused) play(); }); });
+    var want=null;
+    function sync(t){ var k=0; steps.forEach(function(s,i){ if(t>=+s.getAttribute('data-t')) k=i; }); setStep(k); if(loopRow) loopRow.classList.toggle('on',!!v.duration&&t>=v.duration-1.2); }
+    v.addEventListener('timeupdate',function(){ if(want===null&&!v.seeking&&(!v.paused||cur>=0)) sync(v.currentTime); });
+    function seek(t){ want=null; try{ v.currentTime=t+0.05; }catch(e){} }
+    steps.forEach(function(s){ s.addEventListener('click',function(){ var t=+s.getAttribute('data-t'); load(); sync(t); if(v.readyState>=1) seek(t); else { want=t; v.addEventListener('loadedmetadata',function f(){ v.removeEventListener('loadedmetadata',f); if(want!==null) seek(want); }); } if(!userPaused) play(); }); });
     if('IntersectionObserver' in window){
       new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting) load(); }); },{rootMargin:'600px 0px'}).observe(frame);
       new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ if(!userPaused) play(); } else v.pause(); }); },{threshold:.35}).observe(frame);
