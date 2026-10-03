@@ -368,6 +368,55 @@
   .film-tag{position:absolute;left:20px;top:18px;z-index:2;background:rgba(5,8,10,.5)}
   @media (max-width:700px){.film-frame{border-radius:14px}.film-ov{left:14px;right:14px;bottom:12px}.film-steps{display:none}.film-tag{left:12px;top:12px}#storyPause{display:none}.film-ctl .btn{padding:10px 16px;font-size:13.5px}}
 
+  /* program trace: a scripted sequence that follows the film playhead */
+  .trace-stage{margin-top:48px;display:grid;grid-template-columns:minmax(320px,400px) minmax(0,1fr);border-radius:20px;overflow:hidden;background:#05080a;border:1px solid var(--line-soft);box-shadow:0 50px 140px rgba(0,0,0,.55)}
+  .trace-stage .film-frame{margin-top:0;border-radius:0;box-shadow:none;width:100%;min-width:0;min-height:100%}
+  .trace{display:flex;flex-direction:column;padding:22px 22px 18px;border-right:1px solid var(--line-soft);background:linear-gradient(180deg,#0c0f12,#07090b)}
+  .trace-head{display:flex;justify-content:space-between;align-items:center;gap:12px;padding-bottom:14px;border-bottom:1px solid var(--line-soft);font:10.5px 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:#cfe0d8}
+  .trace-head b{color:var(--accent);font-weight:500}
+  .trace-head>span:first-child{white-space:nowrap;letter-spacing:.1em}
+  .trace-head .tag{flex:none;color:var(--faint);letter-spacing:.12em;border:1px solid var(--line-soft);border-radius:20px;padding:3px 9px;font-size:9.5px}
+  .trace-body{position:relative;margin-top:12px;flex:1;display:flex}
+  .trace-steps{list-style:none;flex:1;display:flex;flex-direction:column;justify-content:space-between}
+  .trace-body:before{content:"";position:absolute;left:5px;top:var(--r0,16px);height:var(--r1,calc(100% - 60px));width:1px;background:rgba(255,255,255,.13)}
+  .trace-fill{position:absolute;left:5px;top:var(--r0,16px);width:1px;height:var(--h,0px);background:var(--accent);transition:height .6s var(--ease);pointer-events:none}
+  .trace-dot{position:absolute;left:1px;top:0;width:9px;height:9px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px rgba(46,254,169,.16),0 0 16px var(--accent-glow);transform:translateY(var(--y,0px));transition:transform .6s var(--ease),opacity .4s;opacity:0;z-index:2;pointer-events:none}
+  .trace.run .trace-dot{opacity:1}
+  .trace-steps button{display:grid;grid-template-columns:11px minmax(0,1fr) auto;column-gap:14px;align-items:start;width:100%;text-align:left;background:none;border:0;color:inherit;font:inherit;letter-spacing:inherit;padding:7px 0;cursor:pointer;transition:opacity .4s}
+  .trace-steps .tn{width:11px;height:11px;border-radius:50%;border:1px solid rgba(255,255,255,.3);background:#090c0e;margin-top:3px;position:relative;z-index:1;transition:background .4s,border-color .4s}
+  .trace-steps .tt{display:block;font:11px 'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:#cfe0d8;transition:color .4s}
+  .trace-steps .tt i{font-style:normal;color:var(--accent);margin-right:8px}
+  .trace-steps .td{display:block;margin-top:3px;font-size:13px;line-height:1.4;color:var(--dim);transition:color .4s}
+  .trace-steps .ts{font:9.5px 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:var(--faint);margin-top:2px;min-width:46px;text-align:right;visibility:hidden}
+  .trace.run .ts{visibility:visible}
+  .trace.run li:not(.on):not(.done) button{opacity:.48}
+  .trace.run li:not(.on) .td{display:none}
+  .trace.run li.done .tt{color:#9fb3aa}
+  .trace-steps button:hover{opacity:1!important}
+  .trace-steps button:hover .tt{color:#fff}
+  .trace-steps li.done .tn{background:var(--accent);border-color:var(--accent)}
+  .trace-steps li.on .tn{border-color:var(--accent)}
+  .trace-steps li.on .tt{color:#fff}
+  .trace-steps li.on .td{color:#D6DEDA}
+  .trace-steps li.on .ts{color:var(--accent)}
+  .trace-loop{margin-top:10px;padding-top:13px;border-top:1px solid var(--line-soft);display:flex;align-items:center;gap:10px;font:10.5px 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:var(--faint);transition:color .4s}
+  .trace-loop i{font-style:normal;font-size:15px;line-height:1;display:inline-block;transition:transform .9s var(--ease)}
+  .trace-loop.on{color:var(--accent)}
+  .trace-loop.on i{transform:rotate(360deg)}
+  .trace-note{margin-top:9px;font-size:11.5px;line-height:1.45;color:var(--faint)}
+  .film-now{padding:7px 11px;border:1px solid var(--accent);border-radius:999px;background:rgba(5,8,10,.55);backdrop-filter:blur(8px);font:10.5px 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:#fff}
+  .film-now:empty{visibility:hidden}
+  .hero.cover .hero-proc{margin-top:22px;max-width:600px;font-size:12.5px;line-height:1.75;color:#B9C4BF}
+  @media (max-width:1040px){
+    .trace-stage{grid-template-columns:1fr}
+    .trace-stage .film-frame{order:-1;min-height:0}
+    .trace{border-right:0;border-top:1px solid var(--line-soft)}
+    .trace-steps{display:block}
+    .trace.run li.on .td{min-height:2.8em}
+  }
+  @media (max-width:700px){.trace-stage{border-radius:14px;margin-top:36px}.trace{padding:18px 16px 16px}.film-now{display:none}.trace-head{font-size:10px}.trace-head>span:first-child{white-space:normal}.hero.cover .hero-proc{font-size:11.5px}}
+  @media (prefers-reduced-motion:reduce){.trace-fill,.trace-dot,.trace-loop i{transition:none}}
+
 
   /* ===== HERO (film) ===== */
   .hero{min-height:100svh}
@@ -667,6 +716,7 @@
     <span class="eyebrow reveal in">Physical intelligence infrastructure</span>
     <h1 class="hero-title reveal in d1">An API to the <span class="accent">physical world.</span></h1>
     <p class="hero-sub reveal in d2">Robots cannot learn work they have never seen. Metari builds and operates the environments where that work happens, then holds them still so progress can be measured. Collect, train, deploy.</p>
+    <p class="hero-proc reveal in d2">Task order <b>&rarr;</b> instrumented environment <b>&rarr;</b> expert + robot interaction <b>&rarr;</b> structured data <b>&rarr;</b> evaluation <b>&rarr;</b> deployment <b>&rarr;</b> repeat</p>
     <div class="hero-cta reveal in d2">
       <a href="https://metari-command-center.vercel.app" class="btn btn-primary btn-lg btn-ext" target="_blank" rel="noopener">Open the Command Center</a>
       <a href="#contact" class="btn btn-lg" data-inquiry="">Discuss a project</a>
@@ -778,18 +828,35 @@
   </div>
 </section>
 
-<!-- FILM -->
+<!-- FILM + PROGRAM TRACE -->
 <section class="block" id="film">
   <div class="wrap">
     <span class="eyebrow reveal">In motion</span>
     <h2 class="big sec-head reveal d1">One building. Every step of the loop.</h2>
-    <p class="lead reveal d1">Experts demonstrate the work, the room captures it on one clock, the lab reviews it, and the same floor becomes the place a humanoid is evaluated and readied for a customer's property.</p>
-    <div class="film-frame reveal d2" id="filmFrame">
-      <video id="storyVideo" muted loop playsinline preload="none" poster="assets/story/film-poster.webp" aria-label="Concept film loop: expert demonstration, capture, data review, evaluation and supervised deployment"><source data-src="assets/story/metari-film-loop.mp4" type="video/mp4" /><source data-src="assets/story/metari-film-loop.webm" type="video/webm" /></video>
-      <span class="concept-tag film-tag">Concept film</span>
-      <div class="film-ov">
-        <div class="film-steps" id="filmSteps"><span data-t="0">Expertise</span><span data-t="4.2">Capture</span><span data-t="6.6">Data review</span><span data-t="8.6">Evaluation</span><span data-t="10.6">Variation</span><span data-t="12.6">Deployment</span></div>
-        <div class="film-ctl"><button class="btn" type="button" id="storyPause" aria-label="Pause film">Pause</button><button class="btn btn-primary" type="button" id="heroFilmBtn">Watch the full film &middot; 2:02</button></div>
+    <p class="lead reveal d1">Follow one program through the building. A lab's task order becomes a configured room, expert and robot work, structured data, evaluation and supervised deployment. What the deployment teaches comes back as the next order.</p>
+    <div class="trace-stage reveal d2">
+      <div class="trace" id="trace">
+        <div class="trace-head"><span>Real-world intelligence <b>//</b> trace</span><span class="tag">Illustrative</span></div>
+        <div class="trace-body" id="traceBody"><span class="trace-fill" aria-hidden="true"></span><span class="trace-dot" aria-hidden="true"></span>
+        <ol class="trace-steps" id="traceSteps" aria-label="Program trace, seven steps. Select a step to jump the film to it.">
+          <li><button type="button" data-t="0" data-n="01" data-label="Task order received"><span class="tn" aria-hidden="true"></span><span><span class="tt"><i>01</i>Task order received</span><span class="td">&ldquo;Hotel room reset and housekeeping manipulation data&rdquo;</span></span><span class="ts" aria-hidden="true">Queued</span></button></li>
+          <li><button type="button" data-t="1.0" data-n="02" data-label="Environment configured"><span class="tn" aria-hidden="true"></span><span><span class="tt"><i>02</i>Environment configured</span><span class="td">Instrumented room &middot; cameras &middot; sensors &middot; objects &middot; lighting</span></span><span class="ts" aria-hidden="true">Queued</span></button></li>
+          <li><button type="button" data-t="2.0" data-n="03" data-label="Real-world interaction"><span class="tn" aria-hidden="true"></span><span><span class="tt"><i>03</i>Real-world interaction</span><span class="td">Expert demonstration, then robot execution</span></span><span class="ts" aria-hidden="true">Queued</span></button></li>
+          <li><button type="button" data-t="4.2" data-n="04" data-label="Data structured"><span class="tn" aria-hidden="true"></span><span><span class="tt"><i>04</i>Data structured</span><span class="td">Multimodal video &middot; actions &middot; trajectories &middot; outcomes &middot; metadata</span></span><span class="ts" aria-hidden="true">Queued</span></button></li>
+          <li><button type="button" data-t="8.6" data-n="05" data-label="Evaluation"><span class="tn" aria-hidden="true"></span><span><span class="tt"><i>05</i>Evaluation</span><span class="td">Task completion &middot; safety &middot; failure modes &middot; repeatability</span></span><span class="ts" aria-hidden="true">Queued</span></button></li>
+          <li><button type="button" data-t="12.6" data-n="06" data-label="Deployment validation"><span class="tn" aria-hidden="true"></span><span><span class="tt"><i>06</i>Deployment validation</span><span class="td">Robot assessed in production-like conditions</span></span><span class="ts" aria-hidden="true">Queued</span></button></li>
+          <li><button type="button" data-t="14.7" data-n="07" data-label="Operating data returns"><span class="tn" aria-hidden="true"></span><span><span class="tt"><i>07</i>Operating data returns</span><span class="td">New edge cases and performance signals</span></span><span class="ts" aria-hidden="true">Queued</span></button></li>
+        </ol></div>
+        <div class="trace-loop" id="traceLoop"><i aria-hidden="true">&#8635;</i><span>System learns. Next task order.</span></div>
+        <p class="trace-note">A scripted sequence over a concept film. Not a feed from a live system.</p>
+      </div>
+      <div class="film-frame" id="filmFrame">
+        <video id="storyVideo" muted loop playsinline preload="none" poster="assets/story/film-poster.webp" aria-label="Concept film loop: expert demonstration, capture, data review, evaluation and supervised deployment"><source data-src="assets/story/metari-film-loop.mp4" type="video/mp4" /><source data-src="assets/story/metari-film-loop.webm" type="video/webm" /></video>
+        <span class="concept-tag film-tag">Concept film</span>
+        <div class="film-ov">
+          <span class="film-now" id="filmNow" aria-hidden="true"></span>
+          <div class="film-ctl"><button class="btn" type="button" id="storyPause" aria-label="Pause film">Pause</button><button class="btn btn-primary" type="button" id="heroFilmBtn">Watch the full film &middot; 2:02</button></div>
+        </div>
       </div>
     </div>
   </div>
@@ -1094,14 +1161,24 @@
   // story film: load only when near, play only while visible, chapters follow the playhead
   (function(){
     var v=document.getElementById('storyVideo'), frame=document.getElementById('filmFrame'), btn=document.getElementById('storyPause'); if(!v||!frame) return;
-    var steps=[].slice.call(document.querySelectorAll('#filmSteps span')), loaded=false, userPaused=reduce;
+    var steps=[].slice.call(document.querySelectorAll('#traceSteps button')), loaded=false, userPaused=reduce;
+    var trace=document.getElementById('trace'), list=document.getElementById('traceBody'), loopRow=document.getElementById('traceLoop'), now=document.getElementById('filmNow'), cur=-1;
+    function mid(i){ var n=steps[i].querySelector('.tn'); return n.offsetTop+n.offsetHeight/2; }
+    function rail(){ if(!list||!steps.length) return; var a=mid(0), z=mid(steps.length-1); list.style.setProperty('--r0',a+'px'); list.style.setProperty('--r1',(z-a)+'px'); if(cur>=0){ list.style.setProperty('--y',(mid(cur)-4.5)+'px'); list.style.setProperty('--h',(mid(cur)-a)+'px'); } }
+    function setStep(k){ if(k===cur) return; cur=k; trace&&trace.classList.add('run');
+      steps.forEach(function(s,i){ var li=s.parentNode, st=s.querySelector('.ts'); li.classList.toggle('on',i===k); li.classList.toggle('done',i<k); if(i===k) s.setAttribute('aria-current','step'); else s.removeAttribute('aria-current'); if(st) st.textContent=i<k?'Done':(i===k?'Active':'Queued'); });
+      if(now) now.textContent=steps[k].getAttribute('data-n')+' / '+steps[k].getAttribute('data-label'); rail(); }
+    rail(); window.addEventListener('resize',rail); window.addEventListener('load',rail); if(document.fonts&&document.fonts.ready) document.fonts.ready.then(rail);
     function load(){ if(loaded) return; loaded=true; [].slice.call(v.querySelectorAll('source')).forEach(function(s){ s.src=s.getAttribute('data-src'); }); v.preload='auto'; v.load(); }
     function play(){ load(); var p=v.play&&v.play(); if(p&&p.catch)p.catch(function(){}); }
     function label(){ if(btn){ btn.textContent=v.paused?'Play':'Pause'; btn.setAttribute('aria-label',v.paused?'Play film':'Pause film'); } }
     v.addEventListener('play',label); v.addEventListener('pause',label);
     btn&&btn.addEventListener('click',function(){ if(v.paused){ userPaused=false; play(); } else { userPaused=true; v.pause(); } label(); });
-    v.addEventListener('timeupdate',function(){ var t=v.currentTime,k=0; steps.forEach(function(s,i){ if(t>=+s.getAttribute('data-t')) k=i; }); steps.forEach(function(s,i){ s.classList.toggle('on',i===k); }); });
-    steps.forEach(function(s){ s.style.cursor='pointer'; s.addEventListener('click',function(){ load(); v.currentTime=+s.getAttribute('data-t'); if(!userPaused) play(); }); });
+    var want=null;
+    function sync(t){ var k=0; steps.forEach(function(s,i){ if(t>=+s.getAttribute('data-t')) k=i; }); setStep(k); if(loopRow) loopRow.classList.toggle('on',!!v.duration&&t>=v.duration-1.2); }
+    v.addEventListener('timeupdate',function(){ if(want===null&&!v.seeking&&(!v.paused||cur>=0)) sync(v.currentTime); });
+    function seek(t){ want=null; try{ v.currentTime=t+0.05; }catch(e){} }
+    steps.forEach(function(s){ s.addEventListener('click',function(){ var t=+s.getAttribute('data-t'); load(); sync(t); if(v.readyState>=1) seek(t); else { want=t; v.addEventListener('loadedmetadata',function f(){ v.removeEventListener('loadedmetadata',f); if(want!==null) seek(want); }); } if(!userPaused) play(); }); });
     if('IntersectionObserver' in window){
       new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting) load(); }); },{rootMargin:'600px 0px'}).observe(frame);
       new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ if(!userPaused) play(); } else v.pause(); }); },{threshold:.35}).observe(frame);
