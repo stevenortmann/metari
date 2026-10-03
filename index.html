@@ -406,6 +406,19 @@
   .trace-note{margin-top:9px;font-size:11.5px;line-height:1.45;color:var(--faint)}
   .film-now{padding:7px 11px;border:1px solid var(--accent);border-radius:999px;background:rgba(5,8,10,.55);backdrop-filter:blur(8px);font:10.5px 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:#fff}
   .film-now:empty{visibility:hidden}
+  .cfg-grid{margin-top:52px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px 20px}
+  .cfg{margin:0}
+  .cfg .ph{aspect-ratio:4/3;border-radius:14px;overflow:hidden;background:var(--bg-2)}
+  .cfg .ph img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--ease)}
+  .cfg:hover .ph img{transform:scale(1.03)}
+  .cfg figcaption{margin-top:14px}
+  .cfg figcaption b{display:block;font-size:18px;font-weight:600;letter-spacing:-.015em}
+  .cfg figcaption span{display:block;margin-top:3px;font-size:14.5px;color:var(--dim)}
+  .cfg-note{margin-top:40px;font-size:14px;color:var(--faint);max-width:80ch;line-height:1.7}
+  .cfg-note .concept-tag{margin-right:10px;vertical-align:middle}
+  @media (max-width:960px){.cfg-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+  @media (max-width:560px){.cfg-grid{grid-template-columns:1fr;gap:26px}}
+  @media (prefers-reduced-motion:reduce){.cfg .ph img{transition:none}}
   .founder-grid{margin-top:52px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:56px;align-items:center}
   .founder-grid .founder-inner{margin-top:0;max-width:none}
   .founder-fig{margin:0;position:relative;aspect-ratio:16/10;border-radius:18px;overflow:hidden;border:1px solid var(--line-soft);background:var(--bg-2)}
@@ -876,15 +889,20 @@
 </section>
 
 <!-- CONFIGURATIONS -->
-<section class="slide-sec dark" id="configurations" aria-label="One property, many configurations">
-  <div class="slide strip">
-    <span class="ov s-eyebrow" style="--x:4.50%;--y:14.67%">Reconfigurable environments</span>
-    <h2 class="ov s-title" style="--x:4.50%;--y:18.67%;--w:80%">One property. Many configurations.</h2>
-    <p class="ov s-sub" style="--x:4.50%;--y:27.33%;--w:70%">Set the environment around the task, not the other way around.</p>
-    <picture class="art"><img width="2560" height="1446" src="assets/slides/strip.webp" srcset="assets/slides/strip-1280.webp 1280w, assets/slides/strip.webp 2560w" sizes="100vw" alt="Six angled panels showing humanoids and people working in hospitality, a hospital mockup, senior living, a residence, a restaurant kitchen and an outdoor walkway." loading="lazy"></picture>
-    <div class="s-shade"></div>
-    <div class="chips-s"><span style="left:1.88%">Hospitality</span><span style="left:15.75%">Hospital mockups</span><span style="left:31.88%">Senior living</span><span style="left:47.25%">Residential</span><span style="left:62.25%">Restaurants</span><span style="left:78.38%">Outdoor workflows</span></div>
-    <p class="ov s-note" style="--x:4.50%;--y:84.67%;--w:90%">Illustrative settings for demonstrations, evaluation and supervised pilots. First wedge is hospitality; the network is designed for many service environments.</p>
+<section class="block" id="configurations">
+  <div class="wrap">
+    <span class="eyebrow reveal">Reconfigurable environments</span>
+    <h2 class="big sec-head reveal d1">One property. Many configurations.</h2>
+    <p class="lead reveal d1">Set the environment around the task, not the other way around. Hospitality is the first wedge; the same building is designed to be reset for other kinds of service work.</p>
+    <div class="cfg-grid">
+      <figure class="cfg reveal d1"><div class="ph"><img width="1000" height="750" src="assets/config/hospitality.webp" alt="A housekeeper makes a hotel bed under ceiling cameras while a humanoid stands in a marked zone. Concept image." loading="lazy"></div><figcaption><b>Hospitality</b><span>Guest rooms: bed making, linen, bathroom reset.</span></figcaption></figure>
+      <figure class="cfg reveal d2"><div class="ph"><img width="1000" height="750" src="assets/config/restaurant.webp" alt="A server and a humanoid lay a restaurant table while an evaluator takes notes. Concept image." loading="lazy"></div><figcaption><b>Restaurants</b><span>Table setting, service and clearing.</span></figcaption></figure>
+      <figure class="cfg reveal d3"><div class="ph"><img width="1000" height="750" src="assets/config/kitchen.webp" alt="A chef preps at a steel bench beside a humanoid in a marked test area, with an observer holding a tablet. Concept image." loading="lazy"></div><figcaption><b>Commercial kitchen</b><span>Prep, tool use and cleaning.</span></figcaption></figure>
+      <figure class="cfg reveal d1"><div class="ph"><img width="1000" height="750" src="assets/config/laundry.webp" alt="Laundry staff fold towels at steel tables surrounded by cameras on stands. Concept image." loading="lazy"></div><figcaption><b>Laundry</b><span>Sorting, folding and carts.</span></figcaption></figure>
+      <figure class="cfg reveal d2"><div class="ph"><img width="1000" height="750" src="assets/config/outdoor.webp" alt="A pool attendant rolls towels on a lounger while a humanoid stands on the path beside camera posts. Concept image." loading="lazy"></div><figcaption><b>Outdoor workflows</b><span>Pool, towels, furniture and grounds.</span></figcaption></figure>
+      <figure class="cfg reveal d3"><div class="ph"><img width="1000" height="750" src="assets/config/senior-living.webp" alt="Two staff members set up a humanoid in a mock living room under ceiling cameras. Concept image." loading="lazy"></div><figcaption><b>Senior living mock-up</b><span>Controlled mock rooms. No resident care.</span></figcaption></figure>
+    </div>
+    <p class="cfg-note reveal d2"><span class="concept-tag">Concept images</span> Illustrative settings for demonstrations, evaluation and supervised pilots. Robot designs differ on purpose: programs are meant to run on each lab's own hardware.</p>
   </div>
 </section>
 
