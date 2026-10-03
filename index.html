@@ -352,6 +352,28 @@
   .spec-list li b{display:block;font-size:15.5px;font-weight:600}
   .spec-list li span{display:block;margin-top:5px;font-size:14px;color:var(--dim)}
   .spec-list li .n{float:right;font:11px 'JetBrains Mono',monospace;color:var(--faint);letter-spacing:.1em}
+  /* PRODUCT FRAME */
+  .pframe{position:relative;margin-top:48px;border:1px solid rgba(46,254,169,.28);border-radius:20px;background:#0b1012;overflow:hidden;box-shadow:0 40px 120px rgba(0,0,0,.45),0 0 0 1px rgba(46,254,169,.06),0 0 90px rgba(46,254,169,.10)}
+  .pframe .pbar{display:flex;align-items:center;gap:14px;padding:12px 18px;border-bottom:1px solid var(--line);background:#10171a}
+  .pframe .pbar i{width:9px;height:9px;border-radius:50%;background:#2a3b3b;display:inline-block}.pframe .pbar i+i{margin-left:-8px}
+  .pframe .pbar i:nth-child(1){background:#2f4a44}.pframe .pbar i:nth-child(2){background:#243c37}.pframe .pbar i:nth-child(3){background:var(--accent);opacity:.8}
+  .pframe .pbar span{font:11px 'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:var(--dim);margin-left:6px}
+  .pframe .pbar b{margin-left:auto;font:10.5px 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);font-weight:500}
+  .pframe .pimg{position:relative;overflow:hidden}
+  .pframe .pimg img{width:100%;height:auto;display:block}
+  .pframe .pimg.fade:after{content:"";position:absolute;left:0;right:0;bottom:0;height:52%;background:linear-gradient(180deg,transparent,rgba(11,16,18,.85) 55%,#0b1012)}
+  .pframe .pcap{position:absolute;left:22px;right:22px;bottom:20px;z-index:3;display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap}
+  .pframe .pcap h3{font-size:clamp(20px,2vw,26px);max-width:22ch}
+  .pframe .pcap p{margin-top:6px;font-size:14px;color:var(--dim);max-width:52ch}
+  .pframe .chips{display:flex;gap:8px;flex-wrap:wrap}
+  .pframe .chips span{padding:7px 10px;border:1px solid rgba(46,254,169,.3);border-radius:999px;background:rgba(6,7,9,.6);backdrop-filter:blur(6px);font:10.5px 'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:#e5fff5}
+  .env-strip{margin-top:26px;display:flex;flex-wrap:wrap;gap:8px}
+  .env-strip span{padding:9px 13px;border:1px solid var(--line-soft);border-radius:999px;background:var(--bg-2);font-size:13.5px;color:var(--text)}
+  .env-strip span small{color:var(--faint);font-size:12px;margin-left:6px}
+  .env-strip span.more{border-style:dashed;color:var(--dim)}
+  .sec-cta{margin-top:26px;display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+  .sec-cta .note{font:11px 'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:var(--faint)}
+  @media (max-width:700px){.pframe .pcap{position:static;padding:18px 18px 20px}.pframe .pimg.fade:after{display:none}.pframe .pbar span{display:none}}
   /* readiness placeholders */
   .ready-m b.ph{color:var(--faint);letter-spacing:.1em}
   /* sticky contact */
@@ -546,13 +568,28 @@
   </div>
 </section>
 
-<section class="block" id="environments"><div class="wrap"><span class="eyebrow reveal">24/7 physical AI environments</span><h2 class="big sec-head reveal d1">A world built for robots to learn.</h2><p class="lead reveal d1">Metari campuses extend beyond hospitality into realistic, configurable environments designed for continuous data collection, training, evaluation, enterprise pilots, and deployment preparation. Mock environments can be reset and densely instrumented without disrupting occupied rooms or active care settings.</p><div class="envx-grid"><div class="envx reveal"><div class="ek">Environment</div><h3>Hotel room</h3><p>Bed making · linen · bathroom reset · cleaning</p><div class="es">Manipulation · quality</div></div><div class="envx reveal"><div class="ek">Environment</div><h3>Hotel lobby</h3><p>Guest assistance · luggage · deliveries · navigation</p><div class="es">Mobility · interaction</div></div><div class="envx reveal"><div class="ek">Environment</div><h3>Commercial kitchen</h3><p>Prep · storage · tool use · cleaning</p><div class="es">Tool use · safety</div></div><div class="envx reveal"><div class="ek">Environment</div><h3>Coffee shop</h3><p>Drink prep · cups · handoff · inventory</p><div class="es">Dexterity · service</div></div><div class="envx reveal"><div class="ek">Environment</div><h3>Laundry</h3><p>Sorting · folding · loading · carts</p><div class="es">Bimanual · logistics</div></div><div class="envx reveal"><div class="ek">Environment</div><h3>Stairs + hallways</h3><p>Carrying · balance · avoidance · multi-floor</p><div class="es">Mobility · navigation</div></div><div class="envx reveal"><div class="ek">Environment</div><h3>Pool + landscaping</h3><p>Towels · furniture · tools · debris · watering</p><div class="es">Outdoor · tools</div></div><div class="envx reveal"><div class="ek">Environment</div><h3>Hospital room</h3><p>Supply movement · room reset · environmental service</p><div class="es">Non-clinical support</div></div><div class="envx reveal"><div class="ek">Environment</div><h3>Senior living</h3><p>Retrieval · hospitality · navigation · interaction</p><div class="es">Human environments</div></div><div class="envx reveal"><div class="ek">Environment</div><h3>Maintenance workshop</h3><p>Tools · repairs · fasteners · inspection</p><div class="es">Precision · tool use</div></div><div class="envx reveal"><div class="ek">Environment</div><h3>Retail</h3><p>Stocking · shelving · inventory · assistance</p><div class="es">Manipulation · service</div></div><div class="envx reveal"><div class="ek">Environment</div><h3>Enterprise-specific</h3><p>Task-specific rooms configured around buyer requirements</p><div class="es">Custom evaluation</div></div></div></div></section><!-- DELIVERABLE -->
+<section class="block" id="environments"><div class="wrap"><span class="eyebrow reveal">24/7 physical AI environments</span><h2 class="big sec-head reveal d1">A world built for robots to learn.</h2><p class="lead reveal d1">Twenty configurable environment types, each with its own task definitions, sensor plan and camera layout, managed from one library in the Command Center. Mock environments can be reset and densely instrumented without disrupting occupied rooms or active care settings.</p>
+    <div class="pframe reveal d2">
+      <div class="pbar"><i></i><i></i><i></i><span>Command Center &middot; Environment library</span><b>Simulated data</b></div>
+      <div class="pimg fade"><img src="assets/command-center-environments.webp" alt="Metari Command Center environment library: a grid of configurable environments such as guest room, bathroom and commercial kitchen, each with task definitions, sensors and a camera layout. Simulated data." loading="lazy"></div>
+      <div class="pcap"><div><h3>Every room is a product.</h3><p>Open an environment, see its task definitions, sensors and variation coverage, then configure it for the next order.</p></div><div class="chips"><span>20 environment types</span><span>Task definitions</span><span>Camera layouts</span></div></div>
+    </div>
+    <div class="env-strip reveal d2">
+      <span>Hotel room<small>bed making &middot; linen &middot; bathroom reset</small></span><span>Hotel lobby<small>luggage &middot; deliveries &middot; navigation</small></span><span>Commercial kitchen<small>prep &middot; tool use &middot; cleaning</small></span><span>Coffee shop<small>drink prep &middot; handoff</small></span><span>Laundry<small>sorting &middot; folding &middot; carts</small></span><span>Stairs + hallways<small>carrying &middot; multi-floor</small></span><span>Pool + landscaping<small>towels &middot; furniture &middot; tools</small></span><span>Hospital room<small>non-clinical support</small></span><span>Senior living<small>retrieval &middot; interaction</small></span><span>Maintenance workshop<small>tools &middot; inspection</small></span><span>Retail<small>stocking &middot; inventory</small></span><span class="more">Enterprise-specific rooms, configured around buyer requirements</span>
+    </div>
+    <div class="sec-cta reveal d3"><a href="https://metari-command-center.vercel.app" class="btn btn-ext" target="_blank" rel="noopener">Open the Environment library</a><span class="note">Private prototype &middot; sensors and counts are simulated</span></div>
+  </div></section><!-- DELIVERABLE -->
 <section class="block" id="deliverable">
   <div class="wrap">
     <span class="eyebrow reveal">What a lab receives</span>
     <h2 class="big sec-head reveal d1">An episode, not a pile of footage.</h2>
     <p class="lead reveal d1">Every run is delivered as one package: synchronized views on a single clock, the task and environment it was captured against, the expert's decisions, and a review against the acceptance criteria the lab wrote. Rights are documented per episode.</p>
-    <div class="spec">
+    <div class="pframe reveal d2">
+      <div class="pbar"><i></i><i></i><i></i><span>Command Center &middot; Camera &amp; sensor layouts &middot; Guest room</span><b>Design estimate &middot; not surveyed</b></div>
+      <div class="pimg"><img src="assets/command-center-camera-layout.webp" alt="Metari Command Center camera and sensor layout for a guest room: a floor plan with six camera positions and their fields of view, task paths, coverage figures and a design preset panel. Simulated data." loading="lazy"></div>
+    </div>
+    <div class="sec-cta reveal d2" style="margin-top:18px"><span class="chips" style="display:flex;gap:8px;flex-wrap:wrap"><span style="padding:7px 10px;border:1px solid rgba(46,254,169,.3);border-radius:999px;font:10.5px 'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:#e5fff5">Ceiling &middot; wall &middot; wearable</span><span style="padding:7px 10px;border:1px solid rgba(46,254,169,.3);border-radius:999px;font:10.5px 'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:#e5fff5">Field of view per camera</span><span style="padding:7px 10px;border:1px solid rgba(46,254,169,.3);border-radius:999px;font:10.5px 'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:#e5fff5">Task paths</span><span style="padding:7px 10px;border:1px solid rgba(46,254,169,.3);border-radius:999px;font:10.5px 'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:#e5fff5">One clock</span></span><span class="note">The capture design behind every episode. Each camera is placed, aimed and checked against the task before a run.</span></div>
+    <div class="spec" style="margin-top:40px">
       <div class="manifest reveal d2" aria-label="Illustrative episode manifest">
         <div class="mh"><span>Episode manifest &middot; <b>illustrative structure</b></span><span>EP-&#9135;&#9135;&#9135;&#9135;</span></div>
         <div class="mv">
