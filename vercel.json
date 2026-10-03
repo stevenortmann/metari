@@ -1,0 +1,10 @@
+{
+  "redirects": [
+    { "source": "/inv", "destination": "/investors", "permanent": false },
+    { "source": "/investor", "destination": "/investors", "permanent": false }
+  ],
+  "rewrites": [
+    { "source": "/investors", "destination": "https://metari-command-center.vercel.app/investors" },
+    { "source": "/investors/:path*", "destination": "https://metari-command-center.vercel.app/investors/:path*" }
+  ]
+}
