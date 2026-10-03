@@ -406,6 +406,7 @@
   .trace-note{margin-top:9px;font-size:11.5px;line-height:1.45;color:var(--faint)}
   .film-now{padding:7px 11px;border:1px solid var(--accent);border-radius:999px;background:rgba(5,8,10,.55);backdrop-filter:blur(8px);font:10.5px 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:#fff}
   .film-now:empty{visibility:hidden}
+  .trace-stage .film-tag{left:auto;right:18px;background:rgba(5,8,10,.78);backdrop-filter:blur(8px);color:#cfe0d8}
   .hero.cover .hero-proc{margin-top:22px;max-width:600px;font-size:12.5px;line-height:1.75;color:#B9C4BF}
   @media (max-width:1040px){
     .trace-stage{grid-template-columns:1fr}
@@ -414,7 +415,7 @@
     .trace-steps{display:block}
     .trace.run li.on .td{min-height:2.8em}
   }
-  @media (max-width:700px){.trace-stage{border-radius:14px;margin-top:36px}.trace{padding:18px 16px 16px}.film-now{display:none}.trace-head{font-size:10px}.trace-head>span:first-child{white-space:normal}.hero.cover .hero-proc{font-size:11.5px}}
+  @media (max-width:700px){.trace-stage .film-tag{right:10px;left:auto}.trace-stage{border-radius:14px;margin-top:36px}.trace{padding:18px 16px 16px}.film-now{display:none}.trace-head{font-size:10px}.trace-head>span:first-child{white-space:normal}.hero.cover .hero-proc{font-size:11.5px}}
   @media (prefers-reduced-motion:reduce){.trace-fill,.trace-dot,.trace-loop i{transition:none}}
 
 
@@ -839,20 +840,20 @@
         <div class="trace-head"><span>Real-world intelligence <b>//</b> trace</span><span class="tag">Illustrative</span></div>
         <div class="trace-body" id="traceBody"><span class="trace-fill" aria-hidden="true"></span><span class="trace-dot" aria-hidden="true"></span>
         <ol class="trace-steps" id="traceSteps" aria-label="Program trace, seven steps. Select a step to jump the film to it.">
-          <li><button type="button" data-t="0" data-n="01" data-label="Task order received"><span class="tn" aria-hidden="true"></span><span><span class="tt"><i>01</i>Task order received</span><span class="td">&ldquo;Hotel room reset and housekeeping manipulation data&rdquo;</span></span><span class="ts" aria-hidden="true">Queued</span></button></li>
-          <li><button type="button" data-t="1.0" data-n="02" data-label="Environment configured"><span class="tn" aria-hidden="true"></span><span><span class="tt"><i>02</i>Environment configured</span><span class="td">Instrumented room &middot; cameras &middot; sensors &middot; objects &middot; lighting</span></span><span class="ts" aria-hidden="true">Queued</span></button></li>
-          <li><button type="button" data-t="2.0" data-n="03" data-label="Real-world interaction"><span class="tn" aria-hidden="true"></span><span><span class="tt"><i>03</i>Real-world interaction</span><span class="td">Expert demonstration, then robot execution</span></span><span class="ts" aria-hidden="true">Queued</span></button></li>
-          <li><button type="button" data-t="4.2" data-n="04" data-label="Data structured"><span class="tn" aria-hidden="true"></span><span><span class="tt"><i>04</i>Data structured</span><span class="td">Multimodal video &middot; actions &middot; trajectories &middot; outcomes &middot; metadata</span></span><span class="ts" aria-hidden="true">Queued</span></button></li>
-          <li><button type="button" data-t="8.6" data-n="05" data-label="Evaluation"><span class="tn" aria-hidden="true"></span><span><span class="tt"><i>05</i>Evaluation</span><span class="td">Task completion &middot; safety &middot; failure modes &middot; repeatability</span></span><span class="ts" aria-hidden="true">Queued</span></button></li>
-          <li><button type="button" data-t="12.6" data-n="06" data-label="Deployment validation"><span class="tn" aria-hidden="true"></span><span><span class="tt"><i>06</i>Deployment validation</span><span class="td">Robot assessed in production-like conditions</span></span><span class="ts" aria-hidden="true">Queued</span></button></li>
-          <li><button type="button" data-t="14.7" data-n="07" data-label="Operating data returns"><span class="tn" aria-hidden="true"></span><span><span class="tt"><i>07</i>Operating data returns</span><span class="td">New edge cases and performance signals</span></span><span class="ts" aria-hidden="true">Queued</span></button></li>
+          <li><button type="button" data-t="0" data-n="01" data-label="Task order received"><span class="tn" aria-hidden="true"></span><span><span class="tt"><i>01</i>Task order received</span><span class="td">&ldquo;Room-turn edge cases&rdquo; &middot; Guest Room &middot; DO-1042</span></span><span class="ts" aria-hidden="true">Queued</span></button></li>
+          <li><button type="button" data-t="2.56" data-n="02" data-label="Environment configured"><span class="tn" aria-hidden="true"></span><span><span class="tt"><i>02</i>Environment configured</span><span class="td">Instrumented room &middot; cameras &middot; sensors &middot; objects &middot; lighting</span></span><span class="ts" aria-hidden="true">Queued</span></button></li>
+          <li><button type="button" data-t="6.81" data-n="03" data-label="Real-world interaction"><span class="tn" aria-hidden="true"></span><span><span class="tt"><i>03</i>Real-world interaction</span><span class="td">Expert demonstration, then robot execution</span></span><span class="ts" aria-hidden="true">Queued</span></button></li>
+          <li><button type="button" data-t="11.06" data-n="04" data-label="Data structured"><span class="tn" aria-hidden="true"></span><span><span class="tt"><i>04</i>Data structured</span><span class="td">Multimodal video &middot; actions &middot; trajectories &middot; outcomes &middot; metadata</span></span><span class="ts" aria-hidden="true">Queued</span></button></li>
+          <li><button type="button" data-t="13.19" data-n="05" data-label="Evaluation"><span class="tn" aria-hidden="true"></span><span><span class="tt"><i>05</i>Evaluation</span><span class="td">Task completion &middot; safety &middot; failure modes &middot; repeatability</span></span><span class="ts" aria-hidden="true">Queued</span></button></li>
+          <li><button type="button" data-t="17.44" data-n="06" data-label="Deployment validation"><span class="tn" aria-hidden="true"></span><span><span class="tt"><i>06</i>Deployment validation</span><span class="td">Robot assessed in production-like conditions</span></span><span class="ts" aria-hidden="true">Queued</span></button></li>
+          <li><button type="button" data-t="19.56" data-n="07" data-label="Operating data returns"><span class="tn" aria-hidden="true"></span><span><span class="tt"><i>07</i>Operating data returns</span><span class="td">New edge cases and performance signals</span></span><span class="ts" aria-hidden="true">Queued</span></button></li>
         </ol></div>
         <div class="trace-loop" id="traceLoop"><i aria-hidden="true">&#8635;</i><span>System learns. Next task order.</span></div>
         <p class="trace-note">A scripted sequence over a concept film. Not a feed from a live system.</p>
       </div>
       <div class="film-frame" id="filmFrame">
-        <video id="storyVideo" muted loop playsinline preload="none" poster="assets/story/film-poster.webp" aria-label="Concept film loop: expert demonstration, capture, data review, evaluation and supervised deployment"><source data-src="assets/story/metari-film-loop.mp4" type="video/mp4" /><source data-src="assets/story/metari-film-loop.webm" type="video/webm" /></video>
-        <span class="concept-tag film-tag">Concept film</span>
+        <video id="storyVideo" muted loop playsinline preload="none" poster="assets/story/film-poster.webp" aria-label="Concept film loop: an order in the Command Center, room and camera setup, expert demonstration, data review, evaluation and supervised deployment"><source data-src="assets/story/metari-film-loop.mp4" type="video/mp4" /><source data-src="assets/story/metari-film-loop.webm" type="video/webm" /></video>
+        <span class="concept-tag film-tag" id="filmTag" data-film="Concept film" data-screen="Command Center &middot; simulated data">Concept film</span>
         <div class="film-ov">
           <span class="film-now" id="filmNow" aria-hidden="true"></span>
           <div class="film-ctl"><button class="btn" type="button" id="storyPause" aria-label="Pause film">Pause</button><button class="btn btn-primary" type="button" id="heroFilmBtn">Watch the full film &middot; 2:02</button></div>
@@ -1162,12 +1163,12 @@
   (function(){
     var v=document.getElementById('storyVideo'), frame=document.getElementById('filmFrame'), btn=document.getElementById('storyPause'); if(!v||!frame) return;
     var steps=[].slice.call(document.querySelectorAll('#traceSteps button')), loaded=false, userPaused=reduce;
-    var trace=document.getElementById('trace'), list=document.getElementById('traceBody'), loopRow=document.getElementById('traceLoop'), now=document.getElementById('filmNow'), cur=-1;
+    var trace=document.getElementById('trace'), list=document.getElementById('traceBody'), loopRow=document.getElementById('traceLoop'), now=document.getElementById('filmNow'), tag=document.getElementById('filmTag'), cur=-1;
     function mid(i){ var n=steps[i].querySelector('.tn'); return n.offsetTop+n.offsetHeight/2; }
     function rail(){ if(!list||!steps.length) return; var a=mid(0), z=mid(steps.length-1); list.style.setProperty('--r0',a+'px'); list.style.setProperty('--r1',(z-a)+'px'); if(cur>=0){ list.style.setProperty('--y',(mid(cur)-4.5)+'px'); list.style.setProperty('--h',(mid(cur)-a)+'px'); } }
     function setStep(k){ if(k===cur) return; cur=k; trace&&trace.classList.add('run');
       steps.forEach(function(s,i){ var li=s.parentNode, st=s.querySelector('.ts'); li.classList.toggle('on',i===k); li.classList.toggle('done',i<k); if(i===k) s.setAttribute('aria-current','step'); else s.removeAttribute('aria-current'); if(st) st.textContent=i<k?'Done':(i===k?'Active':'Queued'); });
-      if(now) now.textContent=steps[k].getAttribute('data-n')+' / '+steps[k].getAttribute('data-label'); rail(); }
+      if(now) now.textContent=steps[k].getAttribute('data-n')+' / '+steps[k].getAttribute('data-label'); if(tag) tag.textContent=tag.getAttribute(k===0?'data-screen':'data-film'); rail(); }
     rail(); window.addEventListener('resize',rail); window.addEventListener('load',rail); if(document.fonts&&document.fonts.ready) document.fonts.ready.then(rail);
     function load(){ if(loaded) return; loaded=true; [].slice.call(v.querySelectorAll('source')).forEach(function(s){ s.src=s.getAttribute('data-src'); }); v.preload='auto'; v.load(); }
     function play(){ load(); var p=v.play&&v.play(); if(p&&p.catch)p.catch(function(){}); }
