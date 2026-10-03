@@ -304,10 +304,8 @@
   @media (max-width:700px){.car-slide{width:85vw}.car-btn{display:none}}
   .block-tight{padding:70px 0}
   /* ===== STORY PASS ===== */
-  /* static brand mark */
-  .mt-mark,.mt-spin,.mt-core{animation:none!important}
-  .mt-ring{display:none}
-  .mt-mark{filter:drop-shadow(0 0 4px rgba(46,254,169,.45))}
+  /* brand mark animates (slow spin, breathing glow, pulse rings); off under reduced motion */
+  @media (prefers-reduced-motion:reduce){.mt-ring{display:none}}
 
   /* hero: deck cover */
   .hero.cover{min-height:100svh;align-items:center}
@@ -737,7 +735,6 @@
 <header class="hero cover" id="top">
   <div class="hero-bg"><picture><source media="(max-width:700px)" srcset="assets/story/hero-portrait.webp" width="900" height="1451"><img src="assets/story/hero-2560.webp" srcset="assets/story/hero-1280.webp 1280w, assets/story/hero-2560.webp 2560w" sizes="100vw" width="2560" height="1446" alt="Concept rendering of a Metari campus at night: a glowing layered intelligence stack in front of the Metari building, with a humanoid visible inside." fetchpriority="high" /></picture></div>
   <div class="hero-scrim"></div>
-  <span class="concept-tag hero-tag">Concept visualization</span>
   <div class="wrap">
     <span class="eyebrow reveal in">Physical intelligence infrastructure</span>
     <h1 class="hero-title reveal in d1">An API to the <span class="accent">physical world.</span></h1>
@@ -878,7 +875,6 @@
       </div>
       <div class="film-frame" id="filmFrame">
         <video id="storyVideo" muted loop playsinline preload="none" poster="assets/story/film-poster.webp" aria-label="Concept film loop: an order in the Command Center, staff staging a messy guest room, camera setup, expert demonstration, data review, evaluation and supervised deployment"><source data-src="assets/story/metari-film-loop.mp4" type="video/mp4" /><source data-src="assets/story/metari-film-loop.webm" type="video/webm" /></video>
-        <span class="concept-tag film-tag" id="filmTag" data-film="Concept film" data-screen="Command Center &middot; simulated data">Concept film</span>
         <div class="film-ov">
           <span class="film-now" id="filmNow" aria-hidden="true"></span>
           <div class="film-ctl"><button class="btn" type="button" id="storyPause" aria-label="Pause film">Pause</button><button class="btn btn-primary" type="button" id="heroFilmBtn">Watch the full film &middot; 2:02</button></div>
@@ -902,7 +898,7 @@
       <figure class="cfg reveal d2"><div class="ph"><img width="1000" height="750" src="assets/config/outdoor.webp" alt="A pool attendant rolls towels on a lounger while a humanoid stands on the path beside camera posts. Concept image." loading="lazy"></div><figcaption><b>Outdoor workflows</b><span>Pool, towels, furniture and grounds.</span></figcaption></figure>
       <figure class="cfg reveal d3"><div class="ph"><img width="1000" height="750" src="assets/config/senior-living.webp" alt="Two staff members set up a humanoid in a mock living room under ceiling cameras. Concept image." loading="lazy"></div><figcaption><b>Senior living mock-up</b><span>Controlled mock rooms. No resident care.</span></figcaption></figure>
     </div>
-    <p class="cfg-note reveal d2"><span class="concept-tag">Concept images</span> Illustrative settings for demonstrations, evaluation and supervised pilots. Humanoid designs differ on purpose: programs are meant to run on each lab's own hardware.</p>
+    <p class="cfg-note reveal d2">Illustrative settings for demonstrations, evaluation and supervised pilots. Humanoid designs differ on purpose: programs are meant to run on each lab's own hardware.</p>
   </div>
 </section>
 
@@ -999,7 +995,7 @@
     <h2 class="big sec-head reveal d1">The same building is where humanoids go to work.</h2>
     <p class="lead reveal d1">A Metari campus is not only where data is collected. It is where operators and the public see humanoids work in real settings, and where a humanoid is prepared, evaluated and readied before it enters a customer's property. Experience builds belief; belief drives adoption.</p>
     <div class="split2">
-      <div class="fig reveal d2"><img width="1280" height="716" src="assets/story/deploy-pilot.webp" alt="Hotel executives watch a humanoid smooth a duvet in a guest-room mock-up while a technician supervises. Concept image." loading="lazy"><span class="concept-tag">Concept visualization</span></div>
+      <div class="fig reveal d2"><img width="1280" height="716" src="assets/story/deploy-pilot.webp" alt="Hotel executives watch a humanoid smooth a duvet in a guest-room mock-up while a technician supervises. Concept image." loading="lazy"></div>
       <ul class="pt-list reveal d2">
         <li>Experience site<span>A public showroom and guided demonstrations where enterprise buyers and the community see the work done, supervised, in rooms that look like theirs.</span></li>
         <li>Pilot floor<span>Supervised pilots run on the campus first, with the team that trained the model already on site, before anything moves into a live property.</span></li>
@@ -1068,7 +1064,7 @@
     <span class="eyebrow reveal">How it scales</span>
     <h2 class="big sec-head reveal d1">A capital-efficient path to a national network.</h2>
     <p class="lead reveal d1">Hospitality gives us ready-made environments. The concept is to grow the campus network through real estate, not build every site from scratch.</p>
-    <div class="fig scale-fig reveal d2"><img width="1280" height="716" src="assets/story/scale-floor.webp" alt="Technicians fit small cameras to the ceiling of an ordinary hotel corridor; three room doors stand open with a camera on a tripod inside. Concept image." loading="lazy"><span class="concept-tag">Concept visualization</span></div>
+    <div class="fig scale-fig reveal d2"><img width="1280" height="716" src="assets/story/scale-floor.webp" alt="Technicians fit small cameras to the ceiling of an ordinary hotel corridor; three room doors stand open with a camera on a tripod inside. Concept image." loading="lazy"></div>
     <div class="rev-grid">
       <div class="rev-card reveal d1"><div class="ph">Partner</div><h3>Lease hotel blocks</h3><p>Work with operators to instrument and run blocks or floors of existing hotels as live capture and demonstration space.</p></div>
       <div class="rev-card reveal d2"><div class="ph">Convert</div><h3>Acquire &amp; convert</h3><p>Buy existing hotels and convert them into Physical Intelligence Campuses: experience, capture, and deployment under one roof.</p></div>
@@ -1090,7 +1086,7 @@
       <p class="f-bio reveal d2">Steven Ortmann brings more than 20 years of hospitality operating experience, including leading teams, defining operating procedures, and managing service quality. Metari applies that perspective to a new challenge: helping humanoids learn how real work should be performed and evaluated.</p>
       <div class="f-name reveal d3"><span class="nm">Steven Ortmann</span><span class="rl">Founder, Metari</span></div>
     </div>
-    <figure class="founder-fig reveal d2"><img width="1400" height="874" src="assets/story/founder-steven-ortmann.webp" alt="Steven Ortmann, founder of Metari, in a navy blazer in front of a concept rendering of a Metari campus at dusk." loading="lazy"><span class="concept-tag">Concept visualization</span></figure>
+    <figure class="founder-fig reveal d2"><img width="1400" height="874" src="assets/story/founder-steven-ortmann.webp" alt="Steven Ortmann, founder of Metari, in a navy blazer in front of a concept rendering of a Metari campus at dusk." loading="lazy"></figure>
     </div>
   </div>
 </section>
@@ -1098,7 +1094,6 @@
 <!-- CONTACT -->
 <section class="contact art" id="contact">
   <div class="c-bg" aria-hidden="true"><img width="2560" height="1440" src="assets/story/closing-2560.webp" srcset="assets/story/closing-1280.webp 1280w, assets/story/closing-2560.webp 2560w" sizes="100vw" alt="" loading="lazy"></div>
-  <span class="concept-tag c-tag">Concept visualization</span>
   <div class="wrap contact-inner"><div class="c-col">
     <span class="eyebrow reveal">Start a conversation</span>
     <h2 class="big reveal d1" style="margin:0 auto">What should a humanoid learn next?</h2>
@@ -1144,7 +1139,7 @@
   <div class="wrap">
     <div class="fbottom">
       <span>&copy; 2026 Metari. Physical Intelligence.</span>
-      <span>Campus renderings are concept visualizations. Command Center operating data is simulated.</span>
+      <span>Images and film on this site are concept visualizations. No Metari facility is operating yet. Command Center operating data is simulated.</span>
     </div>
   </div>
 </footer>
