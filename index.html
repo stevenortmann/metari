@@ -406,6 +406,12 @@
   .trace-note{margin-top:9px;font-size:11.5px;line-height:1.45;color:var(--faint)}
   .film-now{padding:7px 11px;border:1px solid var(--accent);border-radius:999px;background:rgba(5,8,10,.55);backdrop-filter:blur(8px);font:10.5px 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:#fff}
   .film-now:empty{visibility:hidden}
+  .shift-card .sfig{margin:-30px -30px 26px;aspect-ratio:16/9;overflow:hidden;border-radius:15px 15px 0 0;background:var(--bg-2)}
+  .shift-card .sfig img{width:100%;height:100%;object-fit:cover}
+  #network-scale .scale-fig{margin-top:44px;position:relative;aspect-ratio:2/1;border:1px solid var(--line-soft);border-radius:18px;overflow:hidden;background:var(--bg-2)}
+  #network-scale .scale-fig img{width:100%;height:100%;object-fit:cover;object-position:50% 18%}
+  #network-scale .scale-fig .concept-tag{position:absolute;left:16px;top:16px;background:rgba(6,7,9,.6);backdrop-filter:blur(8px)}
+  @media (max-width:700px){#network-scale .scale-fig{aspect-ratio:16/10;margin-top:32px}}
   .trace-stage .film-tag{left:auto;right:18px;background:rgba(5,8,10,.78);backdrop-filter:blur(8px);color:#cfe0d8}
   .hero.cover .hero-proc{margin-top:22px;max-width:600px;font-size:12.5px;line-height:1.75;color:#B9C4BF}
   @media (max-width:1040px){
@@ -767,8 +773,8 @@
       </div>
     </div>
     <div class="shift" id="proactive">
-      <div class="shift-card reveal d1"><div class="ph">Reactive capture</div><h3>Record whatever happened today.</h3><p>Every wearable programme running inside occupied buildings is reactive: it records whatever happened to occur that day. Occupancy sets the ceiling, guests are present, and a good day yields one or two usable room turns.</p></div>
-      <div class="shift-card on reveal d2"><div class="ph">Proactive capture</div><h3>Name the scenario. We produce it.</h3><p>A dedicated environment inverts that. The partner names the scenario and we produce it, on schedule, to volume. No guests, reset and re-run on a shift pattern, against a task list the partner writes. Clutter, lighting, linen, spills and operator are changed deliberately between runs. Spills, breakages and maintenance faults can be staged on purpose, which is the long tail a live-building programme will almost never catch on camera.</p></div>
+      <div class="shift-card reveal d1"><div class="sfig"><img width="1280" height="716" src="assets/story/capture-reactive.webp" alt="A housekeeper wearing a chest camera waits with her cart while guests with suitcases pass in a hotel corridor. Concept image." loading="lazy"></div><div class="ph">Reactive capture</div><h3>Record whatever happened today.</h3><p>Every wearable programme running inside occupied buildings is reactive: it records whatever happened to occur that day. Occupancy sets the ceiling, guests are present, and a good day yields one or two usable room turns.</p></div>
+      <div class="shift-card on reveal d2"><div class="sfig"><img width="1280" height="716" src="assets/story/capture-proactive.webp" alt="Two staff members stage a messy guest room for a capture run under ceiling cameras. Concept image." loading="lazy"></div><div class="ph">Proactive capture</div><h3>Name the scenario. We produce it.</h3><p>A dedicated environment inverts that. The partner names the scenario and we produce it, on schedule, to volume. No guests, reset and re-run on a shift pattern, against a task list the partner writes. Clutter, lighting, linen, spills and operator are changed deliberately between runs. Spills, breakages and maintenance faults can be staged on purpose, which is the long tail a live-building programme will almost never catch on camera.</p></div>
     </div>
   </div>
 </section>
@@ -940,12 +946,12 @@
     <div class="eval-grid">
       <div class="eval-card reveal d1">
         <div class="ehead">Demonstration environment</div>
-        <div class="fig"><img width="1600" height="900" src="assets/campus/demo-housekeeping.jpg" alt="Concept rendering of the original demonstration environment" loading="lazy"></div>
+        <div class="fig"><img width="1280" height="716" src="assets/story/eval-demo.webp" alt="A housekeeping expert places a stack of folded white towels on a chest-height shelf. Concept image." loading="lazy"></div>
         <div class="ebody"><p>An expert demonstrates the task in a known layout, establishing the standard for a correct result.</p></div>
       </div>
       <div class="eval-card reveal d2">
         <div class="ehead">Changed environment</div>
-        <div class="fig"><img width="1600" height="900" src="assets/campus/restaurant.jpg" alt="Concept rendering of a changed environment for evaluation" loading="lazy"></div>
+        <div class="fig"><img width="1280" height="716" src="assets/story/eval-changed.webp" alt="A humanoid places rolled grey towels on a low shelf beside baskets while an evaluator with a tablet watches. Concept image." loading="lazy"></div>
         <div class="ebody"><p>The shelf position and arrangement change, and the objects are presented differently.</p></div>
       </div>
       <div class="eval-card obs reveal d3">
@@ -969,7 +975,7 @@
     <h2 class="big sec-head reveal d1">The same building is where robots go to work.</h2>
     <p class="lead reveal d1">A Metari campus is not only where data is collected. It is where operators and the public see humanoids work in real settings, and where a robot is prepared, evaluated and readied before it enters a customer's property. Experience builds belief; belief drives adoption.</p>
     <div class="split2">
-      <div class="fig reveal d2"><img width="1600" height="900" src="assets/campus/deployment.jpg" alt="Concept rendering of deployment and readiness bays at a Metari campus" loading="lazy"><span class="concept-tag">Concept visualization</span></div>
+      <div class="fig reveal d2"><img width="1280" height="716" src="assets/story/deploy-pilot.webp" alt="Hotel executives watch a humanoid smooth a duvet in a guest-room mock-up while a technician supervises. Concept image." loading="lazy"><span class="concept-tag">Concept visualization</span></div>
       <ul class="pt-list reveal d2">
         <li>Experience site<span>A public showroom and guided demonstrations where enterprise buyers and the community see the work done, supervised, in rooms that look like theirs.</span></li>
         <li>Pilot floor<span>Supervised pilots run on the campus first, with the team that trained the model already on site, before anything moves into a live property.</span></li>
@@ -1038,6 +1044,7 @@
     <span class="eyebrow reveal">How it scales</span>
     <h2 class="big sec-head reveal d1">A capital-efficient path to a national network.</h2>
     <p class="lead reveal d1">Hospitality gives us ready-made environments. The concept is to grow the campus network through real estate, not build every site from scratch.</p>
+    <div class="fig scale-fig reveal d2"><img width="1280" height="716" src="assets/story/scale-floor.webp" alt="Technicians fit small cameras to the ceiling of an ordinary hotel corridor; three room doors stand open with a camera on a tripod inside. Concept image." loading="lazy"><span class="concept-tag">Concept visualization</span></div>
     <div class="rev-grid">
       <div class="rev-card reveal d1"><div class="ph">Partner</div><h3>Lease hotel blocks</h3><p>Work with operators to instrument and run blocks or floors of existing hotels as live capture and demonstration space.</p></div>
       <div class="rev-card reveal d2"><div class="ph">Convert</div><h3>Acquire &amp; convert</h3><p>Buy existing hotels and convert them into Physical Intelligence Campuses: experience, capture, and deployment under one roof.</p></div>
