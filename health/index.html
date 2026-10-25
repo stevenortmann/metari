@@ -490,15 +490,15 @@ const ENTS=[
  ['c_head',5],['c_ceiling',5],['p_grasp',6],['p_people',6],['p_count',6],['p_pose',6],['m_fail',7],['m_runs',7],['j_cause',8],['j_route',8],['e_score',9],['e_review',9]];
 const PHOTO={};ENTS.forEach(([id])=>{if(id.startsWith('ph_')){const im=new Image();im.src='/assets/health/brain/'+id+'.jpg';PHOTO[id]=im}});
 const SCENES=[
- {photo:'ph_attempt',cam:'Live · ceiling camera',where:'Run 22 · Mock OR, layout B',title:'Tray staged on the wrong side. Why?',inset:'ph_pov',insetAt:5,insetCap:'The lesson it learned from',
+ {photo:'ph_attempt',cam:'Live · wall camera',where:'Run 22 · Mock OR, layout B',title:'Tray staged on the wrong side. Why?',inset:'ph_pov',insetAt:5,insetCap:'Nurse head-cam',
   out:['Error traced to where it was learned','#ffb36b'],
-  steps:[['ph_attempt','Detected','Run 22 in view'],['p_grasp','Detected','Tray set left of the table at 0:38'],['s_or','Retrieved','OR turnover standard, layout B'],['m_fail','Retrieved','Same placement in runs 17 and 20'],['x_tray','Retrieved','Learned from layout A demos only'],['ph_pov','Retrieved','Nurse stages the back table by layout'],['j_cause','Decided','Root cause: layout not read'],['x_recovery','Created','Layout B lessons queued']]},
- {photo:'ph_room',cam:'Live · room camera',where:'Run 9 · Mock patient room 3',title:'Educator in reach. Held.',
-  out:['Paused safely, then resumed','#ffb36b'],
-  steps:[['ph_room','Detected','Run 9 at the bedside'],['p_people','Detected','Nurse educator within reach'],['g_zone','Held','Person in reach: arm paused','h'],['g_linen','Held','Clean linen kept off the floor','h'],['s_bed','Retrieved','Bed change standard'],['j_route','Decided','Wait, then resume'],['m_runs','Action','Logged as a safety event']]},
- {photo:'ph_sterile',cam:'Live · bench camera',where:'Run 31 · Mock sterile processing',title:'Does the tray match the count sheet?',inset:'ph_count',insetAt:2,insetCap:'Count sheet, same clock',
+  steps:[['ph_attempt','Detected','Run 22 in view'],['p_grasp','Detected','Tray held on the wrong side at 0:38'],['s_or','Retrieved','OR turnover standard, layout B'],['m_fail','Retrieved','Same placement in runs 17 and 20'],['x_tray','Retrieved','Learned from layout A demos only'],['ph_pov','Retrieved','Nurse stages the back table by layout'],['j_cause','Decided','Root cause: layout not read'],['x_recovery','Created','Layout B lessons queued']]},
+ {photo:'ph_room',cam:'Live · corner wall camera',where:'Run 9 · Mock patient room 3',title:'Educator at the bed. Held.',
+  out:['Waited for the demo, then started','#ffb36b'],
+  steps:[['ph_room','Detected','Run 9 in view'],['p_people','Detected','Nurse educator at the bed'],['g_zone','Held','Robot stays in its marked zone','h'],['s_bed','Retrieved','Bed change standard'],['p_pose','Detected','Educator steps clear of the bed'],['j_route','Decided','Start attempt from the zone'],['m_runs','Action','Demo logged as a lesson']]},
+ {photo:'ph_sterile',cam:'Live · wall camera',where:'Run 31 · Mock sterile processing',title:'Does the tray match the count sheet?',inset:'ph_count',insetAt:2,insetCap:'Overhead camera',
   out:['Caught before sign-off','#2efea9'],
-  steps:[['c_ceiling','Detected','Bench and overhead cameras live'],['p_count','Detected','14 instruments placed'],['ph_count','Retrieved','Count sheet: 15 required'],['s_spd','Retrieved','Tray assembly standard'],['g_match','Held','Tray does not match the sheet','h'],['j_cause','Decided','Missing: one needle holder'],['e_review','Created','Flagged for clinician review']]}
+  steps:[['c_ceiling','Detected','Wall and overhead cameras live'],['p_count','Detected','14 instruments placed'],['ph_count','Retrieved','Count sheet: 15 required'],['s_spd','Retrieved','Tray assembly standard'],['g_match','Held','Tray does not match the sheet','h'],['j_cause','Decided','Missing: one needle holder'],['e_review','Created','Flagged for clinician review']]}
 ];
 
 // ---------- brain point cloud (from the BrainFrame engine) ----------
