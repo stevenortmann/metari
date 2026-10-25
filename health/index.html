@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Metari Health | Clinical environments for physical AI</title>
+<meta name="robots" content="noindex, nofollow" />
+<meta name="description" content="Metari Health brings order-driven data collection and evaluation to healthcare: mock clinical environments, credentialed clinicians and clinician-defined evaluation for physical AI. No patients." />
+<meta property="og:title" content="Metari Health: clinical environments for physical AI" />
+<meta property="og:description" content="Mock operating rooms, patient rooms and sterile processing, staffed by credentialed clinicians and instrumented for capture and evaluation. No patients." />
+<meta property="og:image" content="https://metari.io/assets/health/og-health.jpg" />
+<meta property="og:url" content="https://metari.io/health" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="icon" type="image/svg+xml" href="/assets/favicon.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --bg:#060709; --bg-2:#0E0F13; --panel:#121319; --line:rgba(255,255,255,0.09); --line-soft:rgba(255,255,255,0.055);
+    --text:#EEF0F3; --dim:#9BA0AB; --faint:#6b6f78; --accent:#2EFEA9; --accent-glow:rgba(46,254,169,0.45);
+    --maxw:1240px; --ease:cubic-bezier(0.22,1,0.36,1);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+  body{background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;line-height:1.6;overflow-x:hidden;letter-spacing:-0.01em}
+  ::selection{background:var(--accent);color:#04120e}
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;height:auto;display:block}
+  .wrap{width:100%;max-width:var(--maxw);margin:0 auto;padding:0 32px}
+  .mono{font-family:'JetBrains Mono',monospace;letter-spacing:0}
+  :focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+  .eyebrow{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.22em;text-transform:uppercase;color:var(--accent);margin-bottom:22px}
+  h1,h2,h3{letter-spacing:-0.03em;font-weight:600;line-height:1.08}
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+  .reveal.in{opacity:1;transform:none}
+  .d1{transition-delay:.08s}.d2{transition-delay:.16s}.d3{transition-delay:.24s}
+
+  /* nav */
+  nav{position:fixed;top:0;left:0;right:0;z-index:60;transition:background .4s var(--ease),border-color .4s var(--ease);border-bottom:1px solid transparent}
+  nav.scrolled{background:rgba(6,7,9,0.8);backdrop-filter:blur(20px) saturate(140%);-webkit-backdrop-filter:blur(20px) saturate(140%);border-bottom:1px solid var(--line-soft)}
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;height:76px}
+  .brand{display:flex;align-items:center;gap:12px}
+  .brand-word{font-weight:600;font-size:21px;letter-spacing:.16em}
+  .brand-sub{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.18em;color:var(--accent);border-left:1px solid var(--line);padding-left:12px;text-transform:uppercase}
+  .mt-defs{position:absolute;width:0;height:0;overflow:hidden}
+  .mt-mark{display:inline-flex;width:36px;height:36px;filter:drop-shadow(0 0 5px rgba(46,254,169,.7));animation:mtBreathe 2.8s ease-in-out infinite}
+  .mt-svg{width:100%;height:100%;display:block}
+  .mt-spin{transform-box:fill-box;transform-origin:center;animation:mtSpin 20s linear infinite}
+  .mt-core{transform-box:fill-box;transform-origin:center;animation:mtCorePulse 2.6s ease-in-out infinite}
+  .mt-ring{transform-box:fill-box;transform-origin:center;animation:mtPing 2.6s ease-out infinite}
+  .mt-ring2{animation-delay:1.3s}
+  @keyframes mtSpin{to{transform:rotate(360deg)}}
+  @keyframes mtPing{0%{transform:scale(.5);opacity:.9}65%{opacity:0}100%{transform:scale(2.8);opacity:0}}
+  @keyframes mtCorePulse{0%,100%{transform:scale(.82)}50%{transform:scale(1.12)}}
+  @keyframes mtBreathe{0%,100%{transform:scale(.9);opacity:.82}50%{transform:scale(1.07);opacity:1}}
+  .nav-links{display:flex;align-items:center;gap:26px}
+  .nav-links a.link{font-size:14px;color:var(--dim);transition:color .25s;white-space:nowrap}
+  .nav-links a.link:hover{color:var(--text)}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-size:14.5px;font-weight:500;padding:12px 22px;border-radius:10px;border:1px solid var(--line);color:var(--text);transition:all .25s var(--ease);white-space:nowrap;cursor:pointer;background:transparent;font-family:inherit}
+  .btn:hover{border-color:rgba(255,255,255,.3);background:rgba(255,255,255,.03);transform:translateY(-1px)}
+  .btn-primary{background:var(--accent);color:#03130c;border-color:var(--accent);font-weight:600}
+  .btn-primary:hover{background:#4affba;box-shadow:0 10px 34px var(--accent-glow)}
+  .btn-lg{padding:15px 28px;font-size:15px}
+  .nav-links .btn{padding:10px 16px;font-size:13.5px}
+  .nav-toggle{display:none;background:none;border:0;color:var(--text);cursor:pointer;font-size:22px}
+
+  /* hero */
+  .hero{position:relative;min-height:100vh;display:flex;align-items:flex-end;overflow:hidden}
+  .hero-bg{position:absolute;inset:0}
+  .hero-bg img{width:100%;height:100%;object-fit:cover;object-position:60% 50%}
+  .hero-scrim{position:absolute;inset:0;background:linear-gradient(180deg,rgba(6,7,9,.55) 0%,rgba(6,7,9,.25) 40%,rgba(6,7,9,.92) 100%),linear-gradient(90deg,rgba(6,7,9,.82),rgba(6,7,9,.15) 72%)}
+  .hero .wrap{position:relative;z-index:3;padding-bottom:90px;padding-top:130px}
+  h1.hero-title{font-size:clamp(36px,5.6vw,72px);max-width:16ch}
+  h1 .accent,h2 .accent{color:var(--accent)}
+  .hero-sub{margin-top:26px;max-width:58ch;font-size:clamp(16px,1.5vw,20px);opacity:.93}
+  .hero-proc{margin-top:30px;font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--dim)}
+  .hero-proc b{color:var(--accent);font-weight:500}
+  .hero-cta{margin-top:34px;display:flex;gap:14px;flex-wrap:wrap}
+  .pill{display:inline-flex;align-items:center;gap:8px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);border:1px solid var(--line);border-radius:999px;padding:6px 12px;background:rgba(6,7,9,.5)}
+  .pill::before{content:"";width:6px;height:6px;border-radius:50%;background:#f5c451;box-shadow:0 0 8px rgba(245,196,81,.7)}
+  .hero-pills{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:24px}
+
+  /* sections */
+  .block{padding:120px 0;border-top:1px solid var(--line-soft)}
+  h2.big{font-size:clamp(30px,4vw,52px);max-width:20ch}
+  h2.big .dim{color:var(--faint)}
+  .lead{margin-top:22px;max-width:64ch;font-size:clamp(16px,1.35vw,19px);color:var(--dim)}
+
+  .why{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start}
+  .why-list{display:grid;gap:14px}
+  .why-item{padding:24px 26px;border:1px solid var(--line-soft);border-radius:16px;background:var(--bg-2)}
+  .why-item .k{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.14em;color:var(--accent);text-transform:uppercase}
+  .why-item h3{font-size:19px;margin-top:8px}
+  .why-item p{margin-top:8px;font-size:15px;color:var(--dim)}
+
+  .envs{margin-top:56px;display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  .env{border:1px solid var(--line-soft);border-radius:18px;overflow:hidden;background:var(--bg-2);display:flex;flex-direction:column;transition:border-color .4s,transform .4s var(--ease)}
+  .env:hover{border-color:rgba(46,254,169,.28);transform:translateY(-3px)}
+  .env .ph{aspect-ratio:4/3;overflow:hidden;background:#0b0c10}
+  .env .ph img{width:100%;height:100%;object-fit:cover}
+  .env .body{padding:24px 24px 26px}
+  .env .k{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.14em;color:var(--accent);text-transform:uppercase}
+  .env h3{font-size:21px;margin-top:8px}
+  .env p{font-size:14.5px;color:var(--dim);margin-top:10px}
+  .tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:16px}
+  .tags span{padding:6px 9px;border:1px solid var(--line-soft);border-radius:999px;font:10.5px 'JetBrains Mono',monospace;color:var(--dim)}
+  .envx{margin-top:22px;display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  .envx div{padding:20px 22px;border:1px dashed var(--line);border-radius:14px}
+  .envx b{display:block;font-size:16px}
+  .envx span{display:block;font-size:13.5px;color:var(--dim);margin-top:6px}
+  .note{margin-top:26px;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--faint)}
+
+  .flow{margin-top:56px;display:grid;grid-template-columns:repeat(6,1fr);gap:12px;counter-reset:s}
+  .step{position:relative;padding:22px 18px 22px;border:1px solid var(--line-soft);border-radius:14px;background:var(--bg-2)}
+  .step::after{content:"";position:absolute;left:0;right:0;bottom:0;height:2px;background:var(--accent);opacity:.4;border-radius:0 0 14px 14px}
+  .step .n{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--faint)}
+  .step h3{font-size:16px;margin-top:10px;letter-spacing:-.01em}
+  .step p{font-size:13px;color:var(--dim);margin-top:8px;line-height:1.5}
+
+  .order{margin-top:44px;display:grid;grid-template-columns:1.1fr 1fr;gap:22px;align-items:stretch}
+  .card{border:1px solid var(--line-soft);border-radius:18px;background:var(--bg-2);padding:28px}
+  .card h3{font-size:20px}
+  .card .tag{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--faint);border:1px solid var(--line-soft);border-radius:999px;padding:4px 10px;margin-bottom:14px}
+  .spec{margin-top:16px;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--dim);display:grid;gap:9px}
+  .spec div{display:grid;grid-template-columns:130px 1fr;gap:12px;padding-bottom:9px;border-bottom:1px solid var(--line-soft)}
+  .spec div:last-child{border-bottom:0}
+  .spec dt{color:var(--faint)}
+  .spec dd{color:var(--text)}
+  .map{margin-top:16px;display:grid;gap:10px}
+  .map div{display:grid;grid-template-columns:150px 1fr;gap:14px;font-size:14px;padding:10px 0;border-bottom:1px solid var(--line-soft)}
+  .map div:last-child{border-bottom:0}
+  .map b{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:500;color:var(--accent);letter-spacing:.04em}
+  .map span{color:var(--dim)}
+
+  .eval{margin-top:52px;display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+  .eval div{padding:24px 22px;border:1px solid var(--line-soft);border-radius:14px;background:var(--bg-2)}
+  .eval b{display:block;font-size:17px}
+  .eval span{display:block;font-size:14px;color:var(--dim);margin-top:8px}
+
+  .tracks{margin-top:52px;display:grid;grid-template-columns:1fr 1fr;gap:22px}
+  .track{border:1px solid var(--line-soft);border-radius:18px;padding:32px;background:var(--bg-2)}
+  .track.now{border-color:rgba(46,254,169,.3);background:linear-gradient(180deg,rgba(46,254,169,.05),var(--bg-2) 60%)}
+  .track .k{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+  .track.later .k{color:#f5c451}
+  .track h3{font-size:24px;margin-top:10px}
+  .track p{color:var(--dim);margin-top:12px;font-size:15px}
+  .track ul{list-style:none;margin-top:18px;display:grid;gap:10px}
+  .track li{font-size:14.5px;padding-left:22px;position:relative}
+  .track li::before{content:"";position:absolute;left:2px;top:9px;width:8px;height:8px;border-radius:2px;background:var(--accent);opacity:.7}
+  .track.later li::before{background:#f5c451}
+
+  .status{margin-top:48px;display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+  .st{padding:24px;border:1px solid var(--line-soft);border-radius:14px;background:var(--bg-2)}
+  .st .sk{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--faint);display:flex;align-items:center;gap:8px}
+  .st .sk i{width:7px;height:7px;border-radius:50%;background:#f5c451}
+  .st .sk i.no{background:#4b4f58}
+  .st h3{font-size:17px;margin-top:12px}
+  .st p{font-size:13.5px;color:var(--dim);margin-top:8px}
+
+  .cta{padding:130px 0;border-top:1px solid var(--line-soft);background:radial-gradient(ellipse at 50% 0%,rgba(46,254,169,.08),transparent 60%)}
+  .cta .wrap{text-align:center}
+  .cta h2{font-size:clamp(30px,4vw,50px);max-width:20ch;margin:0 auto}
+  .cta .lead{margin-left:auto;margin-right:auto}
+  .cta-row{margin-top:36px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+  .aud{margin-top:48px;display:grid;grid-template-columns:repeat(3,1fr);gap:14px;text-align:left}
+  .aud div{padding:22px;border:1px solid var(--line-soft);border-radius:14px}
+  .aud b{display:block;font-size:16px}
+  .aud span{display:block;font-size:13.5px;color:var(--dim);margin-top:6px}
+
+  footer{border-top:1px solid var(--line-soft);padding:52px 0 44px}
+  footer .top{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:30px}
+  footer .fnote{font-size:13px;color:var(--faint);max-width:40ch;margin-top:16px}
+  footer .flinks{display:flex;gap:26px;flex-wrap:wrap;font-size:14px;color:var(--dim)}
+  footer .flinks a:hover{color:var(--text)}
+  .fbottom{margin-top:40px;padding-top:22px;border-top:1px solid var(--line-soft);display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:12.5px;color:var(--faint)}
+
+  @media (max-width:1040px){
+    .flow{grid-template-columns:repeat(3,1fr)}
+    .eval,.status{grid-template-columns:1fr 1fr}
+  }
+  @media (max-width:960px){
+    .wrap{padding:0 20px}
+    .nav-links{position:fixed;top:76px;left:0;right:0;background:rgba(6,7,9,.97);backdrop-filter:blur(20px);flex-direction:column;align-items:flex-start;gap:0;padding:12px 20px 22px;border-bottom:1px solid var(--line-soft);transform:translateY(-140%);transition:transform .35s var(--ease)}
+    .nav-links.open{transform:none}
+    .nav-links a.link{width:100%;padding:14px 0;border-bottom:1px solid var(--line-soft);font-size:16px}
+    .nav-links .btn{width:100%;margin-top:14px}
+    .nav-toggle{display:block}
+    .block{padding:84px 0}
+    .why,.order,.tracks{grid-template-columns:1fr;gap:28px}
+    .envs{grid-template-columns:1fr 1fr}
+    .envx,.aud{grid-template-columns:1fr}
+  }
+  @media (max-width:640px){
+    .brand-sub{display:none}
+    .envs,.flow,.eval,.status{grid-template-columns:1fr}
+    .hero .wrap{padding-bottom:60px}
+    .hero-cta{flex-direction:column;align-items:stretch}
+    .hero-proc{font-size:11.5px}
+    .spec div{grid-template-columns:1fr;gap:2px}
+    .map div{grid-template-columns:1fr;gap:4px}
+    .track,.card{padding:24px}
+    .hero-scrim{background:linear-gradient(180deg,rgba(6,7,9,.35) 0%,rgba(6,7,9,.45) 35%,rgba(6,7,9,.95) 72%)}
+  }
+  @media (prefers-reduced-motion:reduce){
+    .reveal{opacity:1!important;transform:none!important}
+    .mt-mark,.mt-spin,.mt-core,.mt-ring{animation:none}
+    .mt-ring{display:none}
+    html{scroll-behavior:auto}
+  }
+</style>
+</head>
+<body>
+<svg class="mt-defs" width="0" height="0" aria-hidden="true"><defs><radialGradient id="mtGlow" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#f2fff9"/><stop offset="16%" stop-color="#3affb2"/><stop offset="46%" stop-color="#2efea9" stop-opacity="0.72"/><stop offset="100%" stop-color="#2efea9" stop-opacity="0"/></radialGradient></defs></svg>
+
+<nav id="nav">
+  <div class="wrap">
+    <a href="/" aria-label="Metari home"><span class="brand"><span class="mt-mark"><svg viewBox="0 0 100 100" class="mt-svg" aria-hidden="true"><g class="mt-spin"><path d="M 50.0 3.0 L 54.59 38.91 L 83.23 16.77 L 61.09 45.41 L 97.0 50.0 L 61.09 54.59 L 83.23 83.23 L 54.59 61.09 L 50.0 97.0 L 45.41 61.09 L 16.77 83.23 L 38.91 54.59 L 3.0 50.0 L 38.91 45.41 L 16.77 16.77 L 45.41 38.91 Z" fill="url(#mtGlow)"/></g><circle class="mt-ring" cx="50" cy="50" r="9" fill="none" stroke="#2efea9" stroke-width="2.4"/><circle class="mt-ring mt-ring2" cx="50" cy="50" r="9" fill="none" stroke="#2efea9" stroke-width="2"/><circle class="mt-core" cx="50" cy="50" r="7" fill="#f2fff9"/></svg></span><span class="brand-word">METARI</span><span class="brand-sub">Health</span></span></a>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false">&#9776;</button>
+    <div class="nav-links" id="navLinks">
+      <a href="#why" class="link">Why healthcare</a>
+      <a href="#environments" class="link">Environments</a>
+      <a href="#program" class="link">How it runs</a>
+      <a href="#evaluation" class="link">Evaluation</a>
+      <a href="#roadmap" class="link">Roadmap</a>
+      <a href="/" class="link">Metari</a>
+      <a href="#contact" class="btn btn-primary">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="hero-bg"><img src="/assets/health/hero-or.webp" width="1344" height="752" alt="Concept image: a clinician instructor guides a humanoid placing an instrument tray in a mock operating room, with a training mannequin on the table and ceiling cameras overhead." fetchpriority="high" /></div>
+  <div class="hero-scrim"></div>
+  <div class="wrap">
+    <div class="hero-pills reveal in"><span class="pill">In design</span></div>
+    <span class="eyebrow reveal in">Metari Health</span>
+    <h1 class="hero-title reveal in d1">Clinical environments where physical AI <span class="accent">learns the work.</span></h1>
+    <p class="hero-sub reveal in d2">Hospitals are among the hardest places for a robot to work, and the hardest places to collect training data. Metari Health builds mock clinical rooms, staffs them with credentialed clinicians and instruments them for capture and evaluation. Real procedures, real standards, no patients.</p>
+    <p class="hero-proc reveal in d2">Task order <b>&rarr;</b> mock clinical room <b>&rarr;</b> clinician + humanoid <b>&rarr;</b> structured data <b>&rarr;</b> clinician-scored evaluation <b>&rarr;</b> repeat</p>
+    <div class="hero-cta reveal in d3">
+      <a href="#contact" class="btn btn-primary btn-lg">Discuss a clinical program</a>
+      <a href="#environments" class="btn btn-lg">See the environments</a>
+    </div>
+  </div>
+</header>
+
+<section class="block" id="why">
+  <div class="wrap why">
+    <div>
+      <span class="eyebrow reveal">Why healthcare</span>
+      <h2 class="big reveal d1">The work is physical. <span class="dim">The data does not exist.</span></h2>
+      <p class="lead reveal d2">Clinical work runs on precise sequences, sterile boundaries and rules that cannot be broken. Physical AI teams cannot simply film it inside a working hospital. Metari Health gives them a place where the work can be performed correctly, repeated and measured.</p>
+    </div>
+    <div class="why-list">
+      <div class="why-item reveal d1"><span class="k">Access</span><h3>Live hospitals are closed to collection</h3><p>Privacy, infection control and liability keep cameras and robots out of real clinical spaces.</p></div>
+      <div class="why-item reveal d2"><span class="k">Standards</span><h3>"Correct" is defined by clinicians</h3><p>A tray assembled in the wrong order or a broken sterile field is a failure, even if it looks fine to a non-expert.</p></div>
+      <div class="why-item reveal d3"><span class="k">Demand</span><h3>Staffing pressure is pulling robots in</h3><p>Hospitals want help with logistics, turnover and supply work. Robots need proof they can do it safely first.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="environments">
+  <div class="wrap">
+    <span class="eyebrow reveal">Environments</span>
+    <h2 class="big reveal d1">Mock clinical rooms, <span class="accent">built to order.</span></h2>
+    <p class="lead reveal d2">Each environment is configured around the tasks a buyer specifies, then held steady so progress can be compared run to run. Training mannequins and trained staff only.</p>
+    <div class="envs">
+      <article class="env reveal d1">
+        <div class="ph"><img src="/assets/health/env-or.webp" width="1168" height="876" alt="Concept image: mock operating room with training mannequin, instrument trays and a humanoid under ceiling cameras." loading="lazy"></div>
+        <div class="body"><span class="k">Room 01</span><h3>Mock operating room</h3><p>Room setup, turnover, instrument tray handling and supply staging around a draped mannequin.</p><div class="tags"><span>OR setup</span><span>Turnover</span><span>Tray handling</span><span>Sterile boundaries</span></div></div>
+      </article>
+      <article class="env reveal d2">
+        <div class="ph"><img src="/assets/health/env-patient-room.webp" width="1168" height="880" alt="Concept image: a nurse educator makes a hospital bed in a mock patient room while a humanoid watches from a marked zone." loading="lazy"></div>
+        <div class="body"><span class="k">Room 02</span><h3>Patient room</h3><p>Bed making, linen change, restocking and room reset, demonstrated by nurse educators.</p><div class="tags"><span>Bed making</span><span>Linen</span><span>Restock</span><span>Room reset</span></div></div>
+      </article>
+      <article class="env reveal d3">
+        <div class="ph"><img src="/assets/health/env-sterile.webp" width="1168" height="880" alt="Concept image: a humanoid places instruments into a tray in a sterile processing room while a technician supervises." loading="lazy"></div>
+        <div class="body"><span class="k">Room 03</span><h3>Sterile processing</h3><p>Instrument sorting, tray assembly against a count sheet and case-cart preparation.</p><div class="tags"><span>Sorting</span><span>Tray assembly</span><span>Count sheets</span><span>Case carts</span></div></div>
+      </article>
+    </div>
+    <div class="envx">
+      <div class="reveal d1"><b>Supply and logistics</b><span>Cart runs, par-level restocking, deliveries between units.</span></div>
+      <div class="reveal d2"><b>Senior living</b><span>Retrieval and interaction in controlled mock rooms. No resident care.</span></div>
+      <div class="reveal d3"><b>Buyer-specific rooms</b><span>Configured around the tasks, variations and acceptance criteria in the order.</span></div>
+    </div>
+    <p class="note reveal">Concept images. No Metari clinical environment is operating yet. No patients, no clinical care, no medical claims.</p>
+  </div>
+</section>
+
+<section class="block" id="program">
+  <div class="wrap">
+    <span class="eyebrow reveal">How a program runs</span>
+    <h2 class="big reveal d1">The same order-driven model. <span class="dim">A clinical rulebook.</span></h2>
+    <p class="lead reveal d2">Metari Health runs on the Metari Command Center. A team sends a task order; we configure the room, staff it with the right clinicians, capture every attempt and return evidence scored against clinical standards.</p>
+    <div class="flow">
+      <div class="step reveal d1"><span class="n">01</span><h3>Task order</h3><p>Tasks, variations, volume and acceptance criteria.</p></div>
+      <div class="step reveal d1"><span class="n">02</span><h3>Room configured</h3><p>Layout, equipment and mannequins set to spec.</p></div>
+      <div class="step reveal d2"><span class="n">03</span><h3>Clinician sessions</h3><p>Credentialed staff demonstrate, correct and supervise.</p></div>
+      <div class="step reveal d2"><span class="n">04</span><h3>Capture</h3><p>Multi-view video, sensors and task events, synced.</p></div>
+      <div class="step reveal d3"><span class="n">05</span><h3>Clinical review</h3><p>Experts label steps, errors and safety events.</p></div>
+      <div class="step reveal d3"><span class="n">06</span><h3>Delivery</h3><p>Structured episodes plus an evaluation report.</p></div>
+    </div>
+    <div class="order">
+      <div class="card reveal d1">
+        <span class="tag">Illustrative order</span>
+        <h3>OR turnover program</h3>
+        <dl class="spec">
+          <div><dt>Environment</dt><dd>Mock operating room, two layouts</dd></div>
+          <div><dt>Tasks</dt><dd>Room reset, tray staging, linen and waste handling</dd></div>
+          <div><dt>Variation</dt><dd>Case type, tray set, clutter, lighting, interruptions</dd></div>
+          <div><dt>Experts</dt><dd>Perioperative nurses and surgical technologists</dd></div>
+          <div><dt>Acceptance</dt><dd>Clinician sign-off on sequence and sterile boundaries</dd></div>
+          <div><dt>Delivered</dt><dd>Episodes, labels, evaluation report</dd></div>
+        </dl>
+      </div>
+      <div class="card reveal d2">
+        <span class="tag">Command Center</span>
+        <h3>Same workspace, clinical modules</h3>
+        <div class="map">
+          <div><b>Data orders</b><span>Clinical task orders and acceptance criteria</span></div>
+          <div><b>Environments</b><span>Mock OR, patient room and sterile processing layouts</span></div>
+          <div><b>Human ops</b><span>Clinician scheduling and credential tracking</span></div>
+          <div><b>Capture &amp; QA</b><span>Expert review of every episode before delivery</span></div>
+          <div><b>Evaluation</b><span>Clinician-defined scoring, run to run</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="evaluation">
+  <div class="wrap">
+    <span class="eyebrow reveal">Evaluation</span>
+    <h2 class="big reveal d1">Scored by the people <span class="accent">who do the work.</span></h2>
+    <p class="lead reveal d2">Clinical leaders define what success means before collection starts. Every attempt is scored the same way, so a team can see whether its system is actually getting better.</p>
+    <div class="eval">
+      <div class="reveal d1"><b>Sequence</b><span>Were steps done in the right order, with nothing skipped?</span></div>
+      <div class="reveal d1"><b>Sterile boundaries</b><span>Did anything cross a line it should not have?</span></div>
+      <div class="reveal d2"><b>Safety events</b><span>Near misses, stops and handoffs back to a human.</span></div>
+      <div class="reveal d2"><b>Completion and time</b><span>Was the task finished to standard, and how long did it take?</span></div>
+    </div>
+    <p class="note reveal">Illustrative evaluation categories. Final criteria are set with each buyer and clinical advisors.</p>
+  </div>
+</section>
+
+<section class="block" id="roadmap">
+  <div class="wrap">
+    <span class="eyebrow reveal">Roadmap</span>
+    <h2 class="big reveal d1">Two tracks. <span class="dim">One starts without patients.</span></h2>
+    <div class="tracks">
+      <div class="track now reveal d1">
+        <span class="k">Track 01 &middot; First</span>
+        <h3>Clinical environments</h3>
+        <p>Mock rooms, credentialed clinicians and clinician-scored evaluation for robotics and physical-AI teams. No patients and no protected health information.</p>
+        <ul><li>Mock OR, patient room and sterile processing</li><li>Expert demonstrations and corrections</li><li>Evaluation reports buyers can compare over time</li></ul>
+      </div>
+      <div class="track later reveal d2">
+        <span class="k">Track 02 &middot; Exploring</span>
+        <h3>Clinical data network</h3>
+        <p>Consented, de-identified procedure and outcomes data from academic medical centers, for diagnostics, device and AI teams. It would run only through institutional agreements, ethics review and patient consent.</p>
+        <ul><li>Institution-licensed, de-identified data</li><li>Consent collected before any capture</li><li>Separate governance from Track 01</li></ul>
+      </div>
+    </div>
+    <div class="status">
+      <div class="st reveal d1"><div class="sk"><i></i>In design</div><h3>Clinical environments</h3><p>Room layouts, task libraries and evaluation criteria are being designed.</p></div>
+      <div class="st reveal d1"><div class="sk"><i></i>Forming</div><h3>Clinical advisory</h3><p>We are forming an advisory group of academic surgeons and clinical researchers.</p></div>
+      <div class="st reveal d2"><div class="sk"><i class="no"></i>Not started</div><h3>Patient data</h3><p>No patient data has been collected, licensed or accessed.</p></div>
+      <div class="st reveal d2"><div class="sk"><i class="no"></i>Not operating</div><h3>Facilities</h3><p>No Metari clinical environment is operating yet.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="cta" id="contact">
+  <div class="wrap">
+    <span class="eyebrow reveal">Contact</span>
+    <h2 class="reveal d1">Help shape <span class="accent">Metari Health.</span></h2>
+    <p class="lead reveal d2">We are talking with robotics teams, clinicians and health systems about the first clinical programs.</p>
+    <div class="cta-row reveal d2">
+      <a class="btn btn-primary btn-lg" href="mailto:steve@metari.io?subject=Metari%20Health">Email steve@metari.io</a>
+      <a class="btn btn-lg" href="/">Visit metari.io</a>
+    </div>
+    <div class="aud">
+      <div class="reveal d1"><b>Robotics and physical-AI teams</b><span>Tell us the clinical tasks you need data and evaluation for.</span></div>
+      <div class="reveal d2"><b>Clinicians and educators</b><span>Help define tasks and standards, or join as an expert.</span></div>
+      <div class="reveal d3"><b>Health systems</b><span>Explore hosting environments or future data partnerships.</span></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="top">
+      <div>
+        <span class="brand"><span class="brand-word">METARI</span><span class="brand-sub">Health</span></span>
+        <p class="fnote">Expert-led data collection and evaluation for physical AI, extending from hospitality into clinical settings.</p>
+      </div>
+      <div class="flinks"><a href="/">metari.io</a><a href="https://command.metari.io" target="_blank" rel="noopener">Command Center</a><a href="mailto:steve@metari.io">steve@metari.io</a></div>
+    </div>
+    <div class="fbottom">
+      <span>&copy; 2026 Metari. Physical Intelligence.</span>
+      <span>Images on this page are concept visualizations. Metari Health is in design: no clinical environment is operating, no patient data has been collected, and nothing here is a medical claim.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var nav=document.getElementById('nav');
+  function onScroll(){ nav.classList.toggle('scrolled', window.scrollY>24); }
+  onScroll(); window.addEventListener('scroll',onScroll,{passive:true});
+  var t=document.getElementById('navToggle'), l=document.getElementById('navLinks');
+  t.addEventListener('click',function(){ var o=l.classList.toggle('open'); t.setAttribute('aria-expanded',o); });
+  l.querySelectorAll('a').forEach(function(a){ a.addEventListener('click',function(){ l.classList.remove('open'); t.setAttribute('aria-expanded',false); }); });
+  var els=document.querySelectorAll('.reveal:not(.in)');
+  if(!('IntersectionObserver' in window)){ els.forEach(function(e){e.classList.add('in')}); return; }
+  var io=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} }); },{threshold:.12,rootMargin:'0px 0px -40px 0px'});
+  els.forEach(function(e){ io.observe(e); });
+})();
+</script>
+</body>
+</html>
