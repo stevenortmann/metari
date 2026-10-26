@@ -218,6 +218,14 @@
     .flow{grid-template-columns:repeat(3,1fr)}
     .eval,.status{grid-template-columns:1fr 1fr}
   }
+  /* nav collapses to the menu button before the links overflow (Government link added) */
+  @media (max-width:1180px){
+    .nav-links{position:fixed;top:76px;left:0;right:0;background:rgba(6,7,9,.97);backdrop-filter:blur(20px);flex-direction:column;align-items:flex-start;gap:0;padding:12px 20px 22px;border-bottom:1px solid var(--line-soft);transform:translateY(-140%);visibility:hidden;transition:transform .35s var(--ease),visibility 0s linear .35s}
+    .nav-links.open{transform:none;visibility:visible;transition:transform .35s var(--ease),visibility 0s}
+    .nav-links a.link{width:100%;padding:14px 0;border-bottom:1px solid var(--line-soft);font-size:16px}
+    .nav-links .btn{width:100%;margin-top:14px}
+    .nav-toggle{display:block}
+  }
   @media (max-width:960px){
     .wrap{padding:0 20px}
     .nav-links{position:fixed;top:76px;left:0;right:0;background:rgba(6,7,9,.97);backdrop-filter:blur(20px);flex-direction:column;align-items:flex-start;gap:0;padding:12px 20px 22px;border-bottom:1px solid var(--line-soft);transform:translateY(-140%);transition:transform .35s var(--ease)}
@@ -264,6 +272,7 @@
       <a href="#evaluation" class="link">Evaluation</a>
       <a href="#roadmap" class="link">Roadmap</a>
       <a href="/" class="link">Metari</a>
+      <a href="/gov" class="link">Government</a>
       <a href="#contact" class="btn btn-primary">Contact</a>
     </div>
   </div>

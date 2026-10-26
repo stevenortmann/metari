@@ -287,6 +287,14 @@
   footer .fcol a:hover{color:var(--text)}
   .fbottom{margin-top:46px;padding-top:24px;border-top:1px solid var(--line-soft);display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:12.5px;color:var(--faint)}
 
+  /* nav collapses to the menu button before the links overflow (Government link added) */
+  @media (max-width:1240px){
+    .nav-links{position:fixed;top:76px;left:0;right:0;background:rgba(6,7,9,.97);backdrop-filter:blur(20px);flex-direction:column;align-items:flex-start;gap:0;padding:12px 22px 22px;border-bottom:1px solid var(--line-soft);transform:translateY(-140%);visibility:hidden;transition:transform .35s var(--ease),visibility 0s linear .35s;height:auto}
+    .nav-links.open{transform:none;visibility:visible;transition:transform .35s var(--ease),visibility 0s}
+    .nav-links a.link{width:100%;padding:14px 0;border-bottom:1px solid var(--line-soft);font-size:16px}
+    .nav-links .btn{width:100%;margin-top:14px}
+    .nav-toggle{display:block}
+  }
   @media (max-width:960px){
     .wrap{padding:0 22px}
     .nav-links{position:fixed;top:76px;left:0;right:0;background:rgba(6,7,9,.97);backdrop-filter:blur(20px);flex-direction:column;align-items:flex-start;gap:0;padding:12px 22px 22px;border-bottom:1px solid var(--line-soft);transform:translateY(-140%);transition:transform .35s var(--ease);height:auto}
@@ -775,6 +783,7 @@
       <a href="#command-center" class="link">Command Center</a>
       <a href="#configurations" class="link">Environments</a>
       <a href="/health" class="link">Health</a>
+      <a href="/gov" class="link">Government</a>
       <a href="#status" class="link">Company</a>
       <a href="#founder" class="link">Founder</a>
       <a href="https://command.metari.io" class="btn btn-ext" target="_blank" rel="noopener">Open workspace</a>
