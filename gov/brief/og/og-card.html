@@ -2,9 +2,9 @@
 *{margin:0;padding:0;box-sizing:border-box}
 body{width:1200px;height:630px;overflow:hidden;background:#05080a;font-family:Inter,sans-serif;color:#eef0f3;position:relative}
 .mono{font-family:'DejaVu Sans Mono',monospace}
-.brain{position:absolute;left:330px;top:34px;width:700px;height:471px;-webkit-mask-image:linear-gradient(90deg,transparent 0%,#000 22%,#000 100%);mask-image:linear-gradient(90deg,transparent 0%,#000 22%,#000 100%);mix-blend-mode:screen}
-.lbl{position:absolute;left:676px;top:338px;background:rgba(5,10,12,.9);border:1px solid rgba(198,236,120,.45);border-radius:7px;padding:5px 9px}
-.lbl b{display:block;font-family:'DejaVu Sans Mono',monospace;font-weight:400;font-size:8.5px;letter-spacing:.12em;color:#c6ec78}
+.brain{position:absolute;left:360px;top:52px;width:560px;height:414px;-webkit-mask-image:linear-gradient(90deg,transparent 0%,#000 22%,#000 100%);mask-image:linear-gradient(90deg,transparent 0%,#000 22%,#000 100%);mix-blend-mode:screen}
+.lbl{position:absolute;right:374px;top:150px;background:rgba(5,10,12,.9);border:1px solid rgba(255,178,92,.5);border-radius:7px;padding:5px 9px}
+.lbl b{display:block;font-family:'DejaVu Sans Mono',monospace;font-weight:400;font-size:8.5px;letter-spacing:.12em;color:#ffb25c}
 .lbl span{font-size:12px}
 .glow{position:absolute;inset:0;background:radial-gradient(45% 60% at 58% 44%,rgba(46,254,169,.08),transparent 70%),linear-gradient(90deg,#05080a 0%,rgba(5,8,10,.8) 30%,rgba(5,8,10,0) 48%),linear-gradient(0deg,#05080a 0%,rgba(5,8,10,0) 18%)}
 .lock{position:absolute;left:56px;top:44px;display:flex;align-items:center;gap:13px}
@@ -21,7 +21,7 @@ h1 span{color:#2efea9}
 .cam .hud{position:absolute;left:10px;top:9px;font-size:9.5px;letter-spacing:.1em;color:#fff;text-shadow:0 1px 5px #000;display:flex;gap:6px;align-items:center}
 .cam .hud i{width:6px;height:6px;border-radius:50%;background:#9aa1ad}
 .cam .syn{position:absolute;right:9px;top:8px;font-size:9px;letter-spacing:.08em;background:#f5c451;color:#1b1503;border-radius:99px;padding:2px 7px}
-.tr{position:absolute;right:40px;top:96px;width:282px;background:rgba(8,16,19,.88);border:1px solid rgba(170,255,225,.14);border-radius:13px;padding:14px 14px 12px;backdrop-filter:blur(6px)}
+.tr{position:absolute;right:40px;top:84px;width:290px;background:rgba(8,16,19,.88);border:1px solid rgba(170,255,225,.14);border-radius:13px;padding:14px 14px 12px;backdrop-filter:blur(6px)}
 .tr .k{font-size:9.5px;letter-spacing:.14em;color:#2efea9;display:flex;justify-content:space-between}
 .tr .k b{color:#f5c451;font-weight:400}
 .tr h4{font-size:17px;font-weight:600;letter-spacing:-.02em;margin:5px 0 8px}
@@ -35,19 +35,20 @@ h1 span{color:#2efea9}
 </style></head><body>
 <img class="brain" src="brain-crop.png">
 <div class="glow"></div>
-<div class="lbl"><b>ACTION · MEMORY</b><span>Pause logged as an intervention</span></div>
+<div class="lbl"><b>CREATED · EVALUATION</b><span>Flagged for a reviewer</span></div>
 <div class="lock"><svg viewBox="0 0 100 100"><defs><radialGradient id="g"><stop offset="0%" stop-color="#f2fff9"/><stop offset="16%" stop-color="#3affb2"/><stop offset="46%" stop-color="#2efea9" stop-opacity=".72"/><stop offset="100%" stop-color="#2efea9" stop-opacity="0"/></radialGradient></defs><path d="M 50.0 3.0 L 54.59 38.91 L 83.23 16.77 L 61.09 45.41 L 97.0 50.0 L 61.09 54.59 L 83.23 83.23 L 54.59 61.09 L 50.0 97.0 L 45.41 61.09 L 16.77 83.23 L 38.91 54.59 L 3.0 50.0 L 38.91 45.41 L 16.77 16.77 L 45.41 38.91 Z" fill="url(#g)"/><circle cx="50" cy="50" r="7" fill="#f2fff9"/></svg><span class="w">METARI</span><span class="s mono">GOVERNMENT</span></div>
 <img class="badge" src="../../../assets/badges/nvidia-inception-program-badge.svg">
 <div class="ey mono">THE METARI BRAIN · GOVERNMENT</div>
 <h1>Train for the task. <span>Measure readiness.</span></h1>
 <p class="sub">Every robot trial traced back to the requirement it was tested against.</p>
-<div class="cam"><img src="../../../assets/gov/brain/ph_tool.jpg"><div class="hud mono"><i></i>CONCEPT · WALL CAMERA</div><div class="syn mono">SYNTHETIC</div></div>
-<div class="tr"><div class="k mono">GOV-DEMO-002 <b>SYNTHETIC EVENTS</b></div><h4>Technician at the bench. Held.</h4><ol>
-<li style="--c:#ff80c4"><i></i><div><b>DETECTED · PERCEPTION</b><span>Technician inside the bench zone</span></div></li>
-<li style="--c:#ffb36b"><i></i><div><b>HELD · GUARDRAILS</b><span>Arm waits outside the human zone</span></div></li>
-<li style="--c:#7ce4cc"><i></i><div><b>RETRIEVED · EXPERT DEMOS</b><span>Technician demo for this config</span></div></li>
-<li style="--c:#fff1d6"><i></i><div><b>DECIDED · JUDGMENT</b><span>Resume from the marked start</span></div></li>
-<li class="cur" style="--c:#c6ec78"><i></i><div><b>ACTION · MEMORY</b><span>Pause logged as an intervention</span></div></li>
-</ol><div class="out">Intervention logged, not removed</div></div>
+<div class="cam"><img src="inset-restock.jpg"><div class="hud mono"><i></i>CONCEPT · CEILING CAMERA</div><div class="syn mono">SYNTHETIC</div></div>
+<div class="tr"><div class="k mono">GOV-DEMO-001 <b>SYNTHETIC EVENTS</b></div><h4>Tote released short of the bay. Why?</h4><ol>
+<li style="--c:#ff80c4"><i></i><div><b>DETECTED · PERCEPTION</b><span>Tote released short of the bay line</span></div></li>
+<li style="--c:#f6d094"><i></i><div><b>RETRIEVED · TASK STANDARDS</b><span>Success condition: fully inside the bay</span></div></li>
+<li style="--c:#ffb36b"><i></i><div><b>HELD · GUARDRAILS</b><span>Held-out config, never used in training</span></div></li>
+<li style="--c:#84caff"><i></i><div><b>RETRIEVED · ENVIRONMENT LIBRARY</b><span>Demos covered the middle shelf only</span></div></li>
+<li style="--c:#fff1d6"><i></i><div><b>DECIDED · JUDGMENT</b><span>Likely gap: top shelf not demonstrated</span></div></li>
+<li class="cur" style="--c:#ffb25c"><i></i><div><b>CREATED · EVALUATION</b><span>Flagged for a reviewer</span></div></li>
+</ol><div class="out">Linked to the requirement. Not scored here.</div></div>
 <div class="foot mono"><span>Concept visualization · Synthetic events · In development</span><span>metari.io/gov</span></div>
 </body></html>
