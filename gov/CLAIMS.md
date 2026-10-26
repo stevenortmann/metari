@@ -40,8 +40,7 @@ Qualifier shown under the cards: "Public sources informing our proposed approach
 ## Imagery
 
 - All new images are generated concept visualizations (Higgsfield, gpt_image_2_5), labelled "Concept visualization. Proposed environment." in the hero and "Concept images" under the environment cards.
-- Robots are generic (no logos). Captions and alt text match what each image shows: operator lifting a tote, wheeled mobile manipulator in a taped zone, evaluator with tablet behind a barrier, fixed cameras on tripods and trusses.
-- Facility operations card reuses the existing `assets/config/laundry.webp` (people only, no robot).
+- Hero, facility operations and logistics images (and the matching Brain photos) show the Metari-style concept humanoid, generated with the site's existing humanoid as reference (Steven's decision, 25 Oct). Maintenance and inspection keep a robotic arm and a tracked inspection platform. No manufacturer logos. Captions and alt text match what each image shows: operator lifting a tote, humanoid in a taped zone, evaluator with tablet behind a barrier, fixed cameras on tripods and trusses.
 - No third-party facility photographs, agency seals, flags or weapons.
 
 ## Items for Steven to confirm
