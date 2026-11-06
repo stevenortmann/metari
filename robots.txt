@@ -3,3 +3,5 @@ Disallow: /1x/
 Disallow: /1x
 Disallow: /micro1/
 Disallow: /micro1
+Disallow: /figure/
+Disallow: /figure
