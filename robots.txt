@@ -3,3 +3,7 @@ Disallow: /1x/
 Disallow: /1x
 Disallow: /micro1/
 Disallow: /micro1
+Disallow: /investors
+Disallow: /investors/
+
+Sitemap: https://metari.io/sitemap.xml
