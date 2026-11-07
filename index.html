@@ -287,14 +287,6 @@
   footer .fcol a:hover{color:var(--text)}
   .fbottom{margin-top:46px;padding-top:24px;border-top:1px solid var(--line-soft);display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:12.5px;color:var(--faint)}
 
-  /* nav collapses to the menu button before the links overflow (Government link added) */
-  @media (max-width:1240px){
-    .nav-links{position:fixed;top:76px;left:0;right:0;background:rgba(6,7,9,.97);backdrop-filter:blur(20px);flex-direction:column;align-items:flex-start;gap:0;padding:12px 22px 22px;border-bottom:1px solid var(--line-soft);transform:translateY(-140%);visibility:hidden;transition:transform .35s var(--ease),visibility 0s linear .35s;height:auto}
-    .nav-links.open{transform:none;visibility:visible;transition:transform .35s var(--ease),visibility 0s}
-    .nav-links a.link{width:100%;padding:14px 0;border-bottom:1px solid var(--line-soft);font-size:16px}
-    .nav-links .btn{width:100%;margin-top:14px}
-    .nav-toggle{display:block}
-  }
   @media (max-width:960px){
     .wrap{padding:0 22px}
     .nav-links{position:fixed;top:76px;left:0;right:0;background:rgba(6,7,9,.97);backdrop-filter:blur(20px);flex-direction:column;align-items:flex-start;gap:0;padding:12px 22px 22px;border-bottom:1px solid var(--line-soft);transform:translateY(-140%);transition:transform .35s var(--ease);height:auto}
@@ -771,6 +763,47 @@
   #revenue .rev-card:first-child{border-top-color:rgba(46,254,169,.55)}
   #network-scale .figure{border:0;border-radius:18px}
   .shift-card{border-radius:14px}
+
+  /* NAV v2: grouped menus (Nov 2026) */
+  .brand{margin-right:28px}
+  .nav-links{gap:0}
+  .nav-main{display:flex;align-items:center;gap:6px}
+  .nav-actions{display:flex;align-items:center;gap:22px;margin-left:34px}
+  .nav-main>a.link,.nav-trigger{display:inline-flex;align-items:center;gap:6px;padding:9px 12px;border-radius:8px;font-size:14px;color:var(--dim);background:none;border:0;font-family:inherit;cursor:pointer;white-space:nowrap;transition:color .25s,background .25s}
+  .nav-main>a.link:hover,.nav-trigger:hover,.nav-group.open .nav-trigger{color:var(--text);background:rgba(255,255,255,.04)}
+  .nav-chev{width:12px;height:12px;opacity:.7;transition:transform .25s var(--ease)}
+  .nav-group{position:relative}
+  .nav-group.open .nav-chev{transform:rotate(180deg)}
+  .nav-menu{position:absolute;top:calc(100% + 10px);left:-6px;min-width:290px;padding:8px;border-radius:14px;background:rgba(14,15,19,.97);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid var(--line);box-shadow:0 24px 60px rgba(0,0,0,.55);opacity:0;visibility:hidden;transform:translateY(-6px);transition:opacity .2s var(--ease),transform .2s var(--ease),visibility 0s linear .2s}
+  .nav-menu:before{content:"";position:absolute;left:0;right:0;top:-12px;height:12px}
+  .nav-group.open .nav-menu{opacity:1;visibility:visible;transform:none;transition:opacity .2s var(--ease),transform .2s var(--ease),visibility 0s}
+  .nav-item{display:block;padding:11px 12px;border-radius:9px;transition:background .2s}
+  .nav-item:hover,.nav-item:focus-visible{background:rgba(255,255,255,.05)}
+  .nav-item b{display:block;font-size:14px;font-weight:500;color:var(--text)}
+  .nav-item span{display:block;margin-top:2px;font-size:12.5px;color:var(--faint)}
+  .nav-signin{font-size:14px;color:var(--dim)}
+  .nav-signin:hover{color:var(--text)}
+  .nav-actions .btn{padding:10px 18px;font-size:13.5px}
+  @media (max-width:980px){
+    .brand{margin-right:0}
+    .nav-links{position:fixed;top:76px;left:0;right:0;max-height:calc(100vh - 76px);overflow-y:auto;background:rgba(6,7,9,.97);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);flex-direction:column;align-items:stretch;padding:8px 22px 24px;border-bottom:1px solid var(--line-soft);transform:translateY(-140%);visibility:hidden;transition:transform .35s var(--ease),visibility 0s linear .35s}
+    .nav-links.open{transform:none;visibility:visible;transition:transform .35s var(--ease),visibility 0s}
+    .nav-main{flex-direction:column;align-items:stretch;gap:0}
+    .nav-group{border-bottom:1px solid var(--line-soft);padding:14px 0 8px}
+    .nav-trigger{padding:0 0 6px;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--faint);cursor:default;pointer-events:none}
+    .nav-trigger:hover{background:none;color:var(--faint)}
+    .nav-chev{display:none}
+    .nav-menu{position:static;opacity:1;visibility:visible;transform:none;min-width:0;padding:0;background:none;border:0;box-shadow:none;backdrop-filter:none;-webkit-backdrop-filter:none}
+    .nav-item{padding:10px 0}
+    .nav-item span{display:none}
+    .nav-item b{font-size:16px}
+    .nav-main>a.link{padding:16px 0;border-radius:0;border-bottom:1px solid var(--line-soft);font-size:16px;color:var(--text)}
+    .nav-main>a.link:hover{background:none}
+    .nav-actions{margin:18px 0 0;flex-direction:column;align-items:stretch;gap:12px}
+    .nav-links .nav-actions a.nav-signin{width:auto;font-size:16px;display:flex;justify-content:center;padding:12px;border:1px solid var(--line);border-radius:10px;color:var(--text)}
+    .nav-links .nav-actions .btn{width:100%;margin-top:0;padding:13px;font-size:15px}
+    .nav-toggle{display:block}
+  }
 </style>
 <svg class="mt-defs" width="0" height="0" aria-hidden="true"><defs><radialGradient id="mtGlow" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#f2fff9"/><stop offset="16%" stop-color="#3affb2"/><stop offset="46%" stop-color="#2efea9" stop-opacity="0.72"/><stop offset="100%" stop-color="#2efea9" stop-opacity="0"/></radialGradient></defs></svg>
 <nav id="nav">
@@ -778,16 +811,25 @@
     <a href="#top" aria-label="Metari home"><span class="brand"><span class="mt-mark"><svg viewBox="0 0 100 100" class="mt-svg" aria-hidden="true"><g class="mt-spin"><path d="M 50.0 3.0 L 54.59 38.91 L 83.23 16.77 L 61.09 45.41 L 97.0 50.0 L 61.09 54.59 L 83.23 83.23 L 54.59 61.09 L 50.0 97.0 L 45.41 61.09 L 16.77 83.23 L 38.91 54.59 L 3.0 50.0 L 38.91 45.41 L 16.77 16.77 L 45.41 38.91 Z" fill="url(#mtGlow)"/></g><circle class="mt-ring" cx="50" cy="50" r="9" fill="none" stroke="#2efea9" stroke-width="2.4"/><circle class="mt-ring mt-ring2" cx="50" cy="50" r="9" fill="none" stroke="#2efea9" stroke-width="2"/><circle class="mt-core" cx="50" cy="50" r="7" fill="#f2fff9"/></svg></span><span class="brand-word">METARI</span></span></a>
     <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false">&#9776;</button>
     <div class="nav-links" id="navLinks">
-      <a href="#problem" class="link">Why now</a>
-      <a href="#brain" class="link">Intelligence</a>
-      <a href="#command-center" class="link">Command Center</a>
-      <a href="#configurations" class="link">Environments</a>
-      <a href="/health" class="link">Health</a>
-      <a href="/gov" class="link">Government</a>
-      <a href="#status" class="link">Company</a>
-      <a href="#founder" class="link">Founder</a>
-      <a href="https://command.metari.io" class="btn btn-ext" target="_blank" rel="noopener">Open workspace</a>
-      <a href="#contact" class="btn btn-primary" data-inquiry="">Contact</a>
+      <div class="nav-main">
+        <div class="nav-group">
+          <button type="button" class="nav-trigger" aria-expanded="false" aria-controls="menuPlatform">Platform<svg class="nav-chev" viewBox="0 0 12 12" aria-hidden="true"><path d="M3 4.5 6 7.5 9 4.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <div class="nav-menu" id="menuPlatform"><a href="#brain" class="nav-item"><b>Metari Brain</b><span>How every run informs the next</span></a><a href="#command-center" class="nav-item"><b>Command Center</b><span>Orders, capture and evidence in one place</span></a><a href="#configurations" class="nav-item"><b>Environments</b><span>Real rooms, configured for humanoids</span></a></div>
+        </div>
+        <div class="nav-group">
+          <button type="button" class="nav-trigger" aria-expanded="false" aria-controls="menuSectors">Sectors<svg class="nav-chev" viewBox="0 0 12 12" aria-hidden="true"><path d="M3 4.5 6 7.5 9 4.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <div class="nav-menu" id="menuSectors"><a href="#configurations" class="nav-item"><b>Hospitality</b><span>Where Metari starts</span></a><a href="/health" class="nav-item"><b>Health</b><span>Controlled mock care environments</span></a><a href="/gov" class="nav-item"><b>Government</b><span>Programs for public facilities and logistics</span></a></div>
+        </div>
+        <a href="#problem" class="link">Why now</a>
+        <div class="nav-group">
+          <button type="button" class="nav-trigger" aria-expanded="false" aria-controls="menuCompany">Company<svg class="nav-chev" viewBox="0 0 12 12" aria-hidden="true"><path d="M3 4.5 6 7.5 9 4.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <div class="nav-menu" id="menuCompany"><a href="#status" class="nav-item"><b>About</b><span>Where Metari is today</span></a><a href="#founder" class="nav-item"><b>Founder</b><span>Steven Ortmann</span></a></div>
+        </div>
+      </div>
+      <div class="nav-actions">
+        <a href="https://command.metari.io" class="link nav-signin" target="_blank" rel="noopener">Sign in</a>
+        <a href="#contact" class="btn btn-primary" data-inquiry="">Contact</a>
+      </div>
     </div>
   </div>
 </nav>
@@ -1229,6 +1271,21 @@
   var tgl=document.getElementById('navToggle'), links=document.getElementById('navLinks');
   if(tgl){ tgl.addEventListener('click',function(){ var o=links.classList.toggle('open'); tgl.setAttribute('aria-expanded',o?'true':'false'); }); }
   links && links.querySelectorAll('a').forEach(function(a){ a.addEventListener('click',function(){ links.classList.remove('open'); tgl&&tgl.setAttribute('aria-expanded','false'); }); });
+  // grouped menus: hover on desktop, click/tap and keyboard everywhere
+  var groups=[].slice.call(document.querySelectorAll('#nav .nav-group'));
+  var canHover=window.matchMedia && window.matchMedia('(hover:hover) and (min-width:981px)');
+  function setGroup(g,o){ g.classList.toggle('open',o); g.querySelector('.nav-trigger').setAttribute('aria-expanded',o?'true':'false'); }
+  function closeAll(except){ groups.forEach(function(g){ if(g!==except) setGroup(g,false); }); }
+  groups.forEach(function(g){
+    var t=g.querySelector('.nav-trigger'), timer;
+    t.addEventListener('click',function(e){ e.stopPropagation(); var o=!g.classList.contains('open'); closeAll(g); setGroup(g,o); });
+    g.addEventListener('mouseenter',function(){ if(canHover&&canHover.matches){ clearTimeout(timer); closeAll(g); setGroup(g,true); } });
+    g.addEventListener('mouseleave',function(){ if(canHover&&canHover.matches){ timer=setTimeout(function(){ setGroup(g,false); },140); } });
+    g.addEventListener('focusout',function(e){ if(!g.contains(e.relatedTarget)) setGroup(g,false); });
+    g.querySelectorAll('a').forEach(function(a){ a.addEventListener('click',function(){ setGroup(g,false); }); });
+  });
+  document.addEventListener('click',function(e){ if(!e.target.closest('#nav .nav-group')) closeAll(); });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape'){ var o=document.querySelector('#nav .nav-group.open'); closeAll(); if(o) o.querySelector('.nav-trigger').focus(); } });
 
   // reveal
   var rev=[].slice.call(document.querySelectorAll('.reveal:not(.in)'));
