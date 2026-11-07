@@ -218,8 +218,8 @@
     .flow{grid-template-columns:repeat(3,1fr)}
     .eval,.status{grid-template-columns:1fr 1fr}
   }
-  /* nav collapses to the menu button before the links overflow (Government link added) */
-  @media (max-width:1180px){
+  /* nav collapses to the menu button before the links overflow (Government and Retail links added) */
+  @media (max-width:1260px){
     .nav-links{position:fixed;top:76px;left:0;right:0;background:rgba(6,7,9,.97);backdrop-filter:blur(20px);flex-direction:column;align-items:flex-start;gap:0;padding:12px 20px 22px;border-bottom:1px solid var(--line-soft);transform:translateY(-140%);visibility:hidden;transition:transform .35s var(--ease),visibility 0s linear .35s}
     .nav-links.open{transform:none;visibility:visible;transition:transform .35s var(--ease),visibility 0s}
     .nav-links a.link{width:100%;padding:14px 0;border-bottom:1px solid var(--line-soft);font-size:16px}
@@ -273,6 +273,7 @@
       <a href="#roadmap" class="link">Roadmap</a>
       <a href="/" class="link">Metari</a>
       <a href="/gov" class="link">Government</a>
+      <a href="/retail" class="link">Retail</a>
       <a href="#contact" class="btn btn-primary">Contact</a>
     </div>
   </div>
